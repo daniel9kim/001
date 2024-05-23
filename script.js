@@ -6,7 +6,8 @@ const COL = COLUMN = 10;
 const SQ = squareSize = 30;
 const VACANT = "BLACK"; // color of an empty square
 
-alert('hello');
+alert("hello");
+
 // draw a square
 function drawSquare(x, y, color) {
     context.fillStyle = color;
