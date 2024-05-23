@@ -1,3 +1,5 @@
+alert("Hello 001");
+
 const canvas = document.getElementById('gameCanvas');
 const context = canvas.getContext('2d');
 
@@ -6,7 +8,7 @@ const COL = 10;
 const SQ = 30;
 const VACANT = "BLACK"; // color of an empty square
 
-alert("Hello 001");
+alert("Hello 002");
 
 function drawSquare(x, y, color) {
     context.fillStyle = color;
