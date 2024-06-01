@@ -6,21 +6,35 @@
     <title>WebSocket Time Sync</title>
     <script>
         alert("Time 001");
+    </script>
+    <script>
+        function updateTime() {
+            const clientTime = new Date();
+            document.getElementById('client-time').textContent = `Client Time: ${clientTime.toISOString()}`;
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             const ws = new WebSocket('ws://localhost:8080');
             ws.onmessage = (event) => {
                 const data = JSON.parse(event.data);
                 const serverTime = new Date(data.serverTime);
+                document.getElementById('server-time').textContent = `Server Time: ${serverTime.toISOString()}`;
+                
                 const clientTime = new Date();
                 const timeDifference = clientTime - serverTime;
-                document.getElementById('time-difference').textContent = `Time difference (ms): ${timeDifference}`;
+                document.getElementById('time-difference').textContent = `Time Difference (ms): ${timeDifference}`;
             };
+
+            setInterval(updateTime, 1000); // Update client time every second
         });
     </script>
 </head>
 <body>
     <h1>WebSocket Time Sync</h1>
-    <p id="time-difference">Connecting...</p>
+    <p id="client-time">Client Time: Loading...</p>
+    <p id="server-time">Server Time: Waiting for server...</p>
+    <p id="time-difference">Time Difference (ms): Calculating...</p>
+
     <script>
         alert("Time 002");
     </script>
