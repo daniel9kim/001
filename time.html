@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket Time Sync</title>
+    <script>
+        alert("Time 001");
+        document.addEventListener('DOMContentLoaded', () => {
+            const ws = new WebSocket('ws://localhost:8080');
+            ws.onmessage = (event) => {
+                const data = JSON.parse(event.data);
+                const serverTime = new Date(data.serverTime);
+                const clientTime = new Date();
+                const timeDifference = clientTime - serverTime;
+                document.getElementById('time-difference').textContent = `Time difference (ms): ${timeDifference}`;
+            };
+        });
+    </script>
+</head>
+<body>
+    <h1>WebSocket Time Sync</h1>
+    <p id="time-difference">Connecting...</p>
+    <script>
+        alert("Time 002");
+    </script>
+</body>
+</html>
