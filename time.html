@@ -1,42 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebSocket Time Sync</title>
-    <script>
-        alert("Time 00A");
-    </script>
-    <script>
-        function updateClientTime() {
-            const clientTime = new Date();
-            document.getElementById('client-time').textContent = `Client Time: ${clientTime.toISOString()}`;
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const ws = new WebSocket('ws://localhost:8080');
-            ws.onmessage = (event) => {
-                const data = JSON.parse(event.data);
-                const serverTime = new Date(data.serverTime);
-                document.getElementById('server-time').textContent = `Server Time: ${serverTime.toISOString()}`;
-                
-                const clientTime = new Date();
-                const timeDifference = clientTime - serverTime;
-                document.getElementById('time-difference').textContent = `Time Difference (ms): ${timeDifference}`;
-            };
-
-            setInterval(updateClientTime, 1000); // Update client time every second
-        });
-    </script>
+    <title>Time Sync Example</title>
 </head>
 <body>
-    <h1>WebSocket Time Sync</h1>
-    <p id="client-time">Client Time: Loading...</p>
-    <p id="server-time">Server Time: Waiting for server...</p>
-    <p id="time-difference">Time Difference (ms): Calculating...</p>
-
+    <h1>Time Sync Example</h1>
+    <p id="time-difference">Calculating...</p>
     <script>
-        alert("Time 00B");
+        // 서버의 시간 정보를 가져오는 함수
+        async function fetchServerTime() {
+            const response = await fetch('http://your-server.com/server_time.json');
+            const data = await response.json();
+            return new Date(data.serverTime);
+        }
+
+        // 시간 차이를 계산하는 함수
+        async function calculateTimeDifference() {
+            const serverTime = await fetchServerTime();
+            const clientTime = new Date();
+
+            const timeDifference = serverTime - clientTime;
+
+            document.getElementById('time-difference').innerText =
+                "Time difference: " + timeDifference + " milliseconds";
+        }
+
+        // 페이지 로드 시 시간 차이를 계산
+        calculateTimeDifference();
     </script>
 </body>
 </html>
