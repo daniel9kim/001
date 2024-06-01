@@ -14,13 +14,13 @@ body {
 }
 
 .calculator-screen {
-    width: 100%;
+    width: 80%;
     height: 80px;
     border: 30px;
-    background-color: #2500FF;
+    background-color: #2525FF;
     color: white;
     text-align: right;
-    padding: 30px;
+    padding: 10px;
     font-size: 2.4rem;
 }
 
