@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WebSocket Time Sync</title>
     <script>
-        alert("Time 001");
+        alert("Time 00A");
     </script>
     <script>
-        function updateTime() {
+        function updateClientTime() {
             const clientTime = new Date();
             document.getElementById('client-time').textContent = `Client Time: ${clientTime.toISOString()}`;
         }
@@ -25,7 +25,7 @@
                 document.getElementById('time-difference').textContent = `Time Difference (ms): ${timeDifference}`;
             };
 
-            setInterval(updateTime, 1000); // Update client time every second
+            setInterval(updateClientTime, 1000); // Update client time every second
         });
     </script>
 </head>
@@ -36,7 +36,7 @@
     <p id="time-difference">Time Difference (ms): Calculating...</p>
 
     <script>
-        alert("Time 002");
+        alert("Time 00B");
     </script>
 </body>
 </html>
