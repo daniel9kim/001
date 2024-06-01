@@ -29,12 +29,16 @@
 
             const timeDifference = serverTime - clientTime;
 
+            const hours = Math.floor(timeDifference / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);            
+
             document.getElementById('Server_Time').innerText = serverTime;
             document.getElementById('Client_Time').innerText = clientTime;            
 
 
             document.getElementById('time-difference').innerText =
-                "Time difference: " + timeDifference + " milliseconds";
+                "Time difference: " + hours + " 시간" + minutes + " 분" + seconds + " 초" ;
         }
 
         // 페이지 로드 시 시간 차이를 계산
