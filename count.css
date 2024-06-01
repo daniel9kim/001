@@ -14,10 +14,10 @@ body {
 }
 
 .calculator-screen {
-    width: 80%;
+    width: 100%;
     height: 80px;
-    border: 20px;
-    background-color: #25FF25;
+    border: 10px;
+    background-color: #252525;
     color: white;
     text-align: right;
     padding: 10px;
