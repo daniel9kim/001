@@ -5,6 +5,14 @@
 </head>
 <body>
     <h1>Time Sync Example</h1>
+    <BR><BR>
+    <h1>Server Time</h1>    
+    Server Time : <p id="Server_Time">Calculating...</p>    
+    <BR><BR>
+    <h1>Client Time</h1>    
+    Client Time : <p id="Client_Time">Calculating...</p>    
+    
+    <h1>Time Sync Example</h1>
     <p id="time-difference">Calculating...</p>
     <script>
         // 서버의 시간 정보를 가져오는 함수
@@ -20,6 +28,10 @@
             const clientTime = new Date();
 
             const timeDifference = serverTime - clientTime;
+
+            document.getElementById('Server_Time').innerText = serverTime;
+            document.getElementById('Client_Time').innerText = clientTime;            
+
 
             document.getElementById('time-difference').innerText =
                 "Time difference: " + timeDifference + " milliseconds";
