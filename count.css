@@ -14,9 +14,9 @@ body {
 }
 
 .calculator-screen {
-    width: 90%;
+    width: 95%;
     height: 80px;
-    border: 30px;
+    border: 10px;
     background-color: #25FF25;
     color: white;
     text-align: right;
