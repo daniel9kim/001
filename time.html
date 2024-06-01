@@ -9,7 +9,7 @@
     <script>
         // 서버의 시간 정보를 가져오는 함수
         async function fetchServerTime() {
-            const response = await fetch('http://your-server.com/server_time.json');
+            const response = await fetch('https://daniel9kim.github.io/001/server_time.json');
             const data = await response.json();
             return new Date(data.serverTime);
         }
