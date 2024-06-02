@@ -24,6 +24,7 @@ for (let r = 0; r < ROW; r++) {
 }
 
 function drawBoard() {
+    alert("002-A");
     for (let r = 0; r < ROW; r++) {
         for (let c = 0; c < COL; c++) {
             drawSquare(c, r, board[r][c]);
@@ -31,7 +32,9 @@ function drawBoard() {
     }
 }
 
+alert("001-B");
 drawBoard();
+alert("001-C");
 
 const PIECES = [
     [Z, "red"],
