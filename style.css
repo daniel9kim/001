@@ -1,6 +1,7 @@
 /* style.css */
 body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -23,4 +24,27 @@ h1 {
 canvas {
     background-color: #111;
     border: 2px solid #fff;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:active {
+    background-color: #555;
 }
