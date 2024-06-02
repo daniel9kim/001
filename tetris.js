@@ -30,6 +30,7 @@ function drawBoard() {
             drawSquare(c, r, board[r][c]);
         }
     }
+    alert("002-B");
 }
 
 alert("001-B");
