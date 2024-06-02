@@ -96,10 +96,13 @@ const J = [
 ];
 
 function randomPiece() {
+    alert("003-A");
     let r = Math.floor(Math.random() * PIECES.length);
     return new Piece(PIECES[r][0], PIECES[r][1]);
+    alert("003-B");
 }
 
+alert("001-D");
 let p = randomPiece();
 
 function Piece(tetromino, color) {
@@ -111,6 +114,7 @@ function Piece(tetromino, color) {
     this.y = -2;
 }
 
+alert("001-E");
 Piece.prototype.fill = function (color) {
     for (let r = 0; r < this.activeTetromino.length; r++) {
         for (let c = 0; c < this.activeTetromino[r].length; c++) {
@@ -121,14 +125,17 @@ Piece.prototype.fill = function (color) {
     }
 };
 
+alert("001-F");
 Piece.prototype.draw = function () {
     this.fill(this.color);
 };
 
+alert("001-G");
 Piece.prototype.unDraw = function () {
     this.fill(VACANT);
 };
 
+alert("001-H");
 Piece.prototype.moveDown = function () {
     if (!this.collision(0, 1, this.activeTetromino)) {
         this.unDraw();
@@ -235,6 +242,7 @@ Piece.prototype.collision = function (x, y, piece) {
     return false;
 };
 
+alert("001-GGG");
 document.addEventListener("keydown", CONTROL);
 
 function CONTROL(event) {
