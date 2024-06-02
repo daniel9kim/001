@@ -24,9 +24,6 @@ h1 {
 canvas {
     background-color: #111;
     border: 2px solid #fff;
-    width: 100%;
-    max-width: 300px;
-    height: auto;
 }
 
 .controls {
