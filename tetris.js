@@ -36,6 +36,8 @@ alert("001-B");
 drawBoard();
 alert("001-C");
 
+alert("KKK-A");
+
 const PIECES = [
     [Z, "red"],
     [S, "green"],
