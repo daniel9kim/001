@@ -251,6 +251,7 @@ let dropStart = Date.now();
 let gameOver = false;
 
 function drop() {
+    alert("001");
     let now = Date.now();
     let delta = now - dropStart;
     if (delta > 1000) {
@@ -260,6 +261,7 @@ function drop() {
     if (!gameOver) {
         requestAnimationFrame(drop);
     }
+    alert("002");
 }
 
 drop();
