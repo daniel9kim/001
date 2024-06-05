@@ -26,6 +26,7 @@ const brickOffsetTop = 30;
 const brickOffsetLeft = 10;
 
 let score = 0;
+let isGameWon = false;
 
 const bricks = [];
 for (let c = 0; c < brickColumnCount; c++) {
@@ -108,13 +109,26 @@ function collisionDetection() {
                     b.status = 0;
                     score++;
                     document.getElementById('score').innerText = `Score: ${score}`;
+                    if (score === brickRowCount * brickColumnCount) {
+                        isGameWon = true;
+                        setTimeout(showWinMessage, 10);
+                    }
                 }
             }
         }
     }
 }
 
+function showWinMessage() {
+    alert('축하합니다! 게임을 클리어하셨습니다!');
+    if (confirm('다시 시작하시겠습니까?')) {
+        document.location.reload();
+    }
+}
+
 function draw() {
+    if (isGameWon) return;
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBricks();
     drawBall();
