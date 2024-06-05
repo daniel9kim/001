@@ -25,6 +25,8 @@ const brickPadding = 10;
 const brickOffsetTop = 30;
 const brickOffsetLeft = 10;
 
+let score = 0;
+
 const bricks = [];
 for (let c = 0; c < brickColumnCount; c++) {
     bricks[c] = [];
@@ -86,7 +88,7 @@ function drawBricks() {
                 bricks[c][r].y = brickY;
                 ctx.beginPath();
                 ctx.rect(brickX, brickY, brickWidth, brickHeight);
-                ctx.fillStyle = "#0095DD";
+                ctx.fillStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
                 ctx.fill();
                 ctx.closePath();
             }
@@ -102,6 +104,8 @@ function collisionDetection() {
                 if (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
                     dy = -dy;
                     b.status = 0;
+                    score++;
+                    document.getElementById('score').innerText = `Score: ${score}`;
                 }
             }
         }
