@@ -31,7 +31,10 @@ const bricks = [];
 for (let c = 0; c < brickColumnCount; c++) {
     bricks[c] = [];
     for (let r = 0; r < brickRowCount; r++) {
-        bricks[c][r] = { x: 0, y: 0, status: 1 };
+        const brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
+        const brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
+        const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        bricks[c][r] = { x: brickX, y: brickY, status: 1, color: color };
     }
 }
 
@@ -82,13 +85,12 @@ function drawBricks() {
     for (let c = 0; c < brickColumnCount; c++) {
         for (let r = 0; r < brickRowCount; r++) {
             if (bricks[c][r].status === 1) {
-                const brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
-                const brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
-                bricks[c][r].x = brickX;
-                bricks[c][r].y = brickY;
+                const brickX = bricks[c][r].x;
+                const brickY = bricks[c][r].y;
+                const color = bricks[c][r].color;
                 ctx.beginPath();
                 ctx.rect(brickX, brickY, brickWidth, brickHeight);
-                ctx.fillStyle = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                ctx.fillStyle = color;
                 ctx.fill();
                 ctx.closePath();
             }
