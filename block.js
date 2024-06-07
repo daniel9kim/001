@@ -1,6 +1,13 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
+const backgroundMusic = document.getElementById("backgroundMusic");
+const brickHitSound = document.getElementById("brickHitSound");
+const paddleHitSound = document.getElementById("paddleHitSound");
+const winSound = document.getElementById("winSound");
+
+backgroundMusic.play();
+
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
@@ -108,6 +115,7 @@ function collisionDetection() {
                     dy = -dy;
                     b.status = 0;
                     score++;
+                    brickHitSound.play();
                     document.getElementById('score').innerText = `Score: ${score}`;
                     if (score === brickRowCount * brickColumnCount) {
                         isGameWon = true;
@@ -120,6 +128,7 @@ function collisionDetection() {
 }
 
 function showWinMessage() {
+    winSound.play();
     alert('축하합니다! 게임을 클리어하셨습니다!');
     if (confirm('다시 시작하시겠습니까?')) {
         document.location.reload();
@@ -143,6 +152,7 @@ function draw() {
     } else if (y + dy > canvas.height - ballRadius) {
         if (x > paddleX && x < paddleX + paddleWidth) {
             dy = -dy;
+            paddleHitSound.play();
         } else {
             document.location.reload();
         }
