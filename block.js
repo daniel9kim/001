@@ -9,7 +9,7 @@ const winSound = document.getElementById("winSound");
 backgroundMusic.play();
 
 canvas.width = window.innerWidth;
-canvas.height = window.innerHeight - 300;
+canvas.height = window.innerHeight - 100;
 
 const ballRadius = 10;
 let x = canvas.width / 2;
