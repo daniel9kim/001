@@ -94,25 +94,48 @@ function spawnEnemy() {
 
 setInterval(spawnEnemy, spawnInterval);
 
+function detectCollision(rect1, rect2) {
+    return !(rect1.x > rect2.x + rect2.width ||
+             rect1.x + rect1.width < rect2.x ||
+             rect1.y > rect2.y + rect2.height ||
+             rect1.y + rect1.height < rect2.y);
+}
+
 function gameLoop() {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     player.draw();
-    player.bullets.forEach((bullet, index) => {
+    player.bullets.forEach((bullet, bulletIndex) => {
         bullet.update();
         bullet.draw();
 
+        // Remove bullets that are off-screen
         if (bullet.y + bullet.height < 0) {
-            player.bullets.splice(index, 1);
+            player.bullets.splice(bulletIndex, 1);
         }
+
+        // Check collision with enemies
+        enemies.forEach((enemy, enemyIndex) => {
+            if (detectCollision(bullet, enemy)) {
+                player.bullets.splice(bulletIndex, 1);
+                enemies.splice(enemyIndex, 1);
+            }
+        });
     });
 
-    enemies.forEach((enemy, index) => {
+    enemies.forEach((enemy, enemyIndex) => {
         enemy.update();
         enemy.draw();
 
+        // Remove enemies that are off-screen
         if (enemy.y > canvas.height) {
-            enemies.splice(index, 1);
+            enemies.splice(enemyIndex, 1);
+        }
+
+        // Check collision with player
+        if (detectCollision(enemy, player)) {
+            // End game logic here
+            console.log('Game Over');
         }
     });
 
