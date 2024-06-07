@@ -8,8 +8,14 @@ const winSound = document.getElementById("winSound");
 
 backgroundMusic.play();
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+function resizeCanvas() {
+    const container = document.querySelector('.canvas-container');
+    canvas.width = container.clientWidth;
+    canvas.height = container.clientHeight;
+}
+
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
 
 const ballRadius = 10;
 let x = canvas.width / 2;
