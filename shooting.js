@@ -12,33 +12,29 @@ class Player {
         this.height = height;
         this.image = new Image();
         this.image.src = imageSrc;
-        this.speed = 5;
+        this.speed = 10; // Increased speed for mobile control
         this.bullets = [];
+        this.direction = {
+            left: false,
+            right: false,
+            up: false,
+            down: false
+        };
     }
 
     draw() {
         context.drawImage(this.image, this.x, this.y, this.width, this.height);
     }
 
-    move(direction) {
-        switch (direction) {
-            case 'left':
-                if (this.x > 0) this.x -= this.speed;
-                break;
-            case 'right':
-                if (this.x + this.width < canvas.width) this.x += this.speed;
-                break;
-            case 'up':
-                if (this.y > 0) this.y -= this.speed;
-                break;
-            case 'down':
-                if (this.y + this.height < canvas.height) this.y += this.speed;
-                break;
-        }
+    update() {
+        if (this.direction.left && this.x > 0) this.x -= this.speed;
+        if (this.direction.right && this.x + this.width < canvas.width) this.x += this.speed;
+        if (this.direction.up && this.y > 0) this.y -= this.speed;
+        if (this.direction.down && this.y + this.height < canvas.height) this.y += this.speed;
     }
 
     shoot() {
-        const bullet = new Bullet(this.x + this.width / 2, this.y, 5, 10, 'red');
+        const bullet = new Bullet(this.x + this.width / 2 - 2.5, this.y, 5, 10, 'red');
         this.bullets.push(bullet);
     }
 }
@@ -104,6 +100,7 @@ function detectCollision(rect1, rect2) {
 function gameLoop() {
     context.clearRect(0, 0, canvas.width, canvas.height);
 
+    player.update();
     player.draw();
     player.bullets.forEach((bullet, bulletIndex) => {
         bullet.update();
@@ -145,19 +142,36 @@ function gameLoop() {
 window.addEventListener('keydown', (event) => {
     switch (event.key) {
         case 'ArrowLeft':
-            player.move('left');
+            player.direction.left = true;
             break;
         case 'ArrowRight':
-            player.move('right');
+            player.direction.right = true;
             break;
         case 'ArrowUp':
-            player.move('up');
+            player.direction.up = true;
             break;
         case 'ArrowDown':
-            player.move('down');
+            player.direction.down = true;
             break;
         case ' ':
             player.shoot();
+            break;
+    }
+});
+
+window.addEventListener('keyup', (event) => {
+    switch (event.key) {
+        case 'ArrowLeft':
+            player.direction.left = false;
+            break;
+        case 'ArrowRight':
+            player.direction.right = false;
+            break;
+        case 'ArrowUp':
+            player.direction.up = false;
+            break;
+        case 'ArrowDown':
+            player.direction.down = false;
             break;
     }
 });
@@ -169,11 +183,16 @@ canvas.addEventListener('touchstart', (event) => {
 
     if (touchY < player.y) {
         player.shoot();
-    } else if (touchX < player.x) {
-        player.move('left');
-    } else if (touchX > player.x + player.width) {
-        player.move('right');
     }
+});
+
+canvas.addEventListener('touchmove', (event) => {
+    const touchX = event.touches[0].clientX;
+    const touchY = event.touches[0].clientY;
+
+    // Increase the speed of the player's movement on mobile
+    player.x += (touchX - (player.x + player.width / 2)) * 0.1;
+    player.y += (touchY - (player.y + player.height / 2)) * 0.1;
 });
 
 gameLoop();
