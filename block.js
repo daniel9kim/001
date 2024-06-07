@@ -9,7 +9,7 @@ const winSound = document.getElementById("winSound");
 backgroundMusic.play();
 
 canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.height = window.innerHeight - 300;
 
 const ballRadius = 10;
 let x = canvas.width / 2;
@@ -83,7 +83,7 @@ function drawBall() {
 
 function drawPaddle() {
     ctx.beginPath();
-    ctx.rect(paddleX, canvas.height - 500, paddleWidth, paddleHeight);
+    ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
     ctx.fillStyle = "#0095DD";
     ctx.fill();
     ctx.closePath();
