@@ -190,8 +190,8 @@ canvas.addEventListener('touchmove', (event) => {
     const touchX = event.touches[0].clientX;
     const touchY = event.touches[0].clientY;
 
-    player.x = touchX - player.width / 2;
-    player.y = touchY - player.height / 2;
+    player.x = touchX - player.width * 5;
+    player.y = touchY - player.height * 5;
 });
 
 gameLoop();
