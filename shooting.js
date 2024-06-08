@@ -22,6 +22,7 @@ class Player {
         };
         this.targetX = this.x;
         this.targetY = this.y;
+        this.shootInterval = setInterval(() => this.shoot(), 500); // Shoot every 500ms
     }
 
     draw() {
@@ -160,9 +161,6 @@ window.addEventListener('keydown', (event) => {
             break;
         case 'ArrowDown':
             player.direction.down = true;
-            break;
-        case ' ':
-            player.shoot();
             break;
     }
 });
