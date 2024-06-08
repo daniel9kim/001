@@ -139,7 +139,7 @@ function endGame() {
         message = 'Excellent!';
     }
     finalMessageElement.textContent = message;
-    gameOverScreen.classList.remove('hidden');
+    gameOverScreen.style.display = 'flex';
 }
 
 function gameLoop() {
