@@ -7,6 +7,7 @@ const restartButton = document.getElementById('restartButton');
 const backgroundMusic = document.getElementById('backgroundMusic');
 const shootSound = document.getElementById('shootSound');
 const explosionSound = document.getElementById('explosionSound');
+const hitSound = document.getElementById('hitSound');
 const scoreDisplay = document.getElementById('scoreDisplay');
 
 canvas.width = window.innerWidth;
@@ -164,6 +165,8 @@ function gameLoop() {
                 enemies.splice(enemyIndex, 1);
                 score += 1;
                 updateScore();
+                hitSound.currentTime = 0;  // Restart the hit sound
+                hitSound.play();
             }
         });
     });
