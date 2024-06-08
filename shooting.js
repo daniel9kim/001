@@ -12,7 +12,7 @@ class Player {
         this.height = height;
         this.image = new Image();
         this.image.src = imageSrc;
-        this.speed = 10; // Increased speed for mobile control
+        this.speed = 5;
         this.bullets = [];
         this.direction = {
             left: false,
@@ -20,6 +20,8 @@ class Player {
             up: false,
             down: false
         };
+        this.targetX = this.x;
+        this.targetY = this.y;
     }
 
     draw() {
@@ -31,6 +33,14 @@ class Player {
         if (this.direction.right && this.x + this.width < canvas.width) this.x += this.speed;
         if (this.direction.up && this.y > 0) this.y -= this.speed;
         if (this.direction.down && this.y + this.height < canvas.height) this.y += this.speed;
+
+        // Smoothly move towards target position on mobile
+        if (Math.abs(this.targetX - this.x) > this.speed) {
+            this.x += this.targetX > this.x ? this.speed : -this.speed;
+        }
+        if (Math.abs(this.targetY - this.y) > this.speed) {
+            this.y += this.targetY > this.y ? this.speed : -this.speed;
+        }
     }
 
     shoot() {
@@ -190,9 +200,9 @@ canvas.addEventListener('touchmove', (event) => {
     const touchX = event.touches[0].clientX;
     const touchY = event.touches[0].clientY;
 
-    // Increase the speed of the player's movement on mobile
-    player.x += (touchX - (player.x + player.width / 2)) * 1;
-    player.y += (touchY - (player.y + player.height / 2)) * 1;
+    // Set the target position for smooth movement
+    player.targetX = touchX - player.width / 2;
+    player.targetY = touchY - player.height / 2;
 });
 
 gameLoop();
