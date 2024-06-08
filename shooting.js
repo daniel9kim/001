@@ -191,8 +191,8 @@ canvas.addEventListener('touchmove', (event) => {
     const touchY = event.touches[0].clientY;
 
     // Increase the speed of the player's movement on mobile
-    player.x += (touchX - (player.x + player.width / 2)) * 10;
-    player.y += (touchY - (player.y + player.height / 2)) * 10;
+    player.x += (touchX - (player.x + player.width / 2)) * 1;
+    player.y += (touchY - (player.y + player.height / 2)) * 1;
 });
 
 gameLoop();
