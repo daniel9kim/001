@@ -7,6 +7,7 @@ const restartButton = document.getElementById('restartButton');
 const backgroundMusic = document.getElementById('backgroundMusic');
 const shootSound = document.getElementById('shootSound');
 const explosionSound = document.getElementById('explosionSound');
+const scoreDisplay = document.getElementById('scoreDisplay');
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -118,6 +119,10 @@ function detectCollision(rect1, rect2) {
              rect1.y + rect1.height < rect2.y);
 }
 
+function updateScore() {
+    scoreDisplay.textContent = `Score: ${score}`;
+}
+
 function endGame() {
     gameOver = true;
     clearInterval(player.shootInterval);
@@ -158,6 +163,7 @@ function gameLoop() {
                 player.bullets.splice(bulletIndex, 1);
                 enemies.splice(enemyIndex, 1);
                 score += 1;
+                updateScore();
             }
         });
     });
