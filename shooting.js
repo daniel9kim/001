@@ -116,7 +116,7 @@ function spawnEnemy() {
         // Boss enemy appears every 10 points
         enemy = new Enemy(Math.random() * (canvas.width - 70), 0, 70, 70, 'boss.png', 5);
         bossAppearSound.currentTime = 0;
-        bossAppearSound.play();
+        //bossAppearSound.play();
         bossSpawned = true;
     } else {
         enemy = new Enemy(Math.random() * (canvas.width - 50), 0, 50, 50, 'enemy.png');
