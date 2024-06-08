@@ -114,7 +114,7 @@ function spawnEnemy() {
     let enemy;
     if (!bossSpawned && score > 0 && score % 10 === 0) {
         // Boss enemy appears every 10 points
-        enemy = new Enemy(Math.random() * (canvas.width - 70), 0, 70, 70, 'boss.png', 5);
+        enemy = new Enemy(Math.random() * (canvas.width - 70), 0, 70, 70, 'boss.jpg', 5);
         bossAppearSound.currentTime = 0;
         //bossAppearSound.play();
         bossSpawned = true;
@@ -182,7 +182,7 @@ function gameLoop() {
                     updateScore();
                     hitSound.currentTime = 0;  // Restart the hit sound
                     hitSound.play();
-                    if (enemy.image.src.includes('boss.png')) {
+                    if (enemy.image.src.includes('boss.jpg')) {
                         bossExplodeSound.currentTime = 0;
                         bossExplodeSound.play();
                         bossSpawned = false;
