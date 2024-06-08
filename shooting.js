@@ -8,6 +8,8 @@ const backgroundMusic = document.getElementById('backgroundMusic');
 const shootSound = document.getElementById('shootSound');
 const explosionSound = document.getElementById('explosionSound');
 const hitSound = document.getElementById('hitSound');
+const bossAppearSound = document.getElementById('bossAppearSound');
+const bossExplodeSound = document.getElementById('bossExplodeSound');
 const scoreDisplay = document.getElementById('scoreDisplay');
 
 canvas.width = window.innerWidth;
@@ -111,7 +113,9 @@ function spawnEnemy() {
     let enemy;
     if (score > 0 && score % 10 === 0) {
         // Boss enemy appears every 10 points
-        enemy = new Enemy(Math.random() * (canvas.width - 50), 0, 70, 70, 'enemy.png', 5);
+        enemy = new Enemy(Math.random() * (canvas.width - 70), 0, 70, 70, 'boss.png', 5);
+        bossAppearSound.currentTime = 0;
+        bossAppearSound.play();
     } else {
         enemy = new Enemy(Math.random() * (canvas.width - 50), 0, 50, 50, 'enemy.png');
     }
@@ -176,6 +180,10 @@ function gameLoop() {
                     updateScore();
                     hitSound.currentTime = 0;  // Restart the hit sound
                     hitSound.play();
+                    if (enemy.image.src.includes('boss.png')) {
+                        bossExplodeSound.currentTime = 0;
+                        bossExplodeSound.play();
+                    }
                 }
             }
         });
