@@ -1,206 +1,178 @@
-const canvas = document.getElementById('gameCanvas');
-const context = canvas.getContext('2d');
+const canvas = document.getElementById("gameCanvas");
+const ctx = canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+const backgroundMusic = document.getElementById("backgroundMusic");
+const brickHitSound = document.getElementById("brickHitSound");
+const paddleHitSound = document.getElementById("paddleHitSound");
+const winSound = document.getElementById("winSound");
 
-class Player {
-    constructor(x, y, width, height, imageSrc) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.image = new Image();
-        this.image.src = imageSrc;
-        this.speed = 5;
-        this.bullets = [];
-        this.direction = {
-            left: false,
-            right: false,
-            up: false,
-            down: false
-        };
-        this.targetX = this.x;
-        this.targetY = this.y;
-    }
+backgroundMusic.play();
 
-    draw() {
-        context.drawImage(this.image, this.x, this.y, this.width, this.height);
-    }
+function resizeCanvas() {
+    const container = document.querySelector('.canvas-container');
+    canvas.width = container.clientWidth;
+    canvas.height = container.clientHeight;
+}
 
-    update() {
-        if (this.direction.left && this.x > 0) this.x -= this.speed;
-        if (this.direction.right && this.x + this.width < canvas.width) this.x += this.speed;
-        if (this.direction.up && this.y > 0) this.y -= this.speed;
-        if (this.direction.down && this.y + this.height < canvas.height) this.y += this.speed;
+window.addEventListener('resize', resizeCanvas);
+resizeCanvas();
 
-        // Smoothly move towards target position on mobile
-        const deltaX = this.targetX - this.x;
-        const deltaY = this.targetY - this.y;
-        this.x += deltaX * 0.05; // Adjust the multiplier to control the speed
-        this.y += deltaY * 0.05; // Adjust the multiplier to control the speed
-    }
+const ballRadius = 10;
+let x = canvas.width / 2;
+let y = canvas.height - 30;
+let dx = 2;
+let dy = -2;
 
-    shoot() {
-        const bullet = new Bullet(this.x + this.width / 2 - 2.5, this.y, 5, 10, 'red');
-        this.bullets.push(bullet);
+const paddleHeight = 10;
+const paddleWidth = 75;
+let paddleX = (canvas.width - paddleWidth) / 2;
+
+let rightPressed = false;
+let leftPressed = false;
+
+const brickRowCount = 3;
+const brickColumnCount = 5;
+const brickWidth = (canvas.width / brickColumnCount) - 10;
+const brickHeight = 20;
+const brickPadding = 10;
+const brickOffsetTop = 30;
+const brickOffsetLeft = 10;
+
+let score = 0;
+let isGameWon = false;
+
+const bricks = [];
+for (let c = 0; c < brickColumnCount; c++) {
+    bricks[c] = [];
+    for (let r = 0; r < brickRowCount; r++) {
+        const brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
+        const brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
+        const color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        bricks[c][r] = { x: brickX, y: brickY, status: 1, color: color };
     }
 }
 
-class Bullet {
-    constructor(x, y, width, height, color) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.color = color;
-        this.speed = 7;
-    }
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+document.addEventListener("touchmove", touchMoveHandler, false);
 
-    draw() {
-        context.fillStyle = this.color;
-        context.fillRect(this.x, this.y, this.width, this.height);
-    }
-
-    update() {
-        this.y -= this.speed;
+function keyDownHandler(e) {
+    if (e.key === "Right" || e.key === "ArrowRight") {
+        rightPressed = true;
+    } else if (e.key === "Left" || e.key === "ArrowLeft") {
+        leftPressed = true;
     }
 }
 
-class Enemy {
-    constructor(x, y, width, height, imageSrc) {
-        this.x = x;
-        this.y = y;
-        this.width = width;
-        this.height = height;
-        this.image = new Image();
-        this.image.src = imageSrc;
-        this.speed = 3;
-    }
-
-    draw() {
-        context.drawImage(this.image, this.x, this.y, this.width, this.height);
-    }
-
-    update() {
-        this.y += this.speed;
+function keyUpHandler(e) {
+    if (e.key === "Right" || e.key === "ArrowRight") {
+        rightPressed = false;
+    } else if (e.key === "Left" || e.key === "ArrowLeft") {
+        leftPressed = false;
     }
 }
 
-const player = new Player(canvas.width / 2 - 25, canvas.height - 60, 50, 50, 'player.png');
-const enemies = [];
-let spawnInterval = 2000;
-
-function spawnEnemy() {
-    const enemy = new Enemy(Math.random() * (canvas.width - 50), 0, 50, 50, 'enemy.png');
-    enemies.push(enemy);
+function touchMoveHandler(e) {
+    const touchX = e.touches[0].clientX;
+    paddleX = touchX - paddleWidth / 2;
+    if (paddleX < 0) paddleX = 0;
+    if (paddleX + paddleWidth > canvas.width) paddleX = canvas.width - paddleWidth;
 }
 
-setInterval(spawnEnemy, spawnInterval);
-
-function detectCollision(rect1, rect2) {
-    return !(rect1.x > rect2.x + rect2.width ||
-             rect1.x + rect1.width < rect2.x ||
-             rect1.y > rect2.y + rect2.height ||
-             rect1.y + rect1.height < rect2.y);
+function drawBall() {
+    ctx.beginPath();
+    ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
+    ctx.fillStyle = "#0095DD";
+    ctx.fill();
+    ctx.closePath();
 }
 
-function gameLoop() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
+function drawPaddle() {
+    ctx.beginPath();
+    ctx.rect(paddleX, canvas.height - paddleHeight, paddleWidth, paddleHeight);
+    ctx.fillStyle = "#0095DD";
+    ctx.fill();
+    ctx.closePath();
+}
 
-    player.update();
-    player.draw();
-    player.bullets.forEach((bullet, bulletIndex) => {
-        bullet.update();
-        bullet.draw();
-
-        // Remove bullets that are off-screen
-        if (bullet.y + bullet.height < 0) {
-            player.bullets.splice(bulletIndex, 1);
-        }
-
-        // Check collision with enemies
-        enemies.forEach((enemy, enemyIndex) => {
-            if (detectCollision(bullet, enemy)) {
-                player.bullets.splice(bulletIndex, 1);
-                enemies.splice(enemyIndex, 1);
+function drawBricks() {
+    for (let c = 0; c < brickColumnCount; c++) {
+        for (let r = 0; r < brickRowCount; r++) {
+            if (bricks[c][r].status === 1) {
+                const brickX = bricks[c][r].x;
+                const brickY = bricks[c][r].y;
+                const color = bricks[c][r].color;
+                ctx.beginPath();
+                ctx.rect(brickX, brickY, brickWidth, brickHeight);
+                ctx.fillStyle = color;
+                ctx.fill();
+                ctx.closePath();
             }
-        });
-    });
-
-    enemies.forEach((enemy, enemyIndex) => {
-        enemy.update();
-        enemy.draw();
-
-        // Remove enemies that are off-screen
-        if (enemy.y > canvas.height) {
-            enemies.splice(enemyIndex, 1);
         }
-
-        // Check collision with player
-        if (detectCollision(enemy, player)) {
-            // End game logic here
-            console.log('Game Over');
-        }
-    });
-
-    requestAnimationFrame(gameLoop);
+    }
 }
 
-window.addEventListener('keydown', (event) => {
-    switch (event.key) {
-        case 'ArrowLeft':
-            player.direction.left = true;
-            break;
-        case 'ArrowRight':
-            player.direction.right = true;
-            break;
-        case 'ArrowUp':
-            player.direction.up = true;
-            break;
-        case 'ArrowDown':
-            player.direction.down = true;
-            break;
-        case ' ':
-            player.shoot();
-            break;
+function collisionDetection() {
+    for (let c = 0; c < brickColumnCount; c++) {
+        for (let r = 0; r < brickRowCount; r++) {
+            const b = bricks[c][r];
+            if (b.status === 1) {
+                if (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
+                    dy = -dy;
+                    b.status = 0;
+                    score++;
+                    brickHitSound.play();
+                    document.getElementById('score').innerText = `Score: ${score}`;
+                    if (score === brickRowCount * brickColumnCount) {
+                        isGameWon = true;
+                        setTimeout(showWinMessage, 10);
+                    }
+                }
+            }
+        }
     }
-});
+}
 
-window.addEventListener('keyup', (event) => {
-    switch (event.key) {
-        case 'ArrowLeft':
-            player.direction.left = false;
-            break;
-        case 'ArrowRight':
-            player.direction.right = false;
-            break;
-        case 'ArrowUp':
-            player.direction.up = false;
-            break;
-        case 'ArrowDown':
-            player.direction.down = false;
-            break;
+function showWinMessage() {
+    winSound.play();
+    alert('축하합니다! 게임을 클리어하셨습니다!');
+    if (confirm('다시 시작하시겠습니까?')) {
+        document.location.reload();
     }
-});
+}
 
-// Mobile touch controls
-canvas.addEventListener('touchstart', (event) => {
-    const touchX = event.touches[0].clientX;
-    const touchY = event.touches[0].clientY;
+function draw() {
+    if (isGameWon) return;
 
-    if (touchY < player.y) {
-        player.shoot();
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBricks();
+    drawBall();
+    drawPaddle();
+    collisionDetection();
+
+    if (x + dx > canvas.width - ballRadius || x + dx < ballRadius) {
+        dx = -dx;
     }
-});
+    if (y + dy < ballRadius) {
+        dy = -dy;
+    } else if (y + dy > canvas.height - ballRadius) {
+        if (x > paddleX && x < paddleX + paddleWidth) {
+            dy = -dy;
+            paddleHitSound.play();
+        } else {
+            document.location.reload();
+        }
+    }
 
-canvas.addEventListener('touchmove', (event) => {
-    const touchX = event.touches[0].clientX;
-    const touchY = event.touches[0].clientY;
+    if (rightPressed && paddleX < canvas.width - paddleWidth) {
+        paddleX += 7;
+    } else if (leftPressed && paddleX > 0) {
+        paddleX -= 7;
+    }
 
-    // Set the target position for smooth movement
-    player.targetX = touchX - player.width / 2;
-    player.targetY = touchY - player.height / 2;
-});
+    x += dx;
+    y += dy;
+    requestAnimationFrame(draw);
+}
 
-gameLoop();
+draw();
