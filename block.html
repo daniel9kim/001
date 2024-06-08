@@ -12,10 +12,13 @@
             background: #000;
             color: #fff;
             font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            height: 100vh;
         }
         canvas {
-            display: block;
-            margin: auto;
             background: #eee;
             touch-action: none;
         }
@@ -24,18 +27,25 @@
             top: 10px;
             right: 10px;
             font-size: 24px;
-            color: #222;
+        }
+        .canvas-container {
+            width: 100%;
+            height: 80%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
-
 <body>
-    <canvas id="gameCanvas"></canvas>
     <div id="score">Score: 0</div>
-    <audio id="backgroundMusic" src="background-music.mp3" loop></audio>
-    <audio id="brickHitSound" src="brick-hit-sound.mp3"></audio>
-    <audio id="paddleHitSound" src="paddle-hit-sound.mp3"></audio>
-    <audio id="winSound" src="win-sound.mp3"></audio>
+    <div class="canvas-container">
+        <canvas id="gameCanvas"></canvas>
+    </div>
+    <audio id="backgroundMusic" src="audio/background-music.mp3" loop></audio>
+    <audio id="brickHitSound" src="audio/brick-hit-sound.mp3"></audio>
+    <audio id="paddleHitSound" src="audio/paddle-hit-sound.mp3"></audio>
+    <audio id="winSound" src="audio/win-sound.mp3"></audio>
     <script src="block.js"></script>
 </body>
 </html>
