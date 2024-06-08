@@ -1,8 +1,15 @@
 const canvas = document.getElementById('gameCanvas');
 const context = canvas.getContext('2d');
+const gameOverScreen = document.getElementById('gameOverScreen');
+const finalScoreElement = document.getElementById('finalScore');
+const finalMessageElement = document.getElementById('finalMessage');
+const restartButton = document.getElementById('restartButton');
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
+
+let score = 0;
+let gameOver = false;
 
 class Player {
     constructor(x, y, width, height, imageSrc) {
@@ -106,7 +113,25 @@ function detectCollision(rect1, rect2) {
              rect1.y + rect1.height < rect2.y);
 }
 
+function endGame() {
+    gameOver = true;
+    clearInterval(player.shootInterval);
+    finalScoreElement.textContent = `Final Score: ${score}`;
+    let message = '';
+    if (score < 10) {
+        message = 'Better luck next time!';
+    } else if (score < 20) {
+        message = 'Good job!';
+    } else {
+        message = 'Excellent!';
+    }
+    finalMessageElement.textContent = message;
+    gameOverScreen.classList.remove('hidden');
+}
+
 function gameLoop() {
+    if (gameOver) return;
+
     context.clearRect(0, 0, canvas.width, canvas.height);
 
     player.update();
@@ -125,6 +150,7 @@ function gameLoop() {
             if (detectCollision(bullet, enemy)) {
                 player.bullets.splice(bulletIndex, 1);
                 enemies.splice(enemyIndex, 1);
+                score += 1;
             }
         });
     });
@@ -140,8 +166,7 @@ function gameLoop() {
 
         // Check collision with player
         if (detectCollision(enemy, player)) {
-            // End game logic here
-            console.log('Game Over');
+            endGame();
         }
     });
 
@@ -199,6 +224,10 @@ canvas.addEventListener('touchmove', (event) => {
     // Set the target position for smooth movement
     player.targetX = touchX - player.width / 2;
     player.targetY = touchY - player.height / 2;
+});
+
+restartButton.addEventListener('click', () => {
+    location.reload();
 });
 
 gameLoop();
