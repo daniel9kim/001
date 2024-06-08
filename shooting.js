@@ -108,16 +108,19 @@ class Enemy {
 const player = new Player(canvas.width / 2 - 25, canvas.height - 60, 50, 50, 'player.png');
 const enemies = [];
 let spawnInterval = 2000;
+let bossSpawned = false;
 
 function spawnEnemy() {
     let enemy;
-    if (score > 0 && score % 10 === 0) {
+    if (!bossSpawned && score > 0 && score % 10 === 0) {
         // Boss enemy appears every 10 points
         enemy = new Enemy(Math.random() * (canvas.width - 70), 0, 70, 70, 'boss.png', 5);
         bossAppearSound.currentTime = 0;
         bossAppearSound.play();
+        bossSpawned = true;
     } else {
         enemy = new Enemy(Math.random() * (canvas.width - 50), 0, 50, 50, 'enemy.png');
+        bossSpawned = false;
     }
     enemies.push(enemy);
 }
@@ -183,6 +186,7 @@ function gameLoop() {
                     if (enemy.image.src.includes('boss.png')) {
                         bossExplodeSound.currentTime = 0;
                         bossExplodeSound.play();
+                        bossSpawned = false;
                     }
                 }
             }
