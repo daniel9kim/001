@@ -35,12 +35,10 @@ class Player {
         if (this.direction.down && this.y + this.height < canvas.height) this.y += this.speed;
 
         // Smoothly move towards target position on mobile
-        if (Math.abs(this.targetX - this.x) > this.speed) {
-            this.x += this.targetX > this.x ? this.speed : -this.speed;
-        }
-        if (Math.abs(this.targetY - this.y) > this.speed) {
-            this.y += this.targetY > this.y ? this.speed : -this.speed;
-        }
+        const deltaX = this.targetX - this.x;
+        const deltaY = this.targetY - this.y;
+        this.x += deltaX * 0.05; // Adjust the multiplier to control the speed
+        this.y += deltaY * 0.05; // Adjust the multiplier to control the speed
     }
 
     shoot() {
