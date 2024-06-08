@@ -83,7 +83,7 @@ class Bullet {
 }
 
 class Enemy {
-    constructor(x, y, width, height, imageSrc) {
+    constructor(x, y, width, height, imageSrc, health = 1) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -91,6 +91,7 @@ class Enemy {
         this.image = new Image();
         this.image.src = imageSrc;
         this.speed = 3;
+        this.health = health;
     }
 
     draw() {
@@ -107,7 +108,13 @@ const enemies = [];
 let spawnInterval = 2000;
 
 function spawnEnemy() {
-    const enemy = new Enemy(Math.random() * (canvas.width - 50), 0, 50, 50, 'enemy.png');
+    let enemy;
+    if (score > 0 && score % 10 === 0) {
+        // Boss enemy appears every 10 points
+        enemy = new Enemy(Math.random() * (canvas.width - 50), 0, 70, 70, 'enemy.png', 5);
+    } else {
+        enemy = new Enemy(Math.random() * (canvas.width - 50), 0, 50, 50, 'enemy.png');
+    }
     enemies.push(enemy);
 }
 
@@ -162,11 +169,14 @@ function gameLoop() {
         enemies.forEach((enemy, enemyIndex) => {
             if (detectCollision(bullet, enemy)) {
                 player.bullets.splice(bulletIndex, 1);
-                enemies.splice(enemyIndex, 1);
-                score += 1;
-                updateScore();
-                hitSound.currentTime = 0;  // Restart the hit sound
-                hitSound.play();
+                enemy.health -= 1;
+                if (enemy.health <= 0) {
+                    enemies.splice(enemyIndex, 1);
+                    score += 1;
+                    updateScore();
+                    hitSound.currentTime = 0;  // Restart the hit sound
+                    hitSound.play();
+                }
             }
         });
     });
