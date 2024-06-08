@@ -7,9 +7,22 @@ body {
     align-items: center;
     height: 100vh;
     background-color: #000;
+    flex-direction: column;
 }
 
 #gameCanvas {
     border: 1px solid #fff;
     background-color: #000;
+}
+
+.hidden {
+    display: none;
+}
+
+#gameOverScreen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
 }
