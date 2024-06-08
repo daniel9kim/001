@@ -17,7 +17,6 @@ canvas.height = window.innerHeight;
 
 let score = 0;
 let gameOver = false;
-let bossSpawned = false;
 
 class Player {
     constructor(x, y, width, height, imageSrc) {
@@ -109,6 +108,7 @@ class Enemy {
 const player = new Player(canvas.width / 2 - 25, canvas.height - 60, 50, 50, 'player.png');
 const enemies = [];
 let spawnInterval = 2000;
+let bossSpawned = false;
 
 function spawnEnemy() {
     let enemy;
@@ -120,6 +120,7 @@ function spawnEnemy() {
         bossSpawned = true;
     } else {
         enemy = new Enemy(Math.random() * (canvas.width - 50), 0, 50, 50, 'enemy.png');
+        bossSpawned = false;
     }
     enemies.push(enemy);
 }
