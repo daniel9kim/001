@@ -112,11 +112,11 @@ let spawnInterval = 2000;
 
 function spawnEnemy() {
     let enemy;
-    if (!bossSpawned && score > 0 && score % 10 === 0) {
+    if (!Spawned && score > 0 && score % 10 === 0) {
         // Boss enemy appears every 10 points
         enemy = new Enemy(Math.random() * (canvas.width - 70), 0, 70, 70, 'boss.jpg', 5);
         bossAppearSound.currentTime = 0;
-        //bossAppearSound.play();
+        bossAppearSound.play();
         bossSpawned = true;
     } else {
         enemy = new Enemy(Math.random() * (canvas.width - 50), 0, 50, 50, 'enemy.png');
