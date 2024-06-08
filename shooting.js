@@ -4,6 +4,9 @@ const gameOverScreen = document.getElementById('gameOverScreen');
 const finalScoreElement = document.getElementById('finalScore');
 const finalMessageElement = document.getElementById('finalMessage');
 const restartButton = document.getElementById('restartButton');
+const backgroundMusic = document.getElementById('backgroundMusic');
+const shootSound = document.getElementById('shootSound');
+const explosionSound = document.getElementById('explosionSound');
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -50,6 +53,8 @@ class Player {
     }
 
     shoot() {
+        shootSound.currentTime = 0;  // Restart the shoot sound
+        shootSound.play();
         const bullet = new Bullet(this.x + this.width / 2 - 2.5, this.y, 5, 10, 'red');
         this.bullets.push(bullet);
     }
@@ -116,6 +121,8 @@ function detectCollision(rect1, rect2) {
 function endGame() {
     gameOver = true;
     clearInterval(player.shootInterval);
+    backgroundMusic.pause();
+    explosionSound.play();
     finalScoreElement.textContent = `Final Score: ${score}`;
     let message = '';
     if (score < 10) {
@@ -229,5 +236,8 @@ canvas.addEventListener('touchmove', (event) => {
 restartButton.addEventListener('click', () => {
     location.reload();
 });
+
+// Start background music
+backgroundMusic.play();
 
 gameLoop();
