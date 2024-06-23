@@ -27,8 +27,11 @@
         video {
             width: 100%;
             height: auto;
-            display: block;
+            display: none;
             margin-bottom: 20px;
+        }
+        video.active {
+            display: block;
         }
         .contact {
             margin-top: auto;
@@ -50,21 +53,14 @@
 <body>
     <h1>동영상 보기</h1>
     <div class="video-container">
-        <h2>동영상 1</h2>
-        <video id="video1" controls>
+        <video id="video1" class="active" controls>
             <source src="video1.mp4" type="video/mp4">
             브라우저가 동영상을 지원하지 않습니다.
         </video>
-    </div>
-    <div class="video-container">
-        <h2>동영상 2</h2>
         <video id="video2" controls>
             <source src="video2.mp4" type="video/mp4">
             브라우저가 동영상을 지원하지 않습니다.
         </video>
-    </div>
-    <div class="video-container">
-        <h2>동영상 3</h2>
         <video id="video3" controls>
             <source src="video3.mp4" type="video/mp4">
             브라우저가 동영상을 지원하지 않습니다.
@@ -87,20 +83,18 @@
 
             function playNextVideo() {
                 if (currentVideoIndex < videos.length - 1) {
-                    videos[currentVideoIndex].style.display = 'none'; // Hide the current video
+                    videos[currentVideoIndex].classList.remove('active');
                     currentVideoIndex++;
-                    videos[currentVideoIndex].style.display = 'block'; // Show the next video
+                    videos[currentVideoIndex].classList.add('active');
                     videos[currentVideoIndex].play();
                 }
             }
 
             videos.forEach(function(video, index) {
                 video.addEventListener('ended', playNextVideo);
-                video.style.display = 'none'; // Hide all videos initially
             });
 
-            // Show and play the first video initially
-            videos[0].style.display = 'block';
+            // Play the first video initially
             videos[0].play();
         });
     </script>
