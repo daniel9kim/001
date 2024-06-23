@@ -1,72 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>영춘이의 Github</title>
+    <title>동영상 보기</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
-        table {
-            width: 80%;
-            border-collapse: collapse;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        h1 {
+            text-align: center;
+        }
+        .video-container {
+            margin: 20px auto;
+            max-width: 800px;
             background-color: #fff;
-            border-radius: 10px;
-            overflow: hidden;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        th, td {
-            padding: 15px;
-            text-align: left;
+        video {
+            width: 100%;
+            height: auto;
+            display: block;
+            margin-bottom: 20px;
         }
-        th {
-            background-color: #4CAF50;
-            color: white;
+        .contact {
+            margin-top: auto;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
         }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
+        .contact a {
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 18px;
         }
-        td:hover {
-            background-color: #ddd;
-        }
-        caption {
-            padding: 10px;
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #333;
+        .contact a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
+    <h1>동영상 보기</h1>
+    <div class="video-container">
+        <h2>동영상 1</h2>
+        <video id="video1" controls>
+            <source src="video1.mp4" type="video/mp4">
+            브라우저가 동영상을 지원하지 않습니다.
+        </video>
+    </div>
+    <div class="video-container">
+        <h2>동영상 2</h2>
+        <video id="video2" controls>
+            <source src="video2.mp4" type="video/mp4">
+            브라우저가 동영상을 지원하지 않습니다.
+        </video>
+    </div>
+    <div class="video-container">
+        <h2>동영상 3</h2>
+        <video id="video3" controls>
+            <source src="video3.mp4" type="video/mp4">
+            브라우저가 동영상을 지원하지 않습니다.
+        </video>
+    </div>
 
-<table>
-    <caption>영춘이의 프로그램 테스트</caption>
-    <thead>
-        <tr>
-            <th>프로그램 목록</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td><a href="./tetris.html">   1.  테트리스 게임 </a></td>
-        </tr>
-        <tr>
-            <td><a href="./count.html">   2.  계산기 프로그램</a></td>
-        </tr>
-        <tr>
-            <td><a href="./block.html">   3.  블럭깨기 게임</a></td>
-        </tr>
-        <tr>
-            <td><a href="./shooting.html">   4.  비행기 게임</a></td>
-        </tr>        
-    </tbody>
-</table>
+    <div class="contact">
+        <p>연락처: <a href="tel:123-1234">123-1234</a></p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var videos = [
+                document.getElementById('video1'),
+                document.getElementById('video2'),
+                document.getElementById('video3')
+            ];
+
+            var currentVideoIndex = 0;
+
+            function playNextVideo() {
+                if (currentVideoIndex < videos.length - 1) {
+                    videos[currentVideoIndex].style.display = 'none'; // Hide the current video
+                    currentVideoIndex++;
+                    videos[currentVideoIndex].style.display = 'block'; // Show the next video
+                    videos[currentVideoIndex].play();
+                }
+            }
+
+            videos.forEach(function(video, index) {
+                video.addEventListener('ended', playNextVideo);
+                video.style.display = 'none'; // Hide all videos initially
+            });
+
+            // Show and play the first video initially
+            videos[0].style.display = 'block';
+            videos[0].play();
+        });
+    </script>
 </body>
 </html>
