@@ -59,7 +59,7 @@
     </style>
 </head>
 <body>
-    <div class="gallery-container">
+    <div class="gallery-container" id="gallery">
         <div class="gallery-item active" id="item1">
             <img src="image1.jpg" alt="Image 1">
         </div>
@@ -81,6 +81,8 @@
     <script>
         let currentIndex = 0;
         const items = document.querySelectorAll('.gallery-item');
+        const gallery = document.getElementById('gallery');
+        let startX;
 
         function showItem(index) {
             items.forEach((item, i) => {
@@ -101,6 +103,31 @@
             currentIndex = (currentIndex === items.length - 1) ? 0 : currentIndex + 1;
             showItem(currentIndex);
         }
+
+        function handleTouchStart(event) {
+            startX = event.touches[0].clientX;
+        }
+
+        function handleTouchMove(event) {
+            if (!startX) {
+                return;
+            }
+
+            let endX = event.touches[0].clientX;
+            let diffX = startX - endX;
+
+            if (Math.abs(diffX) > 50) {
+                if (diffX > 0) {
+                    nextItem();
+                } else {
+                    prevItem();
+                }
+                startX = null; // Reset startX to avoid multiple triggers
+            }
+        }
+
+        gallery.addEventListener('touchstart', handleTouchStart, false);
+        gallery.addEventListener('touchmove', handleTouchMove, false);
 
         // 초기 설정
         showItem(currentIndex);
