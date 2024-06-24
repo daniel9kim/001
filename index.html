@@ -56,6 +56,22 @@
             margin-top: 20px;
         }
 
+         .contact {
+            margin-top: 20px;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .contact a {
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
         button {
             padding: 10px 20px;
             font-size: 16px;
@@ -67,10 +83,10 @@
 <body>
     <div class="gallery-container" id="gallery">
         <div class="gallery-item active" id="item1">
-            <img src="poster001,png" alt="Image 1">
+            <img src="poster001.png" alt="Image 1">
         </div>
         <div class="gallery-item" id="item2">
-            <img src="poster001,png" alt="Image 2">
+            <img src="poster002.png" alt="Image 2">
         </div>
         <div class="gallery-item" id="item3">
             <video controls>
@@ -78,12 +94,29 @@
                 Your browser does not support the video tag.
             </video>
         </div>
+        <div class="gallery-item" id="item3">
+            <video controls>
+                <source src="video2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="gallery-item" id="item3">
+            <video controls>
+                <source src="video3.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="gallery-item" id="item3">
+            <video controls>
+                <source src="video4.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
         <!-- Add more items as needed -->
     </div>
-    <div class="controls">
-        <button onclick="prevItem()">Previous</button>
-        <button onclick="nextItem()">Next</button>
-    </div>
+        <div class="contact">
+        <p>연락처: <a href="tel:010-7731-5874">  나정임 총무    010-7731-5874     </a></p>
+        </div>
     <script>
         let currentIndex = 0;
         const items = document.querySelectorAll('.gallery-item');
