@@ -127,10 +127,20 @@
 
         function showItem(index) {
             items.forEach((item, i) => {
+                const video = item.querySelector('video');
                 if (i === index) {
                     item.classList.add('active');
+                    if (video) {
+                        video.muted = false;
+                        video.play();
+                    }
                 } else {
                     item.classList.remove('active');
+                    if (video) {
+                        video.pause();
+                        video.currentTime = 0;
+                        video.muted = true;
+                    }
                 }
             });
         }
