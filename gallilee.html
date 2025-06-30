@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo and Video Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .gallery-container {
+            width: 100%;
+            height: 80%;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-item {
+            position: absolute;
+            top: 0;
+            left: 100%;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: all 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .gallery-item.active {
+            left: 0;
+            opacity: 1;
+        }
+
+        img, video {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+         .contact {
+            margin-top: 20px;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .contact a {
+            color: #007BFF;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .contact a:hover {
+            text-decoration: underline;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 0 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="gallery-container" id="gallery">
+        <div class="gallery-item active" id="item1">
+            <img src="poster001.png" alt="Image 1">
+        </div>
+        <div class="gallery-item" id="item2">
+            <img src="poster002.png" alt="Image 2">
+        </div>
+        <div class="gallery-item" id="item3">
+            <img src="poster003.png" alt="Image 4">
+        </div>
+        <div class="gallery-item" id="item4">
+            <video controls autoplay muted>
+                <source src="video1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="gallery-item" id="item5">
+            <video controls autoplay muted>
+                <source src="video2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="gallery-item" id="item6">
+            <video controls autoplay muted>
+                <source src="video3.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="gallery-item" id="item7">
+            <video controls autoplay muted>
+                <source src="video5.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>        
+        <div class="gallery-item" id="item8">
+            <video controls autoplay muted>
+                <source src="video6.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="gallery-item" id="item9">
+            <video controls autoplay muted>
+                <source src="video7.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="gallery-item" id="item10">
+            <video controls autoplay muted>
+                <source src="video4.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <!-- Add more items as needed -->
+    </div>
+        <div class="contact">
+        <p>연락처: <a href="tel:010-7731-5874">  나정임 총무    010-7731-5874     </a></p>
+        </div>
+    <script>
+        let currentIndex = 0;
+        const items = document.querySelectorAll('.gallery-item');
+        const gallery = document.getElementById('gallery');
+
+        function showItem(index) {
+            items.forEach((item, i) => {
+                const video = item.querySelector('video');
+                if (i === index) {
+                    item.classList.add('active');
+                    if (video) {
+                        video.muted = false;
+                        video.play();
+                    }
+                } else {
+                    item.classList.remove('active');
+                    if (video) {
+                        video.pause();
+                        video.currentTime = 0;
+                        video.muted = true;
+                    }
+                }
+            });
+        }
+
+        function prevItem() {
+            currentIndex = (currentIndex === 0) ? items.length - 1 : currentIndex - 1;
+            showItem(currentIndex);
+        }
+
+        function nextItem() {
+            currentIndex = (currentIndex === items.length - 1) ? 0 : currentIndex + 1;
+            showItem(currentIndex);
+        }
+
+        function handleTouchStart(event) {
+            startX = event.touches[0].clientX;
+        }
+
+        function handleTouchMove(event) {
+            if (!startX) {
+                return;
+            }
+
+            let endX = event.touches[0].clientX;
+            let diffX = startX - endX;
+
+            if (Math.abs(diffX) > 50) {
+                if (diffX > 0) {
+                    nextItem();
+                } else {
+                    prevItem();
+                }
+                startX = null; // Reset startX to avoid multiple triggers
+            }
+        }
+
+        gallery.addEventListener('touchstart', handleTouchStart, false);
+        gallery.addEventListener('touchmove', handleTouchMove, false);
+
+        window.addEventListener('resize', () => {
+            items.forEach(item => {
+                item.style.width = `${gallery.clientWidth}px`;
+                item.style.height = `${gallery.clientHeight}px`;
+            });
+        });
+
+        // 초기 설정
+        showItem(currentIndex);
+        window.dispatchEvent(new Event('resize'));
+    </script>
+</body>
+</html>
