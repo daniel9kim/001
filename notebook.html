@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>한국장로성가단 단원수첩 2024</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;500;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#1b2a4a; --navy2:#243660;
+  --gold:#b8912e; --gold2:#d4ad52; --gold3:#f0d080;
+  --cream:#f7f3eb; --cream2:#ede7d9; --cream3:#e0d6c4;
+  --white:#ffffff; --text:#2a2a2a; --text2:#555; --text3:#888;
+  --T1:#1a4a6e; --T2:#245e3a; --B1:#7a1c1c; --B2:#4a2878;
+  --danger:#c0392b; --success:#27ae60;
+  --shadow:0 2px 12px rgba(27,42,74,.10);
+  --shadow2:0 6px 28px rgba(27,42,74,.16);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--text);min-height:100vh;}
+
+/* HEADER */
+.site-header{background:var(--navy);position:sticky;top:0;z-index:200;box-shadow:0 2px 20px rgba(0,0,0,.35);}
+.header-accent{height:3px;background:linear-gradient(90deg,var(--gold),var(--gold3),var(--gold));}
+.header-inner{display:flex;align-items:center;justify-content:space-between;padding:12px 28px;gap:12px;flex-wrap:wrap;}
+.logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
+.logo-emblem{width:42px;height:42px;border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:19px;color:var(--gold);flex-shrink:0;}
+.logo-text h1{font-family:'Noto Serif KR',serif;font-size:16px;font-weight:700;color:var(--white);letter-spacing:1.5px;}
+.logo-text p{font-size:9px;color:var(--gold2);letter-spacing:3px;margin-top:2px;}
+.header-center{display:flex;align-items:center;background:rgba(255,255,255,.08);border:1px solid rgba(212,173,82,.35);border-radius:22px;padding:6px 14px;gap:8px;transition:.25s;flex:1;max-width:300px;}
+.header-center:focus-within{border-color:var(--gold2);background:rgba(255,255,255,.13);}
+.header-center input{background:none;border:none;outline:none;color:var(--white);font-family:'Noto Sans KR',sans-serif;font-size:13px;width:100%;}
+.header-center input::placeholder{color:rgba(255,255,255,.4);}
+.header-actions{display:flex;gap:8px;align-items:center;}
+.btn-icon{background:rgba(255,255,255,.1);border:1px solid rgba(212,173,82,.3);border-radius:8px;padding:7px 12px;color:var(--gold2);font-size:12px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:.2s;display:flex;align-items:center;gap:5px;white-space:nowrap;}
+.btn-icon:hover{background:rgba(184,145,46,.2);border-color:var(--gold2);color:var(--gold3);}
+.admin-badge{display:none;align-items:center;gap:6px;background:rgba(184,145,46,.18);border:1px solid var(--gold2);border-radius:8px;padding:6px 12px;color:var(--gold2);font-size:12px;font-weight:700;}
+.admin-badge.on{display:flex;}
+.admin-dot{width:7px;height:7px;border-radius:50%;background:var(--gold2);animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.3;}}
+.btn-logout{background:rgba(192,57,43,.2);border:1px solid rgba(192,57,43,.4);border-radius:8px;padding:6px 12px;color:#e8a8a3;font-size:12px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:.2s;}
+.btn-logout:hover{background:rgba(192,57,43,.35);}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 60%,#1a2744 100%);padding:44px 28px 36px;text-align:center;position:relative;overflow:hidden;}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 120%,rgba(184,145,46,.18) 0%,transparent 65%);pointer-events:none;}
+.hero-tag{font-size:11px;letter-spacing:5px;color:var(--gold2);margin-bottom:10px;text-transform:uppercase;}
+.hero-title{font-family:'Playfair Display',serif;font-size:36px;color:var(--white);font-weight:700;margin-bottom:6px;}
+.hero-sub{font-size:12px;color:rgba(255,255,255,.5);letter-spacing:1px;}
+.hero-line{display:flex;align-items:center;justify-content:center;gap:10px;margin:14px auto;max-width:260px;}
+.hero-line hr{flex:1;border:none;border-top:1px solid rgba(212,173,82,.4);}
+.hero-line span{color:var(--gold2);}
+
+/* STATS */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;max-width:1100px;margin:0 auto;padding:20px 20px 0;}
+.stat{background:var(--white);border-radius:10px;padding:16px;text-align:center;border:1px solid var(--cream2);box-shadow:var(--shadow);}
+.stat-n{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--navy);line-height:1;}
+.stat-l{font-size:10px;color:var(--text3);margin-top:4px;}
+
+/* NAV */
+.nav-wrap{background:var(--white);border-bottom:2px solid var(--cream2);position:sticky;top:69px;z-index:150;box-shadow:0 2px 8px rgba(27,42,74,.07);}
+.nav-tabs{display:flex;overflow-x:auto;scrollbar-width:none;max-width:1100px;margin:0 auto;}
+.nav-tabs::-webkit-scrollbar{display:none;}
+.nav-tab{padding:13px 20px;font-size:13px;font-weight:500;color:var(--text2);cursor:pointer;border:none;background:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-2px;font-family:'Noto Sans KR',sans-serif;transition:.2s;}
+.nav-tab:hover{color:var(--navy);background:var(--cream);}
+.nav-tab.active{color:var(--navy);border-bottom-color:var(--gold);font-weight:700;}
+
+/* MAIN */
+.main{max-width:1100px;margin:0 auto;padding:24px 20px 80px;}
+.section{display:none;animation:fadeUp .3s ease;}
+.section.active{display:block;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.sec-title{font-family:'Noto Serif KR',serif;font-size:20px;color:var(--navy);margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid var(--gold);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;}
+.sec-title-left{display:flex;align-items:center;gap:8px;}
+.sec-title-left::before{content:'';display:block;width:5px;height:22px;background:var(--gold);border-radius:3px;}
+
+/* FILTER */
+.part-filter{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+.pf-btn{padding:6px 16px;border-radius:18px;border:1.5px solid var(--cream3);background:var(--white);font-size:12px;font-weight:500;cursor:pointer;transition:.2s;font-family:'Noto Sans KR',sans-serif;color:var(--text2);}
+.pf-btn:hover{border-color:var(--navy);color:var(--navy);}
+.pf-btn.active{color:var(--white);border-color:transparent;}
+.pf-btn.all.active{background:var(--navy);}
+.pf-btn.T1.active{background:var(--T1);}
+.pf-btn.T2.active{background:var(--T2);}
+.pf-btn.B1.active{background:var(--B1);}
+.pf-btn.B2.active{background:var(--B2);}
+.cbadge{background:var(--cream2);color:var(--text2);font-size:10px;padding:1px 7px;border-radius:10px;font-weight:600;margin-left:2px;}
+
+/* MEMBER CARDS */
+.members-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;}
+.member-card{background:var(--white);border-radius:14px;border:1px solid var(--cream2);box-shadow:var(--shadow);overflow:hidden;transition:.22s;}
+.member-card:hover{transform:translateY(-3px);box-shadow:var(--shadow2);border-color:var(--gold2);}
+.card-stripe{height:4px;}
+.card-stripe.T1{background:var(--T1);}
+.card-stripe.T2{background:var(--T2);}
+.card-stripe.B1{background:var(--B1);}
+.card-stripe.B2{background:var(--B2);}
+.card-body{padding:16px;}
+.card-photo-wrap{display:flex;justify-content:center;margin-bottom:12px;}
+.card-photo{width:82px;height:82px;border-radius:50%;object-fit:cover;border:3px solid var(--cream2);}
+.card-photo.T1{border-color:var(--T1);}
+.card-photo.T2{border-color:var(--T2);}
+.card-photo.B1{border-color:var(--B1);}
+.card-photo.B2{border-color:var(--B2);}
+.card-avatar{width:82px;height:82px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:30px;font-weight:700;color:var(--white);font-family:'Noto Serif KR',serif;}
+.card-avatar.T1{background:var(--T1);}
+.card-avatar.T2{background:var(--T2);}
+.card-avatar.B1{background:var(--B1);}
+.card-avatar.B2{background:var(--B2);}
+.card-info{text-align:center;margin-bottom:12px;}
+.card-name{font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.part-chip{display:inline-block;font-size:10px;font-weight:700;padding:2px 9px;border-radius:10px;color:var(--white);}
+.part-chip.T1{background:var(--T1);}
+.part-chip.T2{background:var(--T2);}
+.part-chip.B1{background:var(--B1);}
+.part-chip.B2{background:var(--B2);}
+.card-rows{background:var(--cream);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:5px;}
+.card-row{display:flex;gap:8px;font-size:12px;}
+.card-lbl{color:var(--text3);min-width:16px;text-align:center;}
+.card-val{color:var(--text);flex:1;}
+.card-val.ph{color:var(--navy);font-weight:700;}
+.card-since{font-size:11px;color:var(--gold);font-weight:600;margin-top:8px;text-align:center;}
+.card-actions{display:none;gap:6px;margin-top:10px;}
+.card-actions.show{display:flex;}
+.btn-sm{flex:1;padding:6px 0;border-radius:7px;border:1px solid var(--cream3);background:var(--cream);font-size:11px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;color:var(--text2);transition:.18s;}
+.btn-sm.edit:hover{background:#ebf3ff;border-color:#aac5e8;color:#1a5fa8;}
+.btn-sm.del:hover{background:#fdecea;border-color:#e8a8a3;color:var(--danger);}
+
+/* OFFICERS */
+.officers-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;}
+.officer-card{background:var(--white);border:1px solid var(--cream2);border-radius:10px;padding:14px 16px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow);transition:.2s;}
+.officer-card:hover{transform:translateY(-2px);box-shadow:var(--shadow2);border-color:var(--gold2);}
+.off-badge{min-width:54px;height:40px;border-radius:8px;background:var(--navy);color:var(--gold2);font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;text-align:center;padding:4px;line-height:1.3;}
+.off-name{font-size:15px;font-weight:700;color:var(--navy);font-family:'Noto Serif KR',serif;}
+.off-church{font-size:11px;color:var(--text3);margin-top:2px;}
+.off-phone{font-size:11px;color:var(--gold);font-weight:600;margin-top:3px;}
+
+/* STAFF */
+.staff-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px;}
+.staff-card{background:var(--white);border-radius:14px;padding:22px;text-align:center;border:1px solid var(--cream2);box-shadow:var(--shadow);transition:.2s;}
+.staff-card:hover{transform:translateY(-3px);box-shadow:var(--shadow2);border-color:var(--gold2);}
+.staff-ico{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--navy),var(--navy2));display:flex;align-items:center;justify-content:center;font-size:26px;margin:0 auto 12px;border:2.5px solid var(--gold2);}
+.staff-role{font-size:10px;color:var(--gold);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.staff-name{font-family:'Noto Serif KR',serif;font-size:18px;font-weight:700;color:var(--navy);margin-bottom:10px;}
+.staff-info{font-size:12px;color:var(--text2);margin-bottom:3px;}
+
+/* ORG */
+.org-box{background:var(--white);border-radius:14px;padding:28px;border:1px solid var(--cream2);box-shadow:var(--shadow);overflow-x:auto;}
+.org-level{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;}
+.org-arrow{text-align:center;color:var(--gold2);margin:6px 0;font-size:16px;}
+.org-node{background:var(--navy);color:var(--white);border-radius:8px;padding:8px 16px;text-align:center;font-size:13px;font-weight:600;min-width:100px;}
+.org-node span{display:block;font-size:10px;opacity:.7;font-weight:400;margin-top:2px;}
+.org-node.gold{background:var(--gold);color:var(--navy);font-size:15px;padding:10px 22px;min-width:130px;}
+.org-node.silver{background:#3a4060;}
+.org-node.music{background:#7a5c1a;}
+.org-node.part{background:#2a3050;font-size:11px;}
+
+/* RULES */
+.rules-wrap{background:var(--white);border-radius:14px;padding:28px;border:1px solid var(--cream2);box-shadow:var(--shadow);}
+.rule-ch{margin-bottom:24px;}
+.rule-ch h3{font-family:'Noto Serif KR',serif;font-size:15px;font-weight:700;color:var(--navy);background:var(--cream);padding:9px 14px;border-left:4px solid var(--gold);border-radius:0 8px 8px 0;margin-bottom:12px;}
+.rule-art{margin-bottom:9px;padding:10px 14px;border-radius:7px;border:1px solid var(--cream2);font-size:13px;line-height:1.85;}
+.rule-art strong{color:var(--navy);}
+.rev-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;}
+.rev-chip{background:var(--cream);border:1px solid var(--cream3);border-radius:6px;padding:3px 9px;font-size:11px;color:var(--text3);}
+
+/* SPECIAL */
+.pill-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;}
+.pill{background:var(--white);border:1px solid var(--cream3);border-radius:20px;padding:5px 14px;font-size:13px;color:var(--text2);}
+
+/* DL BANNER (admin only) */
+.dl-banner{background:linear-gradient(135deg,var(--navy),var(--navy2));border-radius:12px;padding:16px 20px;margin-bottom:24px;display:none;align-items:center;justify-content:space-between;gap:12px;box-shadow:var(--shadow);flex-wrap:wrap;}
+.dl-banner.on{display:flex;}
+.dl-banner-text h3{font-family:'Noto Serif KR',serif;color:var(--white);font-size:14px;margin-bottom:2px;}
+.dl-banner-text p{color:rgba(255,255,255,.5);font-size:11px;}
+.btn-dl{padding:8px 16px;border-radius:8px;background:var(--gold);border:none;color:var(--navy);font-family:'Noto Sans KR',sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:.2s;}
+.btn-dl:hover{background:var(--gold2);}
+
+/* ADD BTN (admin only) */
+.admin-add-btn{display:none;}
+.admin-add-btn.on{display:inline-flex;}
+
+/* FAB */
+.fab{position:fixed;bottom:32px;right:32px;width:54px;height:54px;border-radius:50%;background:var(--gold);border:none;color:var(--navy);font-size:26px;cursor:pointer;box-shadow:0 4px 18px rgba(184,145,46,.45);z-index:500;display:none;align-items:center;justify-content:center;}
+.fab.on{display:flex;}
+.fab:hover{transform:scale(1.1);background:var(--gold2);}
+
+/* SEARCH */
+.sr-list{background:var(--white);border-radius:12px;border:1px solid var(--cream2);box-shadow:var(--shadow);overflow:hidden;}
+.sr-item{padding:14px 18px;display:flex;align-items:center;gap:12px;border-bottom:1px solid var(--cream2);transition:.15s;}
+.sr-item:last-child{border-bottom:none;}
+.sr-item:hover{background:var(--cream);}
+.sr-av{width:40px;height:40px;border-radius:50%;overflow:hidden;flex-shrink:0;}
+.sr-av img{width:100%;height:100%;object-fit:cover;}
+.sr-av-txt{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;color:var(--white);flex-shrink:0;font-family:'Noto Serif KR',serif;}
+.sr-name{font-size:14px;font-weight:700;color:var(--navy);}
+.sr-sub{font-size:11px;color:var(--text3);margin-top:2px;}
+.empty{text-align:center;padding:60px 20px;color:var(--text3);}
+
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(10,15,30,.6);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);}
+.modal-bg.h{display:none;}
+.modal{background:var(--white);border-radius:16px;padding:28px;width:100%;max-width:500px;box-shadow:0 20px 60px rgba(0,0,0,.25);max-height:92vh;overflow-y:auto;}
+.modal h2{font-family:'Noto Serif KR',serif;font-size:18px;color:var(--navy);margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid var(--gold);}
+.fg{margin-bottom:14px;}
+.fg label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:5px;}
+.fg input,.fg select{width:100%;padding:9px 12px;border:1.5px solid var(--cream3);border-radius:8px;font-family:'Noto Sans KR',sans-serif;font-size:13px;color:var(--text);background:var(--cream);transition:.2s;outline:none;}
+.fg input:focus,.fg select:focus{border-color:var(--gold2);background:var(--white);}
+.fr{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.m-actions{display:flex;gap:10px;margin-top:20px;}
+.btn-p{flex:1;padding:10px;border-radius:8px;border:none;background:var(--navy);color:var(--white);font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:700;cursor:pointer;transition:.2s;}
+.btn-p:hover{background:var(--navy2);}
+.btn-s{flex:1;padding:10px;border-radius:8px;border:2px solid var(--cream3);background:var(--white);color:var(--text2);font-family:'Noto Sans KR',sans-serif;font-size:13px;cursor:pointer;}
+.btn-s:hover{background:var(--cream);}
+.btn-d{flex:1;padding:10px;border-radius:8px;border:none;background:var(--danger);color:var(--white);font-family:'Noto Sans KR',sans-serif;font-size:13px;font-weight:700;cursor:pointer;}
+.btn-d:hover{background:#a93226;}
+
+/* PHOTO UPLOAD */
+.photo-area{border:2px dashed var(--cream3);border-radius:10px;padding:16px;text-align:center;cursor:pointer;transition:.2s;background:var(--cream);}
+.photo-area:hover{border-color:var(--gold2);background:#fffbf0;}
+.photo-preview{width:90px;height:90px;border-radius:50%;object-fit:cover;border:3px solid var(--gold2);margin:0 auto 8px;display:block;}
+.photo-ph{font-size:38px;margin-bottom:6px;}
+.photo-hint{font-size:11px;color:var(--text3);}
+.photo-clear{margin-top:6px;font-size:11px;color:var(--danger);background:none;border:none;cursor:pointer;text-decoration:underline;font-family:'Noto Sans KR',sans-serif;display:none;}
+
+/* LOGIN MODAL */
+.login-box{background:var(--white);border-radius:16px;padding:32px;width:100%;max-width:360px;box-shadow:0 20px 60px rgba(0,0,0,.3);text-align:center;}
+.login-ico{font-size:42px;margin-bottom:12px;}
+.login-box h2{font-family:'Noto Serif KR',serif;font-size:20px;color:var(--navy);margin-bottom:6px;}
+.login-box p{font-size:12px;color:var(--text3);margin-bottom:24px;}
+.lf{text-align:left;margin-bottom:14px;}
+.lf label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:5px;}
+.lf input{width:100%;padding:10px 14px;border:1.5px solid var(--cream3);border-radius:8px;font-family:'Noto Sans KR',sans-serif;font-size:14px;outline:none;background:var(--cream);transition:.2s;}
+.lf input:focus{border-color:var(--gold2);background:var(--white);}
+.login-err{font-size:12px;color:var(--danger);min-height:18px;margin-top:-8px;margin-bottom:10px;}
+.btn-login{width:100%;padding:12px;border-radius:8px;border:none;background:var(--navy);color:var(--white);font-family:'Noto Sans KR',sans-serif;font-size:14px;font-weight:700;cursor:pointer;margin-top:6px;}
+.btn-login:hover{background:var(--navy2);}
+
+/* TOAST */
+.toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--navy);color:var(--white);padding:12px 22px;border-radius:10px;font-size:13px;z-index:3000;box-shadow:0 4px 20px rgba(0,0,0,.3);opacity:0;transition:.35s;border-left:4px solid var(--gold);white-space:nowrap;}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1;}
+.toast.ok{border-left-color:var(--success);}
+.toast.err{border-left-color:var(--danger);}
+
+/* DISPLAY SETTINGS PANEL */
+.disp-panel{background:linear-gradient(135deg,#1b2a4a,#1e3060);border-radius:12px;padding:16px 20px;margin-bottom:20px;display:none;border:1px solid rgba(212,173,82,.25);box-shadow:var(--shadow);}
+.disp-panel.on{display:block;}
+.disp-panel-title{font-size:11px;font-weight:700;color:var(--gold2);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:6px;}
+.disp-toggles{display:flex;flex-wrap:wrap;gap:10px;}
+.disp-toggle{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:9px 14px;cursor:pointer;transition:.2s;user-select:none;}
+.disp-toggle:hover{background:rgba(255,255,255,.12);border-color:rgba(212,173,82,.4);}
+.disp-toggle.hidden-field{background:rgba(192,57,43,.12);border-color:rgba(192,57,43,.25);}
+.toggle-label{font-size:12px;font-weight:600;color:var(--white);}
+.toggle-label em{display:block;font-style:normal;font-size:10px;color:rgba(255,255,255,.45);font-weight:400;margin-top:1px;}
+/* switch */
+.sw{position:relative;width:36px;height:20px;flex-shrink:0;}
+.sw input{opacity:0;width:0;height:0;position:absolute;}
+.sw-track{position:absolute;inset:0;border-radius:20px;background:#334;transition:.25s;cursor:pointer;}
+.sw input:checked+.sw-track{background:var(--gold);}
+.sw-track::before{content:'';position:absolute;width:14px;height:14px;border-radius:50%;background:var(--white);top:3px;left:3px;transition:.25s;}
+.sw input:checked+.sw-track::before{left:19px;}
+
+@media(max-width:640px){
+  .hero{padding:30px 16px 24px;} .hero-title{font-size:26px;}
+  .stats-row{padding:14px 12px 0;} .main{padding:16px 12px 80px;}
+  .members-grid{grid-template-columns:1fr 1fr;}
+  .fr{grid-template-columns:1fr;} .fab{bottom:20px;right:20px;}
+  .logo-text p,.admin-badge span{display:none;}
+  .disp-toggles{gap:8px;}
+}
+@media(max-width:400px){.members-grid{grid-template-columns:1fr;}}
+
+/* GITHUB STATUS */
+.gh-connected{background:rgba(39,174,96,.15);border:1px solid rgba(39,174,96,.4);border-radius:8px;padding:6px 12px;font-size:11px;color:#27ae60;font-weight:700;display:flex;align-items:center;gap:5px;}
+.gh-dot{width:7px;height:7px;border-radius:50%;background:#27ae60;animation:blink 1.5s infinite;}
+.btn-dl.saving{opacity:.6;pointer-events:none;}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-accent"></div>
+  <div class="header-inner">
+    <a class="logo" href="#"><div class="logo-emblem">♪</div>
+      <div class="logo-text"><h1>한국장로성가단</h1><p>KOREA ELDERS CHOIR · 2024</p></div>
+    </a>
+    <div class="header-center">
+      <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+      <input type="text" id="gSearch" placeholder="이름·교회·노회 검색…" oninput="doSearch(this.value)">
+    </div>
+    <div class="header-actions">
+      <div class="admin-badge" id="adminBadge"><div class="admin-dot"></div><span>관리자 모드</span></div>
+      <button class="btn-icon" id="btnUpload" style="display:none;" onclick="showUpload()">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+        <span>JSON 불러오기</span>
+      </button>
+      <button class="btn-icon" id="btnLogin" onclick="openLogin()">🔐 <span>관리자</span></button>
+      <button class="btn-logout" id="btnLogout" style="display:none;" onclick="logout()">로그아웃</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">✦ 단원수첩 2024 ✦</div>
+  <h2 class="hero-title">Korea Elders Choir</h2>
+  <div class="hero-line"><hr><span>✦</span><hr></div>
+  <p class="hero-sub">대한예수교장로회(통합) 전국장로회연합회 소속 · 1985년 창단</p>
+</div>
+
+<!-- STATS -->
+<div class="stats-row">
+  <div class="stat"><div class="stat-n" id="sTotal">—</div><div class="stat-l">현 단원</div></div>
+  <div class="stat"><div class="stat-n" id="sT1">—</div><div class="stat-l">1st Tenor</div></div>
+  <div class="stat"><div class="stat-n" id="sT2">—</div><div class="stat-l">2nd Tenor</div></div>
+  <div class="stat"><div class="stat-n" id="sB1">—</div><div class="stat-l">1st Bass</div></div>
+  <div class="stat"><div class="stat-n" id="sB2">—</div><div class="stat-l">2nd Bass</div></div>
+  <div class="stat"><div class="stat-n">40</div><div class="stat-l">창단년수</div></div>
+</div>
+
+<!-- NAV -->
+<div class="nav-wrap"><div class="nav-tabs">
+  <button class="nav-tab active" onclick="showTab('members',this)">🎵 단원 명단</button>
+  <button class="nav-tab" onclick="showTab('officers',this)">📋 임역원</button>
+  <button class="nav-tab" onclick="showTab('staff',this)">🎼 지휘·반주</button>
+  <button class="nav-tab" onclick="showTab('orgchart',this)">🏛️ 조직도</button>
+  <button class="nav-tab" onclick="showTab('rules',this)">📜 단칙</button>
+  <button class="nav-tab" onclick="showTab('special',this)">⭐ 특별단원</button>
+</div></div>
+
+<div class="main">
+  <!-- SEARCH RESULTS -->
+  <div id="searchSection" style="display:none;">
+    <div class="sec-title"><div class="sec-title-left">검색 결과</div><span id="searchCnt" style="font-size:13px;font-weight:400;color:var(--text3);"></span></div>
+    <div id="searchResults" class="sr-list"></div>
+  </div>
+
+  <!-- MEMBERS -->
+  <div id="members" class="section active">
+    <div class="dl-banner" id="dlBanner">
+      <div class="dl-banner-text">
+        <h3 id="ghStatusTitle">⚙️ GitHub 자동 저장 설정</h3>
+        <p id="ghStatusDesc">Token을 설정하면 저장 즉시 GitHub에 반영되어 모든 방문자에게 자동 적용됩니다</p>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+        <button class="btn-dl" style="background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.3);" onclick="openGhSettings()">🔑 Token 설정</button>
+        <button class="btn-dl" id="btnGhSave" onclick="saveToGitHub()" style="display:none;">☁️ GitHub에 저장</button>
+        <button class="btn-dl" style="background:rgba(255,255,255,.08);color:rgba(255,255,255,.7);border:1px solid rgba(255,255,255,.2);font-size:11px;" onclick="downloadJSON()">⬇ JSON 백업</button>
+      </div>
+    </div>
+
+    <!-- 표시 설정 패널 (관리자 전용) -->
+    <div class="disp-panel" id="dispPanel">
+      <div class="disp-panel-title">👁 단원 카드 표시 항목 설정</div>
+      <div class="disp-toggles">
+        <label class="disp-toggle" id="toggle-phone">
+          <div class="toggle-label">📞 전화번호<em>단원 카드에 표시</em></div>
+          <div class="sw"><input type="checkbox" id="sw-phone" checked onchange="applyDisplay()"><div class="sw-track"></div></div>
+        </label>
+        <label class="disp-toggle" id="toggle-born">
+          <div class="toggle-label">🎂 생년월일<em>단원 카드에 표시</em></div>
+          <div class="sw"><input type="checkbox" id="sw-born" checked onchange="applyDisplay()"><div class="sw-track"></div></div>
+        </label>
+        <label class="disp-toggle" id="toggle-joined">
+          <div class="toggle-label">📅 입단일자<em>단원 카드에 표시</em></div>
+          <div class="sw"><input type="checkbox" id="sw-joined" checked onchange="applyDisplay()"><div class="sw-track"></div></div>
+        </label>
+      </div>
+    </div>
+
+    <div class="sec-title">
+      <div class="sec-title-left">단원 명단</div>
+      <button class="btn-icon admin-add-btn" id="addBtn" onclick="openAdd()">＋ 단원 추가</button>
+    </div>
+    <div class="part-filter">
+      <button class="pf-btn all active" onclick="filterPart('all',this)">전체 <span class="cbadge" id="c-all"></span></button>
+      <button class="pf-btn T1" onclick="filterPart('T1',this)">1st Tenor <span class="cbadge" id="c-T1"></span></button>
+      <button class="pf-btn T2" onclick="filterPart('T2',this)">2nd Tenor <span class="cbadge" id="c-T2"></span></button>
+      <button class="pf-btn B1" onclick="filterPart('B1',this)">1st Bass <span class="cbadge" id="c-B1"></span></button>
+      <button class="pf-btn B2" onclick="filterPart('B2',this)">2nd Bass <span class="cbadge" id="c-B2"></span></button>
+    </div>
+    <div class="members-grid" id="membersGrid"></div>
+  </div>
+
+  <!-- OFFICERS -->
+  <div id="officers" class="section">
+    <div class="sec-title"><div class="sec-title-left">임역원 명단</div></div>
+    <div class="officers-grid" id="officersGrid"></div>
+  </div>
+
+  <!-- STAFF -->
+  <div id="staff" class="section">
+    <div class="sec-title"><div class="sec-title-left">지휘 및 반주자</div></div>
+    <div class="staff-grid" id="staffGrid"></div>
+  </div>
+
+  <!-- ORG -->
+  <div id="orgchart" class="section">
+    <div class="sec-title"><div class="sec-title-left">조직도</div></div>
+    <div class="org-box">
+      <div class="org-level"><div class="org-node" style="background:#7a6020;min-width:220px;">고 문<span>총회장 김의식 목사 / 전장연 회장 박영호 장로</span></div></div>
+      <div class="org-arrow">↓</div>
+      <div class="org-level"><div class="org-node gold">단 장<span>김 순 환</span></div></div>
+      <div class="org-arrow">↓</div>
+      <div class="org-level"><div class="org-node silver">직전단장<span>홍 경 모</span></div></div>
+      <div class="org-arrow">↓</div>
+      <div class="org-level">
+        <div class="org-node">부단장<span>노 치 군</span></div>
+        <div class="org-node">부단장<span>장 재 현</span></div>
+        <div class="org-node">부단장<span>이 귀 복</span></div>
+      </div>
+      <div class="org-arrow">↓</div>
+      <div class="org-level">
+        <div class="org-node" style="background:var(--T2)">총 무<span>이 재 덕</span></div>
+        <div class="org-node" style="background:var(--T2)">서 기<span>홍 경 화</span></div>
+        <div class="org-node" style="background:var(--T2)">회 계<span>최 영 수</span></div>
+        <div class="org-node" style="background:var(--B1)">감 사<span>김종훈·이제영</span></div>
+      </div>
+      <div class="org-arrow">↓</div>
+      <div class="org-level">
+        <div class="org-node part">T1 파트장<span>김 기 성</span></div>
+        <div class="org-node part">T2 파트장<span>김 인 하</span></div>
+        <div class="org-node part">B1 파트장<span>고 영 준</span></div>
+        <div class="org-node part">B2 파트장<span>최 명 오</span></div>
+        <div class="org-node part" style="background:#2d4a2d">핸드벨팀장<span>주 호 걸</span></div>
+        <div class="org-node part" style="background:#2d2d4a">홍보팀장<span>임 신 일</span></div>
+      </div>
+      <div class="org-arrow">↓</div>
+      <div class="org-level">
+        <div class="org-node music">지 휘 자<span>이 철 웅</span></div>
+        <div class="org-node music">부지휘자<span>김 광 수</span></div>
+        <div class="org-node music">반 주 자<span>권 정 원</span></div>
+        <div class="org-node music">핸드벨지휘<span>송 성 수</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RULES -->
+  <div id="rules" class="section">
+    <div class="sec-title"><div class="sec-title-left">한국장로성가단 단칙</div></div>
+    <div class="rules-wrap">
+      <div class="rule-ch"><h3>제1장 총칙</h3>
+        <div class="rule-art"><strong>제1조 (명칭)</strong> 한국장로성가단 (Korea Elders Choir)이라 칭한다.</div>
+        <div class="rule-art"><strong>제2조 (소재지)</strong> 단의 사무실은 서울특별시내에 둔다.</div>
+        <div class="rule-art"><strong>제3조 (목적)</strong> 단은 대한예수교장로회(통합) 전국장로회연합회 소속으로 찬양을 통한 선교활동 및 교회음악 발전에 기여하며, 단원 상호간의 음악성 향상과 친목을 도모함을 목적으로 한다.</div>
+      </div>
+      <div class="rule-ch"><h3>제2장 단원</h3>
+        <div class="rule-art"><strong>제5조 (단원의 자격)</strong> 단원은 단의 취지에 동의하는 대한예수교장로회 장로로서 성가대원으로 오랜 경험이 있는 자로, 단원 2인의 추천과 임원회가 심사 후 입단을 허락한다.</div>
+        <div class="rule-art"><strong>제6조 (입단 수속 및 임무)</strong> ① 소정의 서류를 작성 제출하고 입단비를 납부하여야 한다. ② 단의 제반 규정을 준수하고, 연습과 연주 활동에 적극 참여하여야 한다.</div>
+        <div class="rule-art"><strong>제7조 (자격상실)</strong> ① 연주회·연습 출석 2/3 미달 시 ② 계속 6회 이상 임무 불이행 시 ③ 단의 명예 훼손 시 ④ 본인이 탈단을 원할 때 ⑤ 휴직 후 3년 경과 시 미복귀</div>
+        <div class="rule-art"><strong>제8조 (예우)</strong> ① 30년 이상 근속 퇴단자: 현 단원에 준하는 예우 ② 20년 이상 근속 퇴단자: 조의금 10만원 + 조화 지원</div>
+      </div>
+      <div class="rule-ch"><h3>제3장 임원</h3>
+        <div class="rule-art"><strong>제9조 (임원 구성)</strong> 단장 1명, 직전단장 1명, 부단장 3명, 총무·부총무·서기·부서기·회계·부회계 각 1명, 감사 2명</div>
+        <div class="rule-art"><strong>제11조 (임기)</strong> 임원의 임기는 1년으로 하되 연임할 수 있다. 지휘자·반주자도 동일하다.</div>
+      </div>
+      <div class="rule-ch"><h3>제5장 재정</h3>
+        <div class="rule-art"><strong>제19조 (재정)</strong> 단원의 입단비, 월회비, 찬조금, 기타 수입금으로 한다.</div>
+        <div class="rule-art"><strong>제20조 (회계연도)</strong> 매년 1월 1일부터 12월 31일까지로 한다.</div>
+      </div>
+      <div class="rule-ch"><h3>개정 이력</h3>
+        <div class="rev-chips">
+          <span class="rev-chip">제정 1985.05.24</span><span class="rev-chip">1차 1987.04.30</span><span class="rev-chip">2차 1990.04.27</span><span class="rev-chip">3차 1993.05.20</span><span class="rev-chip">4차 1999.05.07</span><span class="rev-chip">5차 2004.05.07</span><span class="rev-chip">6차 2004.10.15</span><span class="rev-chip">7차 2006.12.15</span><span class="rev-chip">8차 2009.01.16</span><span class="rev-chip">9차 2010.01.15</span><span class="rev-chip">10차 2011.01.14</span><span class="rev-chip">11차 2012.01.13</span><span class="rev-chip">12차 2013.01.18</span><span class="rev-chip">13차 2014.10.24</span><span class="rev-chip">14차 2015.12.18</span><span class="rev-chip">15차 2016.12.16</span><span class="rev-chip">16차 2017.12.15</span><span class="rev-chip">17차 2022.08.19</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPECIAL -->
+  <div id="special" class="section">
+    <div class="sec-title"><div class="sec-title-left">휴직 단원</div></div>
+    <div class="pill-list" id="leaveList"></div>
+    <div class="sec-title" style="margin-top:32px;"><div class="sec-title-left">평생 단원</div></div>
+    <div class="pill-list" id="lifetimeList"></div>
+  </div>
+</div>
+
+
+<!-- GITHUB SETTINGS MODAL -->
+<div class="modal-bg h" id="ghModal">
+  <div class="modal">
+    <h2>🔑 GitHub 자동 저장 설정</h2>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:18px;line-height:1.8;">
+      설정 후 단원 추가·수정·삭제·표시설정 변경 시 <strong>GitHub에 자동 저장</strong>되어
+      모든 방문자에게 즉시 반영됩니다.<br>
+      <span style="color:var(--gold);font-size:11px;">※ Token은 이 기기 브라우저에만 저장되며 외부로 전송되지 않습니다</span>
+    </p>
+    <div class="fg">
+      <label>GitHub 저장소 소유자 (username)</label>
+      <input type="text" id="ghOwner" placeholder="예: daniel9kim">
+    </div>
+    <div class="fg">
+      <label>저장소 이름 (repo)</label>
+      <input type="text" id="ghRepo" placeholder="예: 001">
+    </div>
+    <div class="fg">
+      <label>파일 경로</label>
+      <input type="text" id="ghPath" placeholder="예: members.json" value="members.json">
+    </div>
+    <div class="fg">
+      <label>브랜치</label>
+      <input type="text" id="ghBranch" placeholder="예: main" value="main">
+    </div>
+    <div class="fg">
+      <label>Personal Access Token
+        <a href="https://github.com/settings/tokens/new?scopes=repo&description=KoreanElderChoirNotebook"
+           target="_blank" style="font-size:11px;color:var(--gold);margin-left:8px;text-decoration:none;">
+          → GitHub에서 발급받기 ↗
+        </a>
+      </label>
+      <input type="password" id="ghToken" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx" autocomplete="off">
+    </div>
+    <div style="background:var(--cream);border-radius:8px;padding:12px 14px;font-size:11px;color:var(--text2);line-height:1.8;margin-bottom:4px;">
+      <strong>Token 발급 방법:</strong><br>
+      GitHub → Settings → Developer settings → Personal access tokens → Tokens (classic)<br>
+      → Generate new token → <code style="background:#ddd;padding:1px 4px;border-radius:3px;">repo</code> 권한 체크 → Generate
+    </div>
+    <div class="m-actions">
+      <button class="btn-s" onclick="closeGhSettings()">취소</button>
+      <button class="btn-p" onclick="testAndSaveGhSettings()">🔗 연결 확인 후 저장</button>
+    </div>
+    <div id="ghTestResult" style="margin-top:12px;font-size:12px;min-height:18px;text-align:center;"></div>
+  </div>
+</div>
+
+<!-- GITHUB SAVING OVERLAY -->
+<div class="modal-bg h" id="ghSavingModal">
+  <div style="background:var(--white);border-radius:16px;padding:32px 28px;text-align:center;max-width:320px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.25);">
+    <div style="font-size:40px;margin-bottom:12px;" id="ghSavingIcon">⏳</div>
+    <div style="font-family:'Noto Serif KR',serif;font-size:17px;font-weight:700;color:var(--navy);margin-bottom:8px;" id="ghSavingTitle">GitHub에 저장 중...</div>
+    <div style="font-size:12px;color:var(--text3);" id="ghSavingDesc">잠시만 기다려 주세요</div>
+  </div>
+</div>
+
+<!-- FAB -->
+<button class="fab" id="fab" onclick="openAdd()" title="단원 추가">＋</button>
+<div class="toast" id="toast"></div>
+
+<!-- LOGIN MODAL -->
+<div class="modal-bg h" id="loginModal">
+  <div class="login-box">
+    <div class="login-ico">🔐</div>
+    <h2>관리자 로그인</h2>
+    <p>단원 등록·수정·삭제 기능을 사용하려면<br>관리자 인증이 필요합니다</p>
+    <div class="lf"><label>아이디</label><input type="text" id="lid" placeholder="아이디" autocomplete="username" onkeydown="if(event.key==='Enter')document.getElementById('lpw').focus()"></div>
+    <div class="lf"><label>비밀번호</label><input type="password" id="lpw" placeholder="비밀번호" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"></div>
+    <div class="login-err" id="loginErr"></div>
+    <button class="btn-login" onclick="doLogin()">로그인</button>
+    <div style="margin-top:12px;"><button class="btn-s" style="width:100%;padding:9px;" onclick="closeLogin()">취소</button></div>
+  </div>
+</div>
+
+<!-- ADD/EDIT MEMBER MODAL -->
+<div class="modal-bg h" id="memberModal">
+  <div class="modal">
+    <h2 id="mTitle">단원 추가</h2>
+    <input type="hidden" id="eId">
+    <div class="fg"><label>단원 사진</label>
+      <div class="photo-area" onclick="document.getElementById('photoFile').click()">
+        <div id="photoWrap"><div class="photo-ph">📷</div><div class="photo-hint">클릭하여 사진 업로드<br><small style="color:var(--text3);">JPG·PNG 권장 / 2MB 이하</small></div></div>
+      </div>
+      <input type="file" id="photoFile" accept="image/*" style="display:none;" onchange="handlePhoto(this)">
+      <button class="photo-clear" id="photoClear" onclick="clearPhoto()">✕ 사진 삭제</button>
+    </div>
+    <input type="hidden" id="fPhoto">
+    <div class="fr">
+      <div class="fg"><label>이름 *</label><input type="text" id="fName" placeholder="홍길동"></div>
+      <div class="fg"><label>파트 *</label><select id="fPart"><option value="T1">1st Tenor (T1)</option><option value="T2">2nd Tenor (T2)</option><option value="B1">1st Bass (B1)</option><option value="B2">2nd Bass (B2)</option></select></div>
+    </div>
+    <div class="fr">
+      <div class="fg"><label>교회</label><input type="text" id="fChurch" placeholder="○○교회"></div>
+      <div class="fg"><label>노회</label><input type="text" id="fPresbytery" placeholder="서울노회"></div>
+    </div>
+    <div class="fr">
+      <div class="fg"><label>생년월일</label><input type="text" id="fBorn" placeholder="1950.01.01"></div>
+      <div class="fg"><label>입단일</label><input type="text" id="fJoined" placeholder="2024.01"></div>
+    </div>
+    <div class="fg"><label>연락처</label><input type="text" id="fPhone" placeholder="010-0000-0000"></div>
+    <div class="fg"><label>이메일</label><input type="email" id="fEmail" placeholder="example@email.com"></div>
+    <div class="fg"><label>상태</label><select id="fStatus"><option value="active">현역</option><option value="leave">휴직</option><option value="lifetime">평생단원</option></select></div>
+    <div class="m-actions">
+      <button class="btn-s" onclick="closeModal()">취소</button>
+      <button class="btn-p" onclick="saveMember()">저장</button>
+    </div>
+  </div>
+</div>
+
+<!-- DELETE MODAL -->
+<div class="modal-bg h" id="delModal">
+  <div class="modal">
+    <h2>단원 삭제</h2>
+    <p style="font-size:14px;color:var(--text2);margin-bottom:20px;line-height:1.8;"><strong id="delName"></strong> 단원을 명단에서 삭제하시겠습니까?<br>삭제 후 JSON을 다운로드하여 GitHub에 업로드해야 반영됩니다.</p>
+    <div class="m-actions">
+      <button class="btn-s" onclick="closeDel()">취소</button>
+      <button class="btn-d" onclick="confirmDel()">삭제</button>
+    </div>
+  </div>
+</div>
+
+<!-- UPLOAD MODAL -->
+<div class="modal-bg h" id="uploadModal">
+  <div class="modal">
+    <h2>📁 JSON 파일 불러오기</h2>
+    <p style="font-size:13px;color:var(--text2);margin-bottom:16px;line-height:1.8;">최신 <code style="background:var(--cream);padding:2px 6px;border-radius:4px;">members.json</code>을 불러와 데이터를 교체합니다.</p>
+    <div class="fg"><label>파일 선택</label><input type="file" id="jsonFile" accept=".json" style="background:var(--white);cursor:pointer;"></div>
+    <div class="m-actions">
+      <button class="btn-s" onclick="closeUpload()">취소</button>
+      <button class="btn-p" onclick="loadJSON()">불러오기</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── CONSTANTS ──
+const AID='admin', APW='admin';
+const PC={T1:'#1a4a6e',T2:'#245e3a',B1:'#7a1c1c',B2:'#4a2878'};
+const PL={T1:'1st Tenor',T2:'2nd Tenor',B1:'1st Bass',B2:'2nd Bass'};
+const SI={'지휘자':'🎵','부지휘자':'🎼','반주자':'🎹','핸드벨 지휘자':'🔔'};
+
+// ── STATE ──
+let DB={meta:{},officers:[],staff:[],members:[],leaves:[],lifetime:[]};
+let isAdmin=false, curPart='all', delId=null;
+
+// ── BOOT ──
+async function boot(){
+  try{
+    const r=await fetch('members.json?v='+Date.now());
+    if(!r.ok) throw 0;
+    const fetched=await r.json();
+    // merge: use fetched data but ensure members array is full
+    DB=fetched;
+    // if fetched members is too few (e.g. old minimal file), use embedded
+    if(!DB.members||DB.members.length<10) DB.members=EMBEDDED.members;
+    if(!DB.leaves||!DB.leaves.length) DB.leaves=EMBEDDED.leaves;
+    if(!DB.lifetime||!DB.lifetime.length) DB.lifetime=EMBEDDED.lifetime;
+  } catch{
+    DB=JSON.parse(JSON.stringify(EMBEDDED));
+  }
+  render();
+}
+
+function render(){
+  syncDispToggles();
+  renderStats(); renderMembers(); renderOfficers(); renderStaff(); renderSpecial();
+}
+
+// ── STATS ──
+function renderStats(){
+  const a=DB.members.filter(m=>m.status==='active');
+  document.getElementById('sTotal').textContent=a.length;
+  ['T1','T2','B1','B2'].forEach(p=>{
+    document.getElementById('s'+p).textContent=a.filter(m=>m.part===p).length;
+    document.getElementById('c-'+p).textContent=a.filter(m=>m.part===p).length;
+  });
+  document.getElementById('c-all').textContent=a.length;
+}
+
+// ── MEMBERS ──
+function renderMembers(f){
+  if(f!==undefined) curPart=f;
+  const a=DB.members.filter(m=>m.status==='active');
+  const list=curPart==='all'?a:a.filter(m=>m.part===curPart);
+  const g=document.getElementById('membersGrid');
+  if(!list.length){g.innerHTML='<div class="empty">단원이 없습니다.</div>';return;}
+  const d=getDisp();
+  g.innerHTML=list.map(m=>{
+    const img=m.photo
+      ?`<img src="${m.photo}" class="card-photo ${m.part}" alt="${m.name}">`
+      :`<div class="card-avatar ${m.part}">${m.name[0]}</div>`;
+    const acts=isAdmin?'card-actions show':'card-actions';
+    return `<div class="member-card">
+      <div class="card-stripe ${m.part}"></div>
+      <div class="card-body">
+        <div class="card-photo-wrap">${img}</div>
+        <div class="card-info">
+          <div class="card-name">${m.name}</div>
+          <span class="part-chip ${m.part}">${PL[m.part]||m.part}</span>
+        </div>
+        <div class="card-rows">
+          <div class="card-row"><span class="card-lbl">⛪</span><span class="card-val">${m.church||'—'}${m.presbytery?' ('+m.presbytery+')':''}</span></div>
+          ${d.phone?`<div class="card-row"><span class="card-lbl">📞</span><span class="card-val ph">${m.phone||'—'}</span></div>`:''}
+          ${d.born?`<div class="card-row"><span class="card-lbl">🎂</span><span class="card-val">${m.born||'—'}</span></div>`:''}
+          ${m.email?`<div class="card-row"><span class="card-lbl">✉</span><span class="card-val">${m.email}</span></div>`:''}
+        </div>
+        ${d.joined?`<div class="card-since">📅 입단 ${m.joined||'—'}</div>`:''}
+        <div class="${acts}">
+          <button class="btn-sm edit" onclick="openEdit('${m.id}')">✏️ 수정</button>
+          <button class="btn-sm del" onclick="openDel('${m.id}')">🗑 삭제</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function filterPart(p,btn){
+  document.querySelectorAll('.pf-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active'); renderMembers(p);
+}
+
+// ── OFFICERS ──
+function renderOfficers(){
+  document.getElementById('officersGrid').innerHTML=DB.officers.map(o=>`
+    <div class="officer-card">
+      <div class="off-badge">${o.role}</div>
+      <div><div class="off-name">${o.name}</div>
+      <div class="off-church">${o.church||''}${o.presbytery?' ('+o.presbytery+')':''}</div>
+      <div class="off-phone">${o.phone||''}</div></div>
+    </div>`).join('');
+}
+
+// ── STAFF ──
+function renderStaff(){
+  document.getElementById('staffGrid').innerHTML=DB.staff.map(s=>`
+    <div class="staff-card">
+      <div class="staff-ico">${SI[s.role]||'🎵'}</div>
+      <div class="staff-role">${s.role}</div>
+      <div class="staff-name">${s.name}${s.hanja?' ('+s.hanja+')':''}</div>
+      <div class="staff-info">⛪ ${s.church||''}${s.presbytery?' ('+s.presbytery+')':''}</div>
+      ${s.workplace?`<div class="staff-info">🏫 ${s.workplace}</div>`:''}
+      <div class="staff-info">🎂 ${s.born||'—'} | 📅 입단 ${s.joined||'—'}</div>
+      ${s.phone?`<div class="staff-info" style="color:var(--gold);font-weight:700;">📞 ${s.phone}</div>`:''}
+    </div>`).join('');
+}
+
+// ── SPECIAL ──
+function renderSpecial(){
+  const lv=[...(DB.leaves||[]),...DB.members.filter(m=>m.status==='leave').map(m=>({name:m.name}))];
+  document.getElementById('leaveList').innerHTML=lv.map(l=>`<span class="pill">${l.name}</span>`).join('')||'<div class="empty">없음</div>';
+  const lt=[...(DB.lifetime||[]),...DB.members.filter(m=>m.status==='lifetime').map(m=>({name:m.name}))];
+  document.getElementById('lifetimeList').innerHTML=lt.map(l=>`<span class="pill">⭐ ${l.name}</span>`).join('')||'<div class="empty">없음</div>';
+}
+
+// ── TAB ──
+function showTab(id,btn){
+  document.getElementById('searchSection').style.display='none';
+  document.getElementById('gSearch').value='';
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  if(btn) btn.classList.add('active');
+}
+
+// ── SEARCH ──
+function doSearch(q){
+  const ss=document.getElementById('searchSection');
+  if(!q.trim()){
+    ss.style.display='none';
+    document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id==='members'));
+    return;
+  }
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  ss.style.display='block';
+  const res=DB.members.filter(m=>m.name.includes(q)||(m.church||'').includes(q)||(m.presbytery||'').includes(q));
+  document.getElementById('searchCnt').textContent=res.length+'명 검색됨';
+  document.getElementById('searchResults').innerHTML=res.length
+    ?res.map(r=>{
+        const av=r.photo
+          ?`<div class="sr-av"><img src="${r.photo}" alt="${r.name}"></div>`
+          :`<div class="sr-av-txt" style="background:${PC[r.part]||'#333'}">${r.name[0]}</div>`;
+        return `<div class="sr-item">
+          ${av}
+          <div><div class="sr-name">${r.name}</div>
+          <div class="sr-sub">${r.church||''}${r.presbytery?' ('+r.presbytery+')':''} · ${PL[r.part]||r.part}${r.phone?' · '+r.phone:''}</div></div>
+        </div>`;
+      }).join('')
+    :'<div class="empty">검색 결과가 없습니다.</div>';
+}
+
+// ══════════ ADMIN ══════════
+function openLogin(){
+  document.getElementById('lid').value='';document.getElementById('lpw').value='';
+  document.getElementById('loginErr').textContent='';
+  show('loginModal');setTimeout(()=>document.getElementById('lid').focus(),80);
+}
+function closeLogin(){hide('loginModal');}
+
+function doLogin(){
+  const id=document.getElementById('lid').value.trim();
+  const pw=document.getElementById('lpw').value;
+  if(id===AID&&pw===APW){
+    isAdmin=true; closeLogin(); applyAdmin();
+    toast('✅ 관리자 모드로 입장했습니다.','ok');
+  } else {
+    document.getElementById('loginErr').textContent='아이디 또는 비밀번호가 올바르지 않습니다.';
+    document.getElementById('lpw').value=''; document.getElementById('lpw').focus();
+  }
+}
+
+function logout(){
+  isAdmin=false; applyAdmin(); renderMembers();
+  toast('로그아웃 되었습니다.');
+}
+
+function applyAdmin(){
+  document.getElementById('adminBadge').classList.toggle('on',isAdmin);
+  document.getElementById('btnLogin').style.display=isAdmin?'none':'';
+  document.getElementById('btnLogout').style.display=isAdmin?'':'none';
+  document.getElementById('btnUpload').style.display=isAdmin?'':'none';
+  document.getElementById('dlBanner').classList.toggle('on',isAdmin);
+  document.getElementById('dispPanel').classList.toggle('on',isAdmin);
+  document.getElementById('addBtn').classList.toggle('on',isAdmin);
+  document.getElementById('fab').classList.toggle('on',isAdmin);
+  if(isAdmin){ loadGhSettings(); updateGhUI(!!GH.token); }
+  renderMembers();
+}
+
+// ══════════ DISPLAY SETTINGS ══════════
+function getDisp(){
+  const ds = DB.displaySettings || { showPhone:true, showBorn:true, showJoined:true };
+  return { phone: ds.showPhone !== false, born: ds.showBorn !== false, joined: ds.showJoined !== false };
+}
+
+function applyDisplay(){
+  if(!isAdmin) return;
+  // Write UI toggle state → DB.displaySettings
+  DB.displaySettings = {
+    showPhone:  document.getElementById('sw-phone').checked,
+    showBorn:   document.getElementById('sw-born').checked,
+    showJoined: document.getElementById('sw-joined').checked,
+  };
+  // Update toggle card highlight
+  ['phone','born','joined'].forEach(k=>{
+    document.getElementById('toggle-'+k).classList.toggle('hidden-field', !DB.displaySettings['show'+k.charAt(0).toUpperCase()+k.slice(1)]);
+  });
+  renderMembers(); autoSave();
+  toast('✅ 설정 변경됨 — GitHub에 자동 저장 중...','ok');
+}
+
+function syncDispToggles(){
+  // Called after DB is loaded — sync toggle UI to match DB values
+  const ds = DB.displaySettings || { showPhone:true, showBorn:true, showJoined:true };
+  document.getElementById('sw-phone').checked  = ds.showPhone  !== false;
+  document.getElementById('sw-born').checked   = ds.showBorn   !== false;
+  document.getElementById('sw-joined').checked = ds.showJoined !== false;
+  // Update toggle card highlight without re-rendering
+  ['phone','born','joined'].forEach(k=>{
+    const key = 'show'+k.charAt(0).toUpperCase()+k.slice(1);
+    document.getElementById('toggle-'+k).classList.toggle('hidden-field', ds[key] === false);
+  });
+}
+
+// ══════════ PHOTO ══════════
+function handlePhoto(input){
+  const file=input.files[0]; if(!file) return;
+  if(file.size>2*1024*1024){toast('사진은 2MB 이하로 올려주세요.','err');return;}
+  const reader=new FileReader();
+  reader.onload=e=>{
+    const d=e.target.result;
+    document.getElementById('fPhoto').value=d;
+    document.getElementById('photoWrap').innerHTML=`<img src="${d}" class="photo-preview" alt="미리보기"><div class="photo-hint" style="margin-top:6px;">클릭하여 변경</div>`;
+    document.getElementById('photoClear').style.display='block';
+  };
+  reader.readAsDataURL(file);
+}
+function clearPhoto(){
+  document.getElementById('fPhoto').value='';
+  document.getElementById('photoFile').value='';
+  document.getElementById('photoWrap').innerHTML='<div class="photo-ph">📷</div><div class="photo-hint">클릭하여 사진 업로드<br><small style="color:var(--text3);">JPG·PNG 권장 / 2MB 이하</small></div>';
+  document.getElementById('photoClear').style.display='none';
+}
+
+// ══════════ ADD / EDIT ══════════
+function openAdd(){
+  if(!isAdmin){toast('관리자 로그인이 필요합니다.','err');return;}
+  document.getElementById('mTitle').textContent='단원 추가';
+  document.getElementById('eId').value='';
+  ['fName','fChurch','fPresbytery','fBorn','fJoined','fPhone','fEmail'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('fPart').value='T1';
+  document.getElementById('fStatus').value='active';
+  clearPhoto(); show('memberModal');
+}
+
+function openEdit(id){
+  if(!isAdmin){toast('관리자 로그인이 필요합니다.','err');return;}
+  const m=DB.members.find(x=>x.id===id); if(!m) return;
+  document.getElementById('mTitle').textContent='단원 수정';
+  document.getElementById('eId').value=id;
+  document.getElementById('fName').value=m.name||'';
+  document.getElementById('fPart').value=m.part||'T1';
+  document.getElementById('fChurch').value=m.church||'';
+  document.getElementById('fPresbytery').value=m.presbytery||'';
+  document.getElementById('fBorn').value=m.born||'';
+  document.getElementById('fJoined').value=m.joined||'';
+  document.getElementById('fPhone').value=m.phone||'';
+  document.getElementById('fEmail').value=m.email||'';
+  document.getElementById('fStatus').value=m.status||'active';
+  document.getElementById('fPhoto').value=m.photo||'';
+  if(m.photo){
+    document.getElementById('photoWrap').innerHTML=`<img src="${m.photo}" class="photo-preview" alt="${m.name}"><div class="photo-hint" style="margin-top:6px;">클릭하여 변경</div>`;
+    document.getElementById('photoClear').style.display='block';
+  } else clearPhoto();
+  show('memberModal');
+}
+
+function closeModal(){hide('memberModal');}
+
+function saveMember(){
+  const name=document.getElementById('fName').value.trim();
+  if(!name){toast('이름을 입력해주세요.','err');return;}
+  const id=document.getElementById('eId').value;
+  const d={name,part:document.getElementById('fPart').value,church:document.getElementById('fChurch').value.trim(),
+    presbytery:document.getElementById('fPresbytery').value.trim(),born:document.getElementById('fBorn').value.trim(),
+    joined:document.getElementById('fJoined').value.trim(),phone:document.getElementById('fPhone').value.trim(),
+    email:document.getElementById('fEmail').value.trim(),status:document.getElementById('fStatus').value,
+    photo:document.getElementById('fPhoto').value||''};
+  if(id){const i=DB.members.findIndex(m=>m.id===id);if(i>-1) DB.members[i]={...DB.members[i],...d};toast('✅ 수정 완료! JSON을 다운로드하여 GitHub에 업로드하세요.','ok');}
+  else{d.id='m'+Date.now();DB.members.push(d);toast('✅ 추가 완료! JSON을 다운로드하여 GitHub에 업로드하세요.','ok');}
+  closeModal(); renderStats(); renderMembers(); renderSpecial(); autoSave();
+}
+
+// ══════════ DELETE ══════════
+function openDel(id){
+  if(!isAdmin){toast('관리자 로그인이 필요합니다.','err');return;}
+  const m=DB.members.find(x=>x.id===id); if(!m) return;
+  delId=id; document.getElementById('delName').textContent=m.name; show('delModal');
+}
+function closeDel(){delId=null;hide('delModal');}
+function confirmDel(){
+  if(!delId) return;
+  DB.members=DB.members.filter(m=>m.id!==delId);
+  closeDel(); renderStats(); renderMembers(); renderSpecial(); autoSave();
+  toast('🗑 삭제 완료! GitHub에 자동 저장 중...','ok');
+}
+
+// ══════════ JSON ══════════
+function downloadJSON(){
+  DB.meta.lastUpdated=new Date().toISOString().split('T')[0];
+  // Ensure displaySettings is always present in the download
+  if(!DB.displaySettings) DB.displaySettings={showPhone:true,showBorn:true,showJoined:true};
+  const b=new Blob([JSON.stringify(DB,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='members.json';a.click();URL.revokeObjectURL(a.href);
+  toast('📥 members.json 다운로드 완료! GitHub에 업로드하면 방문자에게 적용됩니다.','ok');
+}
+function showUpload(){show('uploadModal');}
+function closeUpload(){hide('uploadModal');document.getElementById('jsonFile').value='';}
+function loadJSON(){
+  const file=document.getElementById('jsonFile').files[0];
+  if(!file){toast('파일을 선택해주세요.','err');return;}
+  const r=new FileReader();
+  r.onload=e=>{try{DB=JSON.parse(e.target.result);render();closeUpload();toast('✅ JSON 파일을 불러왔습니다!','ok');}catch{toast('❌ JSON 파싱 오류.','err');}};
+  r.readAsText(file);
+}
+
+// ══════════ HELPERS ══════════
+function show(id){document.getElementById(id).classList.remove('h');}
+function hide(id){document.getElementById(id).classList.add('h');}
+
+let tt;
+function toast(msg,type=''){
+  const t=document.getElementById('toast');t.textContent=msg;t.className='toast show '+type;
+  clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),3500);
+}
+
+// Close modals on backdrop click
+['loginModal','memberModal','delModal','uploadModal','ghModal'].forEach(id=>{
+  document.getElementById(id).addEventListener('click',function(e){
+    if(e.target!==this) return;
+    if(id==='loginModal') closeLogin();
+    else if(id==='memberModal') closeModal();
+    else if(id==='delModal') closeDel();
+    else if(id==='ghModal') closeGhSettings();
+    else closeUpload();
+  });
+});
+
+
+// ══════════ GITHUB API ══════════
+let GH = { owner:'', repo:'', path:'members.json', branch:'main', token:'' };
+let ghFileSha = null; // current file SHA (required for PUT)
+
+function loadGhSettings(){
+  try{
+    const s = localStorage.getItem('kec_gh');
+    if(s){ GH = {...GH, ...JSON.parse(s)}; }
+  }catch(e){}
+}
+
+function openGhSettings(){
+  loadGhSettings();
+  document.getElementById('ghOwner').value  = GH.owner;
+  document.getElementById('ghRepo').value   = GH.repo;
+  document.getElementById('ghPath').value   = GH.path  || 'members.json';
+  document.getElementById('ghBranch').value = GH.branch|| 'main';
+  document.getElementById('ghToken').value  = GH.token;
+  document.getElementById('ghTestResult').textContent = '';
+  show('ghModal');
+}
+function closeGhSettings(){ hide('ghModal'); }
+
+async function testAndSaveGhSettings(){
+  const owner  = document.getElementById('ghOwner').value.trim();
+  const repo   = document.getElementById('ghRepo').value.trim();
+  const path   = document.getElementById('ghPath').value.trim() || 'members.json';
+  const branch = document.getElementById('ghBranch').value.trim() || 'main';
+  const token  = document.getElementById('ghToken').value.trim();
+  const res    = document.getElementById('ghTestResult');
+
+  if(!owner||!repo||!token){
+    res.innerHTML='<span style="color:var(--danger)">⚠ 소유자·저장소·Token을 모두 입력해주세요.</span>';
+    return;
+  }
+  res.innerHTML='<span style="color:var(--text3)">🔍 연결 확인 중...</span>';
+
+  try{
+    const r = await fetch(
+      `https://api.github.com/repos/${owner}/${repo}/contents/${path}?ref=${branch}`,
+      { headers:{ Authorization:'token '+token, Accept:'application/vnd.github.v3+json' } }
+    );
+    if(r.status===401){ res.innerHTML='<span style="color:var(--danger)">❌ Token이 올바르지 않습니다.</span>'; return; }
+    if(r.status===404){ res.innerHTML='<span style="color:var(--danger)">❌ 저장소 또는 파일을 찾을 수 없습니다. 경로를 확인하세요.</span>'; return; }
+    if(!r.ok){ res.innerHTML=`<span style="color:var(--danger)">❌ 오류: ${r.status}</span>`; return; }
+
+    const data = await r.json();
+    ghFileSha = data.sha;
+
+    GH = {owner, repo, path, branch, token};
+    localStorage.setItem('kec_gh', JSON.stringify(GH));
+
+    res.innerHTML='<span style="color:var(--success)">✅ 연결 성공! 자동 저장이 활성화되었습니다.</span>';
+    updateGhUI(true);
+    setTimeout(closeGhSettings, 1200);
+  }catch(e){
+    res.innerHTML=`<span style="color:var(--danger)">❌ 네트워크 오류: ${e.message}</span>`;
+  }
+}
+
+function updateGhUI(connected){
+  const title = document.getElementById('ghStatusTitle');
+  const desc  = document.getElementById('ghStatusDesc');
+  const btn   = document.getElementById('btnGhSave');
+  if(connected && GH.token){
+    title.innerHTML = '<span class="gh-connected"><span class="gh-dot"></span>GitHub 자동 저장 연결됨</span>';
+    desc.textContent = `${GH.owner}/${GH.repo} → ${GH.path} | 저장 시 즉시 모든 방문자에게 반영됩니다`;
+    btn.style.display = '';
+  } else {
+    title.textContent = '⚙️ GitHub 자동 저장 설정';
+    desc.textContent  = 'Token을 설정하면 저장 즉시 GitHub에 반영되어 모든 방문자에게 자동 적용됩니다';
+    btn.style.display = 'none';
+  }
+}
+
+async function saveToGitHub(silent=false){
+  if(!GH.token){ toast('GitHub Token을 먼저 설정해주세요.','err'); openGhSettings(); return; }
+
+  DB.meta.lastUpdated = new Date().toISOString().split('T')[0];
+  if(!DB.displaySettings) DB.displaySettings={showPhone:true,showBorn:true,showJoined:true};
+  const jsonStr = JSON.stringify(DB, null, 2);
+  const encoded = btoa(unescape(encodeURIComponent(jsonStr)));
+
+  if(!silent){ showGhSaving('saving'); }
+
+  // Get latest SHA before pushing
+  try{
+    const getR = await fetch(
+      `https://api.github.com/repos/${GH.owner}/${GH.repo}/contents/${GH.path}?ref=${GH.branch}`,
+      { headers:{ Authorization:'token '+GH.token, Accept:'application/vnd.github.v3+json' } }
+    );
+    if(getR.ok){ const d=await getR.json(); ghFileSha=d.sha; }
+  }catch(e){}
+
+  const body = {
+    message: `단원수첩 업데이트 [${new Date().toLocaleString('ko-KR')}]`,
+    content: encoded,
+    branch: GH.branch,
+    ...(ghFileSha ? {sha: ghFileSha} : {})
+  };
+
+  try{
+    const r = await fetch(
+      `https://api.github.com/repos/${GH.owner}/${GH.repo}/contents/${GH.path}`,
+      {
+        method: 'PUT',
+        headers:{ Authorization:'token '+GH.token, Accept:'application/vnd.github.v3+json', 'Content-Type':'application/json' },
+        body: JSON.stringify(body)
+      }
+    );
+
+    if(r.ok){
+      const d = await r.json();
+      ghFileSha = d.content?.sha || ghFileSha;
+      showGhSaving('success');
+      setTimeout(()=>hide('ghSavingModal'), 2000);
+      if(!silent) toast('☁️ GitHub 저장 완료! 약 1~2분 후 모든 방문자에게 반영됩니다.','ok');
+    } else {
+      const err = await r.json();
+      showGhSaving('error', err.message||r.status);
+      setTimeout(()=>hide('ghSavingModal'), 3000);
+      if(!silent) toast('❌ GitHub 저장 실패: '+( err.message||r.status),'err');
+    }
+  }catch(e){
+    showGhSaving('error', e.message);
+    setTimeout(()=>hide('ghSavingModal'), 3000);
+    if(!silent) toast('❌ 네트워크 오류: '+e.message,'err');
+  }
+}
+
+function showGhSaving(state, msg=''){
+  const icon  = document.getElementById('ghSavingIcon');
+  const title = document.getElementById('ghSavingTitle');
+  const desc  = document.getElementById('ghSavingDesc');
+  if(state==='saving'){
+    icon.textContent='⏳'; title.textContent='GitHub에 저장 중...'; desc.textContent='잠시만 기다려 주세요';
+    show('ghSavingModal');
+  } else if(state==='success'){
+    icon.textContent='✅'; title.textContent='저장 완료!'; desc.textContent='약 1~2분 후 모든 방문자에게 반영됩니다';
+  } else {
+    icon.textContent='❌'; title.textContent='저장 실패'; desc.textContent=msg||'오류가 발생했습니다';
+  }
+}
+
+// Auto-save helper: called after any data change
+async function autoSave(){
+  if(GH.token){ await saveToGitHub(true); }
+}
+
+// ══════════ EMBEDDED FULL DATA ══════════
+// 전체 단원 데이터를 HTML에 내장 — fetch 실패 시 또는 로컬 실행 시 사용
+const EMBEDDED = {
+  meta:{organization:"한국장로성가단",year:2024,lastUpdated:"2024-01-01"},
+  displaySettings:{showPhone:true,showBorn:true,showJoined:true},
+  officers:[
+    {id:"o1",role:"단장",name:"김순환",phone:"010-2478-5580",church:"신일교회",presbytery:"서울노회"},
+    {id:"o2",role:"직전단장",name:"홍경모",phone:"010-4701-5641",church:"남부교회",presbytery:"서울동노회"},
+    {id:"o3",role:"부단장",name:"노치군",phone:"010-5325-3809",church:"한영교회",presbytery:"영등포노회"},
+    {id:"o4",role:"부단장",name:"장재현",phone:"010-3740-3725",church:"묘동교회",presbytery:"강남노회"},
+    {id:"o5",role:"부단장",name:"이귀복",phone:"010-6261-7100",church:"호산나교회",presbytery:"서울북노회"},
+    {id:"o6",role:"총무",name:"이재덕",phone:"010-9347-3688",church:"서교동교회",presbytery:"서울서노회"},
+    {id:"o7",role:"부총무",name:"권재천",phone:"010-6220-4942",church:"새문안교회",presbytery:"서울노회"},
+    {id:"o8",role:"서기",name:"홍경화",phone:"010-3911-2748",church:"열방교회",presbytery:"서남노회"},
+    {id:"o9",role:"부서기",name:"이상길",phone:"010-5222-1250",church:"광석교회",presbytery:"서울동노회"},
+    {id:"o10",role:"회계",name:"최영수",phone:"010-4573-7701",church:"신일교회",presbytery:"서울노회"},
+    {id:"o11",role:"부회계",name:"이강호",phone:"010-5306-0230",church:"번동제일교회",presbytery:"용천노회"},
+    {id:"o12",role:"감사",name:"김종훈",phone:"010-5358-5022",church:"상신교회",presbytery:"서울북노회"},
+    {id:"o13",role:"감사",name:"이제영",phone:"010-5227-2672",church:"신일교회",presbytery:"서울노회"},
+    {id:"o14",role:"T1파트장",name:"김기성",phone:"010-2268-8849",church:"신일교회",presbytery:"서울노회"},
+    {id:"o15",role:"T2파트장",name:"김인하",phone:"010-5435-1391",church:"장석교회",presbytery:"서울북노회"},
+    {id:"o16",role:"B1파트장",name:"고영준",phone:"010-8895-6129",church:"새문안교회",presbytery:"서울노회"},
+    {id:"o17",role:"B2파트장",name:"최명오",phone:"010-5715-8335",church:"정신교회",presbytery:"서울동노회"},
+    {id:"o18",role:"핸드벨팀장",name:"주호걸",phone:"010-9960-4740",church:"성덕교회",presbytery:"동노회"},
+    {id:"o19",role:"홍보팀장",name:"임신일",phone:"010-3310-2595",church:"신성교회",presbytery:"영등포노회"}
+  ],
+  staff:[
+    {id:"s1",role:"지휘자",name:"이철웅",hanja:"李哲雄",born:"1967.06.26",joined:"2019.01",church:"천호동교회",workplace:"장신대학교, 정화예술대학"},
+    {id:"s2",role:"부지휘자",name:"김광수",hanja:"金光洙",born:"1948.02.24",joined:"1991.03",church:"수지광성교회",presbytery:"경기노회",phone:"010-2389-2701"},
+    {id:"s3",role:"반주자",name:"권정원",hanja:"權正媛",born:"1975.07.25",joined:"2014.02",church:"경동교회"},
+    {id:"s4",role:"핸드벨 지휘자",name:"송성수",hanja:"宋誠洙",born:"1966.02.12",joined:"2012.09",church:"인천순복음교회"}
+  ],
+  members:[
+    {id:"m1",name:"김기성",part:"T1",church:"신일교회",presbytery:"서울노회",born:"1966.01.24",joined:"2022.03",phone:"010-2268-8849",email:"",status:"active",photo:""},
+    {id:"m2",name:"김대웅",part:"T1",church:"문화교회",presbytery:"서울노회",born:"1937.01.27",joined:"2006.11",phone:"010-5042-1756",email:"",status:"active",photo:""},
+    {id:"m3",name:"김례위",part:"T1",church:"중랑제일교회",presbytery:"평양남노회",born:"1966.02.22",joined:"2023.12",phone:"010-3306-9449",email:"",status:"active",photo:""},
+    {id:"m4",name:"김봉천",part:"T1",church:"대영교회",presbytery:"안양노회",born:"1961.01.16",joined:"2011.11",phone:"010-2281-3634",email:"",status:"active",photo:""},
+    {id:"m5",name:"김의배",part:"T1",church:"자양교회",presbytery:"서울노회",born:"1942.02.10",joined:"1997.10",phone:"010-3364-3584",email:"",status:"active",photo:""},
+    {id:"m6",name:"김종훈",part:"T1",church:"상신교회",presbytery:"서울북노회",born:"1961.08.28",joined:"2010.11",phone:"010-5358-5022",email:"",status:"active",photo:""},
+    {id:"m7",name:"김철인",part:"T1",church:"중랑제일교회",presbytery:"평양남노회",born:"1950.06.03",joined:"1997.07",phone:"010-8763-4450",email:"",status:"active",photo:""},
+    {id:"m8",name:"남시우",part:"T1",church:"덕수교회",presbytery:"강북노회",born:"1954.03.20",joined:"2014.08",phone:"010-9708-9407",email:"",status:"active",photo:""},
+    {id:"m9",name:"노치군",part:"T1",church:"한영교회",presbytery:"영등포노회",born:"1951.09.09",joined:"2010.10",phone:"010-5325-3809",email:"",status:"active",photo:""},
+    {id:"m10",name:"서현철",part:"T1",church:"번동제일교회",presbytery:"용천노회",born:"1971.01.27",joined:"2022.09",phone:"010-3895-8237",email:"",status:"active",photo:""},
+    {id:"m11",name:"석문홍",part:"T1",church:"연신교회",presbytery:"평북노회",born:"1959.04.19",joined:"2014.09",phone:"010-3393-2577",email:"",status:"active",photo:""},
+    {id:"m12",name:"신진수",part:"T1",church:"영등포교회",presbytery:"영등포노회",born:"1946.08.21",joined:"2004.02",phone:"010-8226-0595",email:"",status:"active",photo:""},
+    {id:"m13",name:"안영우",part:"T1",church:"수색교회",presbytery:"서울서북노회",born:"1945.02.18",joined:"1994.11",phone:"010-4272-7785",email:"",status:"active",photo:""},
+    {id:"m14",name:"양현준",part:"T1",church:"강남안디옥교회",presbytery:"평북노회",born:"1965.06.21",joined:"2022.06",phone:"010-8891-5086",email:"",status:"active",photo:""},
+    {id:"m15",name:"온민귀",part:"T1",church:"고척교회",presbytery:"서남노회",born:"1954.06.23",joined:"2011.11",phone:"010-6243-1540",email:"",status:"active",photo:""},
+    {id:"m16",name:"유경모",part:"T1",church:"영등포교회",presbytery:"영등포노회",born:"1962.04.07",joined:"2023.10",phone:"010-2598-8296",email:"",status:"active",photo:""},
+    {id:"m17",name:"윤두근",part:"T1",church:"묘동교회",presbytery:"서울강남노회",born:"1948.02.15",joined:"2003.03",phone:"010-9247-4581",email:"",status:"active",photo:""},
+    {id:"m18",name:"윤태혁",part:"T1",church:"상도교회",presbytery:"서울관악노회",born:"1945.12.07",joined:"1997.04",phone:"010-6234-2217",email:"",status:"active",photo:""},
+    {id:"m19",name:"이상길",part:"T1",church:"광석교회",presbytery:"서울동노회",born:"1961.01.18",joined:"2020.01",phone:"010-5222-1250",email:"",status:"active",photo:""},
+    {id:"m20",name:"이성진",part:"T1",church:"기자촌교회",presbytery:"서울서북노회",born:"1949.10.05",joined:"2018.12",phone:"010-5463-8060",email:"",status:"active",photo:""},
+    {id:"m21",name:"이연수",part:"T1",church:"인천제일교회",presbytery:"인천노회",born:"1938.01.09",joined:"1985.05",phone:"010-3746-9397",email:"",status:"active",photo:""},
+    {id:"m22",name:"이원평",part:"T1",church:"광석교회",presbytery:"서울동노회",born:"1941.06.08",joined:"1990.08",phone:"010-9087-2451",email:"",status:"active",photo:""},
+    {id:"m23",name:"이형욱",part:"T1",church:"남가좌교회",presbytery:"평양노회",born:"1953.12.03",joined:"2006.08",phone:"010-5304-5463",email:"",status:"active",photo:""},
+    {id:"m24",name:"이호철",part:"T1",church:"번동제일교회",presbytery:"용천노회",born:"1969.12.26",joined:"2022.09",phone:"010-3728-0547",email:"",status:"active",photo:""},
+    {id:"m25",name:"임신일",part:"T1",church:"신성교회",presbytery:"영등포노회",born:"1957.04.02",joined:"2022.07",phone:"010-3310-2595",email:"",status:"active",photo:""},
+    {id:"m26",name:"강의근",part:"T2",church:"청담교회",presbytery:"서울강남노회",born:"1952.03.13",joined:"2004.11",phone:"010-5001-3462",email:"",status:"active",photo:""},
+    {id:"m27",name:"권오성",part:"T2",church:"양평동교회",presbytery:"영등포노회",born:"1957.12.01",joined:"2023.10",phone:"010-6271-4646",email:"",status:"active",photo:""},
+    {id:"m28",name:"김용무",part:"T2",church:"번동제일교회",presbytery:"용천노회",born:"1947.09.21",joined:"2011.09",phone:"010-6242-2520",email:"",status:"active",photo:""},
+    {id:"m29",name:"김인하",part:"T2",church:"장석교회",presbytery:"서울북노회",born:"1956.12.29",joined:"2019.12",phone:"010-5435-1391",email:"",status:"active",photo:""},
+    {id:"m30",name:"김종만",part:"T2",church:"신일교회",presbytery:"서울노회",born:"1964.09.04",joined:"2024.01",phone:"010-4788-3322",email:"",status:"active",photo:""},
+    {id:"m31",name:"박병호",part:"T2",church:"경신교회",presbytery:"서울동노회",born:"1960.04.17",joined:"2023.11",phone:"010-8963-5579",email:"",status:"active",photo:""},
+    {id:"m32",name:"서무일",part:"T2",church:"은혜로운교회",presbytery:"서울동노회",born:"1950.07.20",joined:"1996.01",phone:"010-5251-6039",email:"",status:"active",photo:""},
+    {id:"m33",name:"오정근",part:"T2",church:"동숭교회",presbytery:"서울노회",born:"1955.10.20",joined:"2007.03",phone:"010-2205-4700",email:"",status:"active",photo:""},
+    {id:"m34",name:"우정균",part:"T2",church:"영등포교회",presbytery:"영등포노회",born:"1952.05.13",joined:"2008.03",phone:"010-4507-4457",email:"",status:"active",photo:""},
+    {id:"m35",name:"윤장근",part:"T2",church:"동성교회",presbytery:"서울서노회",born:"1947.07.15",joined:"2006.04",phone:"010-7347-1197",email:"",status:"active",photo:""},
+    {id:"m36",name:"윤태화",part:"T2",church:"동숭교회",presbytery:"서울노회",born:"1941.11.26",joined:"2003.09",phone:"010-6855-1327",email:"",status:"active",photo:""},
+    {id:"m37",name:"이강호",part:"T2",church:"번동제일교회",presbytery:"용천노회",born:"1959.01.18",joined:"2011.10",phone:"010-5306-0230",email:"",status:"active",photo:""},
+    {id:"m38",name:"이선규",part:"T2",church:"번동제일교회",presbytery:"용천노회",born:"1962.08.15",joined:"2015.01",phone:"010-2737-6814",email:"",status:"active",photo:""},
+    {id:"m39",name:"이재덕",part:"T2",church:"서교동교회",presbytery:"서울서노회",born:"1951.06.24",joined:"2009.11",phone:"010-9347-3688",email:"",status:"active",photo:""},
+    {id:"m40",name:"이제영",part:"T2",church:"신일교회",presbytery:"서울노회",born:"1951.03.11",joined:"2012.08",phone:"010-5227-2672",email:"",status:"active",photo:""},
+    {id:"m41",name:"장광희",part:"T2",church:"보광중앙교회",presbytery:"서울서노회",born:"1945.08.06",joined:"2001.03",phone:"010-3240-2471",email:"",status:"active",photo:""},
+    {id:"m42",name:"조성천",part:"T2",church:"남대문교회",presbytery:"서울노회",born:"1948.07.01",joined:"2017.05",phone:"010-3934-3732",email:"",status:"active",photo:""},
+    {id:"m43",name:"차상환",part:"T2",church:"광명교회",presbytery:"영등포노회",born:"1948.11.02",joined:"2019.06",phone:"010-3797-9859",email:"",status:"active",photo:""},
+    {id:"m44",name:"최경호",part:"T2",church:"광석교회",presbytery:"서울동노회",born:"1954.11.29",joined:"2023.11",phone:"010-9781-8823",email:"",status:"active",photo:""},
+    {id:"m45",name:"최금준",part:"T2",church:"양평동교회",presbytery:"영등포노회",born:"1946.09.30",joined:"1988.07",phone:"010-2448-7690",email:"",status:"active",photo:""},
+    {id:"m46",name:"강판규",part:"B1",church:"난곡신일교회",presbytery:"서울관악노회",born:"1950.11.25",joined:"1997.07",phone:"010-5260-8044",email:"",status:"active",photo:""},
+    {id:"m47",name:"권순도",part:"B1",church:"영동교회",presbytery:"서울관악노회",born:"1952.10.20",joined:"2009.01",phone:"010-3728-1349",email:"",status:"active",photo:""},
+    {id:"m48",name:"고영준",part:"B1",church:"새문안교회",presbytery:"서울노회",born:"1954.12.22",joined:"2018.11",phone:"010-8895-6129",email:"",status:"active",photo:""},
+    {id:"m49",name:"김광수",part:"B1",church:"수지광성교회",presbytery:"경기노회",born:"1948.02.24",joined:"1991.03",phone:"010-2389-2701",email:"",status:"active",photo:""},
+    {id:"m50",name:"김광욱",part:"B1",church:"성덕교회",presbytery:"서울동노회",born:"1950.08.24",joined:"2004.10",phone:"010-9744-5800",email:"",status:"active",photo:""},
+    {id:"m51",name:"김대열",part:"B1",church:"서울동광교회",presbytery:"서울동노회",born:"1955.02.06",joined:"2009.03",phone:"010-8830-9038",email:"",status:"active",photo:""},
+    {id:"m52",name:"김순환",part:"B1",church:"신일교회",presbytery:"서울노회",born:"1952.02.03",joined:"2008.03",phone:"010-2478-5580",email:"",status:"active",photo:""},
+    {id:"m53",name:"김원환",part:"B1",church:"안양제일교회",presbytery:"안양노회",born:"1955.02.14",joined:"2009.11",phone:"010-5387-3491",email:"",status:"active",photo:""},
+    {id:"m54",name:"김특주",part:"B1",church:"든든한교회",presbytery:"서울관악노회",born:"1951.11.05",joined:"2008.03",phone:"010-5239-6064",email:"",status:"active",photo:""},
+    {id:"m55",name:"복봉수",part:"B1",church:"상신교회",presbytery:"서울북노회",born:"1957.08.22",joined:"2017.03",phone:"010-3354-2258",email:"",status:"active",photo:""},
+    {id:"m56",name:"이정원",part:"B1",church:"일신교회",presbytery:"평남노회",born:"1952.03.29",joined:"1998.07",phone:"010-5397-0587",email:"",status:"active",photo:""},
+    {id:"m57",name:"이찬영",part:"B1",church:"새문안교회",presbytery:"서울노회",born:"1952.07.16",joined:"2018.11",phone:"010-5668-8712",email:"",status:"active",photo:""},
+    {id:"m58",name:"이치덕",part:"B1",church:"중랑제일교회",presbytery:"평남노회",born:"1956.03.04",joined:"2007.01",phone:"010-5347-8700",email:"",status:"active",photo:""},
+    {id:"m59",name:"이칠모",part:"B1",church:"광암교회",presbytery:"서울서북노회",born:"1952.07.07",joined:"2012.08",phone:"010-5323-8787",email:"",status:"active",photo:""},
+    {id:"m60",name:"장재현",part:"B1",church:"묘동교회",presbytery:"강남노회",born:"1951.07.03",joined:"2008.03",phone:"010-3740-3725",email:"",status:"active",photo:""},
+    {id:"m61",name:"조재창",part:"B1",church:"영세교회",presbytery:"서울동노회",born:"1955.10.26",joined:"2012.08",phone:"010-6385-0297",email:"",status:"active",photo:""},
+    {id:"m62",name:"홍경모",part:"B1",church:"남부교회",presbytery:"서울동노회",born:"1957.10.04",joined:"2007.12",phone:"010-4701-5641",email:"",status:"active",photo:""},
+    {id:"m63",name:"홍경화",part:"B1",church:"열방교회",presbytery:"서남노회",born:"1959.08.28",joined:"2015.01",phone:"010-3911-2748",email:"",status:"active",photo:""},
+    {id:"m64",name:"권재천",part:"B2",church:"새문안교회",presbytery:"서울노회",born:"1955.03.16",joined:"2020.02",phone:"010-6220-4942",email:"",status:"active",photo:""},
+    {id:"m65",name:"길흥진",part:"B2",church:"평광교회",presbytery:"평북노회",born:"1956.08.18",joined:"2020.05",phone:"010-2558-0818",email:"",status:"active",photo:""},
+    {id:"m66",name:"김광동",part:"B2",church:"연신교회",presbytery:"평북노회",born:"1952.03.04",joined:"2022.08",phone:"010-6657-1699",email:"",status:"active",photo:""},
+    {id:"m67",name:"김기정",part:"B2",church:"상도중앙교회",presbytery:"서울관악노회",born:"1940.12.27",joined:"1995.09",phone:"010-3723-5441",email:"",status:"active",photo:""},
+    {id:"m68",name:"김선동",part:"B2",church:"동막교회",presbytery:"서울서노회",born:"1942.10.19",joined:"1987.05",phone:"010-8131-8579",email:"",status:"active",photo:""},
+    {id:"m69",name:"김우영",part:"B2",church:"안양제일교회",presbytery:"안양노회",born:"1933.06.16",joined:"1985.05",phone:"010-3587-8202",email:"",status:"active",photo:""},
+    {id:"m70",name:"김태정",part:"B2",church:"광석교회",presbytery:"서울동노회",born:"1961.11.06",joined:"2020.06",phone:"010-4273-3301",email:"",status:"active",photo:""},
+    {id:"m71",name:"김창식",part:"B2",church:"동막교회",presbytery:"서울서노회",born:"1970.09.02",joined:"2022.02",phone:"010-3617-3884",email:"",status:"active",photo:""},
+    {id:"m72",name:"남재우",part:"B2",church:"상도중앙교회",presbytery:"서울관악노회",born:"1955.04.20",joined:"2015.04",phone:"010-6342-6584",email:"",status:"active",photo:""},
+    {id:"m73",name:"박승화",part:"B2",church:"신당중앙교회",presbytery:"서울노회",born:"1955.04.18",joined:"2008.02",phone:"010-4221-4290",email:"",status:"active",photo:""},
+    {id:"m74",name:"손학식",part:"B2",church:"신도교회",presbytery:"영등포노회",born:"1952.12.08",joined:"2001.05",phone:"010-5033-0054",email:"",status:"active",photo:""},
+    {id:"m75",name:"안종호",part:"B2",church:"새문안교회",presbytery:"서울노회",born:"1933.11.10",joined:"1988.05",phone:"010-7121-5501",email:"",status:"active",photo:""},
+    {id:"m76",name:"원영철",part:"B2",church:"남대문교회",presbytery:"서울노회",born:"1938.09.21",joined:"1999.02",phone:"010-9000-3402",email:"",status:"active",photo:""},
+    {id:"m77",name:"유기종",part:"B2",church:"동천교회",presbytery:"서울동노회",born:"1953.06.15",joined:"2015.09",phone:"010-8343-5297",email:"",status:"active",photo:""},
+    {id:"m78",name:"이귀복",part:"B2",church:"호산나교회",presbytery:"서울북노회",born:"1956.07.04",joined:"2009.03",phone:"010-6261-7100",email:"",status:"active",photo:""},
+    {id:"m79",name:"이대성",part:"B2",church:"서울동광교회",presbytery:"서울동노회",born:"1951.05.05",joined:"2003.04",phone:"010-5221-4944",email:"",status:"active",photo:""},
+    {id:"m80",name:"이원식",part:"B2",church:"광석교회",presbytery:"서울동노회",born:"1938.11.15",joined:"1985.05",phone:"010-3715-8148",email:"",status:"active",photo:""},
+    {id:"m81",name:"이현우",part:"B2",church:"번동제일교회",presbytery:"용천노회",born:"1970.01.06",joined:"2022.08",phone:"010-6236-6068",email:"",status:"active",photo:""},
+    {id:"m82",name:"임영호",part:"B2",church:"잠실교회",presbytery:"서울강동노회",born:"1940.08.11",joined:"2002.04",phone:"010-6284-4586",email:"",status:"active",photo:""},
+    {id:"m83",name:"장병국",part:"B2",church:"영세교회",presbytery:"서울동노회",born:"1954.11.20",joined:"2012.07",phone:"010-3578-1681",email:"",status:"active",photo:""},
+    {id:"m84",name:"정태일",part:"B2",church:"고척교회",presbytery:"서남노회",born:"1942.02.02",joined:"1994.10",phone:"010-6302-6171",email:"",status:"active",photo:""},
+    {id:"m85",name:"주호걸",part:"B2",church:"성덕교회",presbytery:"동노회",born:"1961.10.22",joined:"2019.12",phone:"010-9960-4740",email:"",status:"active",photo:""},
+    {id:"m86",name:"최명선",part:"B2",church:"수색교회",presbytery:"서울서북노회",born:"1942.04.09",joined:"1985.06",phone:"010-2370-8790",email:"",status:"active",photo:""},
+    {id:"m87",name:"최명오",part:"B2",church:"정신교회",presbytery:"서울동노회",born:"1955.09.09",joined:"2020.01",phone:"010-5715-8335",email:"",status:"active",photo:""},
+    {id:"m88",name:"최안석",part:"B2",church:"영세교회",presbytery:"서울동노회",born:"1949.06.23",joined:"2012.08",phone:"010-5068-1835",email:"",status:"active",photo:""},
+    {id:"m89",name:"최영수",part:"B2",church:"신일교회",presbytery:"서울노회",born:"1956.02.26",joined:"2021.02",phone:"010-4573-7701",email:"",status:"active",photo:""},
+    {id:"m90",name:"최영원",part:"B2",church:"남부교회",presbytery:"서울동노회",born:"1956.11.28",joined:"2015.07",phone:"010-5263-8944",email:"",status:"active",photo:""},
+    {id:"m91",name:"홍현풍",part:"B2",church:"광석교회",presbytery:"서울동노회",born:"1959.06.07",joined:"2023.02",phone:"010-9047-0074",email:"",status:"active",photo:""}
+  ],
+  leaves:[
+    {name:"구자삼"},{name:"권순언"},{name:"김선범"},{name:"김의현"},{name:"김진규"},
+    {name:"김현철"},{name:"박성태"},{name:"박태식"},{name:"신희만"},{name:"오시영"},
+    {name:"임융호"},{name:"장광철"},{name:"변세학"},{name:"강근희"},{name:"신승도"},
+    {name:"서경호"},{name:"박충무"}
+  ],
+  lifetime:[
+    {name:"권달현"},{name:"류명수"},{name:"방준석"},{name:"성세용"},{name:"손명식"},
+    {name:"오창일"},{name:"이광무"},{name:"이상석"},{name:"이정희"},{name:"이종대"},
+    {name:"장신근"},{name:"홍인호"}
+  ]
+};
+
+boot();
+</script>
+</body>
+</html>
