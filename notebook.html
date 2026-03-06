@@ -53,18 +53,19 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--t
 
 /* STATS */
 .stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;max-width:1100px;margin:0 auto;padding:20px 20px 0;}
-.stat{background:var(--white);border-radius:10px;padding:16px;text-align:center;border:1px solid var(--cream2);box-shadow:var(--shadow);transition:.2s;}
+.stat{background:var(--white);border-radius:10px;padding:22px 16px;text-align:center;border:1px solid var(--cream2);box-shadow:var(--shadow);transition:.2s;}
 .stat.clickable{cursor:pointer;}
 .stat.clickable:hover{transform:translateY(-3px);box-shadow:var(--shadow2);border-color:var(--gold2);}
 .stat.clickable.active-stat{border-color:var(--gold);background:linear-gradient(135deg,var(--navy),var(--navy2));box-shadow:0 4px 18px rgba(27,42,74,.25);}
-.stat.clickable.active-stat .stat-n{color:var(--gold2);}
-.stat.clickable.active-stat .stat-l{color:rgba(255,255,255,.65);}
+.stat.clickable.active-stat .stat-n{color:#fff;}
+.stat.clickable.active-stat .stat-l{color:#fff;}
+.stat.clickable.active-stat div{color:#fff !important;}
 .stat.clickable.T1.active-stat{background:linear-gradient(135deg,var(--T1),#1d5a85);}
 .stat.clickable.T2.active-stat{background:linear-gradient(135deg,var(--T2),#2a7345);}
 .stat.clickable.B1.active-stat{background:linear-gradient(135deg,var(--B1),#9a2424);}
 .stat.clickable.B2.active-stat{background:linear-gradient(135deg,var(--B2),#5c3498);}
-.stat-n{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--navy);line-height:1;transition:.2s;}
-.stat-l{font-size:10px;color:var(--text3);margin-top:4px;transition:.2s;}
+.stat-n{font-family:'Playfair Display',serif;font-size:56px;font-weight:700;color:var(--navy);line-height:1;transition:.2s;}
+.stat-l{font-size:20px;color:var(--text3);margin-top:6px;transition:.2s;}
 
 /* NAV */
 .nav-wrap{background:var(--white);border-bottom:2px solid var(--cream2);position:sticky;top:69px;z-index:150;box-shadow:0 2px 8px rgba(27,42,74,.07);}
@@ -73,6 +74,9 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--t
 .nav-tab{padding:13px 20px;font-size:13px;font-weight:500;color:var(--text2);cursor:pointer;border:none;background:none;white-space:nowrap;border-bottom:3px solid transparent;margin-bottom:-2px;font-family:'Noto Sans KR',sans-serif;transition:.2s;}
 .nav-tab:hover{color:var(--navy);background:var(--cream);}
 .nav-tab.active{color:var(--navy);border-bottom-color:var(--gold);font-weight:700;}
+.nav-tab-admin{font-size:16px;padding:13px 16px;border-bottom:3px solid transparent;margin-bottom:-2px;}
+.nav-tab-admin:hover{background:var(--cream);}
+
 
 /* MAIN */
 .main{max-width:1100px;margin:0 auto;padding:24px 20px 80px;}
@@ -282,30 +286,36 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--t
 /* ══════════ MOBILE LIST VIEW (≤640px) ══════════ */
 @media(max-width:640px){
 
-  /* 헤더 */
-  .hero{padding:22px 14px 18px;} 
+  /* 헤더·히어로 */
+  .hero{padding:22px 14px 18px;}
   .hero-title{font-size:22px;}
   .hero-tag{font-size:10px;letter-spacing:3px;}
   .hero-sub{font-size:11px;}
-  .stats-row{padding:12px 10px 0;gap:8px;}
-  .stat-n{font-size:22px;}
-  .stat-l{font-size:10px;}
   .main{padding:12px 10px 80px;}
   .logo-text p,.admin-badge span{display:none;}
   .fr{grid-template-columns:1fr;}
   .fab{bottom:20px;right:20px;}
   .disp-toggles{gap:8px;}
+  .modal{padding:20px 16px;}
+  .login-box{padding:24px 18px;}
 
-  /* 네비 탭 글씨 크기 */
+  /* ① 통계 카드 — 숫자·라벨 2배 크게 */
+  .stats-row{padding:12px 10px 0;gap:6px;}
+  .stat{padding:18px 8px;}
+  .stat-n{font-size:64px;}
+  .stat-l{font-size:28px;margin-top:8px;}
+
+  /* 네비 탭 */
   .nav-tab{font-size:13px;padding:12px 14px;}
 
-  /* 파트 필터 */
-  .pf-btn{font-size:13px;padding:7px 14px;}
-  .cbadge{font-size:11px;}
+  /* ② 파트 필터 — 모바일에서 숨김 (통계 카드로 대체) */
+  .part-filter{display:none;}
 
-  /* 정렬 바 */
-  .sort-bar{gap:6px;}
-  .sort-btn{font-size:12px;padding:6px 11px;}
+  /* ③ 정렬 바 — 2배 크게 */
+  .sort-bar{gap:8px;margin-bottom:14px;flex-wrap:wrap;}
+  .sort-label{font-size:15px;}
+  .sort-btn{font-size:16px;padding:10px 18px;border-radius:20px;border-width:2px;}
+  .sort-btn .sort-arrow{font-size:14px;}
 
   /* ── 카드 → 목록 변환 ── */
   .members-grid{
@@ -317,8 +327,6 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--t
     border:1px solid var(--cream2);
     box-shadow:var(--shadow);
   }
-
-  /* 목록 아이템 */
   .member-card{
     border-radius:0;
     border:none;
@@ -327,63 +335,30 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--t
   }
   .member-card:last-child{border-bottom:none;}
   .member-card:hover{transform:none;box-shadow:none;border-color:var(--cream2);}
-
-  /* 좌측 컬러 스트라이프를 상단 → 좌측 세로 바로 변경 */
   .card-stripe{width:5px;height:auto;position:absolute;top:0;left:0;bottom:0;border-radius:0;}
-  .card-body{
-    padding:14px 14px 14px 20px;
-    position:relative;
-    display:flex;
-    align-items:center;
-    gap:13px;
-  }
+  .card-body{padding:16px 14px 16px 16px;position:relative;display:flex;align-items:center;gap:14px;}
 
-  /* 사진 영역 — 작은 동그라미 */
-  .card-photo-wrap{
-    display:flex;
-    flex-shrink:0;
-    margin-bottom:0;
-  }
-  .card-photo{width:48px;height:48px;border-width:2px;}
-  .card-avatar{width:48px;height:48px;font-size:18px;}
+  /* 사진 — 약간 크게 */
+  .card-photo-wrap{display:flex;flex-shrink:0;margin-bottom:0;}
+  .card-photo{width:62px;height:62px;border-width:2px;}
+  .card-avatar{width:62px;height:62px;font-size:24px;}
 
-  /* 텍스트 영역 */
-  .card-info{
-    text-align:left;
-    margin-bottom:0;
-    flex:1;
-    min-width:0;
-  }
-  .card-name{font-size:17px;margin-bottom:3px;}
-  .part-chip{font-size:10px;padding:2px 8px;}
+  /* 텍스트 */
+  .card-info{text-align:left;margin-bottom:0;flex:1;min-width:0;}
+  .card-name{font-size:22px;margin-bottom:5px;}
+  .part-chip{font-size:13px;padding:3px 11px;}
 
-  /* 상세 정보 — 한 줄 흐름으로 */
-  .card-rows{
-    background:none;
-    border-radius:0;
-    padding:0;
-    gap:3px;
-    margin-top:5px;
-  }
-  .card-row{font-size:13px;gap:5px;}
-  .card-lbl{font-size:13px;min-width:18px;}
-  .card-val{font-size:13px;}
-  .card-val.ph{font-size:14px;}
-  .card-since{font-size:12px;text-align:left;margin-top:4px;}
+  /* ④ 상세정보 — 2배 크게 */
+  .card-rows{background:none;border-radius:0;padding:0;gap:5px;margin-top:6px;}
+  .card-row{font-size:17px;gap:6px;}
+  .card-lbl{font-size:17px;min-width:22px;}
+  .card-val{font-size:17px;}
+  .card-val.ph{font-size:18px;font-weight:700;}
+  .card-since{font-size:15px;text-align:left;margin-top:6px;}
 
-  /* 수정/삭제 버튼 — 우측 끝 */
-  .card-actions{
-    flex-direction:column;
-    gap:4px;
-    margin-top:0;
-    flex-shrink:0;
-    width:56px;
-  }
-  .btn-sm{padding:6px 0;font-size:11px;border-radius:6px;}
-
-  /* 모달 */
-  .modal{padding:20px 16px;}
-  .login-box{padding:24px 18px;}
+  /* 수정/삭제 버튼 */
+  .card-actions{flex-direction:column;gap:5px;margin-top:0;flex-shrink:0;width:54px;}
+  .btn-sm{padding:7px 0;font-size:12px;border-radius:7px;}
 }
 
 /* GITHUB STATUS */
@@ -426,8 +401,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--t
         <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
         <span>JSON 불러오기</span>
       </button>
-      <button class="btn-icon" id="btnLogin" onclick="openLogin()">🔐 <span>관리자</span></button>
-      <button class="btn-logout" id="btnLogout" style="display:none;" onclick="logout()">로그아웃</button>
+      <button class="btn-icon" id="btnSearch" onclick="focusSearch()">🔍 <span>조회</span></button>
     </div>
   </div>
 </header>
@@ -437,17 +411,16 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--t
   <div class="hero-tag">✦ 단원수첩 2024 ✦</div>
   <h2 class="hero-title">Korea Elders Choir</h2>
   <div class="hero-line"><hr><span>✦</span><hr></div>
-  <p class="hero-sub">대한예수교장로회(통합) 전국장로회연합회 소속 · 1985년 창단</p>
 </div>
 
 <!-- STATS -->
 <div class="stats-row">
-  <div class="stat clickable" id="statAll" onclick="statFilter('all')"><div class="stat-n" id="sTotal">—</div><div class="stat-l">현 단원</div></div>
-  <div class="stat clickable T1" id="statT1" onclick="statFilter('T1')"><div class="stat-n" id="sT1">—</div><div class="stat-l">1st Tenor</div></div>
-  <div class="stat clickable T2" id="statT2" onclick="statFilter('T2')"><div class="stat-n" id="sT2">—</div><div class="stat-l">2nd Tenor</div></div>
-  <div class="stat clickable B1" id="statB1" onclick="statFilter('B1')"><div class="stat-n" id="sB1">—</div><div class="stat-l">1st Bass</div></div>
-  <div class="stat clickable B2" id="statB2" onclick="statFilter('B2')"><div class="stat-n" id="sB2">—</div><div class="stat-l">2nd Bass</div></div>
-  <div class="stat"><div class="stat-n">40</div><div class="stat-l">창단년수</div></div>
+  <div class="stat clickable active-stat" id="statAll" onclick="statFilter('all')"><div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1;margin-bottom:6px;">전체</div><div id="sTotal" style="font-family:'Noto Sans KR',sans-serif;font-size:20px;font-weight:400;color:var(--text3);margin-top:0;">—</div></div>
+  <div class="stat clickable T1" id="statT1" onclick="statFilter('T1')"><div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1;margin-bottom:6px;">테너1</div><div id="sT1" style="font-family:'Noto Sans KR',sans-serif;font-size:20px;font-weight:400;color:var(--text3);margin-top:0;">—</div></div>
+  <div class="stat clickable T2" id="statT2" onclick="statFilter('T2')"><div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1;margin-bottom:6px;">테너2</div><div id="sT2" style="font-family:'Noto Sans KR',sans-serif;font-size:20px;font-weight:400;color:var(--text3);margin-top:0;">—</div></div>
+  <div class="stat clickable B1" id="statB1" onclick="statFilter('B1')"><div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1;margin-bottom:6px;">바리톤</div><div id="sB1" style="font-family:'Noto Sans KR',sans-serif;font-size:20px;font-weight:400;color:var(--text3);margin-top:0;">—</div></div>
+  <div class="stat clickable B2" id="statB2" onclick="statFilter('B2')"><div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);line-height:1;margin-bottom:6px;">베이스</div><div id="sB2" style="font-family:'Noto Sans KR',sans-serif;font-size:20px;font-weight:400;color:var(--text3);margin-top:0;">—</div></div>
+
 </div>
 
 <!-- NAV -->
@@ -458,6 +431,8 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--t
   <button class="nav-tab" onclick="showTab('orgchart',this)">🏛️ 조직도</button>
   <button class="nav-tab" onclick="showTab('rules',this)">📜 단칙</button>
   <button class="nav-tab" onclick="showTab('special',this)">⭐ 특별단원</button>
+  <button class="nav-tab nav-tab-admin" id="navAdmin" onclick="openLogin()" style="display:none;" title="관리자">⚙️</button>
+  <button class="nav-tab nav-tab-admin" id="navLogout" onclick="logout()" style="display:none;" title="로그아웃">🚪</button>
 </div></div>
 
 <div class="main">
@@ -506,10 +481,10 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--t
     </div>
     <div class="part-filter">
       <button class="pf-btn all active" onclick="filterPart('all',this)">전체 <span class="cbadge" id="c-all"></span></button>
-      <button class="pf-btn T1" onclick="filterPart('T1',this)">1st Tenor <span class="cbadge" id="c-T1"></span></button>
-      <button class="pf-btn T2" onclick="filterPart('T2',this)">2nd Tenor <span class="cbadge" id="c-T2"></span></button>
-      <button class="pf-btn B1" onclick="filterPart('B1',this)">1st Bass <span class="cbadge" id="c-B1"></span></button>
-      <button class="pf-btn B2" onclick="filterPart('B2',this)">2nd Bass <span class="cbadge" id="c-B2"></span></button>
+      <button class="pf-btn T1" onclick="filterPart('T1',this)">테너1 <span class="cbadge" id="c-T1"></span></button>
+      <button class="pf-btn T2" onclick="filterPart('T2',this)">테너2 <span class="cbadge" id="c-T2"></span></button>
+      <button class="pf-btn B1" onclick="filterPart('B1',this)">바리톤 <span class="cbadge" id="c-B1"></span></button>
+      <button class="pf-btn B2" onclick="filterPart('B2',this)">베이스 <span class="cbadge" id="c-B2"></span></button>
     </div>
     <div class="sort-bar" id="sortBar">
       <span class="sort-label">정렬 :</span>
@@ -582,7 +557,6 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--t
       <div class="rule-ch"><h3>제1장 총칙</h3>
         <div class="rule-art"><strong>제1조 (명칭)</strong> 한국장로성가단 (Korea Elders Choir)이라 칭한다.</div>
         <div class="rule-art"><strong>제2조 (소재지)</strong> 단의 사무실은 서울특별시내에 둔다.</div>
-        <div class="rule-art"><strong>제3조 (목적)</strong> 단은 대한예수교장로회(통합) 전국장로회연합회 소속으로 찬양을 통한 선교활동 및 교회음악 발전에 기여하며, 단원 상호간의 음악성 향상과 친목을 도모함을 목적으로 한다.</div>
       </div>
       <div class="rule-ch"><h3>제2장 단원</h3>
         <div class="rule-art"><strong>제5조 (단원의 자격)</strong> 단원은 단의 취지에 동의하는 대한예수교장로회 장로로서 성가대원으로 오랜 경험이 있는 자로, 단원 2인의 추천과 임원회가 심사 후 입단을 허락한다.</div>
@@ -705,7 +679,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--t
     <input type="hidden" id="fPhoto">
     <div class="fr">
       <div class="fg"><label>이름 *</label><input type="text" id="fName" placeholder="홍길동"></div>
-      <div class="fg"><label>파트 *</label><select id="fPart"><option value="T1">1st Tenor (T1)</option><option value="T2">2nd Tenor (T2)</option><option value="B1">1st Bass (B1)</option><option value="B2">2nd Bass (B2)</option></select></div>
+      <div class="fg"><label>파트 *</label><select id="fPart"><option value="T1">테너1 (T1)</option><option value="T2">테너2 (T2)</option><option value="B1">바리톤 (B1)</option><option value="B2">베이스 (B2)</option></select></div>
     </div>
     <div class="fr">
       <div class="fg"><label>교회</label><input type="text" id="fChurch" placeholder="○○교회"></div>
@@ -754,7 +728,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--t
 // ── CONSTANTS ──
 const AID='admin', APW='admin';
 const PC={T1:'#1a4a6e',T2:'#245e3a',B1:'#7a1c1c',B2:'#4a2878'};
-const PL={T1:'1st Tenor',T2:'2nd Tenor',B1:'1st Bass',B2:'2nd Bass'};
+const PL={T1:'테너1',T2:'테너2',B1:'바리톤',B2:'베이스'};
 const SI={'지휘자':'🎵','부지휘자':'🎼','반주자':'🎹','핸드벨 지휘자':'🔔'};
 
 // ── STATE ──
@@ -788,6 +762,9 @@ window.addEventListener('resize', (()=>{
 })());
 
 function render(){
+  // 초기 상태: 톱니바퀴 표시, 로그아웃 숨김
+  document.getElementById('navAdmin').style.display  = '';
+  document.getElementById('navLogout').style.display = 'none';
   syncDispToggles();
   renderStats(); renderMembers(); renderOfficers(); renderStaff(); renderSpecial();
 }
@@ -822,18 +799,18 @@ function buildMemberCard(m){
             ${img}
           </div>
           <div style="flex:1;min-width:0;">
-            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
-              <span class="card-name" style="font-size:17px;">${m.name}</span>
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:5px;">
+              <span class="card-name" style="font-size:22px;">${m.name}</span>
               <span class="part-chip ${m.part}">${PL[m.part]||m.part}</span>
             </div>
-            <div style="font-size:13px;color:var(--text2);margin-bottom:2px;">⛪ ${m.church||'—'}${m.presbytery?' ('+m.presbytery+')':''}</div>
-            ${d.phone?`<div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:2px;">📞 ${m.phone||'—'}</div>`:''}
-            ${d.born?`<div style="font-size:13px;color:var(--text2);margin-bottom:2px;">🎂 ${m.born||'—'}</div>`:''}
-            ${d.joined?`<div style="font-size:12px;color:var(--gold);font-weight:600;">📅 입단 ${m.joined||'—'}</div>`:''}
+            <div style="font-size:17px;color:var(--text2);margin-bottom:3px;">⛪ ${m.church||'—'}${m.presbytery?' ('+m.presbytery+')':''}</div>
+            ${d.phone?`<div style="font-size:18px;font-weight:700;color:var(--navy);margin-bottom:3px;">📞 ${m.phone||'—'}</div>`:''}
+            ${d.born?`<div style="font-size:17px;color:var(--text2);margin-bottom:3px;">🎂 ${m.born||'—'}</div>`:''}
+            ${d.joined?`<div style="font-size:15px;color:var(--gold);font-weight:600;">📅 입단 ${m.joined||'—'}</div>`:''}
           </div>
-          ${isAdmin?`<div style="display:flex;flex-direction:column;gap:4px;flex-shrink:0;">
-            <button class="btn-sm edit" style="font-size:11px;padding:5px 8px;width:48px;" onclick="openEdit('${m.id}')">✏️</button>
-            <button class="btn-sm del"  style="font-size:11px;padding:5px 8px;width:48px;" onclick="openDel('${m.id}')">🗑</button>
+          ${isAdmin?`<div style="display:flex;flex-direction:column;gap:5px;flex-shrink:0;">
+            <button class="btn-sm edit" style="font-size:14px;padding:8px 10px;width:54px;" onclick="openEdit('${m.id}')">✏️</button>
+            <button class="btn-sm del"  style="font-size:14px;padding:8px 10px;width:54px;" onclick="openDel('${m.id}')">🗑</button>
           </div>`:''}
         </div>
       </div>
@@ -978,6 +955,15 @@ function doSearch(q){
   document.getElementById('searchResults').innerHTML=sortedRes.map(buildMemberCard).join('');
 }
 
+
+// 조회 버튼 — 검색창 포커스 + 단원 명단 탭으로 이동
+function focusSearch(){
+  showTab('members', document.querySelector('.nav-tab'));
+  const gs = document.getElementById('gSearch');
+  gs.focus();
+  gs.select();
+}
+
 // ══════════ ADMIN ══════════
 function openLogin(){
   document.getElementById('lid').value='';document.getElementById('lpw').value='';
@@ -1005,13 +991,15 @@ function logout(){
 
 function applyAdmin(){
   document.getElementById('adminBadge').classList.toggle('on',isAdmin);
-  document.getElementById('btnLogin').style.display=isAdmin?'none':'';
-  document.getElementById('btnLogout').style.display=isAdmin?'':'none';
   document.getElementById('btnUpload').style.display=isAdmin?'':'none';
   document.getElementById('dlBanner').classList.toggle('on',isAdmin);
   document.getElementById('dispPanel').classList.toggle('on',isAdmin);
   document.getElementById('addBtn').classList.toggle('on',isAdmin);
   document.getElementById('fab').classList.toggle('on',isAdmin);
+  // 톱니바퀴(⚙️) — 로그인 전: 표시, 로그인 후: 숨김
+  document.getElementById('navAdmin').style.display = isAdmin?'none':'';
+  // 로그아웃(🚪) — 로그인 후: 표시
+  document.getElementById('navLogout').style.display = isAdmin?'':'none';
   if(isAdmin){ loadGhSettings(); updateGhUI(!!GH.token); }
   renderMembers();
 }
