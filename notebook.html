@@ -45,15 +45,6 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--t
 .btn-logout{background:rgba(192,57,43,.2);border:1px solid rgba(192,57,43,.4);border-radius:8px;padding:6px 12px;color:#e8a8a3;font-size:12px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:.2s;}
 .btn-logout:hover{background:rgba(192,57,43,.35);}
 
-/* HERO */
-.hero{background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 60%,#1a2744 100%);padding:44px 28px 36px;text-align:center;position:relative;overflow:hidden;}
-.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 120%,rgba(184,145,46,.18) 0%,transparent 65%);pointer-events:none;}
-.hero-tag{font-size:22px;letter-spacing:5px;color:var(--gold2);margin-bottom:10px;text-transform:uppercase;}
-.hero-title{font-family:'Playfair Display',serif;font-size:36px;color:var(--white);font-weight:700;margin-bottom:6px;}
-.hero-sub{font-size:12px;color:rgba(255,255,255,.5);letter-spacing:1px;}
-.hero-line{display:flex;align-items:center;justify-content:center;gap:10px;margin:14px auto;max-width:260px;}
-.hero-line hr{flex:1;border:none;border-top:1px solid rgba(212,173,82,.4);}
-.hero-line span{color:var(--gold2);}
 
 /* STATS */
 .stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;max-width:1100px;margin:0 auto;padding:20px 20px 0;}
@@ -303,9 +294,6 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--t
 @media(max-width:640px){
 
   /* 헤더·히어로 */
-  .hero{padding:22px 14px 18px;}
-  .hero-title{font-size:22px;}
-  .hero-tag{font-size:20px;letter-spacing:3px;}
   .hero-sub{font-size:11px;}
   .main{padding:12px 10px 80px;}
   .logo-text p,.admin-badge span{display:none;}
@@ -423,12 +411,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--t
   </div>
 </header>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-tag">✦ 단원수첩 2024 ✦</div>
-  <h2 class="hero-title">Korea Elders Choir</h2>
-  <div class="hero-line"><hr><span>✦</span><hr></div>
-</div>
+
 
 <!-- STATS -->
 <div class="stats-row">
@@ -807,7 +790,7 @@ function renderStats(){
 let fontScale = 0; // -3 ~ +5 단계
 const FONT_BASE = {
   // 모바일
-  name:29, part:20, church:28, phone:29, born:28, joined:24,
+  name:19, part:13, church:19, phone:19, born:19, joined:16,
   // 데스크톱
   'd-name':17, 'd-part':10, 'd-church':12, 'd-phone':12, 'd-born':12, 'd-joined':11
 };
