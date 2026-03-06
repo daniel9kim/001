@@ -12,6 +12,10 @@
   --cream:#f7f3eb; --cream2:#ede7d9; --cream3:#e0d6c4;
   --white:#ffffff; --text:#2a2a2a; --text2:#555; --text3:#888;
   --T1:#1a4a6e; --T2:#245e3a; --B1:#7a1c1c; --B2:#4a2878;
+  --T1-bg:rgba(26,74,110,.07); --T2-bg:rgba(36,94,58,.07);
+  --B1-bg:rgba(122,28,28,.07); --B2-bg:rgba(74,40,120,.07);
+  --T1-bd:rgba(26,74,110,.18); --T2-bd:rgba(36,94,58,.18);
+  --B1-bd:rgba(122,28,28,.18); --B2-bd:rgba(74,40,120,.18);
   --danger:#c0392b; --success:#27ae60;
   --shadow:0 2px 12px rgba(27,42,74,.10);
   --shadow2:0 6px 28px rgba(27,42,74,.16);
@@ -102,6 +106,10 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--t
 /* MEMBER CARDS */
 .members-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;}
 .member-card{background:var(--white);border-radius:14px;border:1px solid var(--cream2);box-shadow:var(--shadow);overflow:hidden;transition:.22s;}
+.member-card.T1{background:linear-gradient(160deg,var(--T1-bg) 0%,var(--white) 60%);border-color:var(--T1-bd);}
+.member-card.T2{background:linear-gradient(160deg,var(--T2-bg) 0%,var(--white) 60%);border-color:var(--T2-bd);}
+.member-card.B1{background:linear-gradient(160deg,var(--B1-bg) 0%,var(--white) 60%);border-color:var(--B1-bd);}
+.member-card.B2{background:linear-gradient(160deg,var(--B2-bg) 0%,var(--white) 60%);border-color:var(--B2-bd);}
 .member-card:hover{transform:translateY(-3px);box-shadow:var(--shadow2);border-color:var(--gold2);}
 .card-stripe{height:4px;}
 .card-stripe.T1{background:var(--T1);}
@@ -823,9 +831,9 @@ function buildMemberCard(m){
 
   if(isMobile){
     // ── 모바일 목록형 ──
-    return `<div class="member-card" style="position:relative;overflow:visible;">
+    return `<div class="member-card" style="position:relative;overflow:visible;background:linear-gradient(160deg,var(--${m.part}-bg,rgba(0,0,0,.04)) 0%,var(--white) 55%);border-left:none;">
       <div style="display:flex;align-items:stretch;">
-        <div style="width:5px;flex-shrink:0;border-radius:4px 0 0 4px;background:var(--${m.part})"></div>
+        <div style="width:6px;flex-shrink:0;border-radius:4px 0 0 4px;background:var(--${m.part});box-shadow:2px 0 6px var(--${m.part}-bd,rgba(0,0,0,.15));"></div>
         <div class="card-body" style="flex:1;display:flex;align-items:center;gap:12px;padding:13px 13px 13px 13px;">
           <div class="card-photo-wrap photo-clickable" style="margin-bottom:0;flex-shrink:0;" onclick="openLightbox(DB.members.find(x=>x.id==='${m.id}'))">
             ${img}
@@ -850,7 +858,7 @@ function buildMemberCard(m){
   }
 
   // ── 데스크톱 카드형 ──
-  return `<div class="member-card">
+  return `<div class="member-card ${m.part}">
     <div class="card-stripe ${m.part}"></div>
     <div class="card-body">
       <div class="card-photo-wrap photo-clickable" onclick="openLightbox(DB.members.find(x=>x.id==='${m.id}'))">${img}</div>
