@@ -2,145 +2,1424 @@
   "meta": {
     "organization": "한국장로성가단",
     "year": 2024,
-    "lastUpdated": "2024-01-01"
+    "lastUpdated": "2026-03-06"
   },
   "displaySettings": {
     "showPhone": true,
     "showBorn": true,
-    "showJoined": true
+    "showJoined": false
   },
   "officers": [
-    { "id": "o1", "role": "단장", "name": "김순환", "phone": "010-2478-5580", "church": "신일교회", "presbytery": "서울노회" },
-    { "id": "o2", "role": "직전단장", "name": "홍경모", "phone": "010-4701-5641", "church": "남부교회", "presbytery": "서울동노회" },
-    { "id": "o3", "role": "부단장", "name": "노치군", "phone": "010-5325-3809", "church": "한영교회", "presbytery": "영등포노회" },
-    { "id": "o4", "role": "부단장", "name": "장재현", "phone": "010-3740-3725", "church": "묘동교회", "presbytery": "강남노회" },
-    { "id": "o5", "role": "부단장", "name": "이귀복", "phone": "010-6261-7100", "church": "호산나교회", "presbytery": "서울북노회" },
-    { "id": "o6", "role": "총무", "name": "이재덕", "phone": "010-9347-3688", "church": "서교동교회", "presbytery": "서울서노회" },
-    { "id": "o7", "role": "부총무", "name": "권재천", "phone": "010-6220-4942", "church": "새문안교회", "presbytery": "서울노회" },
-    { "id": "o8", "role": "서기", "name": "홍경화", "phone": "010-3911-2748", "church": "열방교회", "presbytery": "서남노회" },
-    { "id": "o9", "role": "부서기", "name": "이상길", "phone": "010-5222-1250", "church": "광석교회", "presbytery": "서울동노회" },
-    { "id": "o10", "role": "회계", "name": "최영수", "phone": "010-4573-7701", "church": "신일교회", "presbytery": "서울노회" },
-    { "id": "o11", "role": "부회계", "name": "이강호", "phone": "010-5306-0230", "church": "번동제일교회", "presbytery": "용천노회" },
-    { "id": "o12", "role": "감사", "name": "김종훈", "phone": "010-5358-5022", "church": "상신교회", "presbytery": "서울북노회" },
-    { "id": "o13", "role": "감사", "name": "이제영", "phone": "010-5227-2672", "church": "신일교회", "presbytery": "서울노회" },
-    { "id": "o14", "role": "T1파트장", "name": "김기성", "phone": "010-2268-8849", "church": "신일교회", "presbytery": "서울노회" },
-    { "id": "o15", "role": "T2파트장", "name": "김인하", "phone": "010-5435-1391", "church": "장석교회", "presbytery": "서울북노회" },
-    { "id": "o16", "role": "B1파트장", "name": "고영준", "phone": "010-8895-6129", "church": "새문안교회", "presbytery": "서울노회" },
-    { "id": "o17", "role": "B2파트장", "name": "최명오", "phone": "010-5715-8335", "church": "정신교회", "presbytery": "서울동노회" },
-    { "id": "o18", "role": "핸드벨팀장", "name": "주호걸", "phone": "010-9960-4740", "church": "성덕교회", "presbytery": "동노회" },
-    { "id": "o19", "role": "홍보팀장", "name": "임신일", "phone": "010-3310-2595", "church": "신성교회", "presbytery": "영등포노회" }
+    {
+      "id": "o1",
+      "role": "단장",
+      "name": "김순환",
+      "phone": "010-2478-5580",
+      "church": "신일교회",
+      "presbytery": "서울노회"
+    },
+    {
+      "id": "o2",
+      "role": "직전단장",
+      "name": "홍경모",
+      "phone": "010-4701-5641",
+      "church": "남부교회",
+      "presbytery": "서울동노회"
+    },
+    {
+      "id": "o3",
+      "role": "부단장",
+      "name": "노치군",
+      "phone": "010-5325-3809",
+      "church": "한영교회",
+      "presbytery": "영등포노회"
+    },
+    {
+      "id": "o4",
+      "role": "부단장",
+      "name": "장재현",
+      "phone": "010-3740-3725",
+      "church": "묘동교회",
+      "presbytery": "강남노회"
+    },
+    {
+      "id": "o5",
+      "role": "부단장",
+      "name": "이귀복",
+      "phone": "010-6261-7100",
+      "church": "호산나교회",
+      "presbytery": "서울북노회"
+    },
+    {
+      "id": "o6",
+      "role": "총무",
+      "name": "이재덕",
+      "phone": "010-9347-3688",
+      "church": "서교동교회",
+      "presbytery": "서울서노회"
+    },
+    {
+      "id": "o7",
+      "role": "부총무",
+      "name": "권재천",
+      "phone": "010-6220-4942",
+      "church": "새문안교회",
+      "presbytery": "서울노회"
+    },
+    {
+      "id": "o8",
+      "role": "서기",
+      "name": "홍경화",
+      "phone": "010-3911-2748",
+      "church": "열방교회",
+      "presbytery": "서남노회"
+    },
+    {
+      "id": "o9",
+      "role": "부서기",
+      "name": "이상길",
+      "phone": "010-5222-1250",
+      "church": "광석교회",
+      "presbytery": "서울동노회"
+    },
+    {
+      "id": "o10",
+      "role": "회계",
+      "name": "최영수",
+      "phone": "010-4573-7701",
+      "church": "신일교회",
+      "presbytery": "서울노회"
+    },
+    {
+      "id": "o11",
+      "role": "부회계",
+      "name": "이강호",
+      "phone": "010-5306-0230",
+      "church": "번동제일교회",
+      "presbytery": "용천노회"
+    },
+    {
+      "id": "o12",
+      "role": "감사",
+      "name": "김종훈",
+      "phone": "010-5358-5022",
+      "church": "상신교회",
+      "presbytery": "서울북노회"
+    },
+    {
+      "id": "o13",
+      "role": "감사",
+      "name": "이제영",
+      "phone": "010-5227-2672",
+      "church": "신일교회",
+      "presbytery": "서울노회"
+    },
+    {
+      "id": "o14",
+      "role": "T1파트장",
+      "name": "김기성",
+      "phone": "010-2268-8849",
+      "church": "신일교회",
+      "presbytery": "서울노회"
+    },
+    {
+      "id": "o15",
+      "role": "T2파트장",
+      "name": "김인하",
+      "phone": "010-5435-1391",
+      "church": "장석교회",
+      "presbytery": "서울북노회"
+    },
+    {
+      "id": "o16",
+      "role": "B1파트장",
+      "name": "고영준",
+      "phone": "010-8895-6129",
+      "church": "새문안교회",
+      "presbytery": "서울노회"
+    },
+    {
+      "id": "o17",
+      "role": "B2파트장",
+      "name": "최명오",
+      "phone": "010-5715-8335",
+      "church": "정신교회",
+      "presbytery": "서울동노회"
+    },
+    {
+      "id": "o18",
+      "role": "핸드벨팀장",
+      "name": "주호걸",
+      "phone": "010-9960-4740",
+      "church": "성덕교회",
+      "presbytery": "동노회"
+    },
+    {
+      "id": "o19",
+      "role": "홍보팀장",
+      "name": "임신일",
+      "phone": "010-3310-2595",
+      "church": "신성교회",
+      "presbytery": "영등포노회"
+    }
   ],
   "staff": [
-    { "id": "s1", "role": "지휘자", "name": "이철웅", "hanja": "李哲雄", "born": "1967.06.26", "joined": "2019.01", "church": "천호동교회", "workplace": "장신대학교, 정화예술대학", "phone": "" },
-    { "id": "s2", "role": "부지휘자", "name": "김광수", "hanja": "金光洙", "born": "1948.02.24", "joined": "1991.03", "church": "수지광성교회", "presbytery": "경기노회", "phone": "010-2389-2701" },
-    { "id": "s3", "role": "반주자", "name": "권정원", "hanja": "權正媛", "born": "1975.07.25", "joined": "2014.02", "church": "경동교회", "note": "오르가니스트", "phone": "" },
-    { "id": "s4", "role": "핸드벨 지휘자", "name": "송성수", "hanja": "宋誠洙", "born": "1966.02.12", "joined": "2012.09", "church": "인천순복음교회", "phone": "" }
+    {
+      "id": "s1",
+      "role": "지휘자",
+      "name": "이철웅",
+      "hanja": "李哲雄",
+      "born": "1967.06.26",
+      "joined": "2019.01",
+      "church": "천호동교회",
+      "workplace": "장신대학교, 정화예술대학",
+      "phone": ""
+    },
+    {
+      "id": "s2",
+      "role": "부지휘자",
+      "name": "김광수",
+      "hanja": "金光洙",
+      "born": "1948.02.24",
+      "joined": "1991.03",
+      "church": "수지광성교회",
+      "presbytery": "경기노회",
+      "phone": "010-2389-2701"
+    },
+    {
+      "id": "s3",
+      "role": "반주자",
+      "name": "권정원",
+      "hanja": "權正媛",
+      "born": "1975.07.25",
+      "joined": "2014.02",
+      "church": "경동교회",
+      "note": "오르가니스트",
+      "phone": ""
+    },
+    {
+      "id": "s4",
+      "role": "핸드벨 지휘자",
+      "name": "송성수",
+      "hanja": "宋誠洙",
+      "born": "1966.02.12",
+      "joined": "2012.09",
+      "church": "인천순복음교회",
+      "phone": ""
+    }
   ],
   "members": [
-    { "id": "m1", "name": "김기성", "part": "T1", "church": "신일교회", "presbytery": "서울노회", "born": "1966.01.24", "joined": "2022.03", "phone": "010-2268-8849", "email": "", "status": "active" },
-    { "id": "m2", "name": "김대웅", "part": "T1", "church": "문화교회", "presbytery": "서울노회", "born": "1937.01.27", "joined": "2006.11", "phone": "010-5042-1756", "email": "", "status": "active" },
-    { "id": "m3", "name": "김례위", "part": "T1", "church": "중랑제일교회", "presbytery": "평양남노회", "born": "1966.02.22", "joined": "2023.12", "phone": "010-3306-9449", "email": "", "status": "active" },
-    { "id": "m4", "name": "김봉천", "part": "T1", "church": "대영교회", "presbytery": "안양노회", "born": "1961.01.16", "joined": "2011.11", "phone": "010-2281-3634", "email": "", "status": "active" },
-    { "id": "m5", "name": "김의배", "part": "T1", "church": "자양교회", "presbytery": "서울노회", "born": "1942.02.10", "joined": "1997.10", "phone": "010-3364-3584", "email": "", "status": "active" },
-    { "id": "m6", "name": "김종훈", "part": "T1", "church": "상신교회", "presbytery": "서울북노회", "born": "1961.08.28", "joined": "2010.11", "phone": "010-5358-5022", "email": "", "status": "active" },
-    { "id": "m7", "name": "김철인", "part": "T1", "church": "중랑제일교회", "presbytery": "평양남노회", "born": "1950.06.03", "joined": "1997.07", "phone": "010-8763-4450", "email": "", "status": "active" },
-    { "id": "m8", "name": "남시우", "part": "T1", "church": "덕수교회", "presbytery": "강북노회", "born": "1954.03.20", "joined": "2014.08", "phone": "010-9708-9407", "email": "", "status": "active" },
-    { "id": "m9", "name": "노치군", "part": "T1", "church": "한영교회", "presbytery": "영등포노회", "born": "1951.09.09", "joined": "2010.10", "phone": "010-5325-3809", "email": "", "status": "active" },
-    { "id": "m10", "name": "서현철", "part": "T1", "church": "번동제일교회", "presbytery": "용천노회", "born": "1971.01.27", "joined": "2022.09", "phone": "010-3895-8237", "email": "", "status": "active" },
-    { "id": "m11", "name": "석문홍", "part": "T1", "church": "연신교회", "presbytery": "평북노회", "born": "1959.04.19", "joined": "2014.09", "phone": "010-3393-2577", "email": "", "status": "active" },
-    { "id": "m12", "name": "신진수", "part": "T1", "church": "영등포교회", "presbytery": "영등포노회", "born": "1946.08.21", "joined": "2004.02", "phone": "010-8226-0595", "email": "", "status": "active" },
-    { "id": "m13", "name": "안영우", "part": "T1", "church": "수색교회", "presbytery": "서울서북노회", "born": "1945.02.18", "joined": "1994.11", "phone": "010-4272-7785", "email": "", "status": "active" },
-    { "id": "m14", "name": "양현준", "part": "T1", "church": "강남안디옥교회", "presbytery": "평북노회", "born": "1965.06.21", "joined": "2022.06", "phone": "010-8891-5086", "email": "", "status": "active" },
-    { "id": "m15", "name": "온민귀", "part": "T1", "church": "고척교회", "presbytery": "서남노회", "born": "1954.06.23", "joined": "2011.11", "phone": "010-6243-1540", "email": "", "status": "active" },
-    { "id": "m16", "name": "유경모", "part": "T1", "church": "영등포교회", "presbytery": "영등포노회", "born": "1962.04.07", "joined": "2023.10", "phone": "010-2598-8296", "email": "", "status": "active" },
-    { "id": "m17", "name": "윤두근", "part": "T1", "church": "묘동교회", "presbytery": "서울강남노회", "born": "1948.02.15", "joined": "2003.03", "phone": "010-9247-4581", "email": "", "status": "active" },
-    { "id": "m18", "name": "윤태혁", "part": "T1", "church": "상도교회", "presbytery": "서울관악노회", "born": "1945.12.07", "joined": "1997.04", "phone": "010-6234-2217", "email": "", "status": "active" },
-    { "id": "m19", "name": "이상길", "part": "T1", "church": "광석교회", "presbytery": "서울동노회", "born": "1961.01.18", "joined": "2020.01", "phone": "010-5222-1250", "email": "", "status": "active" },
-    { "id": "m20", "name": "이성진", "part": "T1", "church": "기자촌교회", "presbytery": "서울서북노회", "born": "1949.10.05", "joined": "2018.12", "phone": "010-5463-8060", "email": "", "status": "active" },
-    { "id": "m21", "name": "이연수", "part": "T1", "church": "인천제일교회", "presbytery": "인천노회", "born": "1938.01.09", "joined": "1985.05", "phone": "010-3746-9397", "email": "", "status": "active" },
-    { "id": "m22", "name": "이원평", "part": "T1", "church": "광석교회", "presbytery": "서울동노회", "born": "1941.06.08", "joined": "1990.08", "phone": "010-9087-2451", "email": "", "status": "active" },
-    { "id": "m23", "name": "이형욱", "part": "T1", "church": "남가좌교회", "presbytery": "평양노회", "born": "1953.12.03", "joined": "2006.08", "phone": "010-5304-5463", "email": "", "status": "active" },
-    { "id": "m24", "name": "이호철", "part": "T1", "church": "번동제일교회", "presbytery": "용천노회", "born": "1969.12.26", "joined": "2022.09", "phone": "010-3728-0547", "email": "", "status": "active" },
-    { "id": "m25", "name": "임신일", "part": "T1", "church": "신성교회", "presbytery": "영등포노회", "born": "1957.04.02", "joined": "2022.07", "phone": "010-3310-2595", "email": "", "status": "active" },
-    { "id": "m26", "name": "강의근", "part": "T2", "church": "청담교회", "presbytery": "서울강남노회", "born": "1952.03.13", "joined": "2004.11", "phone": "010-5001-3462", "email": "", "status": "active" },
-    { "id": "m27", "name": "권오성", "part": "T2", "church": "양평동교회", "presbytery": "영등포노회", "born": "1957.12.01", "joined": "2023.10", "phone": "010-6271-4646", "email": "", "status": "active" },
-    { "id": "m28", "name": "김용무", "part": "T2", "church": "번동제일교회", "presbytery": "용천노회", "born": "1947.09.21", "joined": "2011.09", "phone": "010-6242-2520", "email": "", "status": "active" },
-    { "id": "m29", "name": "김인하", "part": "T2", "church": "장석교회", "presbytery": "서울북노회", "born": "1956.12.29", "joined": "2019.12", "phone": "010-5435-1391", "email": "", "status": "active" },
-    { "id": "m30", "name": "김종만", "part": "T2", "church": "신일교회", "presbytery": "서울노회", "born": "1964.09.04", "joined": "2024.01", "phone": "010-4788-3322", "email": "", "status": "active" },
-    { "id": "m31", "name": "박병호", "part": "T2", "church": "경신교회", "presbytery": "서울동노회", "born": "1960.04.17", "joined": "2023.11", "phone": "010-8963-5579", "email": "", "status": "active" },
-    { "id": "m32", "name": "서무일", "part": "T2", "church": "은혜로운교회", "presbytery": "서울동노회", "born": "1950.07.20", "joined": "1996.01", "phone": "010-5251-6039", "email": "", "status": "active" },
-    { "id": "m33", "name": "오정근", "part": "T2", "church": "동숭교회", "presbytery": "서울노회", "born": "1955.10.20", "joined": "2007.03", "phone": "010-2205-4700", "email": "", "status": "active" },
-    { "id": "m34", "name": "우정균", "part": "T2", "church": "영등포교회", "presbytery": "영등포노회", "born": "1952.05.13", "joined": "2008.03", "phone": "010-4507-4457", "email": "", "status": "active" },
-    { "id": "m35", "name": "윤장근", "part": "T2", "church": "동성교회", "presbytery": "서울서노회", "born": "1947.07.15", "joined": "2006.04", "phone": "010-7347-1197", "email": "", "status": "active" },
-    { "id": "m36", "name": "윤태화", "part": "T2", "church": "동숭교회", "presbytery": "서울노회", "born": "1941.11.26", "joined": "2003.09", "phone": "010-6855-1327", "email": "", "status": "active" },
-    { "id": "m37", "name": "이강호", "part": "T2", "church": "번동제일교회", "presbytery": "용천노회", "born": "1959.01.18", "joined": "2011.10", "phone": "010-5306-0230", "email": "", "status": "active" },
-    { "id": "m38", "name": "이선규", "part": "T2", "church": "번동제일교회", "presbytery": "용천노회", "born": "1962.08.15", "joined": "2015.01", "phone": "010-2737-6814", "email": "", "status": "active" },
-    { "id": "m39", "name": "이재덕", "part": "T2", "church": "서교동교회", "presbytery": "서울서노회", "born": "1951.06.24", "joined": "2009.11", "phone": "010-9347-3688", "email": "", "status": "active" },
-    { "id": "m40", "name": "이제영", "part": "T2", "church": "신일교회", "presbytery": "서울노회", "born": "1951.03.11", "joined": "2012.08", "phone": "010-5227-2672", "email": "", "status": "active" },
-    { "id": "m41", "name": "장광희", "part": "T2", "church": "보광중앙교회", "presbytery": "서울서노회", "born": "1945.08.06", "joined": "2001.03", "phone": "010-3240-2471", "email": "", "status": "active" },
-    { "id": "m42", "name": "조성천", "part": "T2", "church": "남대문교회", "presbytery": "서울노회", "born": "1948.07.01", "joined": "2017.05", "phone": "010-3934-3732", "email": "", "status": "active" },
-    { "id": "m43", "name": "차상환", "part": "T2", "church": "광명교회", "presbytery": "영등포노회", "born": "1948.11.02", "joined": "2019.06", "phone": "010-3797-9859", "email": "", "status": "active" },
-    { "id": "m44", "name": "최경호", "part": "T2", "church": "광석교회", "presbytery": "서울동노회", "born": "1954.11.29", "joined": "2023.11", "phone": "010-9781-8823", "email": "", "status": "active" },
-    { "id": "m45", "name": "최금준", "part": "T2", "church": "양평동교회", "presbytery": "영등포노회", "born": "1946.09.30", "joined": "1988.07", "phone": "010-2448-7690", "email": "", "status": "active" },
-    { "id": "m46", "name": "강판규", "part": "B1", "church": "난곡신일교회", "presbytery": "서울관악노회", "born": "1950.11.25", "joined": "1997.07", "phone": "010-5260-8044", "email": "", "status": "active" },
-    { "id": "m47", "name": "권순도", "part": "B1", "church": "영동교회", "presbytery": "서울관악노회", "born": "1952.10.20", "joined": "2009.01", "phone": "010-3728-1349", "email": "", "status": "active" },
-    { "id": "m48", "name": "고영준", "part": "B1", "church": "새문안교회", "presbytery": "서울노회", "born": "1954.12.22", "joined": "2018.11", "phone": "010-8895-6129", "email": "", "status": "active" },
-    { "id": "m49", "name": "김광수", "part": "B1", "church": "수지광성교회", "presbytery": "경기노회", "born": "1948.02.24", "joined": "1991.03", "phone": "010-2389-2701", "email": "", "status": "active" },
-    { "id": "m50", "name": "김광욱", "part": "B1", "church": "성덕교회", "presbytery": "서울동노회", "born": "1950.08.24", "joined": "2004.10", "phone": "010-9744-5800", "email": "", "status": "active" },
-    { "id": "m51", "name": "김대열", "part": "B1", "church": "서울동광교회", "presbytery": "서울동노회", "born": "1955.02.06", "joined": "2009.03", "phone": "010-8830-9038", "email": "", "status": "active" },
-    { "id": "m52", "name": "김순환", "part": "B1", "church": "신일교회", "presbytery": "서울노회", "born": "1952.02.03", "joined": "2008.03", "phone": "010-2478-5580", "email": "", "status": "active" },
-    { "id": "m53", "name": "김원환", "part": "B1", "church": "안양제일교회", "presbytery": "안양노회", "born": "1955.02.14", "joined": "2009.11", "phone": "010-5387-3491", "email": "", "status": "active" },
-    { "id": "m54", "name": "김특주", "part": "B1", "church": "든든한교회", "presbytery": "서울관악노회", "born": "1951.11.05", "joined": "2008.03", "phone": "010-5239-6064", "email": "", "status": "active" },
-    { "id": "m55", "name": "복봉수", "part": "B1", "church": "상신교회", "presbytery": "서울북노회", "born": "1957.08.22", "joined": "2017.03", "phone": "010-3354-2258", "email": "", "status": "active" },
-    { "id": "m56", "name": "이정원", "part": "B1", "church": "일신교회", "presbytery": "평남노회", "born": "1952.03.29", "joined": "1998.07", "phone": "010-5397-0587", "email": "", "status": "active" },
-    { "id": "m57", "name": "이찬영", "part": "B1", "church": "새문안교회", "presbytery": "서울노회", "born": "1952.07.16", "joined": "2018.11", "phone": "010-5668-8712", "email": "", "status": "active" },
-    { "id": "m58", "name": "이치덕", "part": "B1", "church": "중랑제일교회", "presbytery": "평남노회", "born": "1956.03.04", "joined": "2007.01", "phone": "010-5347-8700", "email": "", "status": "active" },
-    { "id": "m59", "name": "이칠모", "part": "B1", "church": "광암교회", "presbytery": "서울서북노회", "born": "1952.07.07", "joined": "2012.08", "phone": "010-5323-8787", "email": "", "status": "active" },
-    { "id": "m60", "name": "장재현", "part": "B1", "church": "묘동교회", "presbytery": "강남노회", "born": "1951.07.03", "joined": "2008.03", "phone": "010-3740-3725", "email": "", "status": "active" },
-    { "id": "m61", "name": "조재창", "part": "B1", "church": "영세교회", "presbytery": "서울동노회", "born": "1955.10.26", "joined": "2012.08", "phone": "010-6385-0297", "email": "", "status": "active" },
-    { "id": "m62", "name": "홍경모", "part": "B1", "church": "남부교회", "presbytery": "서울동노회", "born": "1957.10.04", "joined": "2007.12", "phone": "010-4701-5641", "email": "", "status": "active" },
-    { "id": "m63", "name": "홍경화", "part": "B1", "church": "열방교회", "presbytery": "서남노회", "born": "1959.08.28", "joined": "2015.01", "phone": "010-3911-2748", "email": "", "status": "active" },
-    { "id": "m64", "name": "권재천", "part": "B2", "church": "새문안교회", "presbytery": "서울노회", "born": "1955.03.16", "joined": "2020.02", "phone": "010-6220-4942", "email": "", "status": "active" },
-    { "id": "m65", "name": "길흥진", "part": "B2", "church": "평광교회", "presbytery": "평북노회", "born": "1956.08.18", "joined": "2020.05", "phone": "010-2558-0818", "email": "", "status": "active" },
-    { "id": "m66", "name": "김광동", "part": "B2", "church": "연신교회", "presbytery": "평북노회", "born": "1952.03.04", "joined": "2022.08", "phone": "010-6657-1699", "email": "", "status": "active" },
-    { "id": "m67", "name": "김기정", "part": "B2", "church": "상도중앙교회", "presbytery": "서울관악노회", "born": "1940.12.27", "joined": "1995.09", "phone": "010-3723-5441", "email": "", "status": "active" },
-    { "id": "m68", "name": "김선동", "part": "B2", "church": "동막교회", "presbytery": "서울서노회", "born": "1942.10.19", "joined": "1987.05", "phone": "010-8131-8579", "email": "", "status": "active" },
-    { "id": "m69", "name": "김우영", "part": "B2", "church": "안양제일교회", "presbytery": "안양노회", "born": "1933.06.16", "joined": "1985.05", "phone": "010-3587-8202", "email": "", "status": "active" },
-    { "id": "m70", "name": "김태정", "part": "B2", "church": "광석교회", "presbytery": "서울동노회", "born": "1961.11.06", "joined": "2020.06", "phone": "010-4273-3301", "email": "", "status": "active" },
-    { "id": "m71", "name": "김창식", "part": "B2", "church": "동막교회", "presbytery": "서울서노회", "born": "1970.09.02", "joined": "2022.02", "phone": "010-3617-3884", "email": "", "status": "active" },
-    { "id": "m72", "name": "남재우", "part": "B2", "church": "상도중앙교회", "presbytery": "서울관악노회", "born": "1955.04.20", "joined": "2015.04", "phone": "010-6342-6584", "email": "", "status": "active" },
-    { "id": "m73", "name": "박승화", "part": "B2", "church": "신당중앙교회", "presbytery": "서울노회", "born": "1955.04.18", "joined": "2008.02", "phone": "010-4221-4290", "email": "", "status": "active" },
-    { "id": "m74", "name": "손학식", "part": "B2", "church": "신도교회", "presbytery": "영등포노회", "born": "1952.12.08", "joined": "2001.05", "phone": "010-5033-0054", "email": "", "status": "active" },
-    { "id": "m75", "name": "안종호", "part": "B2", "church": "새문안교회", "presbytery": "서울노회", "born": "1933.11.10", "joined": "1988.05", "phone": "010-7121-5501", "email": "", "status": "active" },
-    { "id": "m76", "name": "원영철", "part": "B2", "church": "남대문교회", "presbytery": "서울노회", "born": "1938.09.21", "joined": "1999.02", "phone": "010-9000-3402", "email": "", "status": "active" },
-    { "id": "m77", "name": "유기종", "part": "B2", "church": "동천교회", "presbytery": "서울동노회", "born": "1953.06.15", "joined": "2015.09", "phone": "010-8343-5297", "email": "", "status": "active" },
-    { "id": "m78", "name": "이귀복", "part": "B2", "church": "호산나교회", "presbytery": "서울북노회", "born": "1956.07.04", "joined": "2009.03", "phone": "010-6261-7100", "email": "", "status": "active" },
-    { "id": "m79", "name": "이대성", "part": "B2", "church": "서울동광교회", "presbytery": "서울동노회", "born": "1951.05.05", "joined": "2003.04", "phone": "010-5221-4944", "email": "", "status": "active" },
-    { "id": "m80", "name": "이원식", "part": "B2", "church": "광석교회", "presbytery": "서울동노회", "born": "1938.11.15", "joined": "1985.05", "phone": "010-3715-8148", "email": "", "status": "active" },
-    { "id": "m81", "name": "이현우", "part": "B2", "church": "번동제일교회", "presbytery": "용천노회", "born": "1970.01.06", "joined": "2022.08", "phone": "010-6236-6068", "email": "", "status": "active" },
-    { "id": "m82", "name": "임영호", "part": "B2", "church": "잠실교회", "presbytery": "서울강동노회", "born": "1940.08.11", "joined": "2002.04", "phone": "010-6284-4586", "email": "", "status": "active" },
-    { "id": "m83", "name": "장병국", "part": "B2", "church": "영세교회", "presbytery": "서울동노회", "born": "1954.11.20", "joined": "2012.07", "phone": "010-3578-1681", "email": "", "status": "active" },
-    { "id": "m84", "name": "정태일", "part": "B2", "church": "고척교회", "presbytery": "서남노회", "born": "1942.02.02", "joined": "1994.10", "phone": "010-6302-6171", "email": "", "status": "active" },
-    { "id": "m85", "name": "주호걸", "part": "B2", "church": "성덕교회", "presbytery": "동노회", "born": "1961.10.22", "joined": "2019.12", "phone": "010-9960-4740", "email": "", "status": "active" },
-    { "id": "m86", "name": "최명선", "part": "B2", "church": "수색교회", "presbytery": "서울서북노회", "born": "1942.04.09", "joined": "1985.06", "phone": "010-2370-8790", "email": "", "status": "active" },
-    { "id": "m87", "name": "최명오", "part": "B2", "church": "정신교회", "presbytery": "서울동노회", "born": "1955.09.09", "joined": "2020.01", "phone": "010-5715-8335", "email": "", "status": "active" },
-    { "id": "m88", "name": "최안석", "part": "B2", "church": "영세교회", "presbytery": "서울동노회", "born": "1949.06.23", "joined": "2012.08", "phone": "010-5068-1835", "email": "", "status": "active" },
-    { "id": "m89", "name": "최영수", "part": "B2", "church": "신일교회", "presbytery": "서울노회", "born": "1956.02.26", "joined": "2021.02", "phone": "010-4573-7701", "email": "", "status": "active" },
-    { "id": "m90", "name": "최영원", "part": "B2", "church": "남부교회", "presbytery": "서울동노회", "born": "1956.11.28", "joined": "2015.07", "phone": "010-5263-8944", "email": "", "status": "active" },
-    { "id": "m91", "name": "홍현풍", "part": "B2", "church": "광석교회", "presbytery": "서울동노회", "born": "1959.06.07", "joined": "2023.02", "phone": "010-9047-0074", "email": "", "status": "active" }
+    {
+      "id": "m1",
+      "name": "김기성",
+      "part": "T1",
+      "church": "신일교회",
+      "presbytery": "서울노회",
+      "born": "1966.01.24",
+      "joined": "2022.03",
+      "phone": "010-2268-8849",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m2",
+      "name": "김대웅",
+      "part": "T1",
+      "church": "문화교회",
+      "presbytery": "서울노회",
+      "born": "1937.01.27",
+      "joined": "2006.11",
+      "phone": "010-5042-1756",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m3",
+      "name": "김례위",
+      "part": "T1",
+      "church": "중랑제일교회",
+      "presbytery": "평양남노회",
+      "born": "1966.02.22",
+      "joined": "2023.12",
+      "phone": "010-3306-9449",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m4",
+      "name": "김봉천",
+      "part": "T1",
+      "church": "대영교회",
+      "presbytery": "안양노회",
+      "born": "1961.01.16",
+      "joined": "2011.11",
+      "phone": "010-2281-3634",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m5",
+      "name": "김의배",
+      "part": "T1",
+      "church": "자양교회",
+      "presbytery": "서울노회",
+      "born": "1942.02.10",
+      "joined": "1997.10",
+      "phone": "010-3364-3584",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m6",
+      "name": "김종훈",
+      "part": "T1",
+      "church": "상신교회",
+      "presbytery": "서울북노회",
+      "born": "1961.08.28",
+      "joined": "2010.11",
+      "phone": "010-5358-5022",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m7",
+      "name": "김철인",
+      "part": "T1",
+      "church": "중랑제일교회",
+      "presbytery": "평양남노회",
+      "born": "1950.06.03",
+      "joined": "1997.07",
+      "phone": "010-8763-4450",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m8",
+      "name": "남시우",
+      "part": "T1",
+      "church": "덕수교회",
+      "presbytery": "강북노회",
+      "born": "1954.03.20",
+      "joined": "2014.08",
+      "phone": "010-9708-9407",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m9",
+      "name": "노치군",
+      "part": "T1",
+      "church": "한영교회",
+      "presbytery": "영등포노회",
+      "born": "1951.09.09",
+      "joined": "2010.10",
+      "phone": "010-5325-3809",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m10",
+      "name": "서현철",
+      "part": "T1",
+      "church": "번동제일교회",
+      "presbytery": "용천노회",
+      "born": "1971.01.27",
+      "joined": "2022.09",
+      "phone": "010-3895-8237",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m11",
+      "name": "석문홍",
+      "part": "T1",
+      "church": "연신교회",
+      "presbytery": "평북노회",
+      "born": "1959.04.19",
+      "joined": "2014.09",
+      "phone": "010-3393-2577",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m12",
+      "name": "신진수",
+      "part": "T1",
+      "church": "영등포교회",
+      "presbytery": "영등포노회",
+      "born": "1946.08.21",
+      "joined": "2004.02",
+      "phone": "010-8226-0595",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m13",
+      "name": "안영우",
+      "part": "T1",
+      "church": "수색교회",
+      "presbytery": "서울서북노회",
+      "born": "1945.02.18",
+      "joined": "1994.11",
+      "phone": "010-4272-7785",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m14",
+      "name": "양현준",
+      "part": "T1",
+      "church": "강남안디옥교회",
+      "presbytery": "평북노회",
+      "born": "1965.06.21",
+      "joined": "2022.06",
+      "phone": "010-8891-5086",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m15",
+      "name": "온민귀",
+      "part": "T1",
+      "church": "고척교회",
+      "presbytery": "서남노회",
+      "born": "1954.06.23",
+      "joined": "2011.11",
+      "phone": "010-6243-1540",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m16",
+      "name": "유경모",
+      "part": "T1",
+      "church": "영등포교회",
+      "presbytery": "영등포노회",
+      "born": "1962.04.07",
+      "joined": "2023.10",
+      "phone": "010-2598-8296",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m17",
+      "name": "윤두근",
+      "part": "T1",
+      "church": "묘동교회",
+      "presbytery": "서울강남노회",
+      "born": "1948.02.15",
+      "joined": "2003.03",
+      "phone": "010-9247-4581",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m18",
+      "name": "윤태혁",
+      "part": "T1",
+      "church": "상도교회",
+      "presbytery": "서울관악노회",
+      "born": "1945.12.07",
+      "joined": "1997.04",
+      "phone": "010-6234-2217",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m19",
+      "name": "이상길",
+      "part": "T1",
+      "church": "광석교회",
+      "presbytery": "서울동노회",
+      "born": "1961.01.18",
+      "joined": "2020.01",
+      "phone": "010-5222-1250",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m20",
+      "name": "이성진",
+      "part": "T1",
+      "church": "기자촌교회",
+      "presbytery": "서울서북노회",
+      "born": "1949.10.05",
+      "joined": "2018.12",
+      "phone": "010-5463-8060",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m21",
+      "name": "이연수",
+      "part": "T1",
+      "church": "인천제일교회",
+      "presbytery": "인천노회",
+      "born": "1938.01.09",
+      "joined": "1985.05",
+      "phone": "010-3746-9397",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m22",
+      "name": "이원평",
+      "part": "T1",
+      "church": "광석교회",
+      "presbytery": "서울동노회",
+      "born": "1941.06.08",
+      "joined": "1990.08",
+      "phone": "010-9087-2451",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m23",
+      "name": "이형욱",
+      "part": "T1",
+      "church": "남가좌교회",
+      "presbytery": "평양노회",
+      "born": "1953.12.03",
+      "joined": "2006.08",
+      "phone": "010-5304-5463",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m24",
+      "name": "이호철",
+      "part": "T1",
+      "church": "번동제일교회",
+      "presbytery": "용천노회",
+      "born": "1969.12.26",
+      "joined": "2022.09",
+      "phone": "010-3728-0547",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m25",
+      "name": "임신일",
+      "part": "T1",
+      "church": "신성교회",
+      "presbytery": "영등포노회",
+      "born": "1957.04.02",
+      "joined": "2022.07",
+      "phone": "010-3310-2595",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m26",
+      "name": "강의근",
+      "part": "T2",
+      "church": "청담교회",
+      "presbytery": "서울강남노회",
+      "born": "1952.03.13",
+      "joined": "2004.11",
+      "phone": "010-5001-3462",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m27",
+      "name": "권오성",
+      "part": "T2",
+      "church": "양평동교회",
+      "presbytery": "영등포노회",
+      "born": "1957.12.01",
+      "joined": "2023.10",
+      "phone": "010-6271-4646",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m28",
+      "name": "김용무",
+      "part": "T2",
+      "church": "번동제일교회",
+      "presbytery": "용천노회",
+      "born": "1947.09.21",
+      "joined": "2011.09",
+      "phone": "010-6242-2520",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m29",
+      "name": "김인하",
+      "part": "T2",
+      "church": "장석교회",
+      "presbytery": "서울북노회",
+      "born": "1956.12.29",
+      "joined": "2019.12",
+      "phone": "010-5435-1391",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m30",
+      "name": "김종만",
+      "part": "T2",
+      "church": "신일교회",
+      "presbytery": "서울노회",
+      "born": "1964.09.04",
+      "joined": "2024.01",
+      "phone": "010-4788-3322",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m31",
+      "name": "박병호",
+      "part": "T2",
+      "church": "경신교회",
+      "presbytery": "서울동노회",
+      "born": "1960.04.17",
+      "joined": "2023.11",
+      "phone": "010-8963-5579",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m32",
+      "name": "서무일",
+      "part": "T2",
+      "church": "은혜로운교회",
+      "presbytery": "서울동노회",
+      "born": "1950.07.20",
+      "joined": "1996.01",
+      "phone": "010-5251-6039",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m33",
+      "name": "오정근",
+      "part": "T2",
+      "church": "동숭교회",
+      "presbytery": "서울노회",
+      "born": "1955.10.20",
+      "joined": "2007.03",
+      "phone": "010-2205-4700",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m34",
+      "name": "우정균",
+      "part": "T2",
+      "church": "영등포교회",
+      "presbytery": "영등포노회",
+      "born": "1952.05.13",
+      "joined": "2008.03",
+      "phone": "010-4507-4457",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m35",
+      "name": "윤장근",
+      "part": "T2",
+      "church": "동성교회",
+      "presbytery": "서울서노회",
+      "born": "1947.07.15",
+      "joined": "2006.04",
+      "phone": "010-7347-1197",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m36",
+      "name": "윤태화",
+      "part": "T2",
+      "church": "동숭교회",
+      "presbytery": "서울노회",
+      "born": "1941.11.26",
+      "joined": "2003.09",
+      "phone": "010-6855-1327",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m37",
+      "name": "이강호",
+      "part": "T2",
+      "church": "번동제일교회",
+      "presbytery": "용천노회",
+      "born": "1959.01.18",
+      "joined": "2011.10",
+      "phone": "010-5306-0230",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m38",
+      "name": "이선규",
+      "part": "T2",
+      "church": "번동제일교회",
+      "presbytery": "용천노회",
+      "born": "1962.08.15",
+      "joined": "2015.01",
+      "phone": "010-2737-6814",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m39",
+      "name": "이재덕",
+      "part": "T2",
+      "church": "서교동교회",
+      "presbytery": "서울서노회",
+      "born": "1951.06.24",
+      "joined": "2009.11",
+      "phone": "010-9347-3688",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m40",
+      "name": "이제영",
+      "part": "T2",
+      "church": "신일교회",
+      "presbytery": "서울노회",
+      "born": "1951.03.11",
+      "joined": "2012.08",
+      "phone": "010-5227-2672",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m41",
+      "name": "장광희",
+      "part": "T2",
+      "church": "보광중앙교회",
+      "presbytery": "서울서노회",
+      "born": "1945.08.06",
+      "joined": "2001.03",
+      "phone": "010-3240-2471",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m42",
+      "name": "조성천",
+      "part": "T2",
+      "church": "남대문교회",
+      "presbytery": "서울노회",
+      "born": "1948.07.01",
+      "joined": "2017.05",
+      "phone": "010-3934-3732",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m43",
+      "name": "차상환",
+      "part": "T2",
+      "church": "광명교회",
+      "presbytery": "영등포노회",
+      "born": "1948.11.02",
+      "joined": "2019.06",
+      "phone": "010-3797-9859",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m44",
+      "name": "최경호",
+      "part": "T2",
+      "church": "광석교회",
+      "presbytery": "서울동노회",
+      "born": "1954.11.29",
+      "joined": "2023.11",
+      "phone": "010-9781-8823",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m45",
+      "name": "최금준",
+      "part": "T2",
+      "church": "양평동교회",
+      "presbytery": "영등포노회",
+      "born": "1946.09.30",
+      "joined": "1988.07",
+      "phone": "010-2448-7690",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m46",
+      "name": "강판규",
+      "part": "B1",
+      "church": "난곡신일교회",
+      "presbytery": "서울관악노회",
+      "born": "1950.11.25",
+      "joined": "1997.07",
+      "phone": "010-5260-8044",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m47",
+      "name": "권순도",
+      "part": "B1",
+      "church": "영동교회",
+      "presbytery": "서울관악노회",
+      "born": "1952.10.20",
+      "joined": "2009.01",
+      "phone": "010-3728-1349",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m48",
+      "name": "고영준",
+      "part": "B1",
+      "church": "새문안교회",
+      "presbytery": "서울노회",
+      "born": "1954.12.22",
+      "joined": "2018.11",
+      "phone": "010-8895-6129",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m49",
+      "name": "김광수",
+      "part": "B1",
+      "church": "수지광성교회",
+      "presbytery": "경기노회",
+      "born": "1948.02.24",
+      "joined": "1991.03",
+      "phone": "010-2389-2701",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m50",
+      "name": "김광욱",
+      "part": "B1",
+      "church": "성덕교회",
+      "presbytery": "서울동노회",
+      "born": "1950.08.24",
+      "joined": "2004.10",
+      "phone": "010-9744-5800",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m51",
+      "name": "김대열",
+      "part": "B1",
+      "church": "서울동광교회",
+      "presbytery": "서울동노회",
+      "born": "1955.02.06",
+      "joined": "2009.03",
+      "phone": "010-8830-9038",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m52",
+      "name": "김순환",
+      "part": "B1",
+      "church": "신일교회",
+      "presbytery": "서울노회",
+      "born": "1952.02.03",
+      "joined": "2008.03",
+      "phone": "010-2478-5580",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m53",
+      "name": "김원환",
+      "part": "B1",
+      "church": "안양제일교회",
+      "presbytery": "안양노회",
+      "born": "1955.02.14",
+      "joined": "2009.11",
+      "phone": "010-5387-3491",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m54",
+      "name": "김특주",
+      "part": "B1",
+      "church": "든든한교회",
+      "presbytery": "서울관악노회",
+      "born": "1951.11.05",
+      "joined": "2008.03",
+      "phone": "010-5239-6064",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m55",
+      "name": "복봉수",
+      "part": "B1",
+      "church": "상신교회",
+      "presbytery": "서울북노회",
+      "born": "1957.08.22",
+      "joined": "2017.03",
+      "phone": "010-3354-2258",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m56",
+      "name": "이정원",
+      "part": "B1",
+      "church": "일신교회",
+      "presbytery": "평남노회",
+      "born": "1952.03.29",
+      "joined": "1998.07",
+      "phone": "010-5397-0587",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m57",
+      "name": "이찬영",
+      "part": "B1",
+      "church": "새문안교회",
+      "presbytery": "서울노회",
+      "born": "1952.07.16",
+      "joined": "2018.11",
+      "phone": "010-5668-8712",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m58",
+      "name": "이치덕",
+      "part": "B1",
+      "church": "중랑제일교회",
+      "presbytery": "평남노회",
+      "born": "1956.03.04",
+      "joined": "2007.01",
+      "phone": "010-5347-8700",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m59",
+      "name": "이칠모",
+      "part": "B1",
+      "church": "광암교회",
+      "presbytery": "서울서북노회",
+      "born": "1952.07.07",
+      "joined": "2012.08",
+      "phone": "010-5323-8787",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m60",
+      "name": "장재현",
+      "part": "B1",
+      "church": "묘동교회",
+      "presbytery": "강남노회",
+      "born": "1951.07.03",
+      "joined": "2008.03",
+      "phone": "010-3740-3725",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m61",
+      "name": "조재창",
+      "part": "B1",
+      "church": "영세교회",
+      "presbytery": "서울동노회",
+      "born": "1955.10.26",
+      "joined": "2012.08",
+      "phone": "010-6385-0297",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m62",
+      "name": "홍경모",
+      "part": "B1",
+      "church": "남부교회",
+      "presbytery": "서울동노회",
+      "born": "1957.10.04",
+      "joined": "2007.12",
+      "phone": "010-4701-5641",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m63",
+      "name": "홍경화",
+      "part": "B1",
+      "church": "열방교회",
+      "presbytery": "서남노회",
+      "born": "1959.08.28",
+      "joined": "2015.01",
+      "phone": "010-3911-2748",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m64",
+      "name": "권재천",
+      "part": "B2",
+      "church": "새문안교회",
+      "presbytery": "서울노회",
+      "born": "1955.03.16",
+      "joined": "2020.02",
+      "phone": "010-6220-4942",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m65",
+      "name": "길흥진",
+      "part": "B2",
+      "church": "평광교회",
+      "presbytery": "평북노회",
+      "born": "1956.08.18",
+      "joined": "2020.05",
+      "phone": "010-2558-0818",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m66",
+      "name": "김광동",
+      "part": "B2",
+      "church": "연신교회",
+      "presbytery": "평북노회",
+      "born": "1952.03.04",
+      "joined": "2022.08",
+      "phone": "010-6657-1699",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m67",
+      "name": "김기정",
+      "part": "B2",
+      "church": "상도중앙교회",
+      "presbytery": "서울관악노회",
+      "born": "1940.12.27",
+      "joined": "1995.09",
+      "phone": "010-3723-5441",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m68",
+      "name": "김선동",
+      "part": "B2",
+      "church": "동막교회",
+      "presbytery": "서울서노회",
+      "born": "1942.10.19",
+      "joined": "1987.05",
+      "phone": "010-8131-8579",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m69",
+      "name": "김우영",
+      "part": "B2",
+      "church": "안양제일교회",
+      "presbytery": "안양노회",
+      "born": "1933.06.16",
+      "joined": "1985.05",
+      "phone": "010-3587-8202",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m70",
+      "name": "김태정",
+      "part": "B2",
+      "church": "광석교회",
+      "presbytery": "서울동노회",
+      "born": "1961.11.06",
+      "joined": "2020.06",
+      "phone": "010-4273-3301",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m71",
+      "name": "김창식",
+      "part": "B2",
+      "church": "동막교회",
+      "presbytery": "서울서노회",
+      "born": "1970.09.02",
+      "joined": "2022.02",
+      "phone": "010-3617-3884",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m72",
+      "name": "남재우",
+      "part": "B2",
+      "church": "상도중앙교회",
+      "presbytery": "서울관악노회",
+      "born": "1955.04.20",
+      "joined": "2015.04",
+      "phone": "010-6342-6584",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m73",
+      "name": "박승화",
+      "part": "B2",
+      "church": "신당중앙교회",
+      "presbytery": "서울노회",
+      "born": "1955.04.18",
+      "joined": "2008.02",
+      "phone": "010-4221-4290",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m74",
+      "name": "손학식",
+      "part": "B2",
+      "church": "신도교회",
+      "presbytery": "영등포노회",
+      "born": "1952.12.08",
+      "joined": "2001.05",
+      "phone": "010-5033-0054",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m75",
+      "name": "안종호",
+      "part": "B2",
+      "church": "새문안교회",
+      "presbytery": "서울노회",
+      "born": "1933.11.10",
+      "joined": "1988.05",
+      "phone": "010-7121-5501",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m76",
+      "name": "원영철",
+      "part": "B2",
+      "church": "남대문교회",
+      "presbytery": "서울노회",
+      "born": "1938.09.21",
+      "joined": "1999.02",
+      "phone": "010-9000-3402",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m77",
+      "name": "유기종",
+      "part": "B2",
+      "church": "동천교회",
+      "presbytery": "서울동노회",
+      "born": "1953.06.15",
+      "joined": "2015.09",
+      "phone": "010-8343-5297",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m78",
+      "name": "이귀복",
+      "part": "B2",
+      "church": "호산나교회",
+      "presbytery": "서울북노회",
+      "born": "1956.07.04",
+      "joined": "2009.03",
+      "phone": "010-6261-7100",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m79",
+      "name": "이대성",
+      "part": "B2",
+      "church": "서울동광교회",
+      "presbytery": "서울동노회",
+      "born": "1951.05.05",
+      "joined": "2003.04",
+      "phone": "010-5221-4944",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m80",
+      "name": "이원식",
+      "part": "B2",
+      "church": "광석교회",
+      "presbytery": "서울동노회",
+      "born": "1938.11.15",
+      "joined": "1985.05",
+      "phone": "010-3715-8148",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m81",
+      "name": "이현우",
+      "part": "B2",
+      "church": "번동제일교회",
+      "presbytery": "용천노회",
+      "born": "1970.01.06",
+      "joined": "2022.08",
+      "phone": "010-6236-6068",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m82",
+      "name": "임영호",
+      "part": "B2",
+      "church": "잠실교회",
+      "presbytery": "서울강동노회",
+      "born": "1940.08.11",
+      "joined": "2002.04",
+      "phone": "010-6284-4586",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m83",
+      "name": "장병국",
+      "part": "B2",
+      "church": "영세교회",
+      "presbytery": "서울동노회",
+      "born": "1954.11.20",
+      "joined": "2012.07",
+      "phone": "010-3578-1681",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m84",
+      "name": "정태일",
+      "part": "B2",
+      "church": "고척교회",
+      "presbytery": "서남노회",
+      "born": "1942.02.02",
+      "joined": "1994.10",
+      "phone": "010-6302-6171",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m85",
+      "name": "주호걸",
+      "part": "B2",
+      "church": "성덕교회",
+      "presbytery": "동노회",
+      "born": "1961.10.22",
+      "joined": "2019.12",
+      "phone": "010-9960-4740",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m86",
+      "name": "최명선",
+      "part": "B2",
+      "church": "수색교회",
+      "presbytery": "서울서북노회",
+      "born": "1942.04.09",
+      "joined": "1985.06",
+      "phone": "010-2370-8790",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m87",
+      "name": "최명오",
+      "part": "B2",
+      "church": "정신교회",
+      "presbytery": "서울동노회",
+      "born": "1955.09.09",
+      "joined": "2020.01",
+      "phone": "010-5715-8335",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m88",
+      "name": "최안석",
+      "part": "B2",
+      "church": "영세교회",
+      "presbytery": "서울동노회",
+      "born": "1949.06.23",
+      "joined": "2012.08",
+      "phone": "010-5068-1835",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m89",
+      "name": "최영수",
+      "part": "B2",
+      "church": "신일교회",
+      "presbytery": "서울노회",
+      "born": "1956.02.26",
+      "joined": "2021.02",
+      "phone": "010-4573-7701",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m90",
+      "name": "최영원",
+      "part": "B2",
+      "church": "남부교회",
+      "presbytery": "서울동노회",
+      "born": "1956.11.28",
+      "joined": "2015.07",
+      "phone": "010-5263-8944",
+      "email": "",
+      "status": "active"
+    },
+    {
+      "id": "m91",
+      "name": "홍현풍",
+      "part": "B2",
+      "church": "광석교회",
+      "presbytery": "서울동노회",
+      "born": "1959.06.07",
+      "joined": "2023.02",
+      "phone": "010-9047-0074",
+      "email": "",
+      "status": "active"
+    }
   ],
   "leaves": [
-    { "id": "l1", "name": "구자삼" }, { "id": "l2", "name": "권순언" }, { "id": "l3", "name": "김선범" },
-    { "id": "l4", "name": "김의현" }, { "id": "l5", "name": "김진규" }, { "id": "l6", "name": "김현철" },
-    { "id": "l7", "name": "박성태" }, { "id": "l8", "name": "박태식" }, { "id": "l9", "name": "신희만" },
-    { "id": "l10", "name": "오시영" }, { "id": "l11", "name": "임융호" }, { "id": "l12", "name": "장광철" },
-    { "id": "l13", "name": "변세학" }, { "id": "l14", "name": "강근희" }, { "id": "l15", "name": "신승도" },
-    { "id": "l16", "name": "서경호" }, { "id": "l17", "name": "박충무" }
+    {
+      "id": "l1",
+      "name": "구자삼"
+    },
+    {
+      "id": "l2",
+      "name": "권순언"
+    },
+    {
+      "id": "l3",
+      "name": "김선범"
+    },
+    {
+      "id": "l4",
+      "name": "김의현"
+    },
+    {
+      "id": "l5",
+      "name": "김진규"
+    },
+    {
+      "id": "l6",
+      "name": "김현철"
+    },
+    {
+      "id": "l7",
+      "name": "박성태"
+    },
+    {
+      "id": "l8",
+      "name": "박태식"
+    },
+    {
+      "id": "l9",
+      "name": "신희만"
+    },
+    {
+      "id": "l10",
+      "name": "오시영"
+    },
+    {
+      "id": "l11",
+      "name": "임융호"
+    },
+    {
+      "id": "l12",
+      "name": "장광철"
+    },
+    {
+      "id": "l13",
+      "name": "변세학"
+    },
+    {
+      "id": "l14",
+      "name": "강근희"
+    },
+    {
+      "id": "l15",
+      "name": "신승도"
+    },
+    {
+      "id": "l16",
+      "name": "서경호"
+    },
+    {
+      "id": "l17",
+      "name": "박충무"
+    }
   ],
   "lifetime": [
-    { "id": "lt1", "name": "권달현" }, { "id": "lt2", "name": "류명수" }, { "id": "lt3", "name": "방준석" },
-    { "id": "lt4", "name": "성세용" }, { "id": "lt5", "name": "손명식" }, { "id": "lt6", "name": "오창일" },
-    { "id": "lt7", "name": "이광무" }, { "id": "lt8", "name": "이상석" }, { "id": "lt9", "name": "이정희" },
-    { "id": "lt10", "name": "이종대" }, { "id": "lt11", "name": "장신근" }, { "id": "lt12", "name": "홍인호" }
+    {
+      "id": "lt1",
+      "name": "권달현"
+    },
+    {
+      "id": "lt2",
+      "name": "류명수"
+    },
+    {
+      "id": "lt3",
+      "name": "방준석"
+    },
+    {
+      "id": "lt4",
+      "name": "성세용"
+    },
+    {
+      "id": "lt5",
+      "name": "손명식"
+    },
+    {
+      "id": "lt6",
+      "name": "오창일"
+    },
+    {
+      "id": "lt7",
+      "name": "이광무"
+    },
+    {
+      "id": "lt8",
+      "name": "이상석"
+    },
+    {
+      "id": "lt9",
+      "name": "이정희"
+    },
+    {
+      "id": "lt10",
+      "name": "이종대"
+    },
+    {
+      "id": "lt11",
+      "name": "장신근"
+    },
+    {
+      "id": "lt12",
+      "name": "홍인호"
+    }
   ]
 }
