@@ -5,7 +5,7 @@
     "lastUpdated": "2026-03-06"
   },
   "displaySettings": {
-    "showPhone": true,
+    "showPhone": false,
     "showBorn": false,
     "showJoined": false
   },
