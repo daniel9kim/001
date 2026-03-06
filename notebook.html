@@ -53,9 +53,18 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--t
 
 /* STATS */
 .stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;max-width:1100px;margin:0 auto;padding:20px 20px 0;}
-.stat{background:var(--white);border-radius:10px;padding:16px;text-align:center;border:1px solid var(--cream2);box-shadow:var(--shadow);}
-.stat-n{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--navy);line-height:1;}
-.stat-l{font-size:10px;color:var(--text3);margin-top:4px;}
+.stat{background:var(--white);border-radius:10px;padding:16px;text-align:center;border:1px solid var(--cream2);box-shadow:var(--shadow);transition:.2s;}
+.stat.clickable{cursor:pointer;}
+.stat.clickable:hover{transform:translateY(-3px);box-shadow:var(--shadow2);border-color:var(--gold2);}
+.stat.clickable.active-stat{border-color:var(--gold);background:linear-gradient(135deg,var(--navy),var(--navy2));box-shadow:0 4px 18px rgba(27,42,74,.25);}
+.stat.clickable.active-stat .stat-n{color:var(--gold2);}
+.stat.clickable.active-stat .stat-l{color:rgba(255,255,255,.65);}
+.stat.clickable.T1.active-stat{background:linear-gradient(135deg,var(--T1),#1d5a85);}
+.stat.clickable.T2.active-stat{background:linear-gradient(135deg,var(--T2),#2a7345);}
+.stat.clickable.B1.active-stat{background:linear-gradient(135deg,var(--B1),#9a2424);}
+.stat.clickable.B2.active-stat{background:linear-gradient(135deg,var(--B2),#5c3498);}
+.stat-n{font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--navy);line-height:1;transition:.2s;}
+.stat-l{font-size:10px;color:var(--text3);margin-top:4px;transition:.2s;}
 
 /* NAV */
 .nav-wrap{background:var(--white);border-bottom:2px solid var(--cream2);position:sticky;top:69px;z-index:150;box-shadow:0 2px 8px rgba(27,42,74,.07);}
@@ -311,11 +320,11 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--t
 
 <!-- STATS -->
 <div class="stats-row">
-  <div class="stat"><div class="stat-n" id="sTotal">—</div><div class="stat-l">현 단원</div></div>
-  <div class="stat"><div class="stat-n" id="sT1">—</div><div class="stat-l">1st Tenor</div></div>
-  <div class="stat"><div class="stat-n" id="sT2">—</div><div class="stat-l">2nd Tenor</div></div>
-  <div class="stat"><div class="stat-n" id="sB1">—</div><div class="stat-l">1st Bass</div></div>
-  <div class="stat"><div class="stat-n" id="sB2">—</div><div class="stat-l">2nd Bass</div></div>
+  <div class="stat clickable" id="statAll" onclick="statFilter('all')"><div class="stat-n" id="sTotal">—</div><div class="stat-l">현 단원</div></div>
+  <div class="stat clickable T1" id="statT1" onclick="statFilter('T1')"><div class="stat-n" id="sT1">—</div><div class="stat-l">1st Tenor</div></div>
+  <div class="stat clickable T2" id="statT2" onclick="statFilter('T2')"><div class="stat-n" id="sT2">—</div><div class="stat-l">2nd Tenor</div></div>
+  <div class="stat clickable B1" id="statB1" onclick="statFilter('B1')"><div class="stat-n" id="sB1">—</div><div class="stat-l">1st Bass</div></div>
+  <div class="stat clickable B2" id="statB2" onclick="statFilter('B2')"><div class="stat-n" id="sB2">—</div><div class="stat-l">2nd Bass</div></div>
   <div class="stat"><div class="stat-n">40</div><div class="stat-l">창단년수</div></div>
 </div>
 
@@ -333,7 +342,7 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--t
   <!-- SEARCH RESULTS -->
   <div id="searchSection" style="display:none;">
     <div class="sec-title"><div class="sec-title-left">검색 결과</div><span id="searchCnt" style="font-size:13px;font-weight:400;color:var(--text3);"></span></div>
-    <div id="searchResults" class="sr-list"></div>
+    <div id="searchResults" class="members-grid"></div>
   </div>
 
   <!-- MEMBERS -->
@@ -697,7 +706,36 @@ function renderMembers(f){
 
 function filterPart(p,btn){
   document.querySelectorAll('.pf-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active'); renderMembers(p);
+  btn.classList.add('active');
+  // sync stat cards
+  syncStatCards(p);
+  renderMembers(p);
+}
+
+function statFilter(p){
+  // Switch to members tab
+  document.getElementById('searchSection').style.display='none';
+  document.getElementById('gSearch').value='';
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('members').classList.add('active');
+  document.querySelector('.nav-tab').classList.add('active');
+  // Sync part filter buttons
+  document.querySelectorAll('.pf-btn').forEach(b=>{
+    b.classList.toggle('active', b.classList.contains(p) || (p==='all' && b.classList.contains('all')));
+  });
+  syncStatCards(p);
+  renderMembers(p);
+  // Scroll to members section smoothly
+  document.getElementById('members').scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function syncStatCards(p){
+  ['statAll','statT1','statT2','statB1','statB2'].forEach(id=>{
+    const el=document.getElementById(id); if(!el) return;
+    const map={statAll:'all',statT1:'T1',statT2:'T2',statB1:'B1',statB2:'B2'};
+    el.classList.toggle('active-stat', map[id]===p);
+  });
 }
 
 // ── OFFICERS ──
@@ -753,20 +791,46 @@ function doSearch(q){
   }
   document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   ss.style.display='block';
-  const res=DB.members.filter(m=>m.name.includes(q)||(m.church||'').includes(q)||(m.presbytery||'').includes(q));
+  const res=DB.members.filter(m=>
+    m.name.includes(q)||
+    (m.church||'').includes(q)||
+    (m.presbytery||'').includes(q)||
+    (m.phone||'').includes(q)
+  );
   document.getElementById('searchCnt').textContent=res.length+'명 검색됨';
-  document.getElementById('searchResults').innerHTML=res.length
-    ?res.map(r=>{
-        const av=r.photo
-          ?`<div class="sr-av"><img src="${r.photo}" alt="${r.name}"></div>`
-          :`<div class="sr-av-txt" style="background:${PC[r.part]||'#333'}">${r.name[0]}</div>`;
-        return `<div class="sr-item">
-          ${av}
-          <div><div class="sr-name">${r.name}</div>
-          <div class="sr-sub">${r.church||''}${r.presbytery?' ('+r.presbytery+')':''} · ${PL[r.part]||r.part}${r.phone?' · '+r.phone:''}</div></div>
-        </div>`;
-      }).join('')
-    :'<div class="empty">검색 결과가 없습니다.</div>';
+  if(!res.length){
+    document.getElementById('searchResults').innerHTML='<div class="empty">검색 결과가 없습니다.</div>';
+    return;
+  }
+  // 단원 명단과 동일한 카드 형태 + displaySettings 적용
+  const d=getDisp();
+  document.getElementById('searchResults').innerHTML=res.map(m=>{
+    const img=m.photo
+      ?`<img src="${m.photo}" class="card-photo ${m.part}" alt="${m.name}">`
+      :`<div class="card-avatar ${m.part}">${m.name[0]}</div>`;
+    const acts=isAdmin?'card-actions show':'card-actions';
+    return `<div class="member-card">
+      <div class="card-stripe ${m.part}"></div>
+      <div class="card-body">
+        <div class="card-photo-wrap">${img}</div>
+        <div class="card-info">
+          <div class="card-name">${m.name}</div>
+          <span class="part-chip ${m.part}">${PL[m.part]||m.part}</span>
+        </div>
+        <div class="card-rows">
+          <div class="card-row"><span class="card-lbl">⛪</span><span class="card-val">${m.church||'—'}${m.presbytery?' ('+m.presbytery+')':''}</span></div>
+          ${d.phone?`<div class="card-row"><span class="card-lbl">📞</span><span class="card-val ph">${m.phone||'—'}</span></div>`:''}
+          ${d.born?`<div class="card-row"><span class="card-lbl">🎂</span><span class="card-val">${m.born||'—'}</span></div>`:''}
+          ${m.email?`<div class="card-row"><span class="card-lbl">✉</span><span class="card-val">${m.email}</span></div>`:''}
+        </div>
+        ${d.joined?`<div class="card-since">📅 입단 ${m.joined||'—'}</div>`:''}
+        <div class="${acts}">
+          <button class="btn-sm edit" onclick="openEdit('${m.id}')">✏️ 수정</button>
+          <button class="btn-sm del" onclick="openDel('${m.id}')">🗑 삭제</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
 }
 
 // ══════════ ADMIN ══════════
