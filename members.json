@@ -7,7 +7,7 @@
   "displaySettings": {
     "showPhone": true,
     "showBorn": true,
-    "showJoined": true
+    "showJoined": false
   },
   "officers": [
     {
