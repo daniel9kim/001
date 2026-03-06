@@ -804,7 +804,12 @@ function renderStats(){
 
 // ══════════ FONT SIZE CONTROL ══════════
 let fontScale = 0; // -3 ~ +5 단계
-const FONT_BASE = { name:29, part:20, church:28, phone:29, born:28, joined:24 };
+const FONT_BASE = {
+  // 모바일
+  name:29, part:20, church:28, phone:29, born:28, joined:24,
+  // 데스크톱
+  'd-name':17, 'd-part':10, 'd-church':12, 'd-phone':12, 'd-born':12, 'd-joined':11
+};
 
 function changeFontSize(dir){
   if(dir===0){ fontScale=0; }
@@ -863,16 +868,16 @@ function buildMemberCard(m){
     <div class="card-body">
       <div class="card-photo-wrap photo-clickable" onclick="openLightbox(DB.members.find(x=>x.id==='${m.id}'))">${img}</div>
       <div class="card-info">
-        <div class="card-name">${m.name}</div>
-        <span class="part-chip ${m.part}">${PL[m.part]||m.part}</span>
+        <div class="card-name" style="font-size:${fs('d-name')};">${m.name}</div>
+        <span class="part-chip ${m.part}" style="font-size:${fs('d-part')};">${PL[m.part]||m.part}</span>
       </div>
       <div class="card-rows">
-        <div class="card-row"><span class="card-lbl">⛪</span><span class="card-val">${m.church||'—'}${m.presbytery?' ('+m.presbytery+')':''}</span></div>
-        ${d.phone?`<div class="card-row"><span class="card-lbl">📞</span><span class="card-val ph">${m.phone||'—'}</span></div>`:''}
-        ${d.born?`<div class="card-row"><span class="card-lbl">🎂</span><span class="card-val">${m.born||'—'}</span></div>`:''}
-        ${m.email?`<div class="card-row"><span class="card-lbl">✉</span><span class="card-val">${m.email}</span></div>`:''}
+        <div class="card-row"><span class="card-lbl">⛪</span><span class="card-val" style="font-size:${fs('d-church')};">${m.church||'—'}${m.presbytery?' ('+m.presbytery+')':''}</span></div>
+        ${d.phone?`<div class="card-row"><span class="card-lbl">📞</span><span class="card-val ph" style="font-size:${fs('d-phone')};">${m.phone||'—'}</span></div>`:''}
+        ${d.born?`<div class="card-row"><span class="card-lbl">🎂</span><span class="card-val" style="font-size:${fs('d-born')};">${m.born||'—'}</span></div>`:''}
+        ${m.email?`<div class="card-row"><span class="card-lbl">✉</span><span class="card-val" style="font-size:${fs('d-church')};">${m.email}</span></div>`:''}
       </div>
-      ${d.joined?`<div class="card-since">📅 입단 ${m.joined||'—'}</div>`:''}
+      ${d.joined?`<div class="card-since" style="font-size:${fs('d-joined')};">📅 입단 ${m.joined||'—'}</div>`:''}
       <div class="${acts}">
         <button class="btn-sm edit" onclick="openEdit('${m.id}')">✏️ 수정</button>
         <button class="btn-sm del" onclick="openDel('${m.id}')">🗑 삭제</button>
