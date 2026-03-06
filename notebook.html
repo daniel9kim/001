@@ -625,17 +625,19 @@ let isAdmin=false, curPart='all', delId=null;
 // ── BOOT ──
 async function boot(){
   try{
-    const r=await fetch('members.json?v='+Date.now());
+    // cache:'no-store' → 브라우저/CDN 캐시 완전 우회, 항상 서버에서 최신 파일을 가져옴
+    const r = await fetch('members.json?v='+Date.now(), {
+      cache: 'no-store',
+      headers: { 'Pragma':'no-cache', 'Cache-Control':'no-cache, no-store, must-revalidate' }
+    });
     if(!r.ok) throw 0;
-    const fetched=await r.json();
-    // merge: use fetched data but ensure members array is full
-    DB=fetched;
-    // if fetched members is too few (e.g. old minimal file), use embedded
-    if(!DB.members||DB.members.length<10) DB.members=EMBEDDED.members;
-    if(!DB.leaves||!DB.leaves.length) DB.leaves=EMBEDDED.leaves;
-    if(!DB.lifetime||!DB.lifetime.length) DB.lifetime=EMBEDDED.lifetime;
+    const fetched = await r.json();
+    DB = fetched;
+    if(!DB.members  || DB.members.length  < 10) DB.members  = EMBEDDED.members;
+    if(!DB.leaves   || !DB.leaves.length)        DB.leaves   = EMBEDDED.leaves;
+    if(!DB.lifetime || !DB.lifetime.length)      DB.lifetime = EMBEDDED.lifetime;
   } catch{
-    DB=JSON.parse(JSON.stringify(EMBEDDED));
+    DB = JSON.parse(JSON.stringify(EMBEDDED));
   }
   render();
 }
@@ -904,8 +906,8 @@ function saveMember(){
     joined:document.getElementById('fJoined').value.trim(),phone:document.getElementById('fPhone').value.trim(),
     email:document.getElementById('fEmail').value.trim(),status:document.getElementById('fStatus').value,
     photo:document.getElementById('fPhoto').value||''};
-  if(id){const i=DB.members.findIndex(m=>m.id===id);if(i>-1) DB.members[i]={...DB.members[i],...d};toast('✅ 수정 완료! JSON을 다운로드하여 GitHub에 업로드하세요.','ok');}
-  else{d.id='m'+Date.now();DB.members.push(d);toast('✅ 추가 완료! JSON을 다운로드하여 GitHub에 업로드하세요.','ok');}
+  if(id){const i=DB.members.findIndex(m=>m.id===id);if(i>-1) DB.members[i]={...DB.members[i],...d};toast('✅ 수정 완료! GitHub에 자동 저장 중...','ok');}
+  else{d.id='m'+Date.now();DB.members.push(d);toast('✅ 추가 완료! GitHub에 자동 저장 중...','ok');}
   closeModal(); renderStats(); renderMembers(); renderSpecial(); autoSave();
 }
 
@@ -1050,11 +1052,11 @@ async function saveToGitHub(silent=false){
 
   if(!silent){ showGhSaving('saving'); }
 
-  // Get latest SHA before pushing
+  // Get latest SHA before pushing (캐시 우회 필수 — stale SHA로 409 Conflict 방지)
   try{
     const getR = await fetch(
-      `https://api.github.com/repos/${GH.owner}/${GH.repo}/contents/${GH.path}?ref=${GH.branch}`,
-      { headers:{ Authorization:'token '+GH.token, Accept:'application/vnd.github.v3+json' } }
+      `https://api.github.com/repos/${GH.owner}/${GH.repo}/contents/${GH.path}?ref=${GH.branch}&t=${Date.now()}`,
+      { cache:'no-store', headers:{ Authorization:'token '+GH.token, Accept:'application/vnd.github.v3+json' } }
     );
     if(getR.ok){ const d=await getR.json(); ghFileSha=d.sha; }
   }catch(e){}
