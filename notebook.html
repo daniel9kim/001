@@ -251,6 +251,16 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--t
 .toast.ok{border-left-color:var(--success);}
 .toast.err{border-left-color:var(--danger);}
 
+
+/* SORT BAR */
+.sort-bar{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap;}
+.sort-label{font-size:11px;color:var(--text3);font-weight:600;letter-spacing:.5px;white-space:nowrap;}
+.sort-btn{display:flex;align-items:center;gap:4px;padding:5px 12px;border-radius:16px;border:1.5px solid var(--cream3);background:var(--white);font-size:12px;font-weight:500;cursor:pointer;font-family:'Noto Sans KR',sans-serif;color:var(--text2);transition:.18s;white-space:nowrap;}
+.sort-btn:hover{border-color:var(--navy);color:var(--navy);}
+.sort-btn.active{background:var(--navy);color:var(--white);border-color:var(--navy);}
+.sort-btn .sort-arrow{font-size:10px;opacity:.7;}
+.sort-btn.active .sort-arrow{opacity:1;}
+
 /* DISPLAY SETTINGS PANEL */
 .disp-panel{background:linear-gradient(135deg,#1b2a4a,#1e3060);border-radius:12px;padding:16px 20px;margin-bottom:20px;display:none;border:1px solid rgba(212,173,82,.25);box-shadow:var(--shadow);}
 .disp-panel.on{display:block;}
@@ -269,15 +279,112 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--t
 .sw-track::before{content:'';position:absolute;width:14px;height:14px;border-radius:50%;background:var(--white);top:3px;left:3px;transition:.25s;}
 .sw input:checked+.sw-track::before{left:19px;}
 
+/* ══════════ MOBILE LIST VIEW (≤640px) ══════════ */
 @media(max-width:640px){
-  .hero{padding:30px 16px 24px;} .hero-title{font-size:26px;}
-  .stats-row{padding:14px 12px 0;} .main{padding:16px 12px 80px;}
-  .members-grid{grid-template-columns:1fr 1fr;}
-  .fr{grid-template-columns:1fr;} .fab{bottom:20px;right:20px;}
+
+  /* 헤더 */
+  .hero{padding:22px 14px 18px;} 
+  .hero-title{font-size:22px;}
+  .hero-tag{font-size:10px;letter-spacing:3px;}
+  .hero-sub{font-size:11px;}
+  .stats-row{padding:12px 10px 0;gap:8px;}
+  .stat-n{font-size:22px;}
+  .stat-l{font-size:10px;}
+  .main{padding:12px 10px 80px;}
   .logo-text p,.admin-badge span{display:none;}
+  .fr{grid-template-columns:1fr;}
+  .fab{bottom:20px;right:20px;}
   .disp-toggles{gap:8px;}
+
+  /* 네비 탭 글씨 크기 */
+  .nav-tab{font-size:13px;padding:12px 14px;}
+
+  /* 파트 필터 */
+  .pf-btn{font-size:13px;padding:7px 14px;}
+  .cbadge{font-size:11px;}
+
+  /* 정렬 바 */
+  .sort-bar{gap:6px;}
+  .sort-btn{font-size:12px;padding:6px 11px;}
+
+  /* ── 카드 → 목록 변환 ── */
+  .members-grid{
+    display:flex;
+    flex-direction:column;
+    gap:0;
+    border-radius:14px;
+    overflow:hidden;
+    border:1px solid var(--cream2);
+    box-shadow:var(--shadow);
+  }
+
+  /* 목록 아이템 */
+  .member-card{
+    border-radius:0;
+    border:none;
+    border-bottom:1px solid var(--cream2);
+    box-shadow:none;
+  }
+  .member-card:last-child{border-bottom:none;}
+  .member-card:hover{transform:none;box-shadow:none;border-color:var(--cream2);}
+
+  /* 좌측 컬러 스트라이프를 상단 → 좌측 세로 바로 변경 */
+  .card-stripe{width:5px;height:auto;position:absolute;top:0;left:0;bottom:0;border-radius:0;}
+  .card-body{
+    padding:14px 14px 14px 20px;
+    position:relative;
+    display:flex;
+    align-items:center;
+    gap:13px;
+  }
+
+  /* 사진 영역 — 작은 동그라미 */
+  .card-photo-wrap{
+    display:flex;
+    flex-shrink:0;
+    margin-bottom:0;
+  }
+  .card-photo{width:48px;height:48px;border-width:2px;}
+  .card-avatar{width:48px;height:48px;font-size:18px;}
+
+  /* 텍스트 영역 */
+  .card-info{
+    text-align:left;
+    margin-bottom:0;
+    flex:1;
+    min-width:0;
+  }
+  .card-name{font-size:17px;margin-bottom:3px;}
+  .part-chip{font-size:10px;padding:2px 8px;}
+
+  /* 상세 정보 — 한 줄 흐름으로 */
+  .card-rows{
+    background:none;
+    border-radius:0;
+    padding:0;
+    gap:3px;
+    margin-top:5px;
+  }
+  .card-row{font-size:13px;gap:5px;}
+  .card-lbl{font-size:13px;min-width:18px;}
+  .card-val{font-size:13px;}
+  .card-val.ph{font-size:14px;}
+  .card-since{font-size:12px;text-align:left;margin-top:4px;}
+
+  /* 수정/삭제 버튼 — 우측 끝 */
+  .card-actions{
+    flex-direction:column;
+    gap:4px;
+    margin-top:0;
+    flex-shrink:0;
+    width:56px;
+  }
+  .btn-sm{padding:6px 0;font-size:11px;border-radius:6px;}
+
+  /* 모달 */
+  .modal{padding:20px 16px;}
+  .login-box{padding:24px 18px;}
 }
-@media(max-width:400px){.members-grid{grid-template-columns:1fr;}}
 
 /* GITHUB STATUS */
 .gh-connected{background:rgba(39,174,96,.15);border:1px solid rgba(39,174,96,.4);border-radius:8px;padding:6px 12px;font-size:11px;color:#27ae60;font-weight:700;display:flex;align-items:center;gap:5px;}
@@ -388,6 +495,14 @@ body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--t
       <button class="pf-btn T2" onclick="filterPart('T2',this)">2nd Tenor <span class="cbadge" id="c-T2"></span></button>
       <button class="pf-btn B1" onclick="filterPart('B1',this)">1st Bass <span class="cbadge" id="c-B1"></span></button>
       <button class="pf-btn B2" onclick="filterPart('B2',this)">2nd Bass <span class="cbadge" id="c-B2"></span></button>
+    </div>
+    <div class="sort-bar" id="sortBar">
+      <span class="sort-label">정렬 :</span>
+      <button class="sort-btn active" id="sb-name"    onclick="setSort('name'   ,this)">이름    <span class="sort-arrow" id="sa-name"   >▲</span></button>
+      <button class="sort-btn"        id="sb-born"    onclick="setSort('born'   ,this)">생년월일 <span class="sort-arrow" id="sa-born"   >▲</span></button>
+      <button class="sort-btn"        id="sb-joined"  onclick="setSort('joined' ,this)">입단일   <span class="sort-arrow" id="sa-joined" >▲</span></button>
+      <button class="sort-btn"        id="sb-church"  onclick="setSort('church' ,this)">교회     <span class="sort-arrow" id="sa-church" >▲</span></button>
+      <button class="sort-btn"        id="sb-presbytery" onclick="setSort('presbytery',this)">노회  <span class="sort-arrow" id="sa-presbytery">▲</span></button>
     </div>
     <div class="members-grid" id="membersGrid"></div>
   </div>
@@ -651,6 +766,12 @@ async function boot(){
   render();
 }
 
+// 화면 회전/리사이즈 시 카드 레이아웃 재렌더링
+window.addEventListener('resize', (()=>{
+  let rTimer;
+  return ()=>{ clearTimeout(rTimer); rTimer=setTimeout(()=>{ renderMembers(); doSearch(document.getElementById('gSearch').value); },200); };
+})());
+
 function render(){
   syncDispToggles();
   renderStats(); renderMembers(); renderOfficers(); renderStaff(); renderSpecial();
@@ -667,41 +788,76 @@ function renderStats(){
   document.getElementById('c-all').textContent=a.length;
 }
 
+// ── MEMBER CARD BUILDER ──
+function buildMemberCard(m){
+  const d=getDisp();
+  const isMobile=window.innerWidth<=640;
+  const img=m.photo
+    ?`<img src="${m.photo}" class="card-photo ${m.part}" alt="${m.name}">`
+    :`<div class="card-avatar ${m.part}">${m.name[0]}</div>`;
+  const acts=isAdmin?'card-actions show':'card-actions';
+
+  if(isMobile){
+    // ── 모바일 목록형 ──
+    return `<div class="member-card" style="position:relative;overflow:visible;">
+      <div style="display:flex;align-items:stretch;">
+        <div style="width:5px;flex-shrink:0;border-radius:4px 0 0 4px;background:var(--${m.part})"></div>
+        <div class="card-body" style="flex:1;display:flex;align-items:center;gap:12px;padding:13px 13px 13px 13px;">
+          <div class="card-photo-wrap" style="margin-bottom:0;flex-shrink:0;">
+            ${img}
+          </div>
+          <div style="flex:1;min-width:0;">
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+              <span class="card-name" style="font-size:17px;">${m.name}</span>
+              <span class="part-chip ${m.part}">${PL[m.part]||m.part}</span>
+            </div>
+            <div style="font-size:13px;color:var(--text2);margin-bottom:2px;">⛪ ${m.church||'—'}${m.presbytery?' ('+m.presbytery+')':''}</div>
+            ${d.phone?`<div style="font-size:14px;font-weight:700;color:var(--navy);margin-bottom:2px;">📞 ${m.phone||'—'}</div>`:''}
+            ${d.born?`<div style="font-size:13px;color:var(--text2);margin-bottom:2px;">🎂 ${m.born||'—'}</div>`:''}
+            ${d.joined?`<div style="font-size:12px;color:var(--gold);font-weight:600;">📅 입단 ${m.joined||'—'}</div>`:''}
+          </div>
+          ${isAdmin?`<div style="display:flex;flex-direction:column;gap:4px;flex-shrink:0;">
+            <button class="btn-sm edit" style="font-size:11px;padding:5px 8px;width:48px;" onclick="openEdit('${m.id}')">✏️</button>
+            <button class="btn-sm del"  style="font-size:11px;padding:5px 8px;width:48px;" onclick="openDel('${m.id}')">🗑</button>
+          </div>`:''}
+        </div>
+      </div>
+    </div>`;
+  }
+
+  // ── 데스크톱 카드형 ──
+  return `<div class="member-card">
+    <div class="card-stripe ${m.part}"></div>
+    <div class="card-body">
+      <div class="card-photo-wrap">${img}</div>
+      <div class="card-info">
+        <div class="card-name">${m.name}</div>
+        <span class="part-chip ${m.part}">${PL[m.part]||m.part}</span>
+      </div>
+      <div class="card-rows">
+        <div class="card-row"><span class="card-lbl">⛪</span><span class="card-val">${m.church||'—'}${m.presbytery?' ('+m.presbytery+')':''}</span></div>
+        ${d.phone?`<div class="card-row"><span class="card-lbl">📞</span><span class="card-val ph">${m.phone||'—'}</span></div>`:''}
+        ${d.born?`<div class="card-row"><span class="card-lbl">🎂</span><span class="card-val">${m.born||'—'}</span></div>`:''}
+        ${m.email?`<div class="card-row"><span class="card-lbl">✉</span><span class="card-val">${m.email}</span></div>`:''}
+      </div>
+      ${d.joined?`<div class="card-since">📅 입단 ${m.joined||'—'}</div>`:''}
+      <div class="${acts}">
+        <button class="btn-sm edit" onclick="openEdit('${m.id}')">✏️ 수정</button>
+        <button class="btn-sm del" onclick="openDel('${m.id}')">🗑 삭제</button>
+      </div>
+    </div>
+  </div>`;
+}
+
 // ── MEMBERS ──
 function renderMembers(f){
   if(f!==undefined) curPart=f;
   const a=DB.members.filter(m=>m.status==='active');
-  const list=curPart==='all'?a:a.filter(m=>m.part===curPart);
+  const filtered=curPart==='all'?a:a.filter(m=>m.part===curPart);
+  const list=applySortTo(filtered);
   const g=document.getElementById('membersGrid');
   if(!list.length){g.innerHTML='<div class="empty">단원이 없습니다.</div>';return;}
-  const d=getDisp();
-  g.innerHTML=list.map(m=>{
-    const img=m.photo
-      ?`<img src="${m.photo}" class="card-photo ${m.part}" alt="${m.name}">`
-      :`<div class="card-avatar ${m.part}">${m.name[0]}</div>`;
-    const acts=isAdmin?'card-actions show':'card-actions';
-    return `<div class="member-card">
-      <div class="card-stripe ${m.part}"></div>
-      <div class="card-body">
-        <div class="card-photo-wrap">${img}</div>
-        <div class="card-info">
-          <div class="card-name">${m.name}</div>
-          <span class="part-chip ${m.part}">${PL[m.part]||m.part}</span>
-        </div>
-        <div class="card-rows">
-          <div class="card-row"><span class="card-lbl">⛪</span><span class="card-val">${m.church||'—'}${m.presbytery?' ('+m.presbytery+')':''}</span></div>
-          ${d.phone?`<div class="card-row"><span class="card-lbl">📞</span><span class="card-val ph">${m.phone||'—'}</span></div>`:''}
-          ${d.born?`<div class="card-row"><span class="card-lbl">🎂</span><span class="card-val">${m.born||'—'}</span></div>`:''}
-          ${m.email?`<div class="card-row"><span class="card-lbl">✉</span><span class="card-val">${m.email}</span></div>`:''}
-        </div>
-        ${d.joined?`<div class="card-since">📅 입단 ${m.joined||'—'}</div>`:''}
-        <div class="${acts}">
-          <button class="btn-sm edit" onclick="openEdit('${m.id}')">✏️ 수정</button>
-          <button class="btn-sm del" onclick="openDel('${m.id}')">🗑 삭제</button>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
+  g.innerHTML=list.map(buildMemberCard).join('');
 }
 
 function filterPart(p,btn){
@@ -803,34 +959,8 @@ function doSearch(q){
     return;
   }
   // 단원 명단과 동일한 카드 형태 + displaySettings 적용
-  const d=getDisp();
-  document.getElementById('searchResults').innerHTML=res.map(m=>{
-    const img=m.photo
-      ?`<img src="${m.photo}" class="card-photo ${m.part}" alt="${m.name}">`
-      :`<div class="card-avatar ${m.part}">${m.name[0]}</div>`;
-    const acts=isAdmin?'card-actions show':'card-actions';
-    return `<div class="member-card">
-      <div class="card-stripe ${m.part}"></div>
-      <div class="card-body">
-        <div class="card-photo-wrap">${img}</div>
-        <div class="card-info">
-          <div class="card-name">${m.name}</div>
-          <span class="part-chip ${m.part}">${PL[m.part]||m.part}</span>
-        </div>
-        <div class="card-rows">
-          <div class="card-row"><span class="card-lbl">⛪</span><span class="card-val">${m.church||'—'}${m.presbytery?' ('+m.presbytery+')':''}</span></div>
-          ${d.phone?`<div class="card-row"><span class="card-lbl">📞</span><span class="card-val ph">${m.phone||'—'}</span></div>`:''}
-          ${d.born?`<div class="card-row"><span class="card-lbl">🎂</span><span class="card-val">${m.born||'—'}</span></div>`:''}
-          ${m.email?`<div class="card-row"><span class="card-lbl">✉</span><span class="card-val">${m.email}</span></div>`:''}
-        </div>
-        ${d.joined?`<div class="card-since">📅 입단 ${m.joined||'—'}</div>`:''}
-        <div class="${acts}">
-          <button class="btn-sm edit" onclick="openEdit('${m.id}')">✏️ 수정</button>
-          <button class="btn-sm del" onclick="openDel('${m.id}')">🗑 삭제</button>
-        </div>
-      </div>
-    </div>`;
-  }).join('');
+  const sortedRes=applySortTo(res);
+  document.getElementById('searchResults').innerHTML=sortedRes.map(buildMemberCard).join('');
 }
 
 // ══════════ ADMIN ══════════
@@ -1030,6 +1160,37 @@ function toast(msg,type=''){
   });
 });
 
+
+// ══════════ SORT ══════════
+let sortKey = 'name';
+let sortAsc = true;
+
+function setSort(key, btn){
+  if(sortKey === key){
+    sortAsc = !sortAsc; // 같은 키 재클릭 → 방향 반전
+  } else {
+    sortKey = key;
+    sortAsc = true;
+  }
+  // UI 동기화
+  document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  ['name','born','joined','church','presbytery'].forEach(k => {
+    const arrow = document.getElementById('sa-'+k);
+    if(arrow) arrow.textContent = (k === sortKey) ? (sortAsc ? '▲' : '▼') : '▲';
+  });
+  renderMembers();
+}
+
+function applySortTo(list){
+  return [...list].sort((a, b) => {
+    const va = (a[sortKey] || '').toString();
+    const vb = (b[sortKey] || '').toString();
+    // 숫자처럼 보이는 날짜(1950.01.01)는 문자열 비교로도 정렬 가능
+    const cmp = va.localeCompare(vb, 'ko');
+    return sortAsc ? cmp : -cmp;
+  });
+}
 
 // ══════════ GITHUB API ══════════
 let GH = { owner:'', repo:'', path:'members.json', branch:'main', token:'' };
