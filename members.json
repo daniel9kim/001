@@ -2,7 +2,7 @@
   "meta": {
     "organization": "한국장로성가단",
     "year": 2024,
-    "lastUpdated": "2026-03-07"
+    "lastUpdated": "2026-03-08"
   },
   "displaySettings": {
     "showPhone": true,
@@ -703,7 +703,7 @@
     {
       "id": "m39",
       "name": "이재덕",
-      "part": "T2",
+      "part": "B1",
       "church": "서교동교회",
       "presbytery": "서울서노회",
       "born": "1951.06.24",
