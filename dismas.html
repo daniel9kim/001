@@ -18,16 +18,156 @@
   --gold-bright: #f0d080;
   --red-dark: #6b1a0e;
   --page-max: 680px;
+
+  /* ── 테마 색상 변수 (다크 기본값) ── */
+  --t-bg:           #0d0a07;
+  --t-main-bg:      #0d0a07;
+  --t-nav-bg:       rgba(13,10,7,0.94);
+  --t-nav-border:   rgba(201,168,76,0.15);
+  --t-brand:        #c9a84c;
+  --t-back:         #8b6347;
+  --t-back-hover:   #c9a84c;
+
+  --t-prose:        #c8b89a;
+  --t-poetic:       #e8d5b0;
+  --t-dialogue:     #f2e6cc;
+  --t-dialogue-border: rgba(201,168,76,0.25);
+  --t-em:           #e8d5b0;
+
+  --t-chapter-num:  #8a6f2e;
+  --t-chapter-title:#f2e6cc;
+  --t-chapter-rule: #8a6f2e;
+
+  --t-prologue:     #e8d5b0;
+  --t-epilogue:     #e8d5b0;
+  --t-epilogue-fin: #c9a84c;
+  --t-epilogue-border: rgba(201,168,76,0.15);
+  --t-bible-ref:    #8a6f2e;
+
+  --t-toc-num:      #8a6f2e;
+  --t-toc-name:     #c8b89a;
+  --t-toc-name-hover:#f2e6cc;
+  --t-toc-border:   rgba(201,168,76,0.08);
+  --t-toc-border-hover: rgba(201,168,76,0.25);
+  --t-divider:      #8a6f2e;
+
+  --t-ctrl-bg:      rgba(201,168,76,0.07);
+  --t-ctrl-border:  rgba(201,168,76,0.15);
+  --t-btn-color:    #8b6347;
+  --t-btn-hover:    #c9a84c;
+  --t-btn-hover-bg: rgba(201,168,76,0.1);
+  --t-btn-active-bg:rgba(201,168,76,0.15);
+  --t-label-color:  #8a6f2e;
+
+  --t-progress:     linear-gradient(to right, #8a6f2e, #c9a84c);
+  --t-dot:          rgba(201,168,76,0.25);
+  --t-dot-active:   #c9a84c;
+  --t-dot-label:    #c9a84c;
+}
+
+/* ══ 파피루스 테마 ══ */
+body.theme-papyrus {
+  --t-bg:           #efe3c8;
+  --t-main-bg:      #efe3c8;
+  --t-nav-bg:       rgba(232,220,196,0.97);
+  --t-nav-border:   rgba(100,60,20,0.2);
+  --t-brand:        #7a4a1e;
+  --t-back:         #9a6a3e;
+  --t-back-hover:   #3a2010;
+
+  --t-prose:        #3a2010;
+  --t-poetic:       #2c1608;
+  --t-dialogue:     #1e0e04;
+  --t-dialogue-border: rgba(120,70,20,0.3);
+  --t-em:           #2c1608;
+
+  --t-chapter-num:  #9a6a3e;
+  --t-chapter-title:#2c1608;
+  --t-chapter-rule: #c8a070;
+
+  --t-prologue:     #3a2010;
+  --t-epilogue:     #3a2010;
+  --t-epilogue-fin: #7a4a1e;
+  --t-epilogue-border: rgba(100,60,20,0.2);
+  --t-bible-ref:    #9a6a3e;
+
+  --t-toc-num:      #9a6a3e;
+  --t-toc-name:     #3a2010;
+  --t-toc-name-hover:#1e0e04;
+  --t-toc-border:   rgba(100,60,20,0.12);
+  --t-toc-border-hover: rgba(100,60,20,0.3);
+  --t-divider:      #c8a070;
+
+  --t-ctrl-bg:      rgba(100,60,20,0.07);
+  --t-ctrl-border:  rgba(100,60,20,0.2);
+  --t-btn-color:    #7a4a1e;
+  --t-btn-hover:    #3a2010;
+  --t-btn-hover-bg: rgba(100,60,20,0.1);
+  --t-btn-active-bg:rgba(100,60,20,0.18);
+  --t-label-color:  #9a6a3e;
+
+  --t-progress:     linear-gradient(to right, #c8a070, #7a4a1e);
+  --t-dot:          rgba(100,60,20,0.2);
+  --t-dot-active:   #7a4a1e;
+  --t-dot-label:    #7a4a1e;
+}
+
+/* ══ 라이트 테마 ══ */
+body.theme-light {
+  --t-bg:           #f8f5f0;
+  --t-main-bg:      #f8f5f0;
+  --t-nav-bg:       rgba(248,245,240,0.97);
+  --t-nav-border:   rgba(80,60,40,0.15);
+  --t-brand:        #6b4a2a;
+  --t-back:         #8a6a4a;
+  --t-back-hover:   #2a2018;
+
+  --t-prose:        #2a2018;
+  --t-poetic:       #1a1008;
+  --t-dialogue:     #0e0804;
+  --t-dialogue-border: rgba(80,60,40,0.3);
+  --t-em:           #1a1008;
+
+  --t-chapter-num:  #8a6a4a;
+  --t-chapter-title:#1a1008;
+  --t-chapter-rule: #b09070;
+
+  --t-prologue:     #2a2018;
+  --t-epilogue:     #2a2018;
+  --t-epilogue-fin: #6b4a2a;
+  --t-epilogue-border: rgba(80,60,40,0.15);
+  --t-bible-ref:    #8a6a4a;
+
+  --t-toc-num:      #8a6a4a;
+  --t-toc-name:     #2a2018;
+  --t-toc-name-hover:#0e0804;
+  --t-toc-border:   rgba(80,60,40,0.1);
+  --t-toc-border-hover: rgba(80,60,40,0.28);
+  --t-divider:      #b09070;
+
+  --t-ctrl-bg:      rgba(80,60,40,0.06);
+  --t-ctrl-border:  rgba(80,60,40,0.15);
+  --t-btn-color:    #6b4a2a;
+  --t-btn-hover:    #2a2018;
+  --t-btn-hover-bg: rgba(80,60,40,0.08);
+  --t-btn-active-bg:rgba(80,60,40,0.15);
+  --t-label-color:  #8a6a4a;
+
+  --t-progress:     linear-gradient(to right, #b09070, #6b4a2a);
+  --t-dot:          rgba(80,60,40,0.2);
+  --t-dot-active:   #6b4a2a;
+  --t-dot-label:    #6b4a2a;
 }
 
 * { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--bg);
+  background: var(--t-bg);
   font-family: 'Noto Serif KR', serif;
   color: var(--ink);
   overflow-x: hidden;
+  transition: background 0.4s ease;
 }
 
 /* ── 곡물 텍스처 오버레이 ── */
@@ -129,25 +269,27 @@ nav {
   top: 0; left: 0; right: 0;
   z-index: 200;
   height: 52px;
-  background: rgba(13,10,7,0.94);
+  background: var(--t-nav-bg);
   backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(201,168,76,0.15);
+  border-bottom: 1px solid var(--t-nav-border);
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 28px;
+  transition: background 0.4s, border-color 0.4s;
 }
 
 .nav-brand {
   font-family: 'Cinzel', serif;
   font-size: 13px;
-  color: var(--gold);
+  color: var(--t-brand);
   letter-spacing: 2px;
+  transition: color 0.4s;
 }
 
 .nav-back {
   font-size: 11px;
-  color: var(--ink-light);
+  color: var(--t-back);
   cursor: pointer;
   letter-spacing: 2px;
   font-family: 'Cinzel', serif;
@@ -155,23 +297,50 @@ nav {
   transition: color 0.25s;
   border: none; background: none;
 }
-.nav-back:hover { color: var(--gold); }
+.nav-back:hover { color: var(--t-back-hover); }
+
+/* ── 테마 버튼 ── */
+.theme-controls {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background: var(--t-ctrl-bg);
+  border: 1px solid var(--t-ctrl-border);
+  border-radius: 20px;
+  padding: 4px 8px;
+  transition: background 0.4s, border-color 0.4s;
+}
+
+.theme-btn {
+  font-size: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 3px 6px;
+  border-radius: 12px;
+  transition: all 0.2s;
+  line-height: 1;
+  opacity: 0.6;
+}
+.theme-btn:hover { opacity: 1; background: var(--t-btn-hover-bg); }
+.theme-btn.active { opacity: 1; background: var(--t-btn-active-bg); }
 
 /* ── 폰트 크기 조절 ── */
 .font-controls {
   display: flex;
   align-items: center;
   gap: 4px;
-  background: rgba(201,168,76,0.07);
-  border: 1px solid rgba(201,168,76,0.15);
+  background: var(--t-ctrl-bg);
+  border: 1px solid var(--t-ctrl-border);
   border-radius: 20px;
   padding: 4px 10px;
+  transition: background 0.4s, border-color 0.4s;
 }
 
 .font-btn {
   font-family: 'Noto Serif KR', serif;
   font-size: 13px;
-  color: var(--ink-light);
+  color: var(--t-btn-color);
   background: none;
   border: none;
   cursor: pointer;
@@ -183,8 +352,8 @@ nav {
   align-items: center;
 }
 .font-btn:hover {
-  color: var(--gold);
-  background: rgba(201,168,76,0.1);
+  color: var(--t-btn-hover);
+  background: var(--t-btn-hover-bg);
 }
 .font-btn:active {
   transform: scale(0.92);
@@ -194,11 +363,12 @@ nav {
   font-family: 'Cinzel', serif;
   font-size: 9px;
   letter-spacing: 2px;
-  color: var(--gold-dim);
+  color: var(--t-label-color);
   min-width: 28px;
   text-align: center;
   text-transform: uppercase;
   user-select: none;
+  transition: color 0.4s;
 }
 
 /* ── 진행 바 ── */
@@ -206,7 +376,7 @@ nav {
   position: fixed;
   top: 52px; left: 0;
   height: 2px;
-  background: linear-gradient(to right, var(--gold-dim), var(--gold));
+  background: var(--t-progress);
   width: 0%;
   z-index: 199;
   transition: width 0.1s linear;
@@ -228,13 +398,13 @@ nav {
 .toc-dot {
   width: 6px; height: 6px;
   border-radius: 50%;
-  background: rgba(201,168,76,0.25);
+  background: var(--t-dot);
   cursor: pointer;
   transition: all 0.25s;
   position: relative;
 }
 .toc-dot:hover, .toc-dot.active {
-  background: var(--gold);
+  background: var(--t-dot-active);
   transform: scale(1.4);
 }
 .toc-dot .toc-label {
@@ -244,7 +414,7 @@ nav {
   transform: translateY(-50%);
   white-space: nowrap;
   font-size: 10px;
-  color: var(--gold);
+  color: var(--t-dot-label);
   font-family: 'Cinzel', serif;
   letter-spacing: 1px;
   opacity: 0;
@@ -256,8 +426,9 @@ nav {
 /* ── 페이지 본체 ── */
 main {
   padding-top: 52px;
-  background: var(--bg);
+  background: var(--t-main-bg);
   min-height: 100vh;
+  transition: background 0.4s;
 }
 
 /* ── 각 섹션 공통 ── */
@@ -274,7 +445,7 @@ main {
   display:block;
   width: 60px;
   height: 1px;
-  background: linear-gradient(to right, transparent, var(--gold-dim), transparent);
+  background: linear-gradient(to right, transparent, var(--t-divider), transparent);
   margin: 0 auto 80px;
 }
 
@@ -289,35 +460,39 @@ main {
   font-family: 'Cinzel', serif;
   font-size: 10px;
   letter-spacing: 5px;
-  color: var(--gold-dim);
+  color: var(--t-chapter-num);
   text-transform: uppercase;
   display: block;
   margin-bottom: 16px;
+  transition: color 0.4s;
 }
 
 .chapter-title {
   font-family: 'Noto Serif KR', serif;
   font-size: 26px;
   font-weight: 300;
-  color: var(--parchment);
+  color: var(--t-chapter-title);
   letter-spacing: 4px;
   line-height: 1.4;
+  transition: color 0.4s;
 }
 
 .chapter-rule {
   width: 40px;
   height: 1px;
-  background: var(--gold-dim);
+  background: var(--t-chapter-rule);
   margin: 20px auto 0;
+  transition: background 0.4s;
 }
 
 /* ── 본문 텍스트 ── */
 .prose {
-  color: #c8b89a;
+  color: var(--t-prose);
   font-size: 17px;
   line-height: 2.1;
   font-weight: 300;
   letter-spacing: 0.3px;
+  transition: color 0.4s;
 }
 
 .prose p {
@@ -326,46 +501,50 @@ main {
 
 .prose .poetic {
   text-align: center;
-  color: var(--parchment-mid);
+  color: var(--t-poetic);
   font-size: 16px;
   line-height: 2.4;
   margin: 2em 0;
   font-style: normal;
   letter-spacing: 1px;
+  transition: color 0.4s;
 }
 
 .prose .dialogue {
-  color: var(--parchment);
+  color: var(--t-dialogue);
   font-weight: 400;
   padding-left: 1.5em;
-  border-left: 2px solid rgba(201,168,76,0.2);
+  border-left: 2px solid var(--t-dialogue-border);
   margin: 1.4em 0;
   font-style: italic;
+  transition: color 0.4s, border-color 0.4s;
 }
 
 .prose .em {
-  color: var(--parchment);
+  color: var(--t-em);
   font-style: italic;
+  transition: color 0.4s;
 }
 
 .prose .verse {
   font-family: 'Cinzel', serif;
   font-size: 12px;
   letter-spacing: 3px;
-  color: var(--gold-dim);
+  color: var(--t-chapter-num);
   text-align: center;
   margin: 2.5em 0;
   text-transform: uppercase;
 }
 
-/* ── 프롤로그 특별 스타일 ── */
+/* ── 프롤로그 ── */
 .prologue-text {
   text-align: center;
-  color: var(--parchment-mid);
+  color: var(--t-prologue);
   font-size: 18px;
   line-height: 2.6;
   letter-spacing: 1.5px;
   font-weight: 300;
+  transition: color 0.4s;
 }
 
 .bible-ref {
@@ -374,39 +553,42 @@ main {
   font-family: 'Cinzel', serif;
   font-size: 11px;
   letter-spacing: 4px;
-  color: var(--gold-dim);
+  color: var(--t-bible-ref);
   text-align: center;
+  transition: color 0.4s;
 }
 
 /* ── 에필로그 ── */
 .epilogue-text {
   text-align: center;
-  color: var(--parchment-mid);
+  color: var(--t-epilogue);
   font-size: 18px;
   line-height: 2.8;
   letter-spacing: 1px;
   font-weight: 300;
+  transition: color 0.4s;
 }
 
 .epilogue-final {
   margin-top: 3em;
   padding-top: 2em;
-  border-top: 1px solid rgba(201,168,76,0.15);
+  border-top: 1px solid var(--t-epilogue-border);
   font-family: 'Cinzel', serif;
   font-size: 13px;
   letter-spacing: 4px;
-  color: var(--gold);
+  color: var(--t-epilogue-fin);
   text-align: center;
   line-height: 2.5;
+  transition: color 0.4s, border-color 0.4s;
 }
 
-/* ── 목차 페이지 ── */
+/* ── 목차 ── */
 .toc-list {
   list-style: none;
   margin-top: 2em;
 }
 .toc-list li {
-  border-bottom: 1px solid rgba(201,168,76,0.08);
+  border-bottom: 1px solid var(--t-toc-border);
   padding: 14px 0;
   display: flex;
   align-items: baseline;
@@ -416,24 +598,26 @@ main {
 }
 .toc-list li:hover {
   padding-left: 8px;
-  border-bottom-color: rgba(201,168,76,0.25);
+  border-bottom-color: var(--t-toc-border-hover);
 }
 .toc-num {
   font-family: 'Cinzel', serif;
   font-size: 10px;
   letter-spacing: 2px;
-  color: var(--gold-dim);
+  color: var(--t-toc-num);
   min-width: 60px;
   text-transform: uppercase;
+  transition: color 0.4s;
 }
 .toc-name {
   font-size: 16px;
-  color: #c8b89a;
+  color: var(--t-toc-name);
   font-weight: 300;
   letter-spacing: 1px;
+  transition: color 0.4s;
 }
 .toc-list li:hover .toc-name {
-  color: var(--parchment);
+  color: var(--t-toc-name-hover);
 }
 
 /* ── 하단 네비 ── */
@@ -495,7 +679,7 @@ main {
 }
 </style>
 </head>
-<body>
+<body class="theme-dark">
 
 <!-- ══ 표지 ══ -->
 <div id="cover" onclick="enterStory()">
@@ -513,6 +697,11 @@ main {
 
 <nav>
   <span class="nav-brand">DISMAS</span>
+  <div class="theme-controls">
+    <button class="theme-btn active" id="btn-dark"     onclick="setTheme('dark')"     title="다크">🌙</button>
+    <button class="theme-btn"        id="btn-papyrus"  onclick="setTheme('papyrus')"  title="파피루스">📜</button>
+    <button class="theme-btn"        id="btn-light"    onclick="setTheme('light')"    title="라이트">☀️</button>
+  </div>
   <div class="font-controls">
     <button class="font-btn" onclick="changeFontSize(-1)" title="글씨 작게">A<span style="font-size:0.7em">−</span></button>
     <span class="font-label" id="font-label">보통</span>
@@ -1046,6 +1235,26 @@ function buildToc() {
   });
 }
 
+// ── 테마 변경 ──
+function setTheme(theme) {
+  document.body.classList.remove('theme-dark', 'theme-papyrus', 'theme-light');
+  document.body.classList.add('theme-' + theme);
+
+  // 버튼 활성화
+  ['dark','papyrus','light'].forEach(t => {
+    const btn = document.getElementById('btn-' + t);
+    if(btn) btn.classList.toggle('active', t === theme);
+  });
+
+  try { localStorage.setItem('dismas-theme', theme); } catch(e) {}
+}
+
+// 저장된 테마 복원
+try {
+  const savedTheme = localStorage.getItem('dismas-theme') || 'dark';
+  setTheme(savedTheme);
+} catch(e) { setTheme('dark'); }
+
 // ── 폰트 크기 조절 ──
 const fontSizes = [
   { size: 14, lineH: 1.9, label: '소' },
@@ -1060,7 +1269,7 @@ let fontIdx = 2; // 기본값 '보통'
 function changeFontSize(dir) {
   fontIdx = Math.max(0, Math.min(fontSizes.length - 1, fontIdx + dir));
   const f = fontSizes[fontIdx];
-  document.querySelectorAll('.prose, .prologue-text, .epilogue-text, .poetic').forEach(el => {
+  document.querySelectorAll('.prose, .prologue-text, .epilogue-text').forEach(el => {
     el.style.fontSize = f.size + 'px';
     el.style.lineHeight = f.lineH;
   });
