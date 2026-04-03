@@ -138,6 +138,10 @@
     margin-bottom: 16px;
   }
   .filter-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
     padding: 12px 16px;
     font-size: 11px;
     font-weight: 700;
@@ -147,15 +151,52 @@
     border-bottom: 1px solid var(--border);
     background: rgba(255,255,255,0.02);
   }
+  .filter-title-text {
+    display: inline-flex;
+    align-items: center;
+    min-width: 0;
+  }
+  .inline-all-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface2);
+    color: var(--text2);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .inline-all-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent2);
+  }
+  .inline-all-btn.active {
+    background: rgba(200,169,110,0.12);
+    border-color: var(--accent);
+    color: var(--accent2);
+  }
   .filter-list {
-    padding: 8px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    padding: 10px;
   }
   .filter-btn {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     width: 100%;
-    padding: 7px 10px;
+    min-height: 58px;
+    padding: 8px 6px;
     background: transparent;
     border: none;
     border-radius: 6px;
@@ -164,7 +205,8 @@
     font-family: 'Noto Sans KR', sans-serif;
     cursor: pointer;
     transition: all 0.15s;
-    text-align: left;
+    text-align: center;
+    gap: 4px;
   }
   .filter-btn:hover { background: var(--surface2); color: var(--text); }
   .filter-btn.active {
@@ -176,6 +218,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    max-width: 100%;
   }
   .filter-count {
     font-size: 11px;
@@ -212,6 +255,52 @@
   }
   .gender-btn:hover { background: var(--surface2); }
   .gender-btn.active {
+    background: rgba(200,169,110,0.12);
+    color: var(--accent2);
+    border-color: var(--accent);
+    font-weight: 500;
+  }
+  .gender-btn.is-top,
+  .age-btn.is-top {
+    box-shadow: inset 0 0 0 1px rgba(232,213,163,0.18);
+  }
+  .filter-btn-main {
+    display: block;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .filter-btn-sub {
+    display: block;
+    margin-top: 2px;
+    font-size: 11px;
+    color: var(--text3);
+    line-height: 1.2;
+  }
+  .gender-btn.active .filter-btn-sub,
+  .age-btn.active .filter-btn-sub {
+    color: var(--accent);
+  }
+
+  .age-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 10px;
+  }
+  .age-btn {
+    padding: 7px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text2);
+    font-size: 13px;
+    font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+  }
+  .age-btn:hover { background: var(--surface2); }
+  .age-btn.active {
     background: rgba(200,169,110,0.12);
     color: var(--accent2);
     border-color: var(--accent);
@@ -346,6 +435,68 @@
     transform: translateY(-1px);
     opacity: 0.92;
   }
+  .modal-meta .jik-badge {
+    padding: 5px 11px;
+    border-radius: 999px;
+    font-size: 12px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+  .modal-meta .jik-badge.is-clickable {
+    position: relative;
+    font-weight: 700;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .modal-meta .jik-badge.is-clickable.is-active {
+    color: #fff7e3;
+    border-color: rgba(232,213,163,0.78) !important;
+    box-shadow: 0 0 0 2px rgba(200,169,110,0.24), 0 10px 22px rgba(0,0,0,0.26), inset 0 1px 0 rgba(255,255,255,0.14);
+    filter: brightness(1.12) saturate(1.08);
+  }
+  .modal-meta .jik-badge.is-clickable.is-active::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(232,213,163,0.18), rgba(255,255,255,0.02));
+    pointer-events: none;
+  }
+  .modal-meta .jik-badge.is-clickable > span {
+    position: relative;
+    z-index: 1;
+  }
+  .modal-meta .jik-badge.is-clickable:hover {
+    transform: translateY(-1px);
+    opacity: 1;
+    filter: brightness(1.08);
+  }
+  .modal-meta [data-badge-filter-type="성별"] {
+    background: rgba(126,200,227,0.18);
+    color: #d8f5ff;
+    border: 1px solid rgba(126,200,227,0.45);
+  }
+  .modal-meta [data-badge-filter-type="세례"] {
+    background: rgba(123,206,154,0.18);
+    color: #dff9e8;
+    border: 1px solid rgba(123,206,154,0.42);
+  }
+  .modal-meta [data-badge-filter-type="현재상태"] {
+    box-shadow: 0 6px 18px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+  .modal-meta [data-badge-filter-type="성별"].is-active {
+    background: linear-gradient(135deg, rgba(126,200,227,0.34), rgba(126,200,227,0.18));
+    color: #f4fcff;
+  }
+  .modal-meta [data-badge-filter-type="세례"].is-active {
+    background: linear-gradient(135deg, rgba(123,206,154,0.34), rgba(123,206,154,0.18));
+    color: #f4fff7;
+  }
+  .modal-meta [data-badge-filter-type="현재상태"].is-active {
+    background: linear-gradient(135deg, rgba(200,169,110,0.36), rgba(200,169,110,0.18));
+    color: #fff7e8;
+  }
+  .modal-meta [data-badge-filter-type="직분"].is-active {
+    box-shadow: 0 0 0 2px rgba(200,169,110,0.24), 0 10px 22px rgba(0,0,0,0.26), inset 0 1px 0 rgba(255,255,255,0.14);
+  }
   .jik-장로 { background: rgba(240,192,96,0.15); color: var(--장로); border: 1px solid rgba(240,192,96,0.3); }
   .jik-목사 { background: rgba(232,122,90,0.15); color: var(--목사); border: 1px solid rgba(232,122,90,0.3); }
   .jik-안수집사 { background: rgba(126,200,227,0.15); color: var(--안수집사); border: 1px solid rgba(126,200,227,0.3); }
@@ -357,13 +508,79 @@
   .jik-명예권사 { background: rgba(168,184,216,0.15); color: var(--명예권사); border: 1px solid rgba(168,184,216,0.3); }
   .jik-other { background: rgba(144,144,160,0.15); color: var(--other); border: 1px solid rgba(144,144,160,0.3); }
 
-  .family-cell {
-    max-width: 280px;
-    overflow: hidden;
-    text-overflow: ellipsis;
+  .value-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 9px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
     white-space: nowrap;
+    border: 1px solid color-mix(in srgb, var(--badge-color, var(--accent)) 34%, transparent);
+    background: color-mix(in srgb, var(--badge-color, var(--accent)) 15%, transparent);
+    color: var(--badge-color, var(--accent2));
+  }
+  .value-badge.is-clickable {
+    cursor: pointer;
+    transition: transform 0.12s ease, opacity 0.12s ease;
+  }
+  .value-badge.is-clickable:hover {
+    transform: translateY(-1px);
+    opacity: 0.94;
+  }
+  .modal-value .value-badge {
+    min-height: 28px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+  .modal-value .value-badge.is-clickable {
+    box-shadow: 0 6px 18px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .modal-value .value-badge.is-clickable.is-active {
+    color: #fff7e3;
+    border-color: rgba(232,213,163,0.78) !important;
+    box-shadow: 0 0 0 2px rgba(200,169,110,0.22), 0 10px 22px rgba(0,0,0,0.24), inset 0 1px 0 rgba(255,255,255,0.14);
+    filter: brightness(1.12) saturate(1.08);
+  }
+  .modal-value .value-badge.is-clickable:hover {
+    opacity: 1;
+    filter: brightness(1.08);
+  }
+  .family-cell {
+    max-width: 320px;
     font-size: 12px;
     color: var(--text3);
+  }
+  .family-inline-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 8px;
+    align-items: center;
+  }
+  .family-inline-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--text3);
+    max-width: 100%;
+  }
+  .family-inline-name.is-link {
+    color: var(--accent2);
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .family-inline-name.is-link:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .family-inline-jik {
+    color: var(--text3);
+    font-size: 11px;
   }
   .phone-cell { white-space: nowrap; font-size: 12px; }
   .date-cell { white-space: nowrap; font-size: 12px; }
@@ -403,6 +620,7 @@
     align-items: flex-start;
     justify-content: space-between;
     gap: 16px;
+    background: linear-gradient(180deg, rgba(200,169,110,0.10) 0%, rgba(255,255,255,0.02) 100%);
   }
   .modal-name {
     font-family: 'Noto Serif KR', serif;
@@ -430,33 +648,56 @@
   .modal-close:hover { color: var(--text); }
   .modal-body { padding: 20px 24px 24px; }
   .modal-section {
-    margin-bottom: 20px;
+    margin-bottom: 16px;
+    padding: 14px 16px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+    border: 1px solid rgba(200,169,110,0.14);
+    border-radius: 14px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
   }
   .modal-section-title {
-    font-size: 10px;
+    font-size: 11px;
     font-weight: 700;
-    letter-spacing: 2px;
-    color: var(--text3);
+    letter-spacing: 1.5px;
+    color: var(--accent2);
     text-transform: uppercase;
     margin-bottom: 12px;
-    padding-bottom: 6px;
-    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px;
+    padding-left: 10px;
+    border-bottom: 1px solid rgba(200,169,110,0.20);
+    position: relative;
+  }
+  .modal-section-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1px;
+    bottom: 9px;
+    width: 3px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--accent) 0%, var(--accent2) 100%);
   }
   .modal-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
   }
-  .modal-field { }
+  .modal-field {
+    padding: 10px 12px;
+    background: rgba(15,17,23,0.35);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 10px;
+  }
   .modal-label {
     font-size: 11px;
-    color: var(--text3);
-    margin-bottom: 3px;
+    color: var(--accent);
+    margin-bottom: 5px;
   }
   .modal-value {
     font-size: 14px;
     color: var(--text);
-    font-weight: 500;
+    font-weight: 600;
+    line-height: 1.5;
   }
   .modal-value.empty { color: var(--text3); font-style: italic; font-weight: 400; font-size: 13px; }
 
@@ -470,22 +711,207 @@
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    padding: 5px 12px;
+    padding: 7px 12px;
     background: var(--surface2);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 13px;
   }
   .family-member-tag.is-link {
     cursor: pointer;
     transition: all 0.15s;
+    background: rgba(126,200,227,0.10);
+    border-color: rgba(126,200,227,0.32);
+    box-shadow: inset 0 0 0 1px rgba(126,200,227,0.08);
   }
   .family-member-tag.is-link:hover {
-    border-color: var(--accent);
-    background: rgba(200,169,110,0.10);
+    border-color: #7ec8e3;
+    background: rgba(126,200,227,0.18);
+    transform: translateY(-1px);
   }
   .family-member-name { color: var(--text); font-weight: 500; }
+  .family-member-tag.is-link .family-member-name { color: #d7f3ff; }
   .family-member-jik { color: var(--text3); font-size: 11px; }
+  .family-member-tag.is-link .family-member-jik { color: #8ed4ee; }
+
+
+  .chart-toggle {
+    cursor: pointer;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+  .chart-toggle:hover {
+    color: var(--accent2);
+    background: rgba(200,169,110,0.08);
+  }
+  .chart-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 16px;
+  }
+  .chart-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .chart-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent2);
+  }
+  .chart-subtitle {
+    font-size: 12px;
+    color: var(--text3);
+    margin-top: 4px;
+  }
+  .chart-hint {
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--text3);
+  }
+  .chart-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.9fr);
+    gap: 20px;
+    align-items: start;
+  }
+  .chart-bars {
+    display: grid;
+    gap: 12px;
+  }
+  .chart-row {
+    display: grid;
+    grid-template-columns: 130px 1fr 84px;
+    gap: 12px;
+    align-items: center;
+    cursor: pointer;
+  }
+  .chart-row:hover .chart-bar-track {
+    border-color: rgba(200,169,110,0.65);
+  }
+  .chart-label {
+    font-size: 13px;
+    color: var(--text2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .chart-bar-track {
+    height: 28px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+    position: relative;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .chart-row:hover .chart-bar-track {
+    transform: translateY(-1px);
+  }
+  .chart-bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    min-width: 52px;
+    color: #2b2212;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .chart-value {
+    text-align: right;
+    font-size: 12px;
+    color: var(--text2);
+    white-space: nowrap;
+  }
+  .chart-side {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+  }
+  .chart-side-title {
+    font-size: 13px;
+    color: var(--text2);
+    margin-bottom: 12px;
+  }
+  .chart-pie-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  .chart-pie-svg {
+    width: 220px;
+    height: 220px;
+    overflow: visible;
+  }
+  .chart-pie-hole {
+    fill: var(--surface);
+  }
+  .chart-pie-center-text {
+    fill: var(--accent2);
+    font-size: 12px;
+    font-weight: 700;
+    text-anchor: middle;
+  }
+  .chart-pie-center-subtext {
+    fill: var(--text3);
+    font-size: 10px;
+    text-anchor: middle;
+  }
+  .chart-slice {
+    cursor: pointer;
+    transition: transform 0.15s ease, opacity 0.15s ease, filter 0.15s ease;
+    transform-origin: 110px 110px;
+  }
+  .chart-slice:hover {
+    opacity: 0.95;
+    filter: brightness(1.08);
+  }
+  .chart-legend {
+    display: grid;
+    gap: 8px;
+  }
+  .chart-legend-item {
+    display: grid;
+    grid-template-columns: 12px 1fr auto;
+    gap: 10px;
+    align-items: center;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface2);
+    cursor: pointer;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .chart-legend-item:hover {
+    border-color: rgba(200,169,110,0.65);
+    transform: translateY(-1px);
+  }
+  .chart-swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+  }
+  .chart-legend-label {
+    font-size: 12px;
+    color: var(--text2);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .chart-legend-value {
+    font-size: 12px;
+    color: var(--accent2);
+    white-space: nowrap;
+    font-weight: 600;
+  }
 
   /* PAGINATION */
   .pagination {
@@ -588,6 +1014,8 @@
     .search-wrap { max-width: 100%; min-width: 100%; }
     .header-divider { display: none; }
     thead { top: 0; }
+    .chart-layout { grid-template-columns: 1fr; }
+    .chart-row { grid-template-columns: 100px 1fr 74px; }
   }
   @media (max-width: 640px) {
     body { background: #0d1018; }
@@ -597,22 +1025,25 @@
     }
     .main-wrap { padding: 12px; }
     .filter-title { padding: 10px 12px; }
+    .inline-all-btn { padding: 4px 8px; font-size: 10px; }
     .filter-list {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 8px;
-      overflow-x: auto;
+      overflow: visible;
       padding: 10px;
-      scroll-snap-type: x proximity;
     }
     .filter-btn {
-      width: auto;
-      min-width: max-content;
-      padding: 8px 12px;
+      width: 100%;
+      min-width: 0;
+      min-height: 56px;
+      padding: 8px 6px;
       border: 1px solid var(--border);
       background: var(--surface2);
       scroll-snap-align: start;
     }
     .gender-row { padding: 10px; }
+    .age-row { padding: 10px; }
     .active-filters { gap: 6px; margin-bottom: 12px; }
     .result-info { width: 100%; margin-left: 0; }
     .table-wrap {
@@ -639,7 +1070,12 @@
     .modal-header, .modal-body { padding-left: 16px; padding-right: 16px; }
     .modal-name { font-size: 22px; }
     .modal-grid { grid-template-columns: 1fr; }
-  }
+    .chart-panel { padding: 14px; }
+    .chart-panel-header { align-items: flex-start; flex-direction: column; }
+    .chart-side { padding: 14px; }
+    .chart-row { grid-template-columns: 1fr; gap: 6px; }
+    .chart-value { text-align: left; }
+    .chart-pie-svg { width: 190px; height: 190px; }
   }
 
   /* SCROLLBAR */
@@ -674,28 +1110,51 @@
   <!-- SIDEBAR -->
   <aside class="sidebar">
     <div class="filter-section">
-      <div class="filter-title">소속 구분</div>
-      <div class="gender-row" id="소속구분FilterRow">
-        <button class="gender-btn active affiliation-type-btn" data-affiliation-type="전체">전체</button>
-        <button class="gender-btn affiliation-type-btn" data-affiliation-type="마을">마을</button>
-        <button class="gender-btn affiliation-type-btn" data-affiliation-type="교구">교구</button>
-        <button class="gender-btn affiliation-type-btn" data-affiliation-type="부서">부서</button>
+      <div class="filter-title">
+        <span class="filter-title-text chart-toggle" data-chart="교구">마을</span>
+        <button type="button" class="inline-all-btn active" id="groupAllBtn" data-type="교구">전체</button>
       </div>
-    </div>
-    <div class="filter-section">
-      <div class="filter-title">교구 / 마을</div>
       <div class="filter-list" id="교구FilterList"></div>
     </div>
     <div class="filter-section">
-      <div class="filter-title">직분</div>
+      <div class="filter-title">
+        <span class="filter-title-text chart-toggle" data-chart="직분">직분</span>
+        <button type="button" class="inline-all-btn active" id="roleAllBtn" data-type="직분">전체</button>
+      </div>
       <div class="filter-list" id="직분FilterList"></div>
     </div>
     <div class="filter-section">
-      <div class="filter-title">성별</div>
-      <div class="gender-row">
-        <button class="gender-btn active" data-gender="전체">전체</button>
+      <div class="filter-title">
+        <span class="filter-title-text chart-toggle" data-chart="현재상태">현재상태</span>
+        <button type="button" class="inline-all-btn active" id="statusAllBtn" data-type="현재상태">전체</button>
+      </div>
+      <div class="filter-list" id="상태FilterList"></div>
+    </div>
+    <div class="filter-section">
+      <div class="filter-title">
+        <span class="filter-title-text chart-toggle" data-chart="성별">성별</span>
+        <button type="button" class="inline-all-btn active" id="genderAllBtn" data-gender="전체">전체</button>
+      </div>
+      <div class="gender-row" id="genderFilterRow">
         <button class="gender-btn" data-gender="남">남</button>
         <button class="gender-btn" data-gender="여">여</button>
+      </div>
+    </div>
+    <div class="filter-section">
+      <div class="filter-title">
+        <span class="filter-title-text chart-toggle" data-chart="세대">세대</span>
+        <button type="button" class="inline-all-btn active" id="ageAllBtn" data-age-group="전체">전체</button>
+      </div>
+      <div class="age-row" id="ageFilterRow">
+        <button class="age-btn" data-age-group="10대">10대</button>
+        <button class="age-btn" data-age-group="20대">20대</button>
+        <button class="age-btn" data-age-group="30대">30대</button>
+        <button class="age-btn" data-age-group="40대">40대</button>
+        <button class="age-btn" data-age-group="50대">50대</button>
+        <button class="age-btn" data-age-group="60대">60대</button>
+        <button class="age-btn" data-age-group="70대">70대</button>
+        <button class="age-btn" data-age-group="80대">80대</button>
+        <button class="age-btn" data-age-group="90대">90대</button>
       </div>
     </div>
   </aside>
@@ -703,9 +1162,27 @@
   <!-- CONTENT -->
   <div class="content-area">
     <div class="active-filters" id="activeFilters">
-      <span class="result-info"><strong id="resultCount">-</strong>명 표시 중</span>
+      <span class="result-info"><strong id="resultCount">전체</strong> 0명</span>
     </div>
-    <div class="table-wrap">
+    <div class="chart-panel" id="chartPanel" style="display:none;">
+      <div class="chart-panel-header">
+        <div>
+          <div class="chart-title" id="chartTitle">비율 그래프</div>
+          <div class="chart-subtitle" id="chartSubtitle">현재 필터 결과 기준 비율</div>
+          <div class="chart-hint" id="chartHint">그래프 항목을 클릭하면 해당 성도 목록으로 바로 이동합니다.</div>
+        </div>
+        <button type="button" class="page-btn" id="chartBackBtn">성도목록으로 돌아가기</button>
+      </div>
+      <div class="chart-layout">
+        <div class="chart-bars" id="chartBars"></div>
+        <div class="chart-side">
+          <div class="chart-side-title">원형 그래프</div>
+          <div class="chart-pie-wrap" id="chartPieWrap"></div>
+          <div class="chart-legend" id="chartLegend"></div>
+        </div>
+      </div>
+    </div>
+    <div class="table-wrap" id="tableWrap">
       <table>
         <thead>
           <tr>
@@ -743,7 +1220,6 @@
 
 <script>
 (() => {
-  const MEMBERS_JSON_URL = './church_members.json';
   const PAGE_SIZE = 50;
   const ROLE_ORDER = ['장로','목사','사모','안수집사','전도사','권사','집사','성도','기타'];
 
@@ -754,12 +1230,17 @@
     sortCol: '이름',
     sortDir: 1,
     searchQuery: '',
+    view: 'table',
+    chartType: null,
     filters: {
-      소속구분: '전체',
       교구: null,
       직분: null,
       성별: '전체',
-      세례: null
+      세대: '전체',
+      현재상태: null,
+      세례: null,
+      구역: null,
+      세부직분: null
     }
   };
 
@@ -769,6 +1250,15 @@
 
   function normalizeText(value) {
     return String(value ?? '').trim().replace(/\s+/g, ' ');
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
   }
 
   function normalizeRole(member) {
@@ -803,18 +1293,68 @@
     return '부서';
   }
 
+
+  function getVillageFilterValue(member) {
+    const village = normalizeText(member?.교구);
+    return village && village.endsWith('마을') ? village : '기타';
+  }
+
   function formatDate(v) {
     const s = normalizeText(v);
-    if (!s || s === '0' || s === 'NaT') return '';
+    if (!s || s === '0' || s === 'NaT' || s === 'null' || s === 'undefined') return '';
     if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return s;
+    if (/^\d{4}[./]\d{2}[./]\d{2}$/.test(s)) return s.replace(/[.]/g, '-').replace(/\//g, '-');
     if (/^\d{8}$/.test(s)) return `${s.slice(0,4)}-${s.slice(4,6)}-${s.slice(6,8)}`;
+    if (/^\d{6}$/.test(s)) return s;
+    if (/^\d{5}$/.test(s)) {
+      const excelEpoch = new Date(Date.UTC(1899, 11, 30));
+      const date = new Date(excelEpoch.getTime() + Number(s) * 86400000);
+      const yyyy = date.getUTCFullYear();
+      const mm = String(date.getUTCMonth() + 1).padStart(2, '0');
+      const dd = String(date.getUTCDate()).padStart(2, '0');
+      return `${yyyy}-${mm}-${dd}`;
+    }
     return s;
   }
 
 
+
+  function getAgeGroup(member) {
+    const age = Number(member?.나이 || 0);
+    if (!Number.isFinite(age) || age <= 0) return '';
+    const decade = Math.floor(age / 10) * 10;
+    return `${decade}대`;
+  }
+
   function getBirthDisplay(member) {
-    const birth = formatDate(member?.생년월일 || member?.생일 || member?.출생일 || member?.생년월일8자리 || '');
-    return birth || '데이터 없음';
+    if (!member || typeof member !== 'object') return '데이터 없음';
+
+    const preferredKeys = [
+      '생년월일', '생년월일8자리', '생년월일 8자리', '출생일', '생일',
+      'Birth', 'birth', 'birthday', 'Birthday', 'DOB', 'dob'
+    ];
+
+    for (const key of preferredKeys) {
+      const birth = formatDate(member[key]);
+      if (birth) return birth;
+    }
+
+    const dynamicKey = Object.keys(member).find((key) => /생년|출생|생일|birth|birthday|dob/i.test(String(key)));
+    if (dynamicKey) {
+      const birth = formatDate(member[dynamicKey]);
+      if (birth) return birth;
+    }
+
+    const nestedCandidates = [member.추가정보, member.상세정보, member.개인정보, member.profile, member.meta];
+    for (const nested of nestedCandidates) {
+      if (!nested || typeof nested !== 'object') continue;
+      const nestedKey = Object.keys(nested).find((key) => /생년|출생|생일|birth|birthday|dob/i.test(String(key)));
+      if (!nestedKey) continue;
+      const birth = formatDate(nested[nestedKey]);
+      if (birth) return birth;
+    }
+
+    return '데이터 없음';
   }
 
   function getJikClass(roleLabel) {
@@ -828,6 +1368,87 @@
     if (role.includes('집사')) return 'jik-집사';
     if (role.includes('성도')) return 'jik-성도';
     return 'jik-other';
+  }
+
+  function getBadgeColor(label, type = 'default') {
+    const normalized = normalizeText(label) || '미기재';
+    const presetStatus = {
+      '출석': '#7bce9a',
+      '미출석': '#e3a87e',
+      '장기결석': '#e87a5a',
+      '새가족': '#7ec8e3',
+      '등록': '#8aa0c8',
+      '이명': '#c97ecb',
+      '전출': '#a8b8d8'
+    };
+    if (type === 'status' && presetStatus[normalized]) return presetStatus[normalized];
+
+    let hash = 0;
+    const seed = `${type}:${normalized}`;
+    for (let i = 0; i < seed.length; i += 1) {
+      hash = ((hash << 5) - hash) + seed.charCodeAt(i);
+      hash |= 0;
+    }
+    const hue = Math.abs(hash) % 360;
+    return `hsl(${hue} 62% 68%)`;
+  }
+
+  function makeValueBadge(label, type = 'default', clickable = false, extraAttrs = '') {
+    const safeLabel = normalizeText(label) || '-';
+    const color = getBadgeColor(safeLabel, type);
+    return `<span class="value-badge${clickable ? ' is-clickable' : ''}" style="--badge-color:${color};" ${extraAttrs}>${escapeHtml(safeLabel)}</span>`;
+  }
+
+  function isBadgeFilterActive(type, value) {
+    const normalizedValue = normalizeText(value);
+    if (!normalizedValue) return false;
+    if (type === '직분') return normalizeText(state.filters.직분) === normalizeRole({ 직분: normalizedValue, 세부직분: normalizedValue });
+    if (type === '성별') return state.filters.성별 === normalizedValue;
+    if (type === '세례') return normalizeText(state.filters.세례) === normalizedValue;
+    if (type === '현재상태') return normalizeText(state.filters.현재상태) === normalizedValue;
+    if (type === '교구') return normalizeText(state.filters.교구) === normalizedValue;
+    if (type === '구역') return normalizeText(state.filters.구역) === normalizedValue;
+    if (type === '세부직분') return normalizeText(state.filters.세부직분) === normalizedValue;
+    return false;
+  }
+
+  function makeDetailFilterBadge(label, type = 'default', filterType = '', filterValue = '') {
+    const safeLabel = normalizeText(label);
+    const safeFilterValue = normalizeText(filterValue);
+    const clickable = filterType && safeFilterValue;
+    const active = clickable && isBadgeFilterActive(filterType, safeFilterValue);
+    const attrs = clickable
+      ? ` data-badge-filter-type="${escapeHtml(filterType)}" data-badge-filter-value="${escapeHtml(safeFilterValue)}"`
+      : '';
+    return makeValueBadge(safeLabel || '-', type, clickable, `${attrs}${active ? ' data-badge-active="true"' : ''} `).replace('value-badge', `value-badge${active ? ' is-active' : ''}`);
+  }
+
+  function renderDetailLookupField(label, displayValue, options = {}) {
+    const safeLabel = normalizeText(label);
+    const safeDisplayValue = normalizeText(displayValue);
+    const filterType = options.filterType || '';
+    const filterValue = normalizeText(options.filterValue ?? safeDisplayValue);
+    const badgeType = options.badgeType || 'default';
+    const isEmpty = !safeDisplayValue || safeDisplayValue === '0' || safeDisplayValue === 'NaT';
+    if (isEmpty) return field(safeLabel, safeDisplayValue);
+    if (!filterType || !filterValue) return field(safeLabel, safeDisplayValue);
+    return fieldHtml(safeLabel, makeDetailFilterBadge(safeDisplayValue, badgeType, filterType, filterValue));
+  }
+
+  function renderFamilyInline(member) {
+    const raw = normalizeText(member && member.가족전체);
+    const selfName = normalizeText(member && member.이름);
+    if (!raw) return '<span style="color:var(--text3)">-</span>';
+    const parts = raw.split(/\s+/).filter(Boolean);
+    return `<div class="family-inline-list">${parts.map(part => {
+      const m = part.match(/^(.+?)(?:\((.+?)\))?$/);
+      const name = normalizeText(m ? m[1] : part);
+      const jik = normalizeText(m && m[2] ? m[2] : '');
+      const linkedMember = findFamilyMemberByName(name, member.가족전체);
+      const clickable = linkedMember && linkedMember.ID && name !== selfName;
+      const attrs = clickable ? ` data-family-member-id="${escapeHtml(linkedMember.ID)}"` : '';
+      return `<span class="family-inline-name${clickable ? ' is-link' : ''}"${attrs}>${escapeHtml(name)}${jik ? `<span class="family-inline-jik">(${escapeHtml(jik)})</span>` : ''}</span>`;
+    }).join('')}</div>`;
   }
 
   function findFamilyMemberByName(name, familyText) {
@@ -862,7 +1483,11 @@
   function field(label, value) {
     const text = normalizeText(value);
     const isEmpty = !text || text === '0' || text === 'NaT';
-    return `<div class="modal-field"><div class="modal-label">${label}</div><div class="modal-value ${isEmpty ? 'empty' : ''}">${isEmpty ? '-' : text}</div></div>`;
+    return `<div class="modal-field"><div class="modal-label">${label}</div><div class="modal-value ${isEmpty ? 'empty' : ''}">${isEmpty ? '-' : escapeHtml(text)}</div></div>`;
+  }
+
+  function fieldHtml(label, html, isEmpty = false) {
+    return `<div class="modal-field"><div class="modal-label">${escapeHtml(label)}</div><div class="modal-value ${isEmpty ? 'empty' : ''}">${isEmpty ? '-' : html}</div></div>`;
   }
 
   function isMobileView() {
@@ -894,15 +1519,6 @@
     if (notice) notice.style.display = 'none';
   }
 
-  function renderAffiliationTypeButtons(stats) {
-    document.querySelectorAll('.affiliation-type-btn').forEach(btn => {
-      const type = btn.dataset.affiliationType || '전체';
-      const s = stats[type] || { groupCount: 0 };
-      btn.textContent = type === '전체' ? `전체 (${s.groupCount})` : `${type} (${s.groupCount})`;
-      btn.classList.toggle('active', state.filters.소속구분 === type);
-    });
-  }
-
   function makeFilterBtn({label, count, type, value, isAll = false, active = false}) {
     const btn = document.createElement('button');
     btn.type = 'button';
@@ -914,72 +1530,106 @@
     return btn;
   }
 
+
+  function getVisibleMembersForMenuCounts() {
+    return Array.isArray(state.filtered) && state.filtered.length ? state.filtered : state.members;
+  }
+
+  function updateInlineAllButton(id, isActive, count) {
+    const btn = $(id);
+    if (!btn) return;
+    btn.textContent = `전체 ${count.toLocaleString()}명`;
+    btn.classList.toggle('active', isActive);
+    btn.title = `전체 ${count.toLocaleString()}명`;
+  }
+
+  function updateGenderButtons() {
+    const visible = getVisibleMembersForMenuCounts();
+    const counts = new Map([['남', 0], ['여', 0]]);
+    visible.forEach(member => {
+      const gender = normalizeText(member.성별);
+      if (counts.has(gender)) counts.set(gender, counts.get(gender) + 1);
+    });
+    const total = visible.length || 0;
+    const maxCount = Math.max(0, ...counts.values());
+
+    updateInlineAllButton('genderAllBtn', state.filters.성별 === '전체', total);
+
+    document.querySelectorAll('.gender-row .gender-btn[data-gender]').forEach(btn => {
+      const gender = btn.dataset.gender || '전체';
+      const count = counts.get(gender) || 0;
+      btn.innerHTML = `<span class="filter-btn-main">${gender}</span><span class="filter-btn-sub">${count.toLocaleString()}명</span>`;
+      btn.classList.toggle('active', gender === state.filters.성별);
+      btn.classList.toggle('is-top', count > 0 && count === maxCount);
+      btn.title = `${gender} ${count.toLocaleString()}명`;
+    });
+  }
+
+  function updateAgeButtons() {
+    const groups = ['10대','20대','30대','40대','50대','60대','70대','80대','90대'];
+    const visible = getVisibleMembersForMenuCounts();
+    const counts = new Map(groups.map(group => [group, 0]));
+    visible.forEach(member => {
+      const group = getAgeGroup(member);
+      if (counts.has(group)) counts.set(group, counts.get(group) + 1);
+    });
+    const total = visible.length || 0;
+    const maxCount = Math.max(0, ...counts.values());
+
+    updateInlineAllButton('ageAllBtn', state.filters.세대 === '전체', total);
+
+    document.querySelectorAll('.age-row .age-btn[data-age-group]').forEach(btn => {
+      const ageGroup = btn.dataset.ageGroup || '전체';
+      const count = counts.get(ageGroup) || 0;
+      btn.innerHTML = `<span class="filter-btn-main">${ageGroup}</span><span class="filter-btn-sub">${count.toLocaleString()}명</span>`;
+      btn.classList.toggle('active', ageGroup === state.filters.세대);
+      btn.classList.toggle('is-top', count > 0 && count === maxCount);
+      btn.title = `${ageGroup} ${count.toLocaleString()}명`;
+    });
+  }
+
   function buildFilters() {
-    const groupCounts = new Map();
+    const villageCounts = new Map();
     const roleCounts = new Map();
-    const typeStats = {
-      '전체': { groupCount: 0 },
-      '마을': { groupCount: 0 },
-      '교구': { groupCount: 0 },
-      '부서': { groupCount: 0 }
-    };
+    const statusCounts = new Map();
 
     state.members.forEach(member => {
-      const group = normalizeText(member.교구);
-      if (group) {
-        groupCounts.set(group, (groupCounts.get(group) || 0) + 1);
-      }
+      const village = getVillageFilterValue(member);
+      villageCounts.set(village, (villageCounts.get(village) || 0) + 1);
       const role = normalizeRole(member);
       roleCounts.set(role, (roleCounts.get(role) || 0) + 1);
+
+      const status = normalizeText(member.현재상태);
+      if (status) statusCounts.set(status, (statusCounts.get(status) || 0) + 1);
     });
 
-    for (const [group] of groupCounts.entries()) {
-      const type = detectGroupType(group);
-      typeStats[type].groupCount += 1;
-      typeStats['전체'].groupCount += 1;
-    }
+    const villages = [...villageCounts.entries()].sort((a, b) => {
+      if (a[0] === '기타') return 1;
+      if (b[0] === '기타') return -1;
+      return a[0].localeCompare(b[0], 'ko');
+    });
+    const statuses = [...statusCounts.entries()].sort((a, b) => a[0].localeCompare(b[0], 'ko'));
 
-    renderAffiliationTypeButtons(typeStats);
+    const visible = getVisibleMembersForMenuCounts();
 
-    const selectedType = state.filters.소속구분;
-    const visibleGroups = [...groupCounts.entries()]
-      .filter(([group]) => selectedType === '전체' || detectGroupType(group) === selectedType)
-      .sort((a, b) => a[0].localeCompare(b[0], 'ko'));
+    updateInlineAllButton('groupAllBtn', !state.filters.교구, visible.length || state.members.length);
+    updateInlineAllButton('roleAllBtn', !state.filters.직분, visible.length || state.members.length);
+    updateInlineAllButton('statusAllBtn', !state.filters.현재상태, visible.length || state.members.length);
 
     const groupList = $('교구FilterList');
     groupList.innerHTML = '';
-    const allCount = selectedType === '전체'
-      ? visibleGroups.length
-      : visibleGroups.reduce((sum, [, count]) => sum + count, 0);
-    const allLabel = selectedType === '전체' ? `전체 (${visibleGroups.length}개)` : `전체 (${allCount}명)`;
-    groupList.appendChild(makeFilterBtn({
-      label: allLabel,
-      count: allCount || state.members.length,
-      type: '교구',
-      value: '',
-      isAll: true,
-      active: !state.filters.교구
-    }));
-    for (const [group, count] of visibleGroups) {
+    for (const [village, count] of villages) {
       groupList.appendChild(makeFilterBtn({
-        label: group,
+        label: village,
         count,
         type: '교구',
-        value: group,
-        active: normalizeText(state.filters.교구) === group
+        value: village,
+        active: normalizeText(state.filters.교구) === village
       }));
     }
 
     const roleList = $('직분FilterList');
     roleList.innerHTML = '';
-    roleList.appendChild(makeFilterBtn({
-      label: '전체',
-      count: state.members.length,
-      type: '직분',
-      value: '',
-      isAll: true,
-      active: !state.filters.직분
-    }));
     ROLE_ORDER.forEach(role => {
       const count = roleCounts.get(role);
       if (!count) return;
@@ -988,25 +1638,38 @@
         count,
         type: '직분',
         value: role,
-        active: state.filters.직분 === role
+        active: normalizeText(state.filters.직분) === role
       }));
     });
 
-    document.querySelectorAll('.gender-btn[data-gender]').forEach(btn => {
-      btn.classList.toggle('active', (btn.dataset.gender || '전체') === state.filters.성별);
-    });
+    const statusList = $('상태FilterList');
+    statusList.innerHTML = '';
+    for (const [status, count] of statuses) {
+      statusList.appendChild(makeFilterBtn({
+        label: status,
+        count,
+        type: '현재상태',
+        value: status,
+        active: normalizeText(state.filters.현재상태) === status
+      }));
+    }
+
+    updateGenderButtons();
+    updateAgeButtons();
   }
 
   function applyFilters() {
     const q = state.searchQuery;
     state.filtered = state.members.filter(member => {
-      const group = normalizeText(member.교구);
-      const groupType = detectGroupType(group);
-      if (state.filters.소속구분 !== '전체' && groupType !== state.filters.소속구분) return false;
+      const group = getVillageFilterValue(member);
       if (state.filters.교구 && group !== normalizeText(state.filters.교구)) return false;
       if (state.filters.직분 && normalizeRole(member) !== state.filters.직분) return false;
       if (state.filters.성별 !== '전체' && normalizeText(member.성별) !== state.filters.성별) return false;
+      if (state.filters.세대 !== '전체' && getAgeGroup(member) !== state.filters.세대) return false;
+      if (state.filters.현재상태 && normalizeText(member.현재상태) !== state.filters.현재상태) return false;
       if (state.filters.세례 && normalizeText(member.세례) !== state.filters.세례) return false;
+      if (state.filters.구역 && normalizeText(member.구역) !== state.filters.구역) return false;
+      if (state.filters.세부직분 && normalizeText(member.세부직분) !== state.filters.세부직분) return false;
       if (q) {
         const hay = [member.이름, member.가족전체, member.구역, member.교구, member.직분, member.세부직분, member.핸드폰, member.전화번호]
           .map(normalizeText)
@@ -1046,15 +1709,32 @@
     if (state.currentPage > totalPages) state.currentPage = 1;
   }
 
+  function getResultSummaryLabel() {
+    const labels = [];
+    if (state.filters.교구) labels.push(state.filters.교구);
+    if (state.filters.직분) labels.push(state.filters.직분);
+    if (state.filters.성별 !== '전체') labels.push(state.filters.성별 === '남' ? '남성' : '여성');
+    if (state.filters.세대 !== '전체') labels.push(state.filters.세대);
+    if (state.filters.현재상태) labels.push(state.filters.현재상태);
+    if (state.filters.세례) labels.push(state.filters.세례);
+    if (state.filters.구역) labels.push(`구역: ${state.filters.구역}`);
+    if (state.filters.세부직분) labels.push(`세부직분: ${state.filters.세부직분}`);
+    if (state.searchQuery) labels.push(`검색: ${state.searchQuery}`);
+    return labels.length ? labels.join(' · ') : '전체';
+  }
+
   function renderActiveFilters() {
     const container = $('activeFilters');
     container.innerHTML = '';
     const tags = [];
-    if (state.filters.소속구분 !== '전체') tags.push(['소속:' + state.filters.소속구분, () => { state.filters.소속구분 = '전체'; state.filters.교구 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
     if (state.filters.교구) tags.push([state.filters.교구, () => { state.filters.교구 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
     if (state.filters.직분) tags.push([state.filters.직분, () => { state.filters.직분 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
     if (state.filters.성별 !== '전체') tags.push([state.filters.성별 + '성', () => { state.filters.성별 = '전체'; rerender({rebuildFilters:true, resetPage:true}); }]);
+    if (state.filters.세대 !== '전체') tags.push([state.filters.세대, () => { state.filters.세대 = '전체'; rerender({rebuildFilters:true, resetPage:true}); }]);
+    if (state.filters.현재상태) tags.push([state.filters.현재상태, () => { state.filters.현재상태 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
     if (state.filters.세례) tags.push([state.filters.세례, () => { state.filters.세례 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
+    if (state.filters.구역) tags.push([`구역: ${state.filters.구역}`, () => { state.filters.구역 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
+    if (state.filters.세부직분) tags.push([`세부직분: ${state.filters.세부직분}`, () => { state.filters.세부직분 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
     if (state.searchQuery) tags.push([`"${state.searchQuery}"`, () => { state.searchQuery = ''; els.searchInput.value=''; rerender({resetPage:true}); }]);
 
     for (const [label, onRemove] of tags) {
@@ -1066,11 +1746,201 @@
     }
     const info = document.createElement('span');
     info.className = 'result-info';
-    info.innerHTML = `<strong>${state.filtered.length.toLocaleString()}</strong>명 표시 중`;
+    info.innerHTML = `<strong>${getResultSummaryLabel()}</strong> ${state.filtered.length.toLocaleString()}명`;
     container.appendChild(info);
   }
 
-  function renderTable() {
+
+  
+function getChartData(type, members = state.filtered) {
+    const counts = new Map();
+    const source = Array.isArray(members) ? members : [];
+    if (type === '교구') {
+      source.forEach(member => {
+        const value = getVillageFilterValue(member);
+        counts.set(value, (counts.get(value) || 0) + 1);
+      });
+      return [...counts.entries()].sort((a, b) => {
+        if (a[0] === '기타') return 1;
+        if (b[0] === '기타') return -1;
+        return a[0].localeCompare(b[0], 'ko');
+      });
+    }
+    if (type === '직분') {
+      source.forEach(member => {
+        const value = normalizeRole(member);
+        counts.set(value, (counts.get(value) || 0) + 1);
+      });
+      return [...counts.entries()].sort((a, b) => roleSortIndex(a[0]) - roleSortIndex(b[0]));
+    }
+    if (type === '성별') {
+      source.forEach(member => {
+        const value = normalizeText(member.성별) || '미기재';
+        counts.set(value, (counts.get(value) || 0) + 1);
+      });
+      return [...counts.entries()].sort((a, b) => b[1] - a[1]);
+    }
+    if (type === '세대') {
+      source.forEach(member => {
+        const value = getAgeGroup(member) || '미분류';
+        counts.set(value, (counts.get(value) || 0) + 1);
+      });
+      return [...counts.entries()].sort((a, b) => {
+        const an = parseInt(a[0], 10);
+        const bn = parseInt(b[0], 10);
+        if (Number.isFinite(an) && Number.isFinite(bn)) return an - bn;
+        return a[0].localeCompare(b[0], 'ko');
+      });
+    }
+    if (type === '현재상태') {
+      source.forEach(member => {
+        const value = normalizeText(member.현재상태) || '미기재';
+        counts.set(value, (counts.get(value) || 0) + 1);
+      });
+      return [...counts.entries()].sort((a, b) => b[1] - a[1]);
+    }
+    return [];
+  }
+
+  function getChartColor(index) {
+    const palette = [
+      '#c8a96e', '#e87a5a', '#7ec8e3', '#c97ecb', '#7bce9a',
+      '#8aa0c8', '#e3a87e', '#e8a0b8', '#a8b8d8', '#f0c060',
+      '#73c7b3', '#d98fbc'
+    ];
+    return palette[index % palette.length];
+  }
+
+  function buildPieChartSvg(data, total, chartType) {
+    if (!data.length) {
+      return '<div class="empty-state"><div class="icon">🥧</div><h3>표시할 데이터가 없습니다</h3></div>';
+    }
+    const cx = 110;
+    const cy = 110;
+    const radius = 84;
+    const innerRadius = 48;
+    let currentAngle = -Math.PI / 2;
+    const paths = data.map(([label, count], index) => {
+      const fraction = total ? count / total : 0;
+      const angle = fraction * Math.PI * 2;
+      const nextAngle = currentAngle + angle;
+      const x1 = cx + radius * Math.cos(currentAngle);
+      const y1 = cy + radius * Math.sin(currentAngle);
+      const x2 = cx + radius * Math.cos(nextAngle);
+      const y2 = cy + radius * Math.sin(nextAngle);
+      const ix1 = cx + innerRadius * Math.cos(currentAngle);
+      const iy1 = cy + innerRadius * Math.sin(currentAngle);
+      const ix2 = cx + innerRadius * Math.cos(nextAngle);
+      const iy2 = cy + innerRadius * Math.sin(nextAngle);
+      const largeArc = angle > Math.PI ? 1 : 0;
+      const encodedLabel = encodeURIComponent(label);
+      const color = getChartColor(index);
+      let d = '';
+      if (angle >= Math.PI * 1.999) {
+        d = [
+          `M ${cx + radius} ${cy}`,
+          `A ${radius} ${radius} 0 1 1 ${cx - radius} ${cy}`,
+          `A ${radius} ${radius} 0 1 1 ${cx + radius} ${cy}`,
+          `L ${cx + innerRadius} ${cy}`,
+          `A ${innerRadius} ${innerRadius} 0 1 0 ${cx - innerRadius} ${cy}`,
+          `A ${innerRadius} ${innerRadius} 0 1 0 ${cx + innerRadius} ${cy}`,
+          'Z'
+        ].join(' ');
+      } else {
+        d = [
+          `M ${x1} ${y1}`,
+          `A ${radius} ${radius} 0 ${largeArc} 1 ${x2} ${y2}`,
+          `L ${ix2} ${iy2}`,
+          `A ${innerRadius} ${innerRadius} 0 ${largeArc} 0 ${ix1} ${iy1}`,
+          'Z'
+        ].join(' ');
+      }
+      currentAngle = nextAngle;
+      return `<path class="chart-slice" d="${d}" fill="${color}" data-chart-select-type="${chartType}" data-chart-select-value="${encodedLabel}"><title>${label}: ${count}명 (${(fraction * 100).toFixed(1)}%)</title></path>`;
+    }).join('');
+    return `<svg class="chart-pie-svg" viewBox="0 0 220 220" role="img" aria-label="${chartType} 원형 그래프">${paths}<circle class="chart-pie-hole" cx="${cx}" cy="${cy}" r="${innerRadius - 4}"></circle><text class="chart-pie-center-text" x="${cx}" y="${cy - 4}">${total.toLocaleString()}명</text><text class="chart-pie-center-subtext" x="${cx}" y="${cy + 15}">현재 결과</text></svg>`;
+  }
+
+  function applyChartSelection(type, value) {
+    const normalizedValue = normalizeText(value);
+    if (!normalizedValue) return;
+    state.view = 'table';
+    state.chartType = null;
+    if (type === '교구') state.filters.교구 = normalizedValue;
+    else if (type === '직분') state.filters.직분 = normalizedValue;
+    else if (type === '성별') state.filters.성별 = normalizedValue;
+    else if (type === '세대') state.filters.세대 = normalizedValue;
+    else if (type === '현재상태') state.filters.현재상태 = normalizedValue;
+    else return;
+    rerender({ rebuildFilters: true, resetPage: true });
+  }
+
+  function renderChart() {
+    const panel = $('chartPanel');
+    const tableWrap = $('tableWrap');
+    if (state.view !== 'chart' || !state.chartType) {
+      panel.style.display = 'none';
+      tableWrap.style.display = '';
+      return;
+    }
+    const data = getChartData(state.chartType, state.filtered);
+    const total = data.reduce((sum, [, count]) => sum + count, 0);
+    const baseLabel = getResultSummaryLabel();
+    $('chartTitle').textContent = `${state.chartType} 비율 그래프`;
+    $('chartSubtitle').textContent = `${baseLabel} · ${total.toLocaleString()}명 기준`;
+    $('chartHint').textContent = '현재 필터된 결과만 기준으로 계산했습니다. 그래프 항목을 클릭하면 해당 성도 목록으로 이동합니다.';
+
+    if (!data.length) {
+      $('chartBars').innerHTML = '<div class="empty-state"><div class="icon">📊</div><h3>표시할 데이터가 없습니다</h3><p>먼저 성도 명단을 불러오거나 필터를 조정해 주세요</p></div>';
+      $('chartPieWrap').innerHTML = '<div class="empty-state"><div class="icon">🥧</div><h3>원형 그래프를 표시할 수 없습니다</h3></div>';
+      $('chartLegend').innerHTML = '';
+      panel.style.display = 'block';
+      tableWrap.style.display = 'none';
+      return;
+    }
+
+    $('chartBars').innerHTML = data.map(([label, count], index) => {
+      const percent = total ? (count / total) * 100 : 0;
+      const encodedLabel = encodeURIComponent(label);
+      const color = getChartColor(index);
+      return `<div class="chart-row" data-chart-select-type="${state.chartType}" data-chart-select-value="${encodedLabel}">
+        <div class="chart-label">${label}</div>
+        <div class="chart-bar-track">
+          <div class="chart-bar-fill" style="width:${Math.max(percent, 3)}%; background:linear-gradient(90deg, ${color} 0%, var(--accent2) 100%);">${percent.toFixed(1)}%</div>
+        </div>
+        <div class="chart-value">${count.toLocaleString()}명</div>
+      </div>`;
+    }).join('');
+
+    $('chartPieWrap').innerHTML = buildPieChartSvg(data, total, state.chartType);
+    $('chartLegend').innerHTML = data.map(([label, count], index) => {
+      const percent = total ? (count / total) * 100 : 0;
+      const encodedLabel = encodeURIComponent(label);
+      const color = getChartColor(index);
+      return `<div class="chart-legend-item" data-chart-select-type="${state.chartType}" data-chart-select-value="${encodedLabel}">
+        <span class="chart-swatch" style="background:${color};"></span>
+        <span class="chart-legend-label">${label}</span>
+        <span class="chart-legend-value">${count.toLocaleString()}명 · ${percent.toFixed(1)}%</span>
+      </div>`;
+    }).join('');
+
+    panel.style.display = 'block';
+    tableWrap.style.display = 'none';
+  }
+
+  function showChart(type) {
+    state.view = 'chart';
+    state.chartType = type;
+    renderChart();
+  }
+
+  function showTableView() {
+    state.view = 'table';
+    state.chartType = null;
+    renderChart();
+  }
+
+function renderTable() {
     const tbody = els.tableBody;
     const start = (state.currentPage - 1) * PAGE_SIZE;
     const page = state.filtered.slice(start, start + PAGE_SIZE);
@@ -1083,12 +1953,12 @@
     if (isMobileView()) {
       tbody.innerHTML = page.map(m => {
         const roleLabel = getRoleBadgeLabel(m);
-        return `<tr data-member-id="${m.ID}"><td colspan="8" class="mobile-card-cell"><div class="mobile-card"><div class="mobile-card-top"><div><div class="mobile-card-name">${normalizeText(m.이름)}${m.관계 ? `<span class="관계-badge">${normalizeText(m.관계)}</span>` : ''}</div><div class="mobile-card-sub">${normalizeText(m.현재상태) || '상태 미지정'} · ${normalizeText(m.구역) || '구역 미지정'}</div></div><span class="jik-badge ${getJikClass(roleLabel)}">${roleLabel}</span></div><div class="mobile-card-meta"><span>${normalizeText(m.성별) || '-'}${m.나이 ? ` · ${m.나이}세` : ''}</span><span>${normalizeText(m.핸드폰 || m.전화번호) || '연락처 없음'}</span><span>${formatDate(m.등록일) || '등록일 없음'}</span></div><div class="mobile-card-family">${normalizeText(m.가족전체) || '가족 정보 없음'}</div></div></td></tr>`;
+        return `<tr data-member-id="${m.ID}"><td colspan="8" class="mobile-card-cell"><div class="mobile-card"><div class="mobile-card-top"><div><div class="mobile-card-name">${escapeHtml(normalizeText(m.이름))}${m.관계 ? `<span class="관계-badge">${escapeHtml(normalizeText(m.관계))}</span>` : ''}</div><div class="mobile-card-sub">${makeValueBadge(normalizeText(m.현재상태) || '상태 미지정', 'status')} · ${makeValueBadge(normalizeText(m.구역) || '구역 미지정', 'district')}</div></div><span class="jik-badge ${getJikClass(roleLabel)}">${escapeHtml(roleLabel)}</span></div><div class="mobile-card-meta"><span>${escapeHtml(normalizeText(m.성별) || '-')}${m.나이 ? ` · ${m.나이}세` : ''}</span><span>${escapeHtml(normalizeText(m.핸드폰 || m.전화번호) || '연락처 없음')}</span><span>${escapeHtml(formatDate(m.등록일) || '등록일 없음')}</span></div><div class="mobile-card-family">${renderFamilyInline(m)}</div></div></td></tr>`;
       }).join('');
     } else {
       tbody.innerHTML = page.map(m => {
         const roleLabel = getRoleBadgeLabel(m);
-        return `<tr data-member-id="${m.ID}"><td class="name-cell">${normalizeText(m.이름)}${m.관계 ? `<span class="관계-badge">${normalizeText(m.관계)}</span>` : ''}</td><td><span class="jik-badge ${getJikClass(roleLabel)}">${roleLabel}</span></td><td class="hide-mobile">${m.나이 || '-'}</td><td>${normalizeText(m.현재상태) || '-'}</td><td class="구역-cell hide-mobile">${normalizeText(m.구역) || '-'}</td><td class="phone-cell hide-mobile">${normalizeText(m.핸드폰 || m.전화번호) || '<span style="color:var(--text3)">-</span>'}</td><td class="family-cell hide-mobile" title="${normalizeText(m.가족전체)}">${normalizeText(m.가족전체) || '-'}</td><td class="date-cell hide-mobile">${formatDate(m.등록일) || '-'}</td></tr>`;
+        return `<tr data-member-id="${m.ID}"><td class="name-cell">${escapeHtml(normalizeText(m.이름))}${m.관계 ? `<span class="관계-badge">${escapeHtml(normalizeText(m.관계))}</span>` : ''}</td><td><span class="jik-badge ${getJikClass(roleLabel)}">${escapeHtml(roleLabel)}</span></td><td class="hide-mobile">${m.나이 || '-'}</td><td>${makeValueBadge(normalizeText(m.현재상태) || '-', 'status')}</td><td class="구역-cell hide-mobile">${makeValueBadge(normalizeText(m.구역) || '-', 'district')}</td><td class="phone-cell hide-mobile">${escapeHtml(normalizeText(m.핸드폰 || m.전화번호)) || '<span style="color:var(--text3)">-</span>'}</td><td class="family-cell hide-mobile" title="${escapeHtml(normalizeText(m.가족전체))}">${renderFamilyInline(m)}</td><td class="date-cell hide-mobile">${escapeHtml(formatDate(m.등록일) || '-')}</td></tr>`;
       }).join('');
     }
 
@@ -1117,13 +1987,18 @@
 
   function rerender({ rebuildFilters = false, resetPage = false } = {}) {
     if (resetPage) state.currentPage = 1;
-    if (rebuildFilters) buildFilters();
     applyFilters();
+    if (rebuildFilters) buildFilters();
+    else {
+      updateGenderButtons();
+      updateAgeButtons();
+    }
     renderActiveFilters();
     renderTable();
     renderPagination();
+    renderChart();
     $('totalCount').textContent = state.members.length.toLocaleString();
-    $('resultCount').textContent = state.filtered.length.toLocaleString();
+    $('resultCount').textContent = getResultSummaryLabel();
   }
 
   function applyBadgeFilter(type, value) {
@@ -1136,6 +2011,14 @@
       state.filters.성별 = normalizedValue;
     } else if (type === '세례') {
       state.filters.세례 = normalizedValue;
+    } else if (type === '현재상태') {
+      state.filters.현재상태 = normalizedValue;
+    } else if (type === '교구') {
+      state.filters.교구 = normalizedValue;
+    } else if (type === '구역') {
+      state.filters.구역 = normalizedValue;
+    } else if (type === '세부직분') {
+      state.filters.세부직분 = normalizedValue;
     } else {
       return;
     }
@@ -1147,8 +2030,10 @@
 
   function makeMetaBadge(label, className, filterType = '', filterValue = '') {
     const safeLabel = normalizeText(label);
-    const clickable = filterType && normalizeText(filterValue);
-    return `<span class="jik-badge ${className}${clickable ? ' is-clickable' : ''}"${clickable ? ` data-badge-filter-type="${filterType}" data-badge-filter-value="${normalizeText(filterValue)}"` : ''}>${safeLabel || '-'}</span>`;
+    const safeFilterValue = normalizeText(filterValue);
+    const clickable = filterType && safeFilterValue;
+    const active = clickable && isBadgeFilterActive(filterType, safeFilterValue);
+    return `<span class="jik-badge ${className}${clickable ? ' is-clickable' : ''}${active ? ' is-active' : ''}"${clickable ? ` data-badge-filter-type="${escapeHtml(filterType)}" data-badge-filter-value="${escapeHtml(safeFilterValue)}"` : ''}>${escapeHtml(safeLabel || '-')}</span>`;
   }
 
 
@@ -1160,11 +2045,12 @@
     let metaHtml = makeMetaBadge(roleLabel || '-', getJikClass(roleLabel), '직분', roleLabel);
     if (m.성별) metaHtml += makeMetaBadge(`${normalizeText(m.성별)}성`, 'jik-other', '성별', normalizeText(m.성별));
     if (m.나이) metaHtml += makeMetaBadge(`${m.나이}세`, 'jik-other');
+    if (m.현재상태) metaHtml += makeMetaBadge(normalizeText(m.현재상태), 'jik-other', '현재상태', normalizeText(m.현재상태));
     if (m.세례) metaHtml += makeMetaBadge(normalizeText(m.세례), 'jik-other', '세례', normalizeText(m.세례));
     $('modalMeta').innerHTML = metaHtml;
 
     let bodyHtml = '';
-    bodyHtml += `<div class="modal-section"><div class="modal-section-title">소속</div><div class="modal-grid">${field('교구', m.교구)}${field('구역', m.구역)}${field('직분', m.직분)}${field('세부직분', m.세부직분 !== m.직분 ? m.세부직분 : '')}</div></div>`;
+    bodyHtml += `<div class="modal-section"><div class="modal-section-title">소속</div><div class="modal-grid">${renderDetailLookupField('교구', normalizeText(m.교구) || getVillageFilterValue(m), { filterType: '교구', filterValue: getVillageFilterValue(m), badgeType: 'group' })}${renderDetailLookupField('구역', m.구역, { filterType: '구역', filterValue: normalizeText(m.구역), badgeType: 'district' })}${renderDetailLookupField('직분', m.직분, { filterType: '직분', filterValue: normalizeRole(m), badgeType: 'role' })}${renderDetailLookupField('세부직분', m.세부직분 !== m.직분 ? m.세부직분 : '', { filterType: '세부직분', filterValue: normalizeText(m.세부직분), badgeType: 'role' })}</div></div>`;
     bodyHtml += `<div class="modal-section"><div class="modal-section-title">가족 구성원</div>${parseFamilyList(m)}</div>`;
     if (m.배우자) bodyHtml += `<div class="modal-section"><div class="modal-section-title">배우자</div><div class="modal-grid">${field('배우자 이름', m.배우자)}${field('배우자 직분', m.배우자직분)}</div></div>`;
     bodyHtml += `<div class="modal-section"><div class="modal-section-title">개인 정보</div><div class="modal-grid">${field('생년월일', getBirthDisplay(m))}${field('관계', m.관계)}${field('세대주', m.세대주 !== m.이름 ? m.세대주 : '본인')}${field('교인구분', m.교인구분1)}${field('현재상태', m.현재상태)}</div></div>`;
@@ -1186,39 +2072,83 @@
       rerender({ resetPage: true });
     });
 
-    $('소속구분FilterRow').addEventListener('click', (e) => {
-      const btn = e.target.closest('.affiliation-type-btn');
-      if (!btn) return;
-      const nextType = btn.dataset.affiliationType || '전체';
-      state.filters.소속구분 = nextType;
-      if (state.filters.교구 && nextType !== '전체' && detectGroupType(state.filters.교구) !== nextType) {
-        state.filters.교구 = null;
-      }
+    $('groupAllBtn').addEventListener('click', () => {
+      state.filters.교구 = null;
       rerender({ rebuildFilters: true, resetPage: true });
     });
 
     $('교구FilterList').addEventListener('click', (e) => {
       const btn = e.target.closest('.filter-btn');
       if (!btn) return;
-      const isAll = btn.dataset.all === 'true';
       const value = normalizeText(btn.dataset.value);
-      state.filters.교구 = isAll ? null : value;
+      state.filters.교구 = value;
+      rerender({ rebuildFilters: true, resetPage: true });
+    });
+
+    $('roleAllBtn').addEventListener('click', () => {
+      state.filters.직분 = null;
       rerender({ rebuildFilters: true, resetPage: true });
     });
 
     $('직분FilterList').addEventListener('click', (e) => {
       const btn = e.target.closest('.filter-btn');
       if (!btn) return;
-      const isAll = btn.dataset.all === 'true';
-      state.filters.직분 = isAll ? null : normalizeText(btn.dataset.value);
+      state.filters.직분 = normalizeText(btn.dataset.value);
       rerender({ rebuildFilters: true, resetPage: true });
     });
 
-    document.querySelector('.filter-section:last-child .gender-row').addEventListener('click', (e) => {
+    $('statusAllBtn').addEventListener('click', () => {
+      state.filters.현재상태 = null;
+      rerender({ rebuildFilters: true, resetPage: true });
+    });
+
+    $('상태FilterList').addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      state.filters.현재상태 = normalizeText(btn.dataset.value);
+      rerender({ rebuildFilters: true, resetPage: true });
+    });
+
+    $('genderFilterRow').addEventListener('click', (e) => {
       const btn = e.target.closest('.gender-btn[data-gender]');
       if (!btn) return;
       state.filters.성별 = btn.dataset.gender || '전체';
       rerender({ rebuildFilters: true, resetPage: true });
+    });
+
+    $('genderAllBtn').addEventListener('click', () => {
+      state.filters.성별 = '전체';
+      rerender({ rebuildFilters: true, resetPage: true });
+    });
+
+    $('ageFilterRow').addEventListener('click', (e) => {
+      const btn = e.target.closest('.age-btn[data-age-group]');
+      if (!btn) return;
+      state.filters.세대 = btn.dataset.ageGroup || '전체';
+      rerender({ rebuildFilters: true, resetPage: true });
+    });
+
+    $('ageAllBtn').addEventListener('click', () => {
+      state.filters.세대 = '전체';
+      rerender({ rebuildFilters: true, resetPage: true });
+    });
+
+    document.querySelectorAll('.chart-toggle[data-chart]').forEach(el => {
+      el.addEventListener('click', () => {
+        showChart(el.dataset.chart);
+      });
+    });
+
+    $('chartBackBtn').addEventListener('click', () => {
+      showTableView();
+    });
+
+    $('chartPanel').addEventListener('click', (e) => {
+      const target = e.target.closest('[data-chart-select-type]');
+      if (!target) return;
+      const type = target.dataset.chartSelectType;
+      const value = decodeURIComponent(target.dataset.chartSelectValue || '');
+      applyChartSelection(type, value);
     });
 
     document.querySelector('thead').addEventListener('click', (e) => {
@@ -1231,6 +2161,12 @@
     });
 
     els.tableBody.addEventListener('click', (e) => {
+      const familyLink = e.target.closest('[data-family-member-id]');
+      if (familyLink) {
+        e.stopPropagation();
+        showDetail(familyLink.dataset.familyMemberId);
+        return;
+      }
       const row = e.target.closest('tr[data-member-id]');
       if (row) showDetail(row.dataset.memberId);
     });
@@ -1253,6 +2189,11 @@
       applyBadgeFilter(badge.dataset.badgeFilterType, badge.dataset.badgeFilterValue);
     });
     $('modalBody').addEventListener('click', (e) => {
+      const badge = e.target.closest('[data-badge-filter-type]');
+      if (badge) {
+        applyBadgeFilter(badge.dataset.badgeFilterType, badge.dataset.badgeFilterValue);
+        return;
+      }
       const familyTag = e.target.closest('[data-family-member-id]');
       if (!familyTag) return;
       showDetail(familyTag.dataset.familyMemberId);
@@ -1266,63 +2207,63 @@
     });
   }
 
-  function setupFilePicker() {
-    const searchWrap = document.querySelector('.search-wrap');
-    const wrap = document.createElement('div');
-    wrap.id = 'jsonPickerWrap';
-    wrap.style.display = 'flex';
-    wrap.style.alignItems = 'center';
-    wrap.style.gap = '8px';
-    wrap.style.flexWrap = 'wrap';
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.textContent = 'JSON 파일 열기';
-    button.style.padding = '9px 12px';
-    button.style.borderRadius = '8px';
-    button.style.border = '1px solid var(--border)';
-    button.style.background = 'var(--surface2)';
-    button.style.color = 'var(--text2)';
-    button.style.fontSize = '13px';
-    button.style.cursor = 'pointer';
-    button.style.fontFamily = "'Noto Sans KR', sans-serif";
-    const input = document.createElement('input');
-    input.type = 'file';
-    input.accept = '.json,application/json';
-    input.style.display = 'none';
-    button.addEventListener('click', () => input.click());
-    input.addEventListener('change', async (e) => {
-      const file = e.target.files && e.target.files[0];
-      if (!file) return;
-      try {
-        const data = JSON.parse(await file.text());
-        if (!Array.isArray(data)) throw new Error('JSON 형식 오류');
-        state.members = data;
-        hideNotice();
-        buildFilters();
-        rerender({ rebuildFilters: true, resetPage: true });
-      } catch (err) {
-        showNotice('선택한 JSON 파일을 읽지 못했습니다. <strong>church_members.json</strong> 파일인지 확인해 주세요.', true);
-      } finally {
-        input.value = '';
-      }
-    });
-    wrap.appendChild(button);
-    wrap.appendChild(input);
-    searchWrap.parentNode.insertBefore(wrap, searchWrap.nextSibling);
+  function buildJsonPickerNotice(message) {
+    return `
+      <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;">
+        <div>${message}</div>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <label for="jsonFileInput" style="display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border:1px solid rgba(200,169,110,0.35); border-radius:8px; background:rgba(200,169,110,0.12); color:var(--accent2); cursor:pointer; font-weight:500;">
+            JSON 파일 선택
+          </label>
+          <input id="jsonFileInput" type="file" accept=".json,application/json" style="display:none;" />
+        </div>
+      </div>
+    `;
   }
 
-  async function loadData() {
+  function finalizeLoadedData(data) {
+    if (!Array.isArray(data)) throw new Error('JSON 형식 오류');
+    state.members = data;
+    hideNotice();
+    buildFilters();
+    rerender({ rebuildFilters: true, resetPage: true });
+  }
+
+  async function loadDataFromSelectedFile(file) {
+    if (!file) return;
     try {
-      const response = await fetch(MEMBERS_JSON_URL, { cache: 'no-store' });
-      if (!response.ok) throw new Error('HTTP ' + response.status);
-      const data = await response.json();
-      if (!Array.isArray(data)) throw new Error('JSON 형식 오류');
-      state.members = data;
-      hideNotice();
-      buildFilters();
-      rerender({ rebuildFilters: true, resetPage: true });
+      const text = await file.text();
+      const data = JSON.parse(text);
+      finalizeLoadedData(data);
     } catch (err) {
-      showNotice('같은 폴더의 <strong>church_members.json</strong> 파일을 자동으로 읽지 못했습니다.<br>브라우저에서 HTML 파일을 직접 열면(file://) 보안 정책 때문에 JSON 자동 로드가 막힐 수 있습니다.<br>아래 <strong>JSON 파일 열기</strong> 버튼으로 <strong>church_members.json</strong> 파일을 직접 선택해 주세요.', true);
+      showNotice(buildJsonPickerNotice('선택한 JSON 파일을 읽지 못했습니다.<br><strong>church_members.json</strong> 형식인지 확인해 주세요.'), true);
+      const input = $('jsonFileInput');
+      if (input) input.addEventListener('change', (e) => loadDataFromSelectedFile(e.target.files?.[0]), { once: true });
+    }
+  }
+
+  function promptJsonSelection(message) {
+    const noticeMessage = message || '자동 불러오기에 실패했습니다. <strong>church_members.json</strong> 파일을 직접 선택해 주세요.';
+    showNotice(buildJsonPickerNotice(noticeMessage), true);
+    const input = $('jsonFileInput');
+    if (input) {
+      input.value = '';
+      input.addEventListener('change', (e) => loadDataFromSelectedFile(e.target.files?.[0]), { once: true });
+    }
+  }
+
+  async function loadDefaultJson() {
+    showNotice('명단 데이터를 불러오는 중입니다...');
+    try {
+      const response = await fetch('./church_members.json', { cache: 'no-store' });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      const data = await response.json();
+      finalizeLoadedData(data);
+    } catch (error) {
+      console.error('church_members.json 자동 불러오기 실패:', error);
+      promptJsonSelection('자동으로 <strong>church_members.json</strong> 파일을 불러오지 못했습니다.<br>GitHub Pages에 올릴 때는 HTML 파일과 JSON 파일을 같은 폴더에 함께 업로드해 주세요.');
     }
   }
 
@@ -1330,9 +2271,8 @@
     els.searchInput = $('searchInput');
     els.tableBody = $('tableBody');
     els.pagination = $('pagination');
-    setupFilePicker();
     bindEvents();
-    loadData();
+    loadDefaultJson();
   }
 
   if (document.readyState === 'loading') {
