@@ -2262,8 +2262,8 @@ function renderTable() {
       const data = await response.json();
       finalizeLoadedData(data);
     } catch (error) {
-      console.error('church_members.json 자동 불러오기 실패:', error);
-      promptJsonSelection('자동으로 <strong>church_members.json</strong> 파일을 불러오지 못했습니다.<br>GitHub Pages에 올릴 때는 HTML 파일과 JSON 파일을 같은 폴더에 함께 업로드해 주세요.');
+      //console.error('church_members.json 자동 불러오기 실패:', error);
+      //promptJsonSelection('자동으로 <strong>church_members.json</strong> 파일을 불러오지 못했습니다.<br>GitHub Pages에 올릴 때는 HTML 파일과 JSON 파일을 같은 폴더에 함께 업로드해 주세요.');
     }
   }
 
