@@ -2381,6 +2381,20 @@ function renderTable() {
       rerender({ rebuildFilters: true, resetPage: true });
     });
 
+    $('yearFilterRow').addEventListener('click', (e) => {
+      const btn = e.target.closest('.age-btn[data-register-year]');
+      if (!btn) return;
+      state.filters.등록년도 = btn.dataset.registerYear || '전체';
+      closeMobileSidebar();
+      rerender({ rebuildFilters: true, resetPage: true });
+    });
+
+    $('yearAllBtn').addEventListener('click', () => {
+      state.filters.등록년도 = '전체';
+      closeMobileSidebar();
+      rerender({ rebuildFilters: true, resetPage: true });
+    });
+
     document.querySelectorAll('.chart-toggle[data-chart]').forEach(el => {
       el.addEventListener('click', () => {
         showChart(el.dataset.chart);
