@@ -7,15 +7,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #e3e5e8;
-    --surface: #f4f5f7;
-    --surface2: #e8ebef;
-    --border: #c7ccd3;
-    --accent: #8c7455;
-    --accent2: #5f5142;
-    --text: #2f3338;
-    --text2: #505861;
-    --text3: #737b85;
+    --bg: #0f1117;
+    --surface: #181c27;
+    --surface2: #1e2333;
+    --border: #2a3047;
+    --accent: #c8a96e;
+    --accent2: #e8d5a3;
+    --text: #e8eaf0;
+    --text2: #9aa0b4;
+    --text3: #6b7390;
     --장로: #f0c060;
     --목사: #e87a5a;
     --안수집사: #7ec8e3;
@@ -40,13 +40,13 @@
 
   /* HEADER */
   header {
-    background: linear-gradient(135deg, #d5d8dd 0%, #eceef1 50%, #d7dade 100%);
-    border-bottom: 1px solid var(--border);
+    background: linear-gradient(135deg, #0d1020 0%, #1a1f35 50%, #0d1020 100%);
+    border-bottom: 1px solid var(--accent);
     padding: 24px 32px 20px;
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 10px 24px rgba(76, 84, 94, 0.12);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
   }
   .header-inner {
     max-width: 1600px;
@@ -384,7 +384,7 @@
     cursor: pointer;
     user-select: none;
     transition: color 0.15s;
-    background: linear-gradient(180deg, #dde1e6 0%, var(--surface2) 100%);
+    background: linear-gradient(180deg, #1e2540 0%, var(--surface2) 100%);
     border-bottom: 1px solid var(--border);
     box-shadow: 0 1px 0 rgba(0,0,0,0.18);
   }
@@ -435,6 +435,68 @@
     transform: translateY(-1px);
     opacity: 0.92;
   }
+  .modal-meta .jik-badge {
+    padding: 5px 11px;
+    border-radius: 999px;
+    font-size: 12px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+  .modal-meta .jik-badge.is-clickable {
+    position: relative;
+    font-weight: 700;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .modal-meta .jik-badge.is-clickable.is-active {
+    color: #fff7e3;
+    border-color: rgba(232,213,163,0.78) !important;
+    box-shadow: 0 0 0 2px rgba(200,169,110,0.24), 0 10px 22px rgba(0,0,0,0.26), inset 0 1px 0 rgba(255,255,255,0.14);
+    filter: brightness(1.12) saturate(1.08);
+  }
+  .modal-meta .jik-badge.is-clickable.is-active::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(232,213,163,0.18), rgba(255,255,255,0.02));
+    pointer-events: none;
+  }
+  .modal-meta .jik-badge.is-clickable > span {
+    position: relative;
+    z-index: 1;
+  }
+  .modal-meta .jik-badge.is-clickable:hover {
+    transform: translateY(-1px);
+    opacity: 1;
+    filter: brightness(1.08);
+  }
+  .modal-meta [data-badge-filter-type="성별"] {
+    background: rgba(126,200,227,0.18);
+    color: #d8f5ff;
+    border: 1px solid rgba(126,200,227,0.45);
+  }
+  .modal-meta [data-badge-filter-type="세례"] {
+    background: rgba(123,206,154,0.18);
+    color: #dff9e8;
+    border: 1px solid rgba(123,206,154,0.42);
+  }
+  .modal-meta [data-badge-filter-type="현재상태"] {
+    box-shadow: 0 6px 18px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+  .modal-meta [data-badge-filter-type="성별"].is-active {
+    background: linear-gradient(135deg, rgba(126,200,227,0.34), rgba(126,200,227,0.18));
+    color: #f4fcff;
+  }
+  .modal-meta [data-badge-filter-type="세례"].is-active {
+    background: linear-gradient(135deg, rgba(123,206,154,0.34), rgba(123,206,154,0.18));
+    color: #f4fff7;
+  }
+  .modal-meta [data-badge-filter-type="현재상태"].is-active {
+    background: linear-gradient(135deg, rgba(200,169,110,0.36), rgba(200,169,110,0.18));
+    color: #fff7e8;
+  }
+  .modal-meta [data-badge-filter-type="직분"].is-active {
+    box-shadow: 0 0 0 2px rgba(200,169,110,0.24), 0 10px 22px rgba(0,0,0,0.26), inset 0 1px 0 rgba(255,255,255,0.14);
+  }
   .jik-장로 { background: rgba(240,192,96,0.15); color: var(--장로); border: 1px solid rgba(240,192,96,0.3); }
   .jik-목사 { background: rgba(232,122,90,0.15); color: var(--목사); border: 1px solid rgba(232,122,90,0.3); }
   .jik-안수집사 { background: rgba(126,200,227,0.15); color: var(--안수집사); border: 1px solid rgba(126,200,227,0.3); }
@@ -466,6 +528,27 @@
   .value-badge.is-clickable:hover {
     transform: translateY(-1px);
     opacity: 0.94;
+  }
+  .modal-value .value-badge {
+    min-height: 28px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+  .modal-value .value-badge.is-clickable {
+    box-shadow: 0 6px 18px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .modal-value .value-badge.is-clickable.is-active {
+    color: #fff7e3;
+    border-color: rgba(232,213,163,0.78) !important;
+    box-shadow: 0 0 0 2px rgba(200,169,110,0.22), 0 10px 22px rgba(0,0,0,0.24), inset 0 1px 0 rgba(255,255,255,0.14);
+    filter: brightness(1.12) saturate(1.08);
+  }
+  .modal-value .value-badge.is-clickable:hover {
+    opacity: 1;
+    filter: brightness(1.08);
   }
   .family-cell {
     max-width: 320px;
@@ -508,7 +591,7 @@
     display: none;
     position: fixed;
     inset: 0;
-    background: rgba(52,56,62,0.32);
+    background: rgba(0,0,0,0.7);
     z-index: 200;
     backdrop-filter: blur(4px);
     align-items: center;
@@ -516,14 +599,14 @@
   }
   .modal-bg.open { display: flex; }
   .modal {
-    background: #f8f9fb;
-    border: 1px solid #c9ced5;
+    background: var(--surface);
+    border: 1px solid var(--border);
     border-radius: 16px;
     width: 540px;
     max-width: 95vw;
     max-height: 90vh;
     overflow-y: auto;
-    box-shadow: 0 18px 48px rgba(73, 79, 88, 0.18);
+    box-shadow: 0 20px 80px rgba(0,0,0,0.8);
     animation: slideUp 0.2s ease;
   }
   @keyframes slideUp {
@@ -532,12 +615,12 @@
   }
   .modal-header {
     padding: 24px 24px 20px;
-    border-bottom: 1px solid #d5d9de;
+    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     gap: 16px;
-    background: linear-gradient(180deg, #f1f3f6 0%, #f8f9fb 100%);
+    background: linear-gradient(180deg, rgba(200,169,110,0.10) 0%, rgba(255,255,255,0.02) 100%);
   }
   .modal-name {
     font-family: 'Noto Serif KR', serif;
@@ -565,11 +648,12 @@
   .modal-close:hover { color: var(--text); }
   .modal-body { padding: 20px 24px 24px; }
   .modal-section {
-    margin-bottom: 18px;
+    margin-bottom: 16px;
     padding: 14px 16px;
-    background: #f1f3f6;
-    border: 1px solid #d7dce2;
+    background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+    border: 1px solid rgba(200,169,110,0.14);
     border-radius: 14px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
   }
   .modal-section-title {
     font-size: 11px;
@@ -579,22 +663,39 @@
     text-transform: uppercase;
     margin-bottom: 12px;
     padding-bottom: 8px;
-    border-bottom: 1px solid #d7dce2;
+    padding-left: 10px;
+    border-bottom: 1px solid rgba(200,169,110,0.20);
+    position: relative;
+  }
+  .modal-section-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1px;
+    bottom: 9px;
+    width: 3px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--accent) 0%, var(--accent2) 100%);
   }
   .modal-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 10px;
   }
-  .modal-field { }
+  .modal-field {
+    padding: 10px 12px;
+    background: rgba(15,17,23,0.35);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 10px;
+  }
   .modal-label {
-    font-size: 12px;
-    color: #69717b;
+    font-size: 11px;
+    color: var(--accent);
     margin-bottom: 5px;
   }
   .modal-value {
-    font-size: 15px;
-    color: #252a30;
+    font-size: 14px;
+    color: var(--text);
     font-weight: 600;
     line-height: 1.5;
   }
@@ -610,22 +711,28 @@
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    padding: 5px 12px;
+    padding: 7px 12px;
     background: var(--surface2);
     border: 1px solid var(--border);
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 13px;
   }
   .family-member-tag.is-link {
     cursor: pointer;
     transition: all 0.15s;
+    background: rgba(126,200,227,0.10);
+    border-color: rgba(126,200,227,0.32);
+    box-shadow: inset 0 0 0 1px rgba(126,200,227,0.08);
   }
   .family-member-tag.is-link:hover {
-    border-color: var(--accent);
-    background: rgba(200,169,110,0.10);
+    border-color: #7ec8e3;
+    background: rgba(126,200,227,0.18);
+    transform: translateY(-1px);
   }
   .family-member-name { color: var(--text); font-weight: 500; }
+  .family-member-tag.is-link .family-member-name { color: #d7f3ff; }
   .family-member-jik { color: var(--text3); font-size: 11px; }
+  .family-member-tag.is-link .family-member-jik { color: #8ed4ee; }
 
 
   .chart-toggle {
@@ -712,7 +819,7 @@
     justify-content: flex-end;
     padding-right: 10px;
     min-width: 52px;
-    color: #25303a;
+    color: #2b2212;
     font-size: 12px;
     font-weight: 700;
   }
@@ -723,7 +830,7 @@
     white-space: nowrap;
   }
   .chart-side {
-    background: #eef1f4;
+    background: rgba(255,255,255,0.02);
     border: 1px solid var(--border);
     border-radius: 14px;
     padding: 16px;
@@ -847,10 +954,9 @@
   .mobile-card {
     margin: 10px;
     padding: 14px;
-    background: #f8f9fb;
-    border: 1px solid #d7dce2;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.01) 100%);
+    border: 1px solid rgba(200,169,110,0.12);
     border-radius: 14px;
-    box-shadow: 0 8px 20px rgba(76, 84, 94, 0.08);
   }
   .mobile-card-top {
     display: flex;
@@ -879,11 +985,10 @@
     margin-bottom: 8px;
   }
   .mobile-card-meta span {
-    padding: 4px 9px;
-    background: #eef1f4;
-    border: 1px solid #d8dde3;
+    padding: 3px 8px;
+    background: var(--surface2);
+    border: 1px solid rgba(255,255,255,0.04);
     border-radius: 999px;
-    color: #48515a;
   }
   .mobile-card-family {
     font-size: 12px;
@@ -893,6 +998,32 @@
 
 
   #jsonPickerWrap button:hover { border-color: var(--accent); color: var(--accent2); }
+
+
+  .mobile-toolbar {
+    display: none;
+  }
+  .mobile-sidebar-backdrop {
+    display: none;
+  }
+  .sidebar-mobile-head {
+    display: none;
+  }
+  .sidebar-close-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text2);
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .sidebar-mobile-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent2);
+  }
 
   /* MOBILE */
   @media (max-width: 900px) {
@@ -913,376 +1044,196 @@
     .chart-row { grid-template-columns: 100px 1fr 74px; }
   }
   @media (max-width: 640px) {
-    body { background: #edf0f3; }
+    body { background: #0d1018; }
     header {
-      position: static;
-      padding: 18px 16px 16px;
-      background: linear-gradient(135deg, #d9dde2 0%, #eef1f4 100%);
+      position: sticky;
+      top: 0;
+      padding: 14px 14px 12px;
+      z-index: 120;
     }
-    .main-wrap { padding: 12px; }
+    .header-inner {
+      align-items: stretch;
+      gap: 8px;
+    }
+    .church-title { font-size: 17px; letter-spacing: 1px; }
+    .church-subtitle { font-size: 11px; }
+    .total-count {
+      width: 100%;
+      order: 3;
+      font-size: 12px;
+    }
+    .total-count strong { font-size: 16px; }
+    .search-wrap { order: 4; }
+    #searchInput {
+      font-size: 14px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border-radius: 10px;
+    }
+    .mobile-toolbar {
+      display: flex;
+      gap: 8px;
+      padding: 10px 12px 0;
+      position: sticky;
+      top: 88px;
+      z-index: 110;
+      background: linear-gradient(180deg, rgba(13,16,24,0.96) 0%, rgba(13,16,24,0.9) 100%);
+      backdrop-filter: blur(8px);
+    }
+    .mobile-toolbar-btn {
+      flex: 1;
+      min-height: 40px;
+      padding: 0 12px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text);
+      font-family: 'Noto Sans KR', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .main-wrap {
+      grid-template-columns: 1fr;
+      padding: 12px;
+      gap: 12px;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: min(88vw, 360px);
+      padding: 14px 12px 20px;
+      background: #121725;
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      overflow-x: hidden;
+      display: block;
+      z-index: 220;
+      transform: translateX(-105%);
+      transition: transform 0.22s ease;
+      box-shadow: 12px 0 40px rgba(0,0,0,0.35);
+      -webkit-overflow-scrolling: touch;
+    }
+    body.sidebar-open .sidebar {
+      transform: translateX(0);
+    }
+    .mobile-sidebar-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 210;
+    }
+    body.sidebar-open .mobile-sidebar-backdrop {
+      display: block;
+    }
+    .sidebar-mobile-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding: 4px 2px 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      position: sticky;
+      top: -14px;
+      background: #121725;
+      z-index: 1;
+    }
+    .filter-section {
+      margin-bottom: 12px;
+      overflow: visible;
+      height: auto;
+      max-height: none;
+    }
     .filter-title { padding: 10px 12px; }
     .inline-all-btn { padding: 4px 8px; font-size: 10px; }
     .filter-list {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 8px;
-      overflow: visible;
       padding: 10px;
+      height: auto;
+      max-height: none;
+      overflow: visible;
+      align-content: start;
     }
     .filter-btn {
-      width: 100%;
-      min-width: 0;
-      min-height: 56px;
-      padding: 8px 6px;
+      min-height: 54px;
+      padding: 8px 4px;
       border: 1px solid var(--border);
       background: var(--surface2);
-      scroll-snap-align: start;
     }
-    .gender-row { padding: 10px; }
-    .age-row { padding: 10px; }
+    .filter-btn span:first-child {
+      white-space: normal;
+      line-height: 1.2;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+    .gender-row, .age-row { padding: 10px; }
+    .age-row { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); }
+    .age-btn, .gender-btn {
+      min-height: 46px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .content-area { min-width: 0; }
     .active-filters { gap: 6px; margin-bottom: 12px; }
+    .filter-tag { font-size: 11px; }
     .result-info { width: 100%; margin-left: 0; }
     .table-wrap {
       background: transparent;
       border: none;
       overflow: visible;
+      max-height: none;
     }
     table { border-collapse: separate; border-spacing: 0; }
     thead { display: none; }
     tbody tr { border-bottom: none; }
     .hide-mobile { display: none !important; }
+    .mobile-card {
+      margin: 0 0 10px;
+      padding: 14px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.015) 100%);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.16);
+    }
+    .mobile-card-top { margin-bottom: 12px; }
+    .mobile-card-name { font-size: 17px; }
+    .mobile-card-sub {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .mobile-card-meta { gap: 6px; margin-bottom: 10px; }
+    .mobile-card-meta span { padding: 5px 8px; }
     .pagination {
-      padding: 14px 6px 6px;
+      padding: 12px 0 2px;
       border-top: none;
-      gap: 4px;
+      gap: 6px;
       flex-wrap: wrap;
     }
-    .page-btn { min-width: 36px; padding: 7px 10px; }
+    .page-btn { min-width: 38px; padding: 8px 10px; }
     .modal {
-      width: calc(100vw - 20px);
+      width: calc(100vw - 18px);
       max-height: 88vh;
       border-radius: 14px;
     }
     .modal-header, .modal-body { padding-left: 16px; padding-right: 16px; }
     .modal-name { font-size: 22px; }
     .modal-grid { grid-template-columns: 1fr; }
-    .chart-panel { padding: 14px; }
+    .chart-panel { padding: 14px; border-radius: 14px; }
     .chart-panel-header { align-items: flex-start; flex-direction: column; }
+    .chart-title { font-size: 16px; }
     .chart-side { padding: 14px; }
     .chart-row { grid-template-columns: 1fr; gap: 6px; }
+    .chart-label { white-space: normal; }
     .chart-value { text-align: left; }
     .chart-pie-svg { width: 190px; height: 190px; }
-  }
-
-  @media (max-width: 640px) {
-    .church-title { font-size: 19px; color: #5a4d40; }
-    .church-subtitle { font-size: 12px; color: #6c727a; }
-    .total-count, .result-info, .chart-subtitle, .chart-hint { color: #59616a; }
-    .filter-title, .filter-title-text, .chart-side-title { color: #4f5861; }
-    .filter-btn,
-    .gender-btn,
-    .age-btn,
-    .inline-all-btn,
-    .page-btn,
-    #searchInput {
-      color: #2d3339;
-    }
-    .filter-count,
-    .filter-btn-sub {
-      color: #5e6670;
-    }
-    .mobile-card-name {
-      font-size: 19px;
-      color: #22272d;
-    }
-    .mobile-card-sub {
-      margin-top: 6px;
-      font-size: 14px;
-      color: #4c5560;
-      line-height: 1.5;
-    }
-    .mobile-card-meta {
-      gap: 8px 10px;
-      font-size: 14px;
-      color: #48515a;
-      line-height: 1.5;
-    }
-    .mobile-card-family {
-      font-size: 14px;
-      color: #4c5560;
-      line-height: 1.7;
-    }
-    .family-inline-name,
-    .family-inline-jik {
-      color: #525b65;
-    }
-    .family-inline-name.is-link {
-      color: #5f5142;
-    }
-    .관계-badge {
-      background: #e5e9ee;
-      color: #5a636d;
-    }
-    .value-badge {
-      border-color: rgba(113, 122, 133, 0.28) !important;
-      background: #eef1f4 !important;
-      color: #30363d !important;
-      font-weight: 700;
-    }
-    .jik-badge,
-    .family-member-tag,
-    .family-member-name,
-    .family-member-jik {
-      color: #2f343a;
-    }
-    .modal {
-      background: #fbfcfd;
-      border-color: #d4d9df;
-    }
-    .modal-name {
-      font-size: 25px;
-      color: #22272d;
-    }
-    .modal-meta {
-      gap: 10px;
-    }
-    .modal-body {
-      font-size: 16px;
-    }
-    .modal-section {
-      padding: 15px 16px;
-      background: #f3f5f7;
-      border-color: #d7dce2;
-    }
-    .modal-section-title {
-      font-size: 12px;
-      color: #5e5142;
-    }
-    .modal-label {
-      font-size: 13px;
-      color: #656e78;
-      margin-bottom: 6px;
-    }
-    .modal-value,
-    .modal-value.empty {
-      font-size: 17px;
-      color: #22272d;
-      font-style: normal;
-      line-height: 1.6;
-    }
-    .modal-close {
-      color: #59616a;
-      font-size: 24px;
-    }
-    .chart-panel {
-      background: #f8fafb;
-      border-color: #d8dde3;
-    }
-    .chart-title {
-      font-size: 18px;
-      color: #4e4337;
-    }
-    .chart-label {
-      font-size: 15px;
-      color: #31373d;
-      font-weight: 600;
-    }
-    .chart-value,
-    .chart-legend-label,
-    .chart-legend-value {
-      font-size: 14px;
-      color: #48515a;
-    }
-    .chart-bar-track,
-    .chart-legend-item {
-      background: #eef1f4;
-      border-color: #d6dce2;
-    }
-    .chart-pie-center-text {
-      fill: #4e4337;
-      font-size: 13px;
-    }
-    .chart-pie-center-subtext {
-      fill: #646d77;
-      font-size: 11px;
-    }
-  }
-
-
-
-  /* READABILITY TUNING */
-  .mobile-card-sub .value-badge,
-  .mobile-card-sub .jik-badge,
-  .mobile-card-meta span,
-  .modal-value .value-badge,
-  .modal-meta .jik-badge {
-    color: var(--text) !important;
-  }
-
-  @media (min-width: 641px) {
-    :root {
-      --bg: #d9dce2;
-      --surface: #eef1f5;
-      --surface2: #e4e8ee;
-      --border: #bcc4cf;
-      --accent: #6b7280;
-      --accent2: #374151;
-      --text: #1f2937;
-      --text2: #4b5563;
-      --text3: #6b7280;
-      --other: #6b7280;
-    }
-    body { background: linear-gradient(180deg, #d8dde4 0%, #eceff3 100%); }
-    header {
-      background: linear-gradient(135deg, #cfd5dd 0%, #e8edf2 52%, #c8ced7 100%);
-      box-shadow: 0 10px 30px rgba(55,65,81,0.10);
-    }
-    .filter-title,
-    .chart-side,
-    .mobile-card,
-    .modal-section,
-    .page-btn,
-    .gender-btn,
-    .age-btn,
-    .filter-btn,
-    .inline-all-btn,
-    .table-wrap,
-    .chart-panel {
-      box-shadow: none;
-    }
-    th {
-      background: linear-gradient(180deg, #dfe4ea 0%, #eef2f6 100%);
-      color: var(--text2);
-    }
-    .modal {
-      background: #f7f9fb;
-      border-color: #c5ccd6;
-      box-shadow: 0 24px 60px rgba(31,41,55,0.18);
-    }
-    .modal-header {
-      background: linear-gradient(180deg, rgba(107,114,128,0.10) 0%, rgba(255,255,255,0.72) 100%);
-    }
-    .modal-section {
-      background: #ffffff;
-      border: 1px solid rgba(107,114,128,0.16);
-    }
-    .modal-field {
-      background: #f4f6f9;
-      border: 1px solid rgba(107,114,128,0.12);
-      border-radius: 10px;
-      padding: 10px 12px;
-    }
-    .chart-side {
-      background: #f6f8fa;
-    }
-  }
-
-  @media (max-width: 640px) {
-    :root {
-      --bg: #f4efe6;
-      --surface: #fffdfa;
-      --surface2: #f5eee4;
-      --border: #d8cab8;
-      --accent: #8a6b48;
-      --accent2: #4c3928;
-      --text: #2f2418;
-      --text2: #564638;
-      --text3: #7a6858;
-    }
-    body { background: #f4efe6; }
-    header {
-      background: linear-gradient(180deg, #efe4d5 0%, #f8f2ea 100%);
-      box-shadow: 0 8px 18px rgba(76,57,40,0.08);
-    }
-    .church-title { font-size: 20px; }
-    .church-subtitle,
-    .total-count,
-    #searchInput,
-    .mobile-toolbar-btn,
-    .filter-title,
-    .inline-all-btn,
-    .filter-btn,
-    .gender-btn,
-    .age-btn,
-    .result-info,
-    .page-btn,
-    .chart-subtitle,
-    .chart-hint,
-    .chart-side-title,
-    .chart-legend-label,
-    .chart-legend-value,
-    .chart-value,
-    .modal-label,
-    .family-member-jik,
-    .family-inline-jik {
-      font-size: 15px !important;
-    }
-    .filter-count,
-    .filter-btn-sub,
-    .chart-pie-center-subtext,
-    .관계-badge {
-      font-size: 13px !important;
-    }
-    .mobile-card-name { font-size: 24px !important; font-weight: 800; }
-    .mobile-card-sub,
-    .mobile-card-family,
-    .family-inline-name,
-    .mobile-card-meta,
-    .modal-value,
-    .family-member-name,
-    .chart-label {
-      font-size: 18px !important;
-      line-height: 1.6;
-    }
-    .mobile-card-meta span,
-    .mobile-card-sub .value-badge,
-    .mobile-card-sub .jik-badge,
-    .modal-meta .jik-badge,
-    .modal-value .value-badge,
-    .family-member-tag,
-    .value-badge,
-    .jik-badge {
-      font-size: 16px !important;
-      font-weight: 700;
-      line-height: 1.4;
-    }
-    .modal-name { font-size: 28px !important; }
-    .modal-section-title { font-size: 14px !important; }
-    .modal-field { padding: 12px 14px; }
-    .modal-body { padding-top: 18px; }
-    .chart-title { font-size: 22px !important; }
-    .chart-bar-track { height: 34px; }
-    .chart-bar-fill { font-size: 14px; color: #2f2418; }
-    .chart-side {
-      background: #fbf6ef;
-      border-color: #dccfbe;
-    }
-    .chart-legend-item {
-      background: #fffaf4;
-      border-color: #d9ccb8;
-    }
-    .mobile-card {
-      background: #fffdfa;
-      border-color: rgba(138,107,72,0.16);
-      box-shadow: 0 10px 24px rgba(76,57,40,0.08);
-    }
-    .mobile-card-meta span { background: #f7efe6; color: var(--text); }
-    .modal {
-      background: #fffdfa;
-      border-color: #dccfbe;
-    }
-    .modal-header {
-      background: linear-gradient(180deg, rgba(138,107,72,0.10) 0%, rgba(255,255,255,0.95) 100%);
-    }
-    .modal-section {
-      background: #fffaf5;
-      border-color: rgba(138,107,72,0.16);
-    }
-    .modal-field {
-      background: #f8f1e8;
-      border: 1px solid rgba(138,107,72,0.12);
-      border-radius: 12px;
-    }
   }
 
   /* SCROLLBAR */
@@ -1313,9 +1264,20 @@
   </div>
 </header>
 
+<div class="mobile-toolbar" id="mobileToolbar">
+  <button type="button" class="mobile-toolbar-btn" id="mobileFilterOpenBtn">☰ 필터 보기</button>
+  <button type="button" class="mobile-toolbar-btn" id="mobileScrollTopBtn">↑ 상단으로</button>
+</div>
+
+<div class="mobile-sidebar-backdrop" id="mobileSidebarBackdrop"></div>
+
 <div class="main-wrap">
   <!-- SIDEBAR -->
-  <aside class="sidebar">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-mobile-head">
+      <div class="sidebar-mobile-title">필터</div>
+      <button type="button" class="sidebar-close-btn" id="mobileFilterCloseBtn">✕</button>
+    </div>
     <div class="filter-section">
       <div class="filter-title">
         <span class="filter-title-text chart-toggle" data-chart="교구">마을</span>
@@ -1332,7 +1294,14 @@
     </div>
     <div class="filter-section">
       <div class="filter-title">
-        <span class="filter-title-text chart-toggle" data-chart="성별">현재상태</span>
+        <span class="filter-title-text chart-toggle" data-chart="현재상태">현재상태</span>
+        <button type="button" class="inline-all-btn active" id="statusAllBtn" data-type="현재상태">전체</button>
+      </div>
+      <div class="filter-list" id="상태FilterList"></div>
+    </div>
+    <div class="filter-section">
+      <div class="filter-title">
+        <span class="filter-title-text chart-toggle" data-chart="성별">성별</span>
         <button type="button" class="inline-all-btn active" id="genderAllBtn" data-gender="전체">전체</button>
       </div>
       <div class="gender-row" id="genderFilterRow">
@@ -1359,10 +1328,17 @@
     </div>
     <div class="filter-section">
       <div class="filter-title">
-        <span class="filter-title-text chart-toggle" data-chart="현재상태">성별</span>
-        <button type="button" class="inline-all-btn active" id="statusAllBtn" data-type="현재상태">전체</button>
+        <span class="filter-title-text chart-toggle" data-chart="등록년도">등록년도</span>
+        <button type="button" class="inline-all-btn active" id="yearAllBtn" data-register-year="전체">전체</button>
       </div>
-      <div class="filter-list" id="상태FilterList"></div>
+      <div class="age-row" id="yearFilterRow">
+        <button class="age-btn" data-register-year="2020">2020년</button>
+        <button class="age-btn" data-register-year="2021">2021년</button>
+        <button class="age-btn" data-register-year="2022">2022년</button>
+        <button class="age-btn" data-register-year="2023">2023년</button>
+        <button class="age-btn" data-register-year="2024">2024년</button>
+        <button class="age-btn" data-register-year="2025">2025년</button>
+      </div>
     </div>
   </aside>
 
@@ -1445,7 +1421,10 @@
       성별: '전체',
       세대: '전체',
       현재상태: null,
-      세례: null
+      세례: null,
+      구역: null,
+      세부직분: null,
+      등록년도: '전체'
     }
   };
 
@@ -1520,6 +1499,14 @@
       return `${yyyy}-${mm}-${dd}`;
     }
     return s;
+  }
+
+
+  function getRegisterYear(member) {
+    const date = formatDate(member?.등록일);
+    if (!date) return '';
+    const year = date.slice(0, 4);
+    return /^\d{4}$/.test(year) ? year : '';
   }
 
 
@@ -1604,6 +1591,43 @@
     return `<span class="value-badge${clickable ? ' is-clickable' : ''}" style="--badge-color:${color};" ${extraAttrs}>${escapeHtml(safeLabel)}</span>`;
   }
 
+  function isBadgeFilterActive(type, value) {
+    const normalizedValue = normalizeText(value);
+    if (!normalizedValue) return false;
+    if (type === '직분') return normalizeText(state.filters.직분) === normalizeRole({ 직분: normalizedValue, 세부직분: normalizedValue });
+    if (type === '성별') return state.filters.성별 === normalizedValue;
+    if (type === '세례') return normalizeText(state.filters.세례) === normalizedValue;
+    if (type === '현재상태') return normalizeText(state.filters.현재상태) === normalizedValue;
+    if (type === '교구') return normalizeText(state.filters.교구) === normalizedValue;
+    if (type === '구역') return normalizeText(state.filters.구역) === normalizedValue;
+    if (type === '세부직분') return normalizeText(state.filters.세부직분) === normalizedValue;
+    if (type === '등록년도') return state.filters.등록년도 === normalizedValue;
+    return false;
+  }
+
+  function makeDetailFilterBadge(label, type = 'default', filterType = '', filterValue = '') {
+    const safeLabel = normalizeText(label);
+    const safeFilterValue = normalizeText(filterValue);
+    const clickable = filterType && safeFilterValue;
+    const active = clickable && isBadgeFilterActive(filterType, safeFilterValue);
+    const attrs = clickable
+      ? ` data-badge-filter-type="${escapeHtml(filterType)}" data-badge-filter-value="${escapeHtml(safeFilterValue)}"`
+      : '';
+    return makeValueBadge(safeLabel || '-', type, clickable, `${attrs}${active ? ' data-badge-active="true"' : ''} `).replace('value-badge', `value-badge${active ? ' is-active' : ''}`);
+  }
+
+  function renderDetailLookupField(label, displayValue, options = {}) {
+    const safeLabel = normalizeText(label);
+    const safeDisplayValue = normalizeText(displayValue);
+    const filterType = options.filterType || '';
+    const filterValue = normalizeText(options.filterValue ?? safeDisplayValue);
+    const badgeType = options.badgeType || 'default';
+    const isEmpty = !safeDisplayValue || safeDisplayValue === '0' || safeDisplayValue === 'NaT';
+    if (isEmpty) return field(safeLabel, safeDisplayValue);
+    if (!filterType || !filterValue) return field(safeLabel, safeDisplayValue);
+    return fieldHtml(safeLabel, makeDetailFilterBadge(safeDisplayValue, badgeType, filterType, filterValue));
+  }
+
   function renderFamilyInline(member) {
     const raw = normalizeText(member && member.가족전체);
     const selfName = normalizeText(member && member.이름);
@@ -1652,7 +1676,11 @@
   function field(label, value) {
     const text = normalizeText(value);
     const isEmpty = !text || text === '0' || text === 'NaT';
-    return `<div class="modal-field"><div class="modal-label">${label}</div><div class="modal-value ${isEmpty ? 'empty' : ''}">${isEmpty ? '-' : text}</div></div>`;
+    return `<div class="modal-field"><div class="modal-label">${label}</div><div class="modal-value ${isEmpty ? 'empty' : ''}">${isEmpty ? '-' : escapeHtml(text)}</div></div>`;
+  }
+
+  function fieldHtml(label, html, isEmpty = false) {
+    return `<div class="modal-field"><div class="modal-label">${escapeHtml(label)}</div><div class="modal-value ${isEmpty ? 'empty' : ''}">${isEmpty ? '-' : html}</div></div>`;
   }
 
   function isMobileView() {
@@ -1753,6 +1781,29 @@
     });
   }
 
+  function updateRegisterYearButtons() {
+    const years = ['2020','2021','2022','2023','2024','2025'];
+    const visible = getVisibleMembersForMenuCounts();
+    const counts = new Map(years.map(year => [year, 0]));
+    visible.forEach(member => {
+      const year = getRegisterYear(member);
+      if (counts.has(year)) counts.set(year, counts.get(year) + 1);
+    });
+    const total = visible.filter(member => years.includes(getRegisterYear(member))).length || 0;
+    const maxCount = Math.max(0, ...counts.values());
+
+    updateInlineAllButton('yearAllBtn', state.filters.등록년도 === '전체', total);
+
+    document.querySelectorAll('#yearFilterRow .age-btn[data-register-year]').forEach(btn => {
+      const year = btn.dataset.registerYear || '전체';
+      const count = counts.get(year) || 0;
+      btn.innerHTML = `<span class="filter-btn-main">${year}년</span><span class="filter-btn-sub">${count.toLocaleString()}명</span>`;
+      btn.classList.toggle('active', year === state.filters.등록년도);
+      btn.classList.toggle('is-top', count > 0 && count === maxCount);
+      btn.title = `${year}년 ${count.toLocaleString()}명`;
+    });
+  }
+
   function buildFilters() {
     const villageCounts = new Map();
     const roleCounts = new Map();
@@ -1821,6 +1872,7 @@
 
     updateGenderButtons();
     updateAgeButtons();
+    updateRegisterYearButtons();
   }
 
   function applyFilters() {
@@ -1831,10 +1883,13 @@
       if (state.filters.직분 && normalizeRole(member) !== state.filters.직분) return false;
       if (state.filters.성별 !== '전체' && normalizeText(member.성별) !== state.filters.성별) return false;
       if (state.filters.세대 !== '전체' && getAgeGroup(member) !== state.filters.세대) return false;
+      if (state.filters.등록년도 !== '전체' && getRegisterYear(member) !== state.filters.등록년도) return false;
       if (state.filters.현재상태 && normalizeText(member.현재상태) !== state.filters.현재상태) return false;
       if (state.filters.세례 && normalizeText(member.세례) !== state.filters.세례) return false;
+      if (state.filters.구역 && normalizeText(member.구역) !== state.filters.구역) return false;
+      if (state.filters.세부직분 && normalizeText(member.세부직분) !== state.filters.세부직분) return false;
       if (q) {
-        const hay = [member.이름, member.가족전체, member.구역, member.교구, member.직분, member.세부직분, member.핸드폰, member.전화번호]
+        const hay = [member.이름, member.가족전체, member.구역, member.교구, member.직분, member.세부직분, member.핸드폰, member.전화번호, getRegisterYear(member)]
           .map(normalizeText)
           .join(' ')
           .toLowerCase();
@@ -1878,8 +1933,11 @@
     if (state.filters.직분) labels.push(state.filters.직분);
     if (state.filters.성별 !== '전체') labels.push(state.filters.성별 === '남' ? '남성' : '여성');
     if (state.filters.세대 !== '전체') labels.push(state.filters.세대);
+    if (state.filters.등록년도 !== '전체') labels.push(`${state.filters.등록년도}년 등록`);
     if (state.filters.현재상태) labels.push(state.filters.현재상태);
     if (state.filters.세례) labels.push(state.filters.세례);
+    if (state.filters.구역) labels.push(`구역: ${state.filters.구역}`);
+    if (state.filters.세부직분) labels.push(`세부직분: ${state.filters.세부직분}`);
     if (state.searchQuery) labels.push(`검색: ${state.searchQuery}`);
     return labels.length ? labels.join(' · ') : '전체';
   }
@@ -1892,8 +1950,11 @@
     if (state.filters.직분) tags.push([state.filters.직분, () => { state.filters.직분 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
     if (state.filters.성별 !== '전체') tags.push([state.filters.성별 + '성', () => { state.filters.성별 = '전체'; rerender({rebuildFilters:true, resetPage:true}); }]);
     if (state.filters.세대 !== '전체') tags.push([state.filters.세대, () => { state.filters.세대 = '전체'; rerender({rebuildFilters:true, resetPage:true}); }]);
+    if (state.filters.등록년도 !== '전체') tags.push([`${state.filters.등록년도}년 등록`, () => { state.filters.등록년도 = '전체'; rerender({rebuildFilters:true, resetPage:true}); }]);
     if (state.filters.현재상태) tags.push([state.filters.현재상태, () => { state.filters.현재상태 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
     if (state.filters.세례) tags.push([state.filters.세례, () => { state.filters.세례 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
+    if (state.filters.구역) tags.push([`구역: ${state.filters.구역}`, () => { state.filters.구역 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
+    if (state.filters.세부직분) tags.push([`세부직분: ${state.filters.세부직분}`, () => { state.filters.세부직분 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
     if (state.searchQuery) tags.push([`"${state.searchQuery}"`, () => { state.searchQuery = ''; els.searchInput.value=''; rerender({resetPage:true}); }]);
 
     for (const [label, onRemove] of tags) {
@@ -1958,14 +2019,22 @@ function getChartData(type, members = state.filtered) {
       });
       return [...counts.entries()].sort((a, b) => b[1] - a[1]);
     }
+    if (type === '등록년도') {
+      ['2020','2021','2022','2023','2024','2025'].forEach(year => counts.set(year, 0));
+      source.forEach(member => {
+        const value = getRegisterYear(member);
+        if (counts.has(value)) counts.set(value, (counts.get(value) || 0) + 1);
+      });
+      return [...counts.entries()].filter(([, count]) => count > 0);
+    }
     return [];
   }
 
   function getChartColor(index) {
     const palette = [
-      '#8da0ae', '#a8b6c8', '#c2a98a', '#95b8a6', '#b3a0c8',
-      '#d0b38e', '#9fb5b9', '#c8a6a6', '#aeb7c3', '#b4aa96',
-      '#8fb0c1', '#c1b0c9'
+      '#c8a96e', '#e87a5a', '#7ec8e3', '#c97ecb', '#7bce9a',
+      '#8aa0c8', '#e3a87e', '#e8a0b8', '#a8b8d8', '#f0c060',
+      '#73c7b3', '#d98fbc'
     ];
     return palette[index % palette.length];
   }
@@ -2030,8 +2099,10 @@ function getChartData(type, members = state.filtered) {
     else if (type === '성별') state.filters.성별 = normalizedValue;
     else if (type === '세대') state.filters.세대 = normalizedValue;
     else if (type === '현재상태') state.filters.현재상태 = normalizedValue;
+    else if (type === '등록년도') state.filters.등록년도 = normalizedValue;
     else return;
-    rerender({ rebuildFilters: true, resetPage: true });
+    closeMobileSidebar();
+      rerender({ rebuildFilters: true, resetPage: true });
   }
 
   function renderChart() {
@@ -2151,6 +2222,7 @@ function renderTable() {
     else {
       updateGenderButtons();
       updateAgeButtons();
+      updateRegisterYearButtons();
     }
     renderActiveFilters();
     renderTable();
@@ -2172,19 +2244,30 @@ function renderTable() {
       state.filters.세례 = normalizedValue;
     } else if (type === '현재상태') {
       state.filters.현재상태 = normalizedValue;
+    } else if (type === '교구') {
+      state.filters.교구 = normalizedValue;
+    } else if (type === '구역') {
+      state.filters.구역 = normalizedValue;
+    } else if (type === '세부직분') {
+      state.filters.세부직분 = normalizedValue;
+    } else if (type === '등록년도') {
+      state.filters.등록년도 = normalizedValue;
     } else {
       return;
     }
 
     state.currentPage = 1;
     $('modalBg').classList.remove('open');
-    rerender({ rebuildFilters: true, resetPage: true });
+    closeMobileSidebar();
+      rerender({ rebuildFilters: true, resetPage: true });
   }
 
   function makeMetaBadge(label, className, filterType = '', filterValue = '') {
     const safeLabel = normalizeText(label);
-    const clickable = filterType && normalizeText(filterValue);
-    return `<span class="jik-badge ${className}${clickable ? ' is-clickable' : ''}"${clickable ? ` data-badge-filter-type="${filterType}" data-badge-filter-value="${normalizeText(filterValue)}"` : ''}>${safeLabel || '-'}</span>`;
+    const safeFilterValue = normalizeText(filterValue);
+    const clickable = filterType && safeFilterValue;
+    const active = clickable && isBadgeFilterActive(filterType, safeFilterValue);
+    return `<span class="jik-badge ${className}${clickable ? ' is-clickable' : ''}${active ? ' is-active' : ''}"${clickable ? ` data-badge-filter-type="${escapeHtml(filterType)}" data-badge-filter-value="${escapeHtml(safeFilterValue)}"` : ''}>${escapeHtml(safeLabel || '-')}</span>`;
   }
 
 
@@ -2196,16 +2279,17 @@ function renderTable() {
     let metaHtml = makeMetaBadge(roleLabel || '-', getJikClass(roleLabel), '직분', roleLabel);
     if (m.성별) metaHtml += makeMetaBadge(`${normalizeText(m.성별)}성`, 'jik-other', '성별', normalizeText(m.성별));
     if (m.나이) metaHtml += makeMetaBadge(`${m.나이}세`, 'jik-other');
+    if (getRegisterYear(m)) metaHtml += makeMetaBadge(`${getRegisterYear(m)}년 등록`, 'jik-other', '등록년도', getRegisterYear(m));
     if (m.현재상태) metaHtml += makeMetaBadge(normalizeText(m.현재상태), 'jik-other', '현재상태', normalizeText(m.현재상태));
     if (m.세례) metaHtml += makeMetaBadge(normalizeText(m.세례), 'jik-other', '세례', normalizeText(m.세례));
     $('modalMeta').innerHTML = metaHtml;
 
     let bodyHtml = '';
-    bodyHtml += `<div class="modal-section"><div class="modal-section-title">소속</div><div class="modal-grid">${field('교구', m.교구)}${field('구역', m.구역)}${field('직분', m.직분)}${field('세부직분', m.세부직분 !== m.직분 ? m.세부직분 : '')}</div></div>`;
+    bodyHtml += `<div class="modal-section"><div class="modal-section-title">소속</div><div class="modal-grid">${renderDetailLookupField('교구', normalizeText(m.교구) || getVillageFilterValue(m), { filterType: '교구', filterValue: getVillageFilterValue(m), badgeType: 'group' })}${renderDetailLookupField('구역', m.구역, { filterType: '구역', filterValue: normalizeText(m.구역), badgeType: 'district' })}${renderDetailLookupField('직분', m.직분, { filterType: '직분', filterValue: normalizeRole(m), badgeType: 'role' })}${renderDetailLookupField('세부직분', m.세부직분 !== m.직분 ? m.세부직분 : '', { filterType: '세부직분', filterValue: normalizeText(m.세부직분), badgeType: 'role' })}</div></div>`;
     bodyHtml += `<div class="modal-section"><div class="modal-section-title">가족 구성원</div>${parseFamilyList(m)}</div>`;
     if (m.배우자) bodyHtml += `<div class="modal-section"><div class="modal-section-title">배우자</div><div class="modal-grid">${field('배우자 이름', m.배우자)}${field('배우자 직분', m.배우자직분)}</div></div>`;
     bodyHtml += `<div class="modal-section"><div class="modal-section-title">개인 정보</div><div class="modal-grid">${field('생년월일', getBirthDisplay(m))}${field('관계', m.관계)}${field('세대주', m.세대주 !== m.이름 ? m.세대주 : '본인')}${field('교인구분', m.교인구분1)}${field('현재상태', m.현재상태)}</div></div>`;
-    bodyHtml += `<div class="modal-section"><div class="modal-section-title">등록 정보</div><div class="modal-grid">${field('등록일', formatDate(m.등록일))}${field('휴대폰', normalizeText(m.핸드폰 || m.전화번호) || '데이터 없음')}</div></div>`;
+    bodyHtml += `<div class="modal-section"><div class="modal-section-title">등록 정보</div><div class="modal-grid">${field('등록일', formatDate(m.등록일))}${renderDetailLookupField('등록년도', getRegisterYear(m) ? `${getRegisterYear(m)}년` : '', { filterType: '등록년도', filterValue: getRegisterYear(m), badgeType: 'register-year' })}${field('휴대폰', normalizeText(m.핸드폰 || m.전화번호) || '데이터 없음')}</div></div>`;
     $('modalBody').innerHTML = bodyHtml;
     $('modalBg').classList.add('open');
   }
@@ -2217,7 +2301,22 @@ function renderTable() {
     if (!event || event.target === $('modalBg')) $('modalBg').classList.remove('open');
   };
 
+
+  function setMobileSidebar(open) {
+    document.body.classList.toggle('sidebar-open', !!open);
+  }
+
+  function closeMobileSidebar() {
+    setMobileSidebar(false);
+  }
+
   function bindEvents() {
+    $('mobileFilterOpenBtn')?.addEventListener('click', () => setMobileSidebar(true));
+    $('mobileFilterCloseBtn')?.addEventListener('click', () => closeMobileSidebar());
+    $('mobileSidebarBackdrop')?.addEventListener('click', () => closeMobileSidebar());
+    $('mobileScrollTopBtn')?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMobileSidebar(); });
+
     els.searchInput.addEventListener('input', (e) => {
       state.searchQuery = normalizeText(e.target.value).toLowerCase();
       rerender({ resetPage: true });
@@ -2225,6 +2324,7 @@ function renderTable() {
 
     $('groupAllBtn').addEventListener('click', () => {
       state.filters.교구 = null;
+      closeMobileSidebar();
       rerender({ rebuildFilters: true, resetPage: true });
     });
 
@@ -2233,11 +2333,13 @@ function renderTable() {
       if (!btn) return;
       const value = normalizeText(btn.dataset.value);
       state.filters.교구 = value;
+      closeMobileSidebar();
       rerender({ rebuildFilters: true, resetPage: true });
     });
 
     $('roleAllBtn').addEventListener('click', () => {
       state.filters.직분 = null;
+      closeMobileSidebar();
       rerender({ rebuildFilters: true, resetPage: true });
     });
 
@@ -2245,11 +2347,13 @@ function renderTable() {
       const btn = e.target.closest('.filter-btn');
       if (!btn) return;
       state.filters.직분 = normalizeText(btn.dataset.value);
+      closeMobileSidebar();
       rerender({ rebuildFilters: true, resetPage: true });
     });
 
     $('statusAllBtn').addEventListener('click', () => {
       state.filters.현재상태 = null;
+      closeMobileSidebar();
       rerender({ rebuildFilters: true, resetPage: true });
     });
 
@@ -2257,6 +2361,7 @@ function renderTable() {
       const btn = e.target.closest('.filter-btn');
       if (!btn) return;
       state.filters.현재상태 = normalizeText(btn.dataset.value);
+      closeMobileSidebar();
       rerender({ rebuildFilters: true, resetPage: true });
     });
 
@@ -2264,11 +2369,13 @@ function renderTable() {
       const btn = e.target.closest('.gender-btn[data-gender]');
       if (!btn) return;
       state.filters.성별 = btn.dataset.gender || '전체';
+      closeMobileSidebar();
       rerender({ rebuildFilters: true, resetPage: true });
     });
 
     $('genderAllBtn').addEventListener('click', () => {
       state.filters.성별 = '전체';
+      closeMobileSidebar();
       rerender({ rebuildFilters: true, resetPage: true });
     });
 
@@ -2276,11 +2383,27 @@ function renderTable() {
       const btn = e.target.closest('.age-btn[data-age-group]');
       if (!btn) return;
       state.filters.세대 = btn.dataset.ageGroup || '전체';
+      closeMobileSidebar();
       rerender({ rebuildFilters: true, resetPage: true });
     });
 
     $('ageAllBtn').addEventListener('click', () => {
       state.filters.세대 = '전체';
+      closeMobileSidebar();
+      rerender({ rebuildFilters: true, resetPage: true });
+    });
+
+    $('yearFilterRow').addEventListener('click', (e) => {
+      const btn = e.target.closest('.age-btn[data-register-year]');
+      if (!btn) return;
+      state.filters.등록년도 = btn.dataset.registerYear || '전체';
+      closeMobileSidebar();
+      rerender({ rebuildFilters: true, resetPage: true });
+    });
+
+    $('yearAllBtn').addEventListener('click', () => {
+      state.filters.등록년도 = '전체';
+      closeMobileSidebar();
       rerender({ rebuildFilters: true, resetPage: true });
     });
 
@@ -2340,6 +2463,11 @@ function renderTable() {
       applyBadgeFilter(badge.dataset.badgeFilterType, badge.dataset.badgeFilterValue);
     });
     $('modalBody').addEventListener('click', (e) => {
+      const badge = e.target.closest('[data-badge-filter-type]');
+      if (badge) {
+        applyBadgeFilter(badge.dataset.badgeFilterType, badge.dataset.badgeFilterValue);
+        return;
+      }
       const familyTag = e.target.closest('[data-family-member-id]');
       if (!familyTag) return;
       showDetail(familyTag.dataset.familyMemberId);
@@ -2349,7 +2477,7 @@ function renderTable() {
     let resizeTimer = null;
     window.addEventListener('resize', () => {
       clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => rerender(), 80);
+      resizeTimer = setTimeout(() => { if (window.innerWidth > 640) closeMobileSidebar(); rerender(); }, 80);
     });
   }
 
@@ -2372,7 +2500,8 @@ function renderTable() {
     state.members = data;
     hideNotice();
     buildFilters();
-    rerender({ rebuildFilters: true, resetPage: true });
+    closeMobileSidebar();
+      rerender({ rebuildFilters: true, resetPage: true });
   }
 
   async function loadDataFromSelectedFile(file) {
@@ -2388,25 +2517,28 @@ function renderTable() {
     }
   }
 
-  async function loadDefaultJson() {
-    showNotice('명단 데이터를 불러오는 중입니다...');
-    try {
-      const response = await fetch('./church_members.json', { cache: 'no-store' });
-      if (!response.ok) throw new Error(`HTTP ${response.status}`);
-      const data = await response.json();
-      finalizeLoadedData(data);
-    } catch (error) {
-      promptJsonSelection('자동으로 <strong>church_members.json</strong> 파일을 불러오지 못했습니다.<br>같은 폴더에 HTML 파일과 JSON 파일을 함께 업로드해 주세요.');
-    }
-  }
-
   function promptJsonSelection(message) {
-    const noticeMessage = message || '명단을 불러오려면 <strong>church_members.json</strong> 파일을 선택해 주세요.';
+    const noticeMessage = message || '자동 불러오기에 실패했습니다. <strong>church_members.json</strong> 파일을 직접 선택해 주세요.';
     showNotice(buildJsonPickerNotice(noticeMessage), true);
     const input = $('jsonFileInput');
     if (input) {
       input.value = '';
       input.addEventListener('change', (e) => loadDataFromSelectedFile(e.target.files?.[0]), { once: true });
+    }
+  }
+
+  async function loadDefaultJson() {
+    showNotice('명단 데이터를 불러오는 중입니다...');
+    try {
+      const response = await fetch('./church_members.json', { cache: 'no-store' });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      const data = await response.json();
+      finalizeLoadedData(data);
+    } catch (error) {
+      //console.error('church_members.json 자동 불러오기 실패:', error);
+      //promptJsonSelection('자동으로 <strong>church_members.json</strong> 파일을 불러오지 못했습니다.<br>GitHub Pages에 올릴 때는 HTML 파일과 JSON 파일을 같은 폴더에 함께 업로드해 주세요.');
     }
   }
 
