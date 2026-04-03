@@ -1108,6 +1108,183 @@
     }
   }
 
+
+
+  /* READABILITY TUNING */
+  .mobile-card-sub .value-badge,
+  .mobile-card-sub .jik-badge,
+  .mobile-card-meta span,
+  .modal-value .value-badge,
+  .modal-meta .jik-badge {
+    color: var(--text) !important;
+  }
+
+  @media (min-width: 641px) {
+    :root {
+      --bg: #d9dce2;
+      --surface: #eef1f5;
+      --surface2: #e4e8ee;
+      --border: #bcc4cf;
+      --accent: #6b7280;
+      --accent2: #374151;
+      --text: #1f2937;
+      --text2: #4b5563;
+      --text3: #6b7280;
+      --other: #6b7280;
+    }
+    body { background: linear-gradient(180deg, #d8dde4 0%, #eceff3 100%); }
+    header {
+      background: linear-gradient(135deg, #cfd5dd 0%, #e8edf2 52%, #c8ced7 100%);
+      box-shadow: 0 10px 30px rgba(55,65,81,0.10);
+    }
+    .filter-title,
+    .chart-side,
+    .mobile-card,
+    .modal-section,
+    .page-btn,
+    .gender-btn,
+    .age-btn,
+    .filter-btn,
+    .inline-all-btn,
+    .table-wrap,
+    .chart-panel {
+      box-shadow: none;
+    }
+    th {
+      background: linear-gradient(180deg, #dfe4ea 0%, #eef2f6 100%);
+      color: var(--text2);
+    }
+    .modal {
+      background: #f7f9fb;
+      border-color: #c5ccd6;
+      box-shadow: 0 24px 60px rgba(31,41,55,0.18);
+    }
+    .modal-header {
+      background: linear-gradient(180deg, rgba(107,114,128,0.10) 0%, rgba(255,255,255,0.72) 100%);
+    }
+    .modal-section {
+      background: #ffffff;
+      border: 1px solid rgba(107,114,128,0.16);
+    }
+    .modal-field {
+      background: #f4f6f9;
+      border: 1px solid rgba(107,114,128,0.12);
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+    .chart-side {
+      background: #f6f8fa;
+    }
+  }
+
+  @media (max-width: 640px) {
+    :root {
+      --bg: #f4efe6;
+      --surface: #fffdfa;
+      --surface2: #f5eee4;
+      --border: #d8cab8;
+      --accent: #8a6b48;
+      --accent2: #4c3928;
+      --text: #2f2418;
+      --text2: #564638;
+      --text3: #7a6858;
+    }
+    body { background: #f4efe6; }
+    header {
+      background: linear-gradient(180deg, #efe4d5 0%, #f8f2ea 100%);
+      box-shadow: 0 8px 18px rgba(76,57,40,0.08);
+    }
+    .church-title { font-size: 20px; }
+    .church-subtitle,
+    .total-count,
+    #searchInput,
+    .mobile-toolbar-btn,
+    .filter-title,
+    .inline-all-btn,
+    .filter-btn,
+    .gender-btn,
+    .age-btn,
+    .result-info,
+    .page-btn,
+    .chart-subtitle,
+    .chart-hint,
+    .chart-side-title,
+    .chart-legend-label,
+    .chart-legend-value,
+    .chart-value,
+    .modal-label,
+    .family-member-jik,
+    .family-inline-jik {
+      font-size: 15px !important;
+    }
+    .filter-count,
+    .filter-btn-sub,
+    .chart-pie-center-subtext,
+    .관계-badge {
+      font-size: 13px !important;
+    }
+    .mobile-card-name { font-size: 24px !important; font-weight: 800; }
+    .mobile-card-sub,
+    .mobile-card-family,
+    .family-inline-name,
+    .mobile-card-meta,
+    .modal-value,
+    .family-member-name,
+    .chart-label {
+      font-size: 18px !important;
+      line-height: 1.6;
+    }
+    .mobile-card-meta span,
+    .mobile-card-sub .value-badge,
+    .mobile-card-sub .jik-badge,
+    .modal-meta .jik-badge,
+    .modal-value .value-badge,
+    .family-member-tag,
+    .value-badge,
+    .jik-badge {
+      font-size: 16px !important;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+    .modal-name { font-size: 28px !important; }
+    .modal-section-title { font-size: 14px !important; }
+    .modal-field { padding: 12px 14px; }
+    .modal-body { padding-top: 18px; }
+    .chart-title { font-size: 22px !important; }
+    .chart-bar-track { height: 34px; }
+    .chart-bar-fill { font-size: 14px; color: #2f2418; }
+    .chart-side {
+      background: #fbf6ef;
+      border-color: #dccfbe;
+    }
+    .chart-legend-item {
+      background: #fffaf4;
+      border-color: #d9ccb8;
+    }
+    .mobile-card {
+      background: #fffdfa;
+      border-color: rgba(138,107,72,0.16);
+      box-shadow: 0 10px 24px rgba(76,57,40,0.08);
+    }
+    .mobile-card-meta span { background: #f7efe6; color: var(--text); }
+    .modal {
+      background: #fffdfa;
+      border-color: #dccfbe;
+    }
+    .modal-header {
+      background: linear-gradient(180deg, rgba(138,107,72,0.10) 0%, rgba(255,255,255,0.95) 100%);
+    }
+    .modal-section {
+      background: #fffaf5;
+      border-color: rgba(138,107,72,0.16);
+    }
+    .modal-field {
+      background: #f8f1e8;
+      border: 1px solid rgba(138,107,72,0.12);
+      border-radius: 12px;
+    }
+  }
+
   /* SCROLLBAR */
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
@@ -2211,8 +2388,21 @@ function renderTable() {
     }
   }
 
-  function promptJsonSelection() {
-    showNotice(buildJsonPickerNotice('명단을 불러오려면 <strong>church_members.json</strong> 파일을 선택해 주세요.'));
+  async function loadDefaultJson() {
+    showNotice('명단 데이터를 불러오는 중입니다...');
+    try {
+      const response = await fetch('./church_members.json', { cache: 'no-store' });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+      const data = await response.json();
+      finalizeLoadedData(data);
+    } catch (error) {
+      promptJsonSelection('자동으로 <strong>church_members.json</strong> 파일을 불러오지 못했습니다.<br>같은 폴더에 HTML 파일과 JSON 파일을 함께 업로드해 주세요.');
+    }
+  }
+
+  function promptJsonSelection(message) {
+    const noticeMessage = message || '명단을 불러오려면 <strong>church_members.json</strong> 파일을 선택해 주세요.';
+    showNotice(buildJsonPickerNotice(noticeMessage), true);
     const input = $('jsonFileInput');
     if (input) {
       input.value = '';
@@ -2225,7 +2415,7 @@ function renderTable() {
     els.tableBody = $('tableBody');
     els.pagination = $('pagination');
     bindEvents();
-    promptJsonSelection();
+    loadDefaultJson();
   }
 
   if (document.readyState === 'loading') {
