@@ -1314,6 +1314,20 @@
         <button class="age-btn" data-age-group="90대">90대</button>
       </div>
     </div>
+    <div class="filter-section">
+      <div class="filter-title">
+        <span class="filter-title-text chart-toggle" data-chart="등록년도">등록년도</span>
+        <button type="button" class="inline-all-btn active" id="yearAllBtn" data-register-year="전체">전체</button>
+      </div>
+      <div class="age-row" id="yearFilterRow">
+        <button class="age-btn" data-register-year="2020">2020년</button>
+        <button class="age-btn" data-register-year="2021">2021년</button>
+        <button class="age-btn" data-register-year="2022">2022년</button>
+        <button class="age-btn" data-register-year="2023">2023년</button>
+        <button class="age-btn" data-register-year="2024">2024년</button>
+        <button class="age-btn" data-register-year="2025">2025년</button>
+      </div>
+    </div>
   </aside>
 
   <!-- CONTENT -->
@@ -1397,7 +1411,8 @@
       현재상태: null,
       세례: null,
       구역: null,
-      세부직분: null
+      세부직분: null,
+      등록년도: '전체'
     }
   };
 
@@ -1472,6 +1487,14 @@
       return `${yyyy}-${mm}-${dd}`;
     }
     return s;
+  }
+
+
+  function getRegisterYear(member) {
+    const date = formatDate(member?.등록일);
+    if (!date) return '';
+    const year = date.slice(0, 4);
+    return /^\d{4}$/.test(year) ? year : '';
   }
 
 
@@ -1566,6 +1589,7 @@
     if (type === '교구') return normalizeText(state.filters.교구) === normalizedValue;
     if (type === '구역') return normalizeText(state.filters.구역) === normalizedValue;
     if (type === '세부직분') return normalizeText(state.filters.세부직분) === normalizedValue;
+    if (type === '등록년도') return state.filters.등록년도 === normalizedValue;
     return false;
   }
 
@@ -1745,6 +1769,29 @@
     });
   }
 
+  function updateRegisterYearButtons() {
+    const years = ['2020','2021','2022','2023','2024','2025'];
+    const visible = getVisibleMembersForMenuCounts();
+    const counts = new Map(years.map(year => [year, 0]));
+    visible.forEach(member => {
+      const year = getRegisterYear(member);
+      if (counts.has(year)) counts.set(year, counts.get(year) + 1);
+    });
+    const total = visible.filter(member => years.includes(getRegisterYear(member))).length || 0;
+    const maxCount = Math.max(0, ...counts.values());
+
+    updateInlineAllButton('yearAllBtn', state.filters.등록년도 === '전체', total);
+
+    document.querySelectorAll('#yearFilterRow .age-btn[data-register-year]').forEach(btn => {
+      const year = btn.dataset.registerYear || '전체';
+      const count = counts.get(year) || 0;
+      btn.innerHTML = `<span class="filter-btn-main">${year}년</span><span class="filter-btn-sub">${count.toLocaleString()}명</span>`;
+      btn.classList.toggle('active', year === state.filters.등록년도);
+      btn.classList.toggle('is-top', count > 0 && count === maxCount);
+      btn.title = `${year}년 ${count.toLocaleString()}명`;
+    });
+  }
+
   function buildFilters() {
     const villageCounts = new Map();
     const roleCounts = new Map();
@@ -1813,6 +1860,7 @@
 
     updateGenderButtons();
     updateAgeButtons();
+    updateRegisterYearButtons();
   }
 
   function applyFilters() {
@@ -1823,12 +1871,13 @@
       if (state.filters.직분 && normalizeRole(member) !== state.filters.직분) return false;
       if (state.filters.성별 !== '전체' && normalizeText(member.성별) !== state.filters.성별) return false;
       if (state.filters.세대 !== '전체' && getAgeGroup(member) !== state.filters.세대) return false;
+      if (state.filters.등록년도 !== '전체' && getRegisterYear(member) !== state.filters.등록년도) return false;
       if (state.filters.현재상태 && normalizeText(member.현재상태) !== state.filters.현재상태) return false;
       if (state.filters.세례 && normalizeText(member.세례) !== state.filters.세례) return false;
       if (state.filters.구역 && normalizeText(member.구역) !== state.filters.구역) return false;
       if (state.filters.세부직분 && normalizeText(member.세부직분) !== state.filters.세부직분) return false;
       if (q) {
-        const hay = [member.이름, member.가족전체, member.구역, member.교구, member.직분, member.세부직분, member.핸드폰, member.전화번호]
+        const hay = [member.이름, member.가족전체, member.구역, member.교구, member.직분, member.세부직분, member.핸드폰, member.전화번호, getRegisterYear(member)]
           .map(normalizeText)
           .join(' ')
           .toLowerCase();
@@ -1872,6 +1921,7 @@
     if (state.filters.직분) labels.push(state.filters.직분);
     if (state.filters.성별 !== '전체') labels.push(state.filters.성별 === '남' ? '남성' : '여성');
     if (state.filters.세대 !== '전체') labels.push(state.filters.세대);
+    if (state.filters.등록년도 !== '전체') labels.push(`${state.filters.등록년도}년 등록`);
     if (state.filters.현재상태) labels.push(state.filters.현재상태);
     if (state.filters.세례) labels.push(state.filters.세례);
     if (state.filters.구역) labels.push(`구역: ${state.filters.구역}`);
@@ -1888,6 +1938,7 @@
     if (state.filters.직분) tags.push([state.filters.직분, () => { state.filters.직분 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
     if (state.filters.성별 !== '전체') tags.push([state.filters.성별 + '성', () => { state.filters.성별 = '전체'; rerender({rebuildFilters:true, resetPage:true}); }]);
     if (state.filters.세대 !== '전체') tags.push([state.filters.세대, () => { state.filters.세대 = '전체'; rerender({rebuildFilters:true, resetPage:true}); }]);
+    if (state.filters.등록년도 !== '전체') tags.push([`${state.filters.등록년도}년 등록`, () => { state.filters.등록년도 = '전체'; rerender({rebuildFilters:true, resetPage:true}); }]);
     if (state.filters.현재상태) tags.push([state.filters.현재상태, () => { state.filters.현재상태 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
     if (state.filters.세례) tags.push([state.filters.세례, () => { state.filters.세례 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
     if (state.filters.구역) tags.push([`구역: ${state.filters.구역}`, () => { state.filters.구역 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
@@ -1955,6 +2006,14 @@ function getChartData(type, members = state.filtered) {
         counts.set(value, (counts.get(value) || 0) + 1);
       });
       return [...counts.entries()].sort((a, b) => b[1] - a[1]);
+    }
+    if (type === '등록년도') {
+      ['2020','2021','2022','2023','2024','2025'].forEach(year => counts.set(year, 0));
+      source.forEach(member => {
+        const value = getRegisterYear(member);
+        if (counts.has(value)) counts.set(value, (counts.get(value) || 0) + 1);
+      });
+      return [...counts.entries()].filter(([, count]) => count > 0);
     }
     return [];
   }
@@ -2028,6 +2087,7 @@ function getChartData(type, members = state.filtered) {
     else if (type === '성별') state.filters.성별 = normalizedValue;
     else if (type === '세대') state.filters.세대 = normalizedValue;
     else if (type === '현재상태') state.filters.현재상태 = normalizedValue;
+    else if (type === '등록년도') state.filters.등록년도 = normalizedValue;
     else return;
     closeMobileSidebar();
       rerender({ rebuildFilters: true, resetPage: true });
@@ -2150,6 +2210,7 @@ function renderTable() {
     else {
       updateGenderButtons();
       updateAgeButtons();
+      updateRegisterYearButtons();
     }
     renderActiveFilters();
     renderTable();
@@ -2177,6 +2238,8 @@ function renderTable() {
       state.filters.구역 = normalizedValue;
     } else if (type === '세부직분') {
       state.filters.세부직분 = normalizedValue;
+    } else if (type === '등록년도') {
+      state.filters.등록년도 = normalizedValue;
     } else {
       return;
     }
@@ -2204,6 +2267,7 @@ function renderTable() {
     let metaHtml = makeMetaBadge(roleLabel || '-', getJikClass(roleLabel), '직분', roleLabel);
     if (m.성별) metaHtml += makeMetaBadge(`${normalizeText(m.성별)}성`, 'jik-other', '성별', normalizeText(m.성별));
     if (m.나이) metaHtml += makeMetaBadge(`${m.나이}세`, 'jik-other');
+    if (getRegisterYear(m)) metaHtml += makeMetaBadge(`${getRegisterYear(m)}년 등록`, 'jik-other', '등록년도', getRegisterYear(m));
     if (m.현재상태) metaHtml += makeMetaBadge(normalizeText(m.현재상태), 'jik-other', '현재상태', normalizeText(m.현재상태));
     if (m.세례) metaHtml += makeMetaBadge(normalizeText(m.세례), 'jik-other', '세례', normalizeText(m.세례));
     $('modalMeta').innerHTML = metaHtml;
@@ -2213,7 +2277,7 @@ function renderTable() {
     bodyHtml += `<div class="modal-section"><div class="modal-section-title">가족 구성원</div>${parseFamilyList(m)}</div>`;
     if (m.배우자) bodyHtml += `<div class="modal-section"><div class="modal-section-title">배우자</div><div class="modal-grid">${field('배우자 이름', m.배우자)}${field('배우자 직분', m.배우자직분)}</div></div>`;
     bodyHtml += `<div class="modal-section"><div class="modal-section-title">개인 정보</div><div class="modal-grid">${field('생년월일', getBirthDisplay(m))}${field('관계', m.관계)}${field('세대주', m.세대주 !== m.이름 ? m.세대주 : '본인')}${field('교인구분', m.교인구분1)}${field('현재상태', m.현재상태)}</div></div>`;
-    bodyHtml += `<div class="modal-section"><div class="modal-section-title">등록 정보</div><div class="modal-grid">${field('등록일', formatDate(m.등록일))}${field('휴대폰', normalizeText(m.핸드폰 || m.전화번호) || '데이터 없음')}</div></div>`;
+    bodyHtml += `<div class="modal-section"><div class="modal-section-title">등록 정보</div><div class="modal-grid">${field('등록일', formatDate(m.등록일))}${renderDetailLookupField('등록년도', getRegisterYear(m) ? `${getRegisterYear(m)}년` : '', { filterType: '등록년도', filterValue: getRegisterYear(m), badgeType: 'register-year' })}${field('휴대폰', normalizeText(m.핸드폰 || m.전화번호) || '데이터 없음')}</div></div>`;
     $('modalBody').innerHTML = bodyHtml;
     $('modalBg').classList.add('open');
   }
