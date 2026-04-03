@@ -1108,10 +1108,13 @@
       background: #121725;
       border-right: 1px solid var(--border);
       overflow-y: auto;
+      overflow-x: hidden;
+      display: block;
       z-index: 220;
       transform: translateX(-105%);
       transition: transform 0.22s ease;
       box-shadow: 12px 0 40px rgba(0,0,0,0.35);
+      -webkit-overflow-scrolling: touch;
     }
     body.sidebar-open .sidebar {
       transform: translateX(0);
@@ -1137,7 +1140,12 @@
       background: #121725;
       z-index: 1;
     }
-    .filter-section { margin-bottom: 12px; }
+    .filter-section {
+      margin-bottom: 12px;
+      overflow: visible;
+      height: auto;
+      max-height: none;
+    }
     .filter-title { padding: 10px 12px; }
     .inline-all-btn { padding: 4px 8px; font-size: 10px; }
     .filter-list {
@@ -1145,6 +1153,10 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 8px;
       padding: 10px;
+      height: auto;
+      max-height: none;
+      overflow: visible;
+      align-content: start;
     }
     .filter-btn {
       min-height: 54px;
