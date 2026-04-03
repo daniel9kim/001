@@ -86,11 +86,44 @@
   }
 
   /* SEARCH BAR */
+  .header-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 260px;
+    justify-content: flex-end;
+  }
   .search-wrap {
     flex: 1;
-    min-width: 200px;
+    min-width: 180px;
     max-width: 380px;
     position: relative;
+  }
+  .header-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--text2);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+  }
+  .header-filter-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent2);
+    background: rgba(200,169,110,0.10);
+  }
+  .header-filter-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
   }
   .search-wrap svg {
     position: absolute;
@@ -601,8 +634,8 @@
   .modal {
     background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 16px;
-    width: 540px;
+    border-radius: 18px;
+    width: min(960px, 95vw);
     max-width: 95vw;
     max-height: 90vh;
     overflow-y: auto;
@@ -646,9 +679,20 @@
     transition: color 0.15s;
   }
   .modal-close:hover { color: var(--text); }
-  .modal-body { padding: 20px 24px 24px; }
+  .modal-body {
+    padding: 20px 24px 24px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+    gap: 16px;
+    align-items: start;
+  }
+  .modal-column {
+    display: grid;
+    gap: 16px;
+    min-width: 0;
+  }
   .modal-section {
-    margin-bottom: 16px;
+    margin-bottom: 0;
     padding: 14px 16px;
     background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
     border: 1px solid rgba(200,169,110,0.14);
@@ -679,14 +723,18 @@
   }
   .modal-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
   }
+  .modal-grid.is-compact {
+    grid-template-columns: 1fr;
+  }
   .modal-field {
-    padding: 10px 12px;
-    background: rgba(15,17,23,0.35);
+    padding: 11px 12px;
+    background: rgba(15,17,23,0.38);
     border: 1px solid rgba(255,255,255,0.05);
-    border-radius: 10px;
+    border-radius: 12px;
+    min-width: 0;
   }
   .modal-label {
     font-size: 11px;
@@ -1001,7 +1049,7 @@
 
 
   .mobile-toolbar {
-    display: none;
+    display: none !important;
   }
   .mobile-sidebar-backdrop {
     display: none;
@@ -1037,11 +1085,19 @@
     .filter-section { margin-bottom: 0; }
     .header-inner { gap: 10px; }
     .church-title { font-size: 18px; }
-    .search-wrap { max-width: 100%; min-width: 100%; }
+    .header-actions {
+      width: 100%;
+      min-width: 100%;
+      order: 4;
+      margin-left: 0;
+      justify-content: stretch;
+    }
+    .search-wrap { max-width: 100%; min-width: 0; }
     .header-divider { display: none; }
     thead { top: 0; }
     .chart-layout { grid-template-columns: 1fr; }
     .chart-row { grid-template-columns: 100px 1fr 74px; }
+    .modal-body { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
     body { background: #0d1018; }
@@ -1052,46 +1108,35 @@
       z-index: 120;
     }
     .header-inner {
-      align-items: stretch;
+      align-items: center;
       gap: 8px;
     }
     .church-title { font-size: 17px; letter-spacing: 1px; }
     .church-subtitle { font-size: 11px; }
     .total-count {
-      width: 100%;
-      order: 3;
       font-size: 12px;
+      white-space: nowrap;
+      order: 2;
     }
     .total-count strong { font-size: 16px; }
-    .search-wrap { order: 4; }
+    .header-actions {
+      order: 3;
+      width: 100%;
+      min-width: 100%;
+      gap: 8px;
+      justify-content: stretch;
+    }
+    .search-wrap { flex: 1; }
     #searchInput {
       font-size: 14px;
       padding-top: 10px;
       padding-bottom: 10px;
       border-radius: 10px;
     }
-    .mobile-toolbar {
-      display: flex;
-      gap: 8px;
-      padding: 10px 12px 0;
-      position: sticky;
-      top: 88px;
-      z-index: 110;
-      background: linear-gradient(180deg, rgba(13,16,24,0.96) 0%, rgba(13,16,24,0.9) 100%);
-      backdrop-filter: blur(8px);
-    }
-    .mobile-toolbar-btn {
-      flex: 1;
-      min-height: 40px;
-      padding: 0 12px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      background: var(--surface);
-      color: var(--text);
-      font-family: 'Noto Sans KR', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      cursor: pointer;
+    .header-filter-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
     }
     .main-wrap {
       grid-template-columns: 1fr;
@@ -1223,7 +1268,13 @@
       max-height: 88vh;
       border-radius: 14px;
     }
-    .modal-header, .modal-body { padding-left: 16px; padding-right: 16px; }
+    .modal-header { padding-left: 16px; padding-right: 16px; }
+    .modal-body {
+      padding-left: 16px;
+      padding-right: 16px;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
     .modal-name { font-size: 22px; }
     .modal-grid { grid-template-columns: 1fr; }
     .chart-panel { padding: 14px; border-radius: 14px; }
@@ -1255,19 +1306,21 @@
     <div class="total-count">
       전체 <strong id="totalCount">-</strong>명
     </div>
-    <div class="search-wrap">
-      <svg width="16" height="16" fill="none" stroke="#9aa0b4" stroke-width="2" viewBox="0 0 24 24">
-        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-      </svg>
-      <input type="text" id="searchInput" placeholder="이름, 가족, 구역으로 검색..." />
+    <div class="header-actions">
+      <div class="search-wrap">
+        <svg width="16" height="16" fill="none" stroke="#9aa0b4" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" id="searchInput" placeholder="이름, 가족, 구역으로 검색..." />
+      </div>
+      <button type="button" class="header-filter-btn" id="mobileFilterOpenBtn" aria-label="필터 열기" title="필터 보기">
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M7 12h10M10 18h4" />
+        </svg>
+      </button>
     </div>
   </div>
 </header>
-
-<div class="mobile-toolbar" id="mobileToolbar">
-  <button type="button" class="mobile-toolbar-btn" id="mobileFilterOpenBtn">☰ 필터 보기</button>
-  <button type="button" class="mobile-toolbar-btn" id="mobileScrollTopBtn">↑ 상단으로</button>
-</div>
 
 <div class="mobile-sidebar-backdrop" id="mobileSidebarBackdrop"></div>
 
@@ -2284,13 +2337,15 @@ function renderTable() {
     if (m.세례) metaHtml += makeMetaBadge(normalizeText(m.세례), 'jik-other', '세례', normalizeText(m.세례));
     $('modalMeta').innerHTML = metaHtml;
 
-    let bodyHtml = '';
-    bodyHtml += `<div class="modal-section"><div class="modal-section-title">소속</div><div class="modal-grid">${renderDetailLookupField('교구', normalizeText(m.교구) || getVillageFilterValue(m), { filterType: '교구', filterValue: getVillageFilterValue(m), badgeType: 'group' })}${renderDetailLookupField('구역', m.구역, { filterType: '구역', filterValue: normalizeText(m.구역), badgeType: 'district' })}${renderDetailLookupField('직분', m.직분, { filterType: '직분', filterValue: normalizeRole(m), badgeType: 'role' })}${renderDetailLookupField('세부직분', m.세부직분 !== m.직분 ? m.세부직분 : '', { filterType: '세부직분', filterValue: normalizeText(m.세부직분), badgeType: 'role' })}</div></div>`;
-    bodyHtml += `<div class="modal-section"><div class="modal-section-title">가족 구성원</div>${parseFamilyList(m)}</div>`;
-    if (m.배우자) bodyHtml += `<div class="modal-section"><div class="modal-section-title">배우자</div><div class="modal-grid">${field('배우자 이름', m.배우자)}${field('배우자 직분', m.배우자직분)}</div></div>`;
-    bodyHtml += `<div class="modal-section"><div class="modal-section-title">개인 정보</div><div class="modal-grid">${field('생년월일', getBirthDisplay(m))}${field('관계', m.관계)}${field('세대주', m.세대주 !== m.이름 ? m.세대주 : '본인')}${field('교인구분', m.교인구분1)}${field('현재상태', m.현재상태)}</div></div>`;
-    bodyHtml += `<div class="modal-section"><div class="modal-section-title">등록 정보</div><div class="modal-grid">${field('등록일', formatDate(m.등록일))}${renderDetailLookupField('등록년도', getRegisterYear(m) ? `${getRegisterYear(m)}년` : '', { filterType: '등록년도', filterValue: getRegisterYear(m), badgeType: 'register-year' })}${field('휴대폰', normalizeText(m.핸드폰 || m.전화번호) || '데이터 없음')}</div></div>`;
-    $('modalBody').innerHTML = bodyHtml;
+    let leftColumn = '';
+    let rightColumn = '';
+    leftColumn += `<div class="modal-section"><div class="modal-section-title">핵심 정보</div><div class="modal-grid">${renderDetailLookupField('교구', normalizeText(m.교구) || getVillageFilterValue(m), { filterType: '교구', filterValue: getVillageFilterValue(m), badgeType: 'group' })}${renderDetailLookupField('구역', m.구역, { filterType: '구역', filterValue: normalizeText(m.구역), badgeType: 'district' })}${renderDetailLookupField('직분', m.직분, { filterType: '직분', filterValue: normalizeRole(m), badgeType: 'role' })}${renderDetailLookupField('세부직분', m.세부직분 !== m.직분 ? m.세부직분 : '', { filterType: '세부직분', filterValue: normalizeText(m.세부직분), badgeType: 'role' })}${field('휴대폰', normalizeText(m.핸드폰 || m.전화번호) || '데이터 없음')}${field('등록일', formatDate(m.등록일))}</div></div>`;
+    leftColumn += `<div class="modal-section"><div class="modal-section-title">가족 구성원</div>${parseFamilyList(m)}</div>`;
+    if (m.배우자) leftColumn += `<div class="modal-section"><div class="modal-section-title">배우자</div><div class="modal-grid">${field('배우자 이름', m.배우자)}${field('배우자 직분', m.배우자직분)}</div></div>`;
+
+    rightColumn += `<div class="modal-section"><div class="modal-section-title">개인 정보</div><div class="modal-grid is-compact">${field('생년월일', getBirthDisplay(m))}${field('관계', m.관계)}${field('세대주', m.세대주 !== m.이름 ? m.세대주 : '본인')}${field('교인구분', m.교인구분1)}${field('현재상태', m.현재상태)}${renderDetailLookupField('등록년도', getRegisterYear(m) ? `${getRegisterYear(m)}년` : '', { filterType: '등록년도', filterValue: getRegisterYear(m), badgeType: 'register-year' })}</div></div>`;
+
+    $('modalBody').innerHTML = `<div class="modal-column">${leftColumn}</div><div class="modal-column">${rightColumn}</div>`;
     $('modalBg').classList.add('open');
   }
 
@@ -2314,7 +2369,6 @@ function renderTable() {
     $('mobileFilterOpenBtn')?.addEventListener('click', () => setMobileSidebar(true));
     $('mobileFilterCloseBtn')?.addEventListener('click', () => closeMobileSidebar());
     $('mobileSidebarBackdrop')?.addEventListener('click', () => closeMobileSidebar());
-    $('mobileScrollTopBtn')?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMobileSidebar(); });
 
     els.searchInput.addEventListener('input', (e) => {
