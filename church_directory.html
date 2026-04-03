@@ -7,15 +7,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0f1117;
-    --surface: #181c27;
-    --surface2: #1e2333;
-    --border: #2a3047;
-    --accent: #c8a96e;
-    --accent2: #e8d5a3;
-    --text: #e8eaf0;
-    --text2: #9aa0b4;
-    --text3: #6b7390;
+    --bg: #efe4d3;
+    --surface: #fbf6ee;
+    --surface2: #f4ecdf;
+    --border: #d7c8b2;
+    --accent: #9d6f3f;
+    --accent2: #6f4b2d;
+    --text: #3f3125;
+    --text2: #6a5644;
+    --text3: #8d7763;
     --장로: #f0c060;
     --목사: #e87a5a;
     --안수집사: #7ec8e3;
@@ -40,13 +40,13 @@
 
   /* HEADER */
   header {
-    background: linear-gradient(135deg, #0d1020 0%, #1a1f35 50%, #0d1020 100%);
+    background: linear-gradient(135deg, #eadcc8 0%, #f5ede1 48%, #e6d6c1 100%);
     border-bottom: 1px solid var(--accent);
     padding: 24px 32px 20px;
     position: sticky;
     top: 0;
     z-index: 100;
-    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 26px rgba(111,75,45,0.10);
   }
   .header-inner {
     max-width: 1600px;
@@ -149,7 +149,7 @@
     color: var(--text3);
     text-transform: uppercase;
     border-bottom: 1px solid var(--border);
-    background: rgba(255,255,255,0.02);
+    background: rgba(157,111,63,0.05);
   }
   .filter-title-text {
     display: inline-flex;
@@ -384,7 +384,7 @@
     cursor: pointer;
     user-select: none;
     transition: color 0.15s;
-    background: linear-gradient(180deg, #1e2540 0%, var(--surface2) 100%);
+    background: linear-gradient(180deg, #efe3d0 0%, var(--surface2) 100%);
     border-bottom: 1px solid var(--border);
     box-shadow: 0 1px 0 rgba(0,0,0,0.18);
   }
@@ -685,7 +685,7 @@
   .modal-field {
     padding: 10px 12px;
     background: rgba(15,17,23,0.35);
-    border: 1px solid rgba(255,255,255,0.05);
+    border: 1px solid rgba(157,111,63,0.12);
     border-radius: 10px;
   }
   .modal-label {
@@ -830,7 +830,7 @@
     white-space: nowrap;
   }
   .chart-side {
-    background: rgba(255,255,255,0.02);
+    background: rgba(157,111,63,0.05);
     border: 1px solid var(--border);
     border-radius: 14px;
     padding: 16px;
@@ -987,7 +987,7 @@
   .mobile-card-meta span {
     padding: 3px 8px;
     background: var(--surface2);
-    border: 1px solid rgba(255,255,255,0.04);
+    border: 1px solid rgba(157,111,63,0.10);
     border-radius: 999px;
   }
   .mobile-card-family {
@@ -1044,7 +1044,7 @@
     .chart-row { grid-template-columns: 100px 1fr 74px; }
   }
   @media (max-width: 640px) {
-    body { background: #0d1018; }
+    body { background: var(--bg); }
     header {
       position: sticky;
       top: 0;
@@ -1077,7 +1077,7 @@
       position: sticky;
       top: 88px;
       z-index: 110;
-      background: linear-gradient(180deg, rgba(13,16,24,0.96) 0%, rgba(13,16,24,0.9) 100%);
+      background: linear-gradient(180deg, rgba(239,228,211,0.96) 0%, rgba(239,228,211,0.90) 100%);
       backdrop-filter: blur(8px);
     }
     .mobile-toolbar-btn {
@@ -1105,7 +1105,7 @@
       bottom: 0;
       width: min(88vw, 360px);
       padding: 14px 12px 20px;
-      background: #121725;
+      background: #f7efe3;
       border-right: 1px solid var(--border);
       overflow-y: auto;
       overflow-x: hidden;
@@ -1122,7 +1122,7 @@
     .mobile-sidebar-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.55);
+      background: rgba(63,49,37,0.28);
       z-index: 210;
     }
     body.sidebar-open .mobile-sidebar-backdrop {
@@ -1134,10 +1134,10 @@
       justify-content: space-between;
       margin-bottom: 12px;
       padding: 4px 2px 10px;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(157,111,63,0.14);
       position: sticky;
       top: -14px;
-      background: #121725;
+      background: #f7efe3;
       z-index: 1;
     }
     .filter-section {
@@ -1148,7 +1148,9 @@
     }
     .filter-title { padding: 10px 12px; }
     .inline-all-btn { padding: 4px 8px; font-size: 10px; }
-    .filter-list {
+    .filter-list,
+    .gender-row,
+    .age-row {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
@@ -1158,14 +1160,18 @@
       overflow: visible;
       align-content: flex-start;
     }
-    .filter-btn {
+    .filter-btn,
+    .gender-btn,
+    .age-btn {
       width: auto;
-      min-width: 84px;
-      min-height: 50px;
-      padding: 8px 10px;
+      min-width: 0;
+      min-height: 42px;
+      padding: 7px 10px;
       border: 1px solid var(--border);
       background: var(--surface2);
-      flex: 1 1 auto;
+      flex: 0 1 auto;
+      white-space: nowrap;
+      border-radius: 999px;
     }
     .filter-btn span:first-child {
       white-space: nowrap;
@@ -1178,15 +1184,17 @@
       min-width: 24px;
       padding-left: 6px;
       padding-right: 6px;
+      background: rgba(157,111,63,0.10);
+      color: var(--accent2);
     }
-    .gender-row, .age-row { padding: 10px; }
-    .age-row { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); }
-    .age-btn, .gender-btn {
-      min-height: 46px;
-      display: flex;
+    .filter-btn,
+    .gender-btn,
+    .age-btn {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      text-align: center;
     }
     .content-area { min-width: 0; }
     .active-filters { gap: 6px; margin-bottom: 12px; }
@@ -1207,7 +1215,7 @@
       padding: 14px;
       border-radius: 16px;
       background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.015) 100%);
-      box-shadow: 0 10px 24px rgba(0,0,0,0.16);
+      box-shadow: 0 10px 24px rgba(111,75,45,0.10);
     }
     .mobile-card-top { margin-bottom: 12px; }
     .mobile-card-name { font-size: 17px; }
