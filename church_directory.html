@@ -615,12 +615,12 @@
   }
   .modal-header {
     padding: 24px 24px 20px;
-    border-bottom: 1px solid var(--border);
+    border-bottom: 1px solid rgba(157,111,63,0.18);
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     gap: 16px;
-    background: linear-gradient(180deg, rgba(200,169,110,0.10) 0%, rgba(255,255,255,0.02) 100%);
+    background: linear-gradient(180deg, #f8efe2 0%, #f3e6d4 100%);
   }
   .modal-name {
     font-family: 'Noto Serif KR', serif;
@@ -646,25 +646,25 @@
     transition: color 0.15s;
   }
   .modal-close:hover { color: var(--text); }
-  .modal-body { padding: 20px 24px 24px; }
+  .modal-body { padding: 20px 24px 24px; background: #fbf6ee; }
   .modal-section {
     margin-bottom: 16px;
-    padding: 14px 16px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
-    border: 1px solid rgba(200,169,110,0.14);
+    padding: 16px 16px 15px;
+    background: linear-gradient(180deg, #fffaf3 0%, #f7efe3 100%);
+    border: 1px solid rgba(157,111,63,0.16);
     border-radius: 14px;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+    box-shadow: 0 6px 18px rgba(111,75,45,0.05);
   }
   .modal-section-title {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
     color: var(--accent2);
     text-transform: uppercase;
     margin-bottom: 12px;
-    padding-bottom: 8px;
+    padding-bottom: 9px;
     padding-left: 10px;
-    border-bottom: 1px solid rgba(200,169,110,0.20);
+    border-bottom: 1px solid rgba(157,111,63,0.18);
     position: relative;
   }
   .modal-section-title::before {
@@ -683,23 +683,25 @@
     gap: 10px;
   }
   .modal-field {
-    padding: 10px 12px;
-    background: rgba(15,17,23,0.35);
-    border: 1px solid rgba(157,111,63,0.12);
-    border-radius: 10px;
+    padding: 12px 13px;
+    background: #fffdf9;
+    border: 1px solid rgba(157,111,63,0.14);
+    border-radius: 12px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.8);
   }
   .modal-label {
-    font-size: 11px;
-    color: var(--accent);
-    margin-bottom: 5px;
+    font-size: 12px;
+    color: #8b6541;
+    margin-bottom: 6px;
+    font-weight: 700;
   }
   .modal-value {
-    font-size: 14px;
-    color: var(--text);
-    font-weight: 600;
-    line-height: 1.5;
+    font-size: 15px;
+    color: #33281d;
+    font-weight: 700;
+    line-height: 1.65;
   }
-  .modal-value.empty { color: var(--text3); font-style: italic; font-weight: 400; font-size: 13px; }
+  .modal-value.empty { color: #7d6a57; font-style: italic; font-weight: 500; font-size: 14px; }
 
   .family-list {
     display: flex;
@@ -711,28 +713,28 @@
     display: inline-flex;
     align-items: center;
     gap: 5px;
-    padding: 7px 12px;
-    background: var(--surface2);
-    border: 1px solid var(--border);
+    padding: 8px 12px;
+    background: #fffaf2;
+    border: 1px solid rgba(157,111,63,0.16);
     border-radius: 10px;
-    font-size: 13px;
+    font-size: 14px;
   }
   .family-member-tag.is-link {
     cursor: pointer;
     transition: all 0.15s;
-    background: rgba(126,200,227,0.10);
-    border-color: rgba(126,200,227,0.32);
+    background: rgba(126,200,227,0.16);
+    border-color: rgba(126,200,227,0.38);
     box-shadow: inset 0 0 0 1px rgba(126,200,227,0.08);
   }
   .family-member-tag.is-link:hover {
-    border-color: #7ec8e3;
-    background: rgba(126,200,227,0.18);
+    border-color: #63b6d4;
+    background: rgba(126,200,227,0.24);
     transform: translateY(-1px);
   }
-  .family-member-name { color: var(--text); font-weight: 500; }
-  .family-member-tag.is-link .family-member-name { color: #d7f3ff; }
-  .family-member-jik { color: var(--text3); font-size: 11px; }
-  .family-member-tag.is-link .family-member-jik { color: #8ed4ee; }
+  .family-member-name { color: #3a2d20; font-weight: 700; }
+  .family-member-tag.is-link .family-member-name { color: #31556a; }
+  .family-member-jik { color: #7b6855; font-size: 12px; }
+  .family-member-tag.is-link .family-member-jik { color: #4f7d94; }
 
 
   .chart-toggle {
@@ -1212,21 +1214,23 @@
     .hide-mobile { display: none !important; }
     .mobile-card {
       margin: 0 0 10px;
-      padding: 14px;
-      border-radius: 16px;
-      background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.015) 100%);
+      padding: 16px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, #fffaf4 0%, #f6ecdf 100%);
+      border: 1px solid rgba(157,111,63,0.14);
       box-shadow: 0 10px 24px rgba(111,75,45,0.10);
     }
     .mobile-card-top { margin-bottom: 12px; }
-    .mobile-card-name { font-size: 17px; }
+    .mobile-card-name { font-size: 19px; }
     .mobile-card-sub {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 6px;
+      gap: 8px;
+      margin-top: 8px;
+      font-size: 14px;
     }
-    .mobile-card-meta { gap: 6px; margin-bottom: 10px; }
-    .mobile-card-meta span { padding: 5px 8px; }
+    .mobile-card-meta { gap: 8px; margin-bottom: 10px; font-size: 13px; }
+    .mobile-card-meta span { padding: 6px 9px; color: var(--text); }
     .pagination {
       padding: 12px 0 2px;
       border-top: none;
@@ -1235,13 +1239,27 @@
     }
     .page-btn { min-width: 38px; padding: 8px 10px; }
     .modal {
-      width: calc(100vw - 18px);
-      max-height: 88vh;
-      border-radius: 14px;
+      width: calc(100vw - 14px);
+      max-height: 90vh;
+      border-radius: 16px;
     }
-    .modal-header, .modal-body { padding-left: 16px; padding-right: 16px; }
-    .modal-name { font-size: 22px; }
-    .modal-grid { grid-template-columns: 1fr; }
+    .modal-header, .modal-body { padding-left: 18px; padding-right: 18px; }
+    .modal-header { padding-top: 18px; padding-bottom: 16px; }
+    .modal-body { padding-top: 16px; padding-bottom: 18px; }
+    .modal-name { font-size: 27px; line-height: 1.25; }
+    .modal-meta { gap: 10px; }
+    .modal-grid { grid-template-columns: 1fr; gap: 12px; }
+    .modal-section { padding: 16px; border-radius: 16px; }
+    .modal-section-title { font-size: 13px; margin-bottom: 14px; }
+    .modal-label { font-size: 13px; margin-bottom: 7px; }
+    .modal-value { font-size: 18px; line-height: 1.72; }
+    .modal-value.empty { font-size: 16px; }
+    .family-member-tag { font-size: 15px; padding: 10px 13px; }
+    .family-member-jik { font-size: 13px; }
+    .value-badge,
+    .jik-badge { font-size: 13px; }
+    .modal-meta .jik-badge,
+    .modal-value .value-badge { font-size: 14px; min-height: 32px; padding: 7px 12px; }
     .chart-panel { padding: 14px; border-radius: 14px; }
     .chart-panel-header { align-items: flex-start; flex-direction: column; }
     .chart-title { font-size: 16px; }
