@@ -778,18 +778,19 @@
   .family-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    margin-top: 4px;
+    gap: 6px;
+    margin-top: 2px;
   }
   .family-member-tag {
     display: inline-flex;
     align-items: center;
-    gap: 5px;
-    padding: 7px 12px;
+    gap: 4px;
+    padding: 5px 9px;
     background: var(--surface2);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    font-size: 13px;
+    border-radius: 999px;
+    font-size: 12px;
+    line-height: 1.2;
   }
   .family-member-tag.is-link {
     cursor: pointer;
@@ -803,10 +804,17 @@
     background: rgba(126,200,227,0.18);
     transform: translateY(-1px);
   }
-  .family-member-name { color: var(--text); font-weight: 500; }
+  .family-member-name { color: var(--text); font-weight: 600; }
   .family-member-tag.is-link .family-member-name { color: #d7f3ff; }
-  .family-member-jik { color: var(--text3); font-size: 11px; }
+  .family-member-jik { color: var(--text3); font-size: 10px; }
   .family-member-tag.is-link .family-member-jik { color: #8ed4ee; }
+
+  .modal-section.is-compact-tags {
+    padding: 12px 14px;
+  }
+  .modal-section.is-compact-tags .modal-section-title {
+    margin-bottom: 10px;
+  }
 
 
   .chart-toggle {
@@ -1315,6 +1323,19 @@
     }
     .modal-section.is-inline .modal-value {
       font-size: 12px;
+    }
+    .modal-section.is-compact-tags {
+      padding: 10px 12px;
+    }
+    .family-list {
+      gap: 5px;
+    }
+    .family-member-tag {
+      padding: 5px 8px;
+      font-size: 11px;
+    }
+    .family-member-jik {
+      font-size: 10px;
     }
     .chart-panel { padding: 14px; border-radius: 14px; }
     .chart-panel-header { align-items: flex-start; flex-direction: column; }
@@ -2379,8 +2400,8 @@ function renderTable() {
     let leftColumn = '';
     let rightColumn = '';
     leftColumn += `<div class="modal-section is-inline"><div class="modal-section-title">핵심 정보</div><div class="modal-grid">${renderDetailLookupField('교구', normalizeText(m.교구) || getVillageFilterValue(m), { filterType: '교구', filterValue: getVillageFilterValue(m), badgeType: 'group' })}${renderDetailLookupField('구역', m.구역, { filterType: '구역', filterValue: normalizeText(m.구역), badgeType: 'district' })}${renderDetailLookupField('직분', m.직분, { filterType: '직분', filterValue: normalizeRole(m), badgeType: 'role' })}${renderDetailLookupField('세부직분', m.세부직분 !== m.직분 ? m.세부직분 : '', { filterType: '세부직분', filterValue: normalizeText(m.세부직분), badgeType: 'role' })}${field('휴대폰', normalizeText(m.핸드폰 || m.전화번호) || '데이터 없음')}${field('등록일', formatDate(m.등록일))}</div></div>`;
-    leftColumn += `<div class="modal-section"><div class="modal-section-title">가족 구성원</div>${parseFamilyList(m)}</div>`;
-    if (m.배우자) leftColumn += `<div class="modal-section"><div class="modal-section-title">배우자</div><div class="modal-grid">${field('배우자 이름', m.배우자)}${field('배우자 직분', m.배우자직분)}</div></div>`;
+    leftColumn += `<div class="modal-section is-compact-tags"><div class="modal-section-title">가족 구성원</div>${parseFamilyList(m)}</div>`;
+    if (m.배우자) leftColumn += `<div class="modal-section is-inline"><div class="modal-section-title">배우자</div><div class="modal-grid">${field('배우자 이름', m.배우자)}${field('배우자 직분', m.배우자직분)}</div></div>`;
 
     rightColumn += `<div class="modal-section is-inline"><div class="modal-section-title">개인 정보</div><div class="modal-grid is-compact">${field('생년월일', getBirthDisplay(m))}${field('관계', m.관계)}${field('세대주', m.세대주 !== m.이름 ? m.세대주 : '본인')}${field('교인구분', m.교인구분1)}${field('현재상태', m.현재상태)}${renderDetailLookupField('등록년도', getRegisterYear(m) ? `${getRegisterYear(m)}년` : '', { filterType: '등록년도', filterValue: getRegisterYear(m), badgeType: 'register-year' })}</div></div>`;
 
