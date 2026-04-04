@@ -1985,7 +1985,7 @@
   function renderModalName(member) {
     const name = normalizeText(member.이름);
     const clickable = !!name;
-    return `<button type="button" class="modal-name-button${clickable ? ' is-clickable' : ''}" ${clickable ? `data-name-filter="${escapeHtml(name)}"` : ''}>${escapeHtml(name || '-')}</button>`;
+    return `<button type="button" class="modal-name-button${clickable ? ' is-clickable' : ''}" ${clickable ? `data-name-filter-id="${escapeHtml(member.ID)}"` : ''}>${escapeHtml(name || '-')}</button>`;
   }
 
   function renderDuplicateQuickList(member) {
@@ -1998,10 +1998,26 @@
     return `<span class="duplicate-summary-badge">동명이인 ${matches.length}명</span><div class="duplicate-quick-list">${items}</div>`;
   }
 
-  function applyNameFilter(name) {
-    const normalizedName = normalizeText(name);
+  function getFamilySearchKey(member) {
+    if (!member) return '';
+    const familyText = normalizeText(member.가족전체);
+    if (familyText) return `family:${familyText}`;
+    const householdHead = normalizeText(member.세대주);
+    if (householdHead) return `head:${householdHead}`;
+    const spouse = normalizeText(member.배우자);
+    if (spouse) {
+      const pair = [normalizeText(member.이름), spouse].filter(Boolean).sort().join('|');
+      if (pair) return `pair:${pair}`;
+    }
+    return '';
+  }
+
+  function applyNameFilter(memberIdOrName) {
+    let targetMember = state.members.find(member => String(member.ID) === String(memberIdOrName)) || null;
+    const normalizedName = targetMember ? normalizeText(targetMember.이름) : normalizeText(memberIdOrName);
     if (!normalizedName) return;
     state.filters.이름 = normalizedName;
+    state.filters.이름가족키 = getFamilySearchKey(targetMember);
     $('modalBg').classList.remove('open');
     closeMobileSidebar();
     rerender({ rebuildFilters: true, resetPage: true });
@@ -2470,7 +2486,11 @@
       if (state.filters.세례 && normalizeText(member.세례) !== state.filters.세례) return false;
       if (state.filters.구역 && normalizeText(member.구역) !== state.filters.구역) return false;
       if (state.filters.세부직분 && normalizeText(member.세부직분) !== state.filters.세부직분) return false;
-      if (state.filters.이름 && normalizeText(member.이름) !== state.filters.이름) return false;
+      if (state.filters.이름) {
+        const sameName = normalizeText(member.이름) === state.filters.이름;
+        const sameFamily = state.filters.이름가족키 && getFamilySearchKey(member) === state.filters.이름가족키;
+        if (!sameName && !sameFamily) return false;
+      }
       if (q) {
         const haystackValues = [member.이름, member.가족전체, member.구역, member.교구, member.직분, member.세부직분, member.핸드폰, member.전화번호, getRegisterYear(member)];
         const hay = haystackValues.map(value => normalizeText(value).toLowerCase()).join(' ');
@@ -2521,7 +2541,7 @@
     if (state.filters.세례) labels.push(state.filters.세례);
     if (state.filters.구역) labels.push(`구역: ${state.filters.구역}`);
     if (state.filters.세부직분) labels.push(`세부직분: ${state.filters.세부직분}`);
-    if (state.filters.이름) labels.push(`성명: ${state.filters.이름}`);
+    if (state.filters.이름) labels.push(`성명+가족: ${state.filters.이름}`);
     if (state.searchQuery) labels.push(`검색: ${state.searchQuery}`);
     return labels.length ? labels.join(' · ') : '전체';
   }
@@ -2539,7 +2559,7 @@
     if (state.filters.세례) tags.push([state.filters.세례, () => { state.filters.세례 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
     if (state.filters.구역) tags.push([`구역: ${state.filters.구역}`, () => { state.filters.구역 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
     if (state.filters.세부직분) tags.push([`세부직분: ${state.filters.세부직분}`, () => { state.filters.세부직분 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
-    if (state.filters.이름) tags.push([`성명: ${state.filters.이름}`, () => { state.filters.이름 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
+    if (state.filters.이름) tags.push([`성명+가족: ${state.filters.이름}`, () => { state.filters.이름 = null; state.filters.이름가족키 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
     if (state.searchQuery) tags.push([`"${state.searchQuery}"`, () => { state.searchQuery = ''; els.searchInput.value=''; rerender({resetPage:true}); }]);
 
     for (const [label, onRemove] of tags) {
