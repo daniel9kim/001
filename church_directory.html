@@ -1110,6 +1110,23 @@
     color: #2b2212;
     font-size: 12px;
     font-weight: 700;
+    width: 0;
+    will-change: width;
+    transition: width 820ms cubic-bezier(0.22, 1, 0.36, 1), filter 0.2s ease;
+    transition-delay: var(--bar-delay, 0ms);
+  }
+  .chart-bars .chart-row {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.34s ease, transform 0.34s ease;
+    transition-delay: var(--bar-delay, 0ms);
+  }
+  .chart-bars.chart-animate-ready .chart-row {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .chart-bars.chart-animate-ready .chart-bar-fill {
+    width: var(--target-width, 0%);
   }
   .chart-value {
     text-align: right;
@@ -1139,6 +1156,26 @@
     height: 220px;
     overflow: visible;
   }
+  @property --pie-progress {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+  }
+  .chart-pie-reveal {
+    --pie-progress: 0deg;
+    width: 220px;
+    height: 220px;
+    -webkit-mask-image: conic-gradient(from -90deg, #000 0deg, #000 var(--pie-progress), transparent calc(var(--pie-progress) + 0.6deg), transparent 360deg);
+    mask-image: conic-gradient(from -90deg, #000 0deg, #000 var(--pie-progress), transparent calc(var(--pie-progress) + 0.6deg), transparent 360deg);
+    will-change: transform;
+  }
+  .chart-pie-wrap.pie-animate-ready .chart-pie-reveal {
+    animation: pieSweepReveal 1200ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  @keyframes pieSweepReveal {
+    from { --pie-progress: 0deg; }
+    to { --pie-progress: 360deg; }
+  }
   .chart-pie-hole {
     fill: var(--surface);
   }
@@ -1157,6 +1194,15 @@
     cursor: pointer;
     transition: transform 0.15s ease, opacity 0.15s ease, filter 0.15s ease;
     transform-origin: 110px 110px;
+    opacity: 0.78;
+  }
+  .chart-pie-wrap.pie-animate-ready .chart-slice {
+    animation: pieSlicePop 480ms ease both;
+    animation-delay: calc(var(--slice-delay, 0ms) + 180ms);
+  }
+  @keyframes pieSlicePop {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
   }
   .chart-slice:hover {
     opacity: 0.95;
@@ -2887,9 +2933,9 @@ function getChartData(type, members = state.filtered) {
         ].join(' ');
       }
       currentAngle = nextAngle;
-      return `<path class="chart-slice" d="${d}" fill="${color}" data-chart-select-type="${chartType}" data-chart-select-value="${encodedLabel}"><title>${label}: ${count}명 (${(fraction * 100).toFixed(1)}%)</title></path>`;
+      return `<path class="chart-slice" d="${d}" fill="${color}" style="--slice-delay:${index * 65}ms" data-chart-select-type="${chartType}" data-chart-select-value="${encodedLabel}"><title>${label}: ${count}명 (${(fraction * 100).toFixed(1)}%)</title></path>`;
     }).join('');
-    return `<svg class="chart-pie-svg" viewBox="0 0 220 220" role="img" aria-label="${chartType} 원형 그래프">${paths}<circle class="chart-pie-hole" cx="${cx}" cy="${cy}" r="${innerRadius - 4}"></circle><text class="chart-pie-center-text" x="${cx}" y="${cy - 4}">${total.toLocaleString()}명</text><text class="chart-pie-center-subtext" x="${cx}" y="${cy + 15}">현재 결과</text></svg>`;
+    return `<div class="chart-pie-reveal"><svg class="chart-pie-svg" viewBox="0 0 220 220" role="img" aria-label="${chartType} 원형 그래프">${paths}<circle class="chart-pie-hole" cx="${cx}" cy="${cy}" r="${innerRadius - 4}"></circle><text class="chart-pie-center-text" x="${cx}" y="${cy - 4}">${total.toLocaleString()}명</text><text class="chart-pie-center-subtext" x="${cx}" y="${cy + 15}">현재 결과</text></svg></div>`;
   }
 
   function applyChartSelection(type, value) {
@@ -2940,6 +2986,20 @@ function getChartData(type, members = state.filtered) {
     }, 180);
   }
 
+  function animateChartEntrance() {
+    const bars = $('chartBars');
+    const pieWrap = $('chartPieWrap');
+    if (!bars || !pieWrap) return;
+    bars.classList.remove('chart-animate-ready');
+    pieWrap.classList.remove('pie-animate-ready');
+    void bars.offsetWidth;
+    void pieWrap.offsetWidth;
+    window.requestAnimationFrame(() => {
+      bars.classList.add('chart-animate-ready');
+      pieWrap.classList.add('pie-animate-ready');
+    });
+  }
+
   function renderChart() {
     const panel = $('chartPanel');
     const tableWrap = $('tableWrap');
@@ -2973,10 +3033,10 @@ function getChartData(type, members = state.filtered) {
       const encodedLabel = encodeURIComponent(label);
       const color = getChartColor(index);
       const isTop = count === maxCount;
-      return `<div class="chart-row${isTop ? ' is-top' : ''}" data-chart-select-type="${state.chartType}" data-chart-select-value="${encodedLabel}">
+      return `<div class="chart-row${isTop ? ' is-top' : ''}" style="--bar-delay:${index * 70}ms" data-chart-select-type="${state.chartType}" data-chart-select-value="${encodedLabel}">
         <div class="chart-label">${label}</div>
         <div class="chart-bar-track">
-          <div class="chart-bar-fill" style="width:${Math.max(relativePercent, 8)}%; background:linear-gradient(90deg, ${color} 0%, var(--accent2) 100%);">${percent.toFixed(1)}%</div>
+          <div class="chart-bar-fill" style="--target-width:${Math.max(relativePercent, 8)}%; --bar-delay:${index * 70}ms; background:linear-gradient(90deg, ${color} 0%, var(--accent2) 100%);">${percent.toFixed(1)}%</div>
         </div>
         <div class="chart-value">${count.toLocaleString()}명 · ${percent.toFixed(1)}%</div>
       </div>`;
@@ -2996,6 +3056,7 @@ function getChartData(type, members = state.filtered) {
 
     panel.style.display = 'block';
     tableWrap.style.display = 'none';
+    animateChartEntrance();
   }
 
   function showChart(type) {
