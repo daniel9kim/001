@@ -755,6 +755,59 @@
   .modal-section.is-inline .modal-value .value-badge {
     max-width: 100%;
   }
+  .modal-section.is-inline-compact {
+    padding: 12px 14px;
+  }
+  .inline-meta-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 8px;
+    align-items: center;
+  }
+  .inline-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: rgba(15,17,23,0.42);
+    border: 1px solid rgba(255,255,255,0.06);
+    line-height: 1.2;
+    max-width: 100%;
+  }
+  .inline-meta-label {
+    font-size: 11px;
+    color: var(--accent);
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+  .inline-meta-value {
+    font-size: 12px;
+    color: var(--text);
+    font-weight: 600;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .inline-meta-value .value-badge {
+    padding: 3px 8px;
+    font-size: 11px;
+  }
+  .inline-phone-link {
+    color: var(--accent2);
+    text-decoration: none;
+    font-weight: 700;
+  }
+  .inline-phone-link:hover {
+    text-decoration: underline;
+  }
+  .inline-empty {
+    color: var(--text3);
+    font-style: italic;
+    font-weight: 400;
+  }
   .modal-field {
     padding: 11px 12px;
     background: rgba(15,17,23,0.38);
@@ -1312,6 +1365,27 @@
     .modal-name { font-size: 22px; }
     .modal-grid { grid-template-columns: 1fr; }
     .modal-section.is-inline { padding: 12px; }
+    .modal-section.is-inline-compact {
+      padding: 10px 12px;
+    }
+    .inline-meta-list {
+      gap: 5px 6px;
+    }
+    .inline-meta-item {
+      padding: 4px 8px;
+      gap: 5px;
+      max-width: 100%;
+    }
+    .inline-meta-label {
+      font-size: 10px;
+    }
+    .inline-meta-value {
+      font-size: 11px;
+    }
+    .inline-meta-value .value-badge {
+      font-size: 10px;
+      padding: 2px 7px;
+    }
     .modal-section.is-inline .modal-field {
       padding: 7px 9px;
       border-radius: 10px;
@@ -1784,6 +1858,26 @@
       return `<span class="family-member-tag${clickable ? ' is-link' : ''}"${clickable ? ` data-family-member-id="${linkedMember.ID}"` : ''}><span class="family-member-name">${name}${isSelf ? ' (본인)' : ''}</span>${jik ? `<span class="family-member-jik">${jik}</span>` : ''}</span>`;
     }).join('');
     return `<div class="family-list">${html}</div>`;
+  }
+
+
+  function renderInlineMetaItem(label, valueHtml, extraClass = '') {
+    const safeLabel = escapeHtml(normalizeText(label));
+    return `<div class="inline-meta-item${extraClass ? ` ${extraClass}` : ''}"><span class="inline-meta-label">${safeLabel}</span><span class="inline-meta-value">${valueHtml}</span></div>`;
+  }
+
+  function renderPhoneLink(phone) {
+    const raw = normalizeText(phone);
+    if (!raw) return '<span class="inline-empty">-</span>';
+    const tel = raw.replace(/[^\d+]/g, '');
+    if (!tel) return escapeHtml(raw);
+    return `<a href="tel:${escapeHtml(tel)}" class="inline-phone-link">${escapeHtml(raw)}</a>`;
+  }
+
+  function renderCompactInfoSection(title, items) {
+    const content = items.filter(Boolean).join('');
+    if (!content) return '';
+    return `<div class="modal-section is-inline-compact"><div class="modal-section-title">${escapeHtml(title)}</div><div class="inline-meta-list">${content}</div></div>`;
   }
 
   function field(label, value) {
@@ -2397,13 +2491,43 @@ function renderTable() {
     if (m.세례) metaHtml += makeMetaBadge(normalizeText(m.세례), 'jik-other', '세례', normalizeText(m.세례));
     $('modalMeta').innerHTML = metaHtml;
 
+    const villageValue = normalizeText(m.교구) || getVillageFilterValue(m);
+    const districtValue = normalizeText(m.구역);
+    const roleValue = normalizeText(m.직분);
+    const detailRoleValue = normalizeText(m.세부직분 !== m.직분 ? m.세부직분 : '');
+    const phoneValue = normalizeText(m.핸드폰 || m.전화번호);
+    const registerDateValue = formatDate(m.등록일);
+    const birthValue = getBirthDisplay(m);
+    const relationValue = normalizeText(m.관계);
+    const headValue = normalizeText(m.세대주 !== m.이름 ? m.세대주 : '본인');
+    const memberTypeValue = normalizeText(m.교인구분1);
+    const statusValue = normalizeText(m.현재상태);
+    const registerYearValue = getRegisterYear(m);
+
     let leftColumn = '';
     let rightColumn = '';
-    leftColumn += `<div class="modal-section is-inline"><div class="modal-section-title">핵심 정보</div><div class="modal-grid">${renderDetailLookupField('교구', normalizeText(m.교구) || getVillageFilterValue(m), { filterType: '교구', filterValue: getVillageFilterValue(m), badgeType: 'group' })}${renderDetailLookupField('구역', m.구역, { filterType: '구역', filterValue: normalizeText(m.구역), badgeType: 'district' })}${renderDetailLookupField('직분', m.직분, { filterType: '직분', filterValue: normalizeRole(m), badgeType: 'role' })}${renderDetailLookupField('세부직분', m.세부직분 !== m.직분 ? m.세부직분 : '', { filterType: '세부직분', filterValue: normalizeText(m.세부직분), badgeType: 'role' })}${field('휴대폰', normalizeText(m.핸드폰 || m.전화번호) || '데이터 없음')}${field('등록일', formatDate(m.등록일))}</div></div>`;
+    leftColumn += renderCompactInfoSection('핵심 정보', [
+      renderInlineMetaItem('교구', makeDetailFilterBadge(villageValue || '-', 'group', '교구', getVillageFilterValue(m))),
+      renderInlineMetaItem('구역', makeDetailFilterBadge(districtValue || '-', 'district', '구역', districtValue)),
+      renderInlineMetaItem('직분', makeDetailFilterBadge(roleValue || '-', 'role', '직분', normalizeRole(m))),
+      renderInlineMetaItem('세부직분', detailRoleValue ? makeDetailFilterBadge(detailRoleValue, 'role', '세부직분', detailRoleValue) : '<span class="inline-empty">-</span>'),
+      renderInlineMetaItem('휴대폰', renderPhoneLink(phoneValue)),
+      renderInlineMetaItem('등록일', registerDateValue ? escapeHtml(registerDateValue) : '<span class="inline-empty">-</span>')
+    ]);
     leftColumn += `<div class="modal-section is-compact-tags"><div class="modal-section-title">가족 구성원</div>${parseFamilyList(m)}</div>`;
-    if (m.배우자) leftColumn += `<div class="modal-section is-inline"><div class="modal-section-title">배우자</div><div class="modal-grid">${field('배우자 이름', m.배우자)}${field('배우자 직분', m.배우자직분)}</div></div>`;
+    if (m.배우자) leftColumn += renderCompactInfoSection('배우자', [
+      renderInlineMetaItem('이름', escapeHtml(normalizeText(m.배우자))),
+      renderInlineMetaItem('직분', normalizeText(m.배우자직분) ? escapeHtml(normalizeText(m.배우자직분)) : '<span class="inline-empty">-</span>')
+    ]);
 
-    rightColumn += `<div class="modal-section is-inline"><div class="modal-section-title">개인 정보</div><div class="modal-grid is-compact">${field('생년월일', getBirthDisplay(m))}${field('관계', m.관계)}${field('세대주', m.세대주 !== m.이름 ? m.세대주 : '본인')}${field('교인구분', m.교인구분1)}${field('현재상태', m.현재상태)}${renderDetailLookupField('등록년도', getRegisterYear(m) ? `${getRegisterYear(m)}년` : '', { filterType: '등록년도', filterValue: getRegisterYear(m), badgeType: 'register-year' })}</div></div>`;
+    rightColumn += renderCompactInfoSection('개인 정보', [
+      renderInlineMetaItem('생년월일', birthValue && birthValue !== '데이터 없음' ? escapeHtml(birthValue) : '<span class="inline-empty">-</span>'),
+      renderInlineMetaItem('관계', relationValue ? escapeHtml(relationValue) : '<span class="inline-empty">-</span>'),
+      renderInlineMetaItem('세대주', headValue ? escapeHtml(headValue) : '<span class="inline-empty">-</span>'),
+      renderInlineMetaItem('교인구분', memberTypeValue ? escapeHtml(memberTypeValue) : '<span class="inline-empty">-</span>'),
+      renderInlineMetaItem('현재상태', statusValue ? makeDetailFilterBadge(statusValue, 'status', '현재상태', statusValue) : '<span class="inline-empty">-</span>'),
+      renderInlineMetaItem('등록년도', registerYearValue ? makeDetailFilterBadge(`${registerYearValue}년`, 'register-year', '등록년도', registerYearValue) : '<span class="inline-empty">-</span>')
+    ]);
 
     $('modalBody').innerHTML = `<div class="modal-column">${leftColumn}</div><div class="modal-column">${rightColumn}</div>`;
     $('modalBg').classList.add('open');
