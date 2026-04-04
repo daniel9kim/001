@@ -456,6 +456,30 @@
     color: var(--text3);
     vertical-align: middle;
   }
+  .duplicate-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 999px;
+    margin-left: 6px;
+    background: rgba(126,200,227,0.12);
+    border: 1px solid rgba(126,200,227,0.24);
+    color: #d8f5ff;
+    vertical-align: middle;
+  }
+  .name-role-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .name-role-sub {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+  }
 
   /* JIKBUN BADGE */
   .jik-badge {
@@ -668,11 +692,85 @@
     color: var(--text);
     margin-bottom: 6px;
   }
+  .modal-name-button {
+    appearance: none;
+    border: none;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    text-align: left;
+  }
+  .modal-name-button.is-clickable:hover {
+    color: var(--accent2);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
   .modal-meta {
     display: flex;
     gap: 8px;
     flex-wrap: wrap;
     align-items: center;
+  }
+  .modal-subinfo {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .duplicate-summary-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: rgba(126,200,227,0.12);
+    border: 1px solid rgba(126,200,227,0.28);
+    color: #d8f5ff;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .duplicate-quick-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .duplicate-quick-btn {
+    appearance: none;
+    border: 1px solid rgba(200,169,110,0.22);
+    background: rgba(15,17,23,0.42);
+    color: var(--text);
+    border-radius: 999px;
+    padding: 6px 10px;
+    font: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1.2;
+    max-width: 100%;
+  }
+  .duplicate-quick-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent2);
+    transform: translateY(-1px);
+  }
+  .duplicate-quick-btn.is-current {
+    background: rgba(200,169,110,0.12);
+    border-color: var(--accent);
+    color: var(--accent2);
+    cursor: default;
+  }
+  .duplicate-quick-name {
+    font-weight: 700;
+  }
+  .duplicate-quick-detail {
+    font-size: 11px;
+    color: var(--text3);
+    white-space: nowrap;
   }
   .modal-close {
     background: none;
@@ -1569,6 +1667,17 @@
       padding-bottom: 16px;
     }
     .modal-name { font-size: 24px; }
+    .modal-subinfo { gap: 8px; }
+    .duplicate-summary-badge,
+    .duplicate-quick-btn {
+      font-size: 13px;
+    }
+    .duplicate-quick-btn {
+      padding: 7px 11px;
+    }
+    .duplicate-quick-detail {
+      font-size: 12px;
+    }
     .modal-meta { gap: 10px; }
     .modal-meta .jik-badge,
     .modal-meta .value-badge {
@@ -1649,7 +1758,7 @@
         <svg width="16" height="16" fill="none" stroke="#9aa0b4" stroke-width="2" viewBox="0 0 24 24">
           <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
         </svg>
-        <input type="text" id="searchInput" placeholder="이름, 가족, 구역으로 검색..." />
+        <input type="text" id="searchInput" placeholder="이름(부분검색), 가족, 구역으로 검색..." />
       </div>
       <button type="button" class="header-filter-btn" id="mobileFilterOpenBtn" aria-label="필터 열기" title="필터 보기">
         <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
@@ -1784,6 +1893,7 @@
       <div>
         <div class="modal-name" id="modalName"></div>
         <div class="modal-meta" id="modalMeta"></div>
+        <div class="modal-subinfo" id="modalSubinfo"></div>
       </div>
       <button class="modal-close" onclick="closeModalDirect()">✕</button>
     </div>
@@ -1815,7 +1925,8 @@
       세례: null,
       구역: null,
       세부직분: null,
-      등록년도: '전체'
+      등록년도: '전체',
+      이름: null
     }
   };
 
@@ -1834,6 +1945,66 @@
       .replace(/>/g, '&gt;')
       .replace(/"/g, '&quot;')
       .replace(/'/g, '&#39;');
+  }
+
+  function normalizeLooseSearch(value) {
+    return normalizeText(value).toLowerCase().replace(/\s+/g, '');
+  }
+
+  function getMembersByName(name) {
+    const target = normalizeText(name);
+    if (!target) return [];
+    return state.members.filter(member => normalizeText(member.이름) === target);
+  }
+
+  function isDuplicateName(name) {
+    return getMembersByName(name).length > 1;
+  }
+
+  function getDuplicateBadge(name) {
+    const matches = getMembersByName(name);
+    if (matches.length <= 1) return '';
+    return `<span class="duplicate-hint">동명이인 ${matches.length}명</span>`;
+  }
+
+  function getMemberDisambiguation(member) {
+    const role = getRoleBadgeLabel(member);
+    const district = normalizeText(member.구역);
+    const village = normalizeText(member.교구);
+    return [role, district || village].filter(Boolean).join(' · ');
+  }
+
+  function renderDisplayName(member) {
+    const name = escapeHtml(normalizeText(member.이름));
+    const role = escapeHtml(getRoleBadgeLabel(member));
+    const duplicate = isDuplicateName(member.이름);
+    const roleHtml = duplicate ? `<span class="name-role-sub">${role}</span>` : '';
+    return `<span class="name-role-inline"><span>${name}</span>${roleHtml}</span>${getDuplicateBadge(member.이름)}`;
+  }
+
+  function renderModalName(member) {
+    const name = normalizeText(member.이름);
+    const clickable = !!name;
+    return `<button type="button" class="modal-name-button${clickable ? ' is-clickable' : ''}" ${clickable ? `data-name-filter="${escapeHtml(name)}"` : ''}>${escapeHtml(name || '-')}</button>`;
+  }
+
+  function renderDuplicateQuickList(member) {
+    const matches = getMembersByName(member.이름);
+    if (matches.length <= 1) return '';
+    const items = matches.map(item => {
+      const isCurrent = String(item.ID) === String(member.ID);
+      return `<button type="button" class="duplicate-quick-btn${isCurrent ? ' is-current' : ''}" ${isCurrent ? 'disabled' : `data-member-id="${escapeHtml(item.ID)}"`}><span class="duplicate-quick-name">${escapeHtml(normalizeText(item.이름))}</span><span class="duplicate-quick-detail">${escapeHtml(getMemberDisambiguation(item) || '정보 없음')}</span></button>`;
+    }).join('');
+    return `<span class="duplicate-summary-badge">동명이인 ${matches.length}명</span><div class="duplicate-quick-list">${items}</div>`;
+  }
+
+  function applyNameFilter(name) {
+    const normalizedName = normalizeText(name);
+    if (!normalizedName) return;
+    state.filters.이름 = normalizedName;
+    $('modalBg').classList.remove('open');
+    closeMobileSidebar();
+    rerender({ rebuildFilters: true, resetPage: true });
   }
 
   function normalizeRole(member) {
@@ -2299,12 +2470,13 @@
       if (state.filters.세례 && normalizeText(member.세례) !== state.filters.세례) return false;
       if (state.filters.구역 && normalizeText(member.구역) !== state.filters.구역) return false;
       if (state.filters.세부직분 && normalizeText(member.세부직분) !== state.filters.세부직분) return false;
+      if (state.filters.이름 && normalizeText(member.이름) !== state.filters.이름) return false;
       if (q) {
-        const hay = [member.이름, member.가족전체, member.구역, member.교구, member.직분, member.세부직분, member.핸드폰, member.전화번호, getRegisterYear(member)]
-          .map(normalizeText)
-          .join(' ')
-          .toLowerCase();
-        if (!hay.includes(q)) return false;
+        const haystackValues = [member.이름, member.가족전체, member.구역, member.교구, member.직분, member.세부직분, member.핸드폰, member.전화번호, getRegisterYear(member)];
+        const hay = haystackValues.map(value => normalizeText(value).toLowerCase()).join(' ');
+        const hayLoose = haystackValues.map(normalizeLooseSearch).join(' ');
+        const qLoose = normalizeLooseSearch(q);
+        if (!hay.includes(q) && (!qLoose || !hayLoose.includes(qLoose))) return false;
       }
       return true;
     });
@@ -2349,6 +2521,7 @@
     if (state.filters.세례) labels.push(state.filters.세례);
     if (state.filters.구역) labels.push(`구역: ${state.filters.구역}`);
     if (state.filters.세부직분) labels.push(`세부직분: ${state.filters.세부직분}`);
+    if (state.filters.이름) labels.push(`성명: ${state.filters.이름}`);
     if (state.searchQuery) labels.push(`검색: ${state.searchQuery}`);
     return labels.length ? labels.join(' · ') : '전체';
   }
@@ -2366,6 +2539,7 @@
     if (state.filters.세례) tags.push([state.filters.세례, () => { state.filters.세례 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
     if (state.filters.구역) tags.push([`구역: ${state.filters.구역}`, () => { state.filters.구역 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
     if (state.filters.세부직분) tags.push([`세부직분: ${state.filters.세부직분}`, () => { state.filters.세부직분 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
+    if (state.filters.이름) tags.push([`성명: ${state.filters.이름}`, () => { state.filters.이름 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
     if (state.searchQuery) tags.push([`"${state.searchQuery}"`, () => { state.searchQuery = ''; els.searchInput.value=''; rerender({resetPage:true}); }]);
 
     for (const [label, onRemove] of tags) {
@@ -2594,12 +2768,12 @@ function renderTable() {
     if (isMobileView()) {
       tbody.innerHTML = page.map(m => {
         const roleLabel = getRoleBadgeLabel(m);
-        return `<tr data-member-id="${m.ID}"><td colspan="8" class="mobile-card-cell"><div class="mobile-card"><div class="mobile-card-top"><div><div class="mobile-card-name">${escapeHtml(normalizeText(m.이름))}${m.관계 ? `<span class="관계-badge">${escapeHtml(normalizeText(m.관계))}</span>` : ''}</div><div class="mobile-card-sub">${makeValueBadge(normalizeText(m.현재상태) || '상태 미지정', 'status')} · ${makeValueBadge(normalizeText(m.구역) || '구역 미지정', 'district')}</div></div><span class="jik-badge ${getJikClass(roleLabel)}">${escapeHtml(roleLabel)}</span></div><div class="mobile-card-meta"><span>${escapeHtml(normalizeText(m.성별) || '-')}${m.나이 ? ` · ${m.나이}세` : ''}</span><span>${escapeHtml(normalizeText(m.핸드폰 || m.전화번호) || '연락처 없음')}</span><span>${escapeHtml(formatDate(m.등록일) || '등록일 없음')}</span></div><div class="mobile-card-family">${renderFamilyInline(m)}</div></div></td></tr>`;
+        return `<tr data-member-id="${m.ID}"><td colspan="8" class="mobile-card-cell"><div class="mobile-card"><div class="mobile-card-top"><div><div class="mobile-card-name">${renderDisplayName(m)}${m.관계 ? `<span class="관계-badge">${escapeHtml(normalizeText(m.관계))}</span>` : ''}</div><div class="mobile-card-sub">${makeValueBadge(normalizeText(m.현재상태) || '상태 미지정', 'status')} · ${makeValueBadge(normalizeText(m.구역) || '구역 미지정', 'district')}</div></div><span class="jik-badge ${getJikClass(roleLabel)}">${escapeHtml(roleLabel)}</span></div><div class="mobile-card-meta"><span>${escapeHtml(normalizeText(m.성별) || '-')}${m.나이 ? ` · ${m.나이}세` : ''}</span><span>${escapeHtml(normalizeText(m.핸드폰 || m.전화번호) || '연락처 없음')}</span><span>${escapeHtml(formatDate(m.등록일) || '등록일 없음')}</span></div><div class="mobile-card-family">${renderFamilyInline(m)}</div></div></td></tr>`;
       }).join('');
     } else {
       tbody.innerHTML = page.map(m => {
         const roleLabel = getRoleBadgeLabel(m);
-        return `<tr data-member-id="${m.ID}"><td class="name-cell">${escapeHtml(normalizeText(m.이름))}${m.관계 ? `<span class="관계-badge">${escapeHtml(normalizeText(m.관계))}</span>` : ''}</td><td><span class="jik-badge ${getJikClass(roleLabel)}">${escapeHtml(roleLabel)}</span></td><td class="hide-mobile">${m.나이 || '-'}</td><td>${makeValueBadge(normalizeText(m.현재상태) || '-', 'status')}</td><td class="구역-cell hide-mobile">${makeValueBadge(normalizeText(m.구역) || '-', 'district')}</td><td class="phone-cell hide-mobile">${escapeHtml(normalizeText(m.핸드폰 || m.전화번호)) || '<span style="color:var(--text3)">-</span>'}</td><td class="family-cell hide-mobile" title="${escapeHtml(normalizeText(m.가족전체))}">${renderFamilyInline(m)}</td><td class="date-cell hide-mobile">${escapeHtml(formatDate(m.등록일) || '-')}</td></tr>`;
+        return `<tr data-member-id="${m.ID}"><td class="name-cell">${renderDisplayName(m)}${m.관계 ? `<span class="관계-badge">${escapeHtml(normalizeText(m.관계))}</span>` : ''}</td><td><span class="jik-badge ${getJikClass(roleLabel)}">${escapeHtml(roleLabel)}</span></td><td class="hide-mobile">${m.나이 || '-'}</td><td>${makeValueBadge(normalizeText(m.현재상태) || '-', 'status')}</td><td class="구역-cell hide-mobile">${makeValueBadge(normalizeText(m.구역) || '-', 'district')}</td><td class="phone-cell hide-mobile">${escapeHtml(normalizeText(m.핸드폰 || m.전화번호)) || '<span style="color:var(--text3)">-</span>'}</td><td class="family-cell hide-mobile" title="${escapeHtml(normalizeText(m.가족전체))}">${renderFamilyInline(m)}</td><td class="date-cell hide-mobile">${escapeHtml(formatDate(m.등록일) || '-')}</td></tr>`;
       }).join('');
     }
 
@@ -2685,7 +2859,8 @@ function renderTable() {
   function showDetail(id) {
     const m = state.members.find(x => String(x.ID) === String(id));
     if (!m) return;
-    $('modalName').textContent = normalizeText(m.이름);
+    $('modalName').innerHTML = renderModalName(m);
+    $('modalSubinfo').innerHTML = renderDuplicateQuickList(m);
     const roleLabel = getRoleBadgeLabel(m);
     let metaHtml = makeMetaBadge(roleLabel || '-', getJikClass(roleLabel), '직분', roleLabel);
     if (m.성별) metaHtml += makeMetaBadge(`${normalizeText(m.성별)}성`, 'jik-other', '성별', normalizeText(m.성별));
@@ -2711,6 +2886,7 @@ function renderTable() {
     let leftColumn = '';
     let rightColumn = '';
     leftColumn += renderCompactInfoSection('핵심 정보', [
+      renderInlineMetaItem('성명', `<button type="button" class="modal-name-button is-clickable" data-name-filter="${escapeHtml(normalizeText(m.이름))}">${escapeHtml(normalizeText(m.이름) || '-')}</button>`),
       renderInlineMetaItem('교구', makeDetailFilterBadge(villageValue || '-', 'group', '교구', getVillageFilterValue(m))),
       renderInlineMetaItem('구역', makeDetailFilterBadge(districtValue || '-', 'district', '구역', districtValue)),
       renderInlineMetaItem('직분', makeDetailFilterBadge(roleValue || '-', 'role', '직분', normalizeRole(m))),
@@ -2904,10 +3080,25 @@ function renderTable() {
       if (!badge) return;
       applyBadgeFilter(badge.dataset.badgeFilterType, badge.dataset.badgeFilterValue);
     });
+    $('modalName').addEventListener('click', (e) => {
+      const target = e.target.closest('[data-name-filter]');
+      if (!target) return;
+      applyNameFilter(target.dataset.nameFilter);
+    });
+    $('modalSubinfo').addEventListener('click', (e) => {
+      const memberBtn = e.target.closest('[data-member-id]');
+      if (!memberBtn || memberBtn.disabled) return;
+      showDetail(memberBtn.dataset.memberId);
+    });
     $('modalBody').addEventListener('click', (e) => {
       const badge = e.target.closest('[data-badge-filter-type]');
       if (badge) {
         applyBadgeFilter(badge.dataset.badgeFilterType, badge.dataset.badgeFilterValue);
+        return;
+      }
+      const nameFilter = e.target.closest('[data-name-filter]');
+      if (nameFilter) {
+        applyNameFilter(nameFilter.dataset.nameFilter);
         return;
       }
       const familyTag = e.target.closest('[data-family-member-id]');
