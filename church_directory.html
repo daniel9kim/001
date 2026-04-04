@@ -2013,11 +2013,15 @@
   }
 
   function applyNameFilter(memberIdOrName) {
-    let targetMember = state.members.find(member => String(member.ID) === String(memberIdOrName)) || null;
+    const targetMember = state.members.find(member => String(member.ID) === String(memberIdOrName)) || null;
     const normalizedName = targetMember ? normalizeText(targetMember.이름) : normalizeText(memberIdOrName);
     if (!normalizedName) return;
-    state.filters.이름 = normalizedName;
-    state.filters.이름가족키 = getFamilySearchKey(targetMember);
+
+    state.filters.이름 = null;
+    state.filters.이름가족키 = null;
+    state.searchQuery = normalizedName.toLowerCase();
+    if (els.searchInput) els.searchInput.value = normalizedName;
+
     $('modalBg').classList.remove('open');
     closeMobileSidebar();
     rerender({ rebuildFilters: true, resetPage: true });
