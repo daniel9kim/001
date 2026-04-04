@@ -26,6 +26,9 @@
     --사모: #e8a0b8;
     --명예권사: #a8b8d8;
     --other: #9090a0;
+    --mobile-user-scale: 1;
+    --mobile-gesture-zooming: 0;
+    --mobile-elder-scale: 1.25;
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,6 +39,9 @@
     color: var(--text);
     min-height: 100vh;
     overflow-x: hidden;
+  }
+  body.pinch-zooming {
+    user-select: none;
   }
 
   /* HEADER */
@@ -124,6 +130,47 @@
     width: 18px;
     height: 18px;
     stroke: currentColor;
+  }
+
+  .font-control {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 6px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface2);
+  }
+  .font-btn {
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.04);
+    color: var(--text);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .font-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent2);
+  }
+  .font-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  .font-readout {
+    min-width: 42px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--text2);
+    font-weight: 700;
+    letter-spacing: 0.2px;
   }
   .search-wrap svg {
     position: absolute;
@@ -1329,6 +1376,21 @@
       height: 44px;
       border-radius: 12px;
     }
+    .font-control {
+      display: inline-flex;
+      padding: 4px 6px;
+      gap: 5px;
+      border-radius: 12px;
+    }
+    .font-btn {
+      width: calc(30px * var(--mobile-user-scale));
+      height: calc(30px * var(--mobile-user-scale));
+      font-size: calc(18px * var(--mobile-user-scale));
+    }
+    .font-readout {
+      min-width: calc(44px * var(--mobile-user-scale));
+      font-size: calc(12px * var(--mobile-user-scale));
+    }
     .main-wrap {
       grid-template-columns: 1fr;
       padding: 12px;
@@ -1734,6 +1796,48 @@
     }
   }
 
+  @media (max-width: 640px) {
+    body { font-size: calc(16px * var(--mobile-user-scale)); }
+    .church-title { font-size: calc(19px * var(--mobile-user-scale)); }
+    .church-subtitle { font-size: calc(12px * var(--mobile-user-scale)); }
+    .total-count { font-size: calc(14px * var(--mobile-user-scale)); }
+    .total-count strong { font-size: calc(18px * var(--mobile-user-scale)); }
+    #searchInput {
+      font-size: calc(16px * var(--mobile-user-scale));
+      min-height: calc(44px * var(--mobile-user-scale));
+      padding-top: calc(10px * var(--mobile-user-scale));
+      padding-bottom: calc(10px * var(--mobile-user-scale));
+      padding-left: calc(38px * var(--mobile-user-scale));
+      padding-right: calc(12px * var(--mobile-user-scale));
+    }
+    #searchInput::placeholder { font-size: calc(15px * var(--mobile-user-scale)); }
+    .filter-title, .sidebar-mobile-title, .inline-all-btn, .gender-btn, .age-btn, .filter-btn, .filter-btn-main, .filter-btn-sub, .result-info, .filter-tag {
+      font-size: calc(13px * var(--mobile-user-scale));
+    }
+    .filter-btn-main { font-size: calc(15px * var(--mobile-user-scale)); }
+    .filter-btn-sub, .inline-all-btn { font-size: calc(12px * var(--mobile-user-scale)); }
+    .mobile-card-name { font-size: calc(19px * var(--mobile-user-scale)); }
+    .mobile-card-sub, .mobile-card-meta, .mobile-card-family { font-size: calc(13px * var(--mobile-user-scale)); }
+    .mobile-card-meta span, .filter-tag { padding-top: calc(5px * var(--mobile-user-scale)); padding-bottom: calc(5px * var(--mobile-user-scale)); }
+    .modal-name { font-size: calc(24px * var(--mobile-user-scale)); }
+    .modal-section-title { font-size: calc(12px * var(--mobile-user-scale)); }
+    .modal-meta .jik-badge, .value-badge, .family-member-tag { font-size: calc(13px * var(--mobile-user-scale)); }
+    .inline-meta-row { gap: calc(6px * var(--mobile-user-scale)) calc(10px * var(--mobile-user-scale)); }
+    .inline-meta-label { font-size: calc(11px * var(--mobile-user-scale)); }
+    .inline-meta-value, .inline-meta-value a { font-size: calc(13px * var(--mobile-user-scale)); }
+    .family-member-name { font-size: calc(12px * var(--mobile-user-scale)); }
+    .family-member-jik { font-size: calc(10px * var(--mobile-user-scale)); }
+    .page-btn {
+      font-size: calc(13px * var(--mobile-user-scale));
+      min-width: calc(40px * var(--mobile-user-scale));
+      min-height: calc(40px * var(--mobile-user-scale));
+    }
+    .chart-title { font-size: calc(16px * var(--mobile-user-scale)); }
+    .chart-subtitle, .chart-hint, .chart-label, .chart-value, .chart-side-title, .chart-legend-label, .chart-legend-value {
+      font-size: calc(12px * var(--mobile-user-scale));
+    }
+  }
+
   /* SCROLLBAR */
   ::-webkit-scrollbar { width: 6px; height: 6px; }
   ::-webkit-scrollbar-track { background: transparent; }
@@ -1760,6 +1864,13 @@
         </svg>
         <input type="text" id="searchInput" placeholder="이름(부분검색), 가족, 구역으로 검색..." />
       </div>
+      <div class="font-control" id="fontControl" aria-label="글씨 크기 조절">
+        <button type="button" class="font-btn" id="fontDecreaseBtn" aria-label="글씨 작게">−</button>
+        <span class="font-readout" id="fontSizeValue">100%</span>
+        <button type="button" class="font-btn" id="fontIncreaseBtn" aria-label="글씨 크게">+</button>
+      </div>
+      <button type="button" class="elder-mode-btn" id="elderModeToggleBtn" aria-pressed="false">큰글씨</button>
+      <div class="pinch-hint" id="pinchHint">두 손가락으로 확대/축소할 수 있어요</div>
       <button type="button" class="header-filter-btn" id="mobileFilterOpenBtn" aria-label="필터 열기" title="필터 보기">
         <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M7 12h10M10 18h4" />
@@ -2953,6 +3064,158 @@ function renderTable() {
     setMobileSidebar(false);
   }
 
+  const FONT_SCALE_STORAGE_KEY = 'churchDirectoryMobileFontScale';
+  const ELDER_MODE_STORAGE_KEY = 'churchDirectoryMobileElderMode';
+  const FONT_SCALE_MIN = 0.9;
+  const FONT_SCALE_MAX = 1.5;
+  const FONT_SCALE_STEP = 0.1;
+  let currentFontScale = 1;
+  let elderModeEnabled = false;
+  const pinchState = {
+    active: false,
+    startDistance: 0,
+    startScale: 1,
+    rafId: 0,
+    pendingScale: 1
+  };
+
+  function clampFontScale(value) {
+    return Math.min(FONT_SCALE_MAX, Math.max(FONT_SCALE_MIN, Number(value) || 1));
+  }
+
+  function getTouchesDistance(touches) {
+    if (!touches || touches.length < 2) return 0;
+    const dx = touches[0].clientX - touches[1].clientX;
+    const dy = touches[0].clientY - touches[1].clientY;
+    return Math.hypot(dx, dy);
+  }
+
+  function updateFontControls() {
+    const label = $('fontSizeValue');
+    if (label) label.textContent = `${Math.round(currentFontScale * 100)}%`;
+    const dec = $('fontDecreaseBtn');
+    const inc = $('fontIncreaseBtn');
+    if (dec) dec.disabled = currentFontScale <= FONT_SCALE_MIN + 0.001;
+    if (inc) inc.disabled = currentFontScale >= FONT_SCALE_MAX - 0.001;
+    const elderBtn = $('elderModeToggleBtn');
+    if (elderBtn) {
+      elderBtn.classList.toggle('active', elderModeEnabled);
+      elderBtn.setAttribute('aria-pressed', elderModeEnabled ? 'true' : 'false');
+      elderBtn.textContent = elderModeEnabled ? '기본글씨' : '큰글씨';
+      elderBtn.title = elderModeEnabled ? '기본 글씨 크기로 돌아가기' : '고령자용 큰글씨 모드 켜기';
+    }
+  }
+
+  function applyMobileFontScale(scale, { persist = true } = {}) {
+    currentFontScale = clampFontScale(scale);
+    document.documentElement.style.setProperty('--mobile-user-scale', String(currentFontScale));
+    if (persist) {
+      try {
+        localStorage.setItem(FONT_SCALE_STORAGE_KEY, String(currentFontScale));
+      } catch (e) {}
+    }
+    updateFontControls();
+  }
+
+  function setElderMode(enabled, { persist = true } = {}) {
+    elderModeEnabled = !!enabled;
+    document.body.classList.toggle('elder-mode', elderModeEnabled);
+    if (elderModeEnabled && currentFontScale < Number(getComputedStyle(document.documentElement).getPropertyValue('--mobile-elder-scale').trim() || 1.25)) {
+      applyMobileFontScale(Number(getComputedStyle(document.documentElement).getPropertyValue('--mobile-elder-scale').trim() || 1.25), { persist });
+    } else {
+      updateFontControls();
+    }
+    if (persist) {
+      try {
+        localStorage.setItem(ELDER_MODE_STORAGE_KEY, elderModeEnabled ? '1' : '0');
+      } catch (e) {}
+    }
+  }
+
+  function queuePinchScale(scale) {
+    pinchState.pendingScale = clampFontScale(scale);
+    if (pinchState.rafId) return;
+    pinchState.rafId = requestAnimationFrame(() => {
+      pinchState.rafId = 0;
+      applyMobileFontScale(pinchState.pendingScale);
+    });
+  }
+
+  function endPinchZoom() {
+    pinchState.active = false;
+    pinchState.startDistance = 0;
+    pinchState.startScale = currentFontScale;
+    if (pinchState.rafId) {
+      cancelAnimationFrame(pinchState.rafId);
+      pinchState.rafId = 0;
+    }
+    document.body.classList.remove('pinch-zooming');
+  }
+
+  function initPinchZoom() {
+    document.addEventListener('touchstart', (e) => {
+      if (window.innerWidth > 640) return;
+      if (!e.touches || e.touches.length !== 2) return;
+      pinchState.active = true;
+      pinchState.startDistance = getTouchesDistance(e.touches);
+      pinchState.startScale = currentFontScale;
+      document.body.classList.add('pinch-zooming');
+    }, { passive: true });
+
+    document.addEventListener('touchmove', (e) => {
+      if (window.innerWidth > 640) return;
+      if (!pinchState.active || !e.touches || e.touches.length !== 2) return;
+      const distance = getTouchesDistance(e.touches);
+      if (!distance || !pinchState.startDistance) return;
+      const nextScale = pinchState.startScale * (distance / pinchState.startDistance);
+      queuePinchScale(nextScale);
+      if (typeof e.preventDefault === 'function') e.preventDefault();
+    }, { passive: false });
+
+    document.addEventListener('touchend', (e) => {
+      if (!pinchState.active) return;
+      if (e.touches && e.touches.length >= 2) return;
+      endPinchZoom();
+    }, { passive: true });
+
+    document.addEventListener('touchcancel', () => {
+      if (!pinchState.active) return;
+      endPinchZoom();
+    }, { passive: true });
+  }
+
+  function initFontControls() {
+    let saved = 1;
+    let elderSaved = false;
+    try {
+      saved = clampFontScale(localStorage.getItem(FONT_SCALE_STORAGE_KEY) || 1);
+      elderSaved = localStorage.getItem(ELDER_MODE_STORAGE_KEY) === '1';
+    } catch (e) {
+      saved = 1;
+      elderSaved = false;
+    }
+    applyMobileFontScale(saved, { persist: false });
+    setElderMode(elderSaved, { persist: false });
+
+    $('fontDecreaseBtn')?.addEventListener('click', () => {
+      applyMobileFontScale(Math.round((currentFontScale - FONT_SCALE_STEP) * 10) / 10);
+      if (elderModeEnabled && currentFontScale < 1.25) setElderMode(false);
+    });
+    $('fontIncreaseBtn')?.addEventListener('click', () => {
+      applyMobileFontScale(Math.round((currentFontScale + FONT_SCALE_STEP) * 10) / 10);
+    });
+    $('elderModeToggleBtn')?.addEventListener('click', () => {
+      if (elderModeEnabled) {
+        setElderMode(false);
+        applyMobileFontScale(1);
+      } else {
+        setElderMode(true);
+      }
+    });
+
+    initPinchZoom();
+  }
+
   function bindEvents() {
     $('mobileFilterOpenBtn')?.addEventListener('click', () => setMobileSidebar(true));
     $('mobileFilterCloseBtn')?.addEventListener('click', () => closeMobileSidebar());
@@ -3204,6 +3467,7 @@ function renderTable() {
     els.tableBody = $('tableBody');
     els.pagination = $('pagination');
     bindEvents();
+    initFontControls();
     loadDefaultJson();
   }
 
