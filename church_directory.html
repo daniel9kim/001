@@ -729,6 +729,32 @@
   .modal-grid.is-compact {
     grid-template-columns: 1fr;
   }
+  .modal-section.is-inline .modal-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .modal-section.is-inline .modal-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 10px;
+  }
+  .modal-section.is-inline .modal-label {
+    margin-bottom: 0;
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+  .modal-section.is-inline .modal-value {
+    text-align: right;
+    line-height: 1.35;
+    font-size: 13px;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .modal-section.is-inline .modal-value .value-badge {
+    max-width: 100%;
+  }
   .modal-field {
     padding: 11px 12px;
     background: rgba(15,17,23,0.38);
@@ -1277,6 +1303,19 @@
     }
     .modal-name { font-size: 22px; }
     .modal-grid { grid-template-columns: 1fr; }
+    .modal-section.is-inline { padding: 12px; }
+    .modal-section.is-inline .modal-field {
+      padding: 7px 9px;
+      border-radius: 10px;
+      gap: 10px;
+    }
+    .modal-section.is-inline .modal-label {
+      font-size: 10px;
+      letter-spacing: 0.2px;
+    }
+    .modal-section.is-inline .modal-value {
+      font-size: 12px;
+    }
     .chart-panel { padding: 14px; border-radius: 14px; }
     .chart-panel-header { align-items: flex-start; flex-direction: column; }
     .chart-title { font-size: 16px; }
@@ -2339,11 +2378,11 @@ function renderTable() {
 
     let leftColumn = '';
     let rightColumn = '';
-    leftColumn += `<div class="modal-section"><div class="modal-section-title">핵심 정보</div><div class="modal-grid">${renderDetailLookupField('교구', normalizeText(m.교구) || getVillageFilterValue(m), { filterType: '교구', filterValue: getVillageFilterValue(m), badgeType: 'group' })}${renderDetailLookupField('구역', m.구역, { filterType: '구역', filterValue: normalizeText(m.구역), badgeType: 'district' })}${renderDetailLookupField('직분', m.직분, { filterType: '직분', filterValue: normalizeRole(m), badgeType: 'role' })}${renderDetailLookupField('세부직분', m.세부직분 !== m.직분 ? m.세부직분 : '', { filterType: '세부직분', filterValue: normalizeText(m.세부직분), badgeType: 'role' })}${field('휴대폰', normalizeText(m.핸드폰 || m.전화번호) || '데이터 없음')}${field('등록일', formatDate(m.등록일))}</div></div>`;
+    leftColumn += `<div class="modal-section is-inline"><div class="modal-section-title">핵심 정보</div><div class="modal-grid">${renderDetailLookupField('교구', normalizeText(m.교구) || getVillageFilterValue(m), { filterType: '교구', filterValue: getVillageFilterValue(m), badgeType: 'group' })}${renderDetailLookupField('구역', m.구역, { filterType: '구역', filterValue: normalizeText(m.구역), badgeType: 'district' })}${renderDetailLookupField('직분', m.직분, { filterType: '직분', filterValue: normalizeRole(m), badgeType: 'role' })}${renderDetailLookupField('세부직분', m.세부직분 !== m.직분 ? m.세부직분 : '', { filterType: '세부직분', filterValue: normalizeText(m.세부직분), badgeType: 'role' })}${field('휴대폰', normalizeText(m.핸드폰 || m.전화번호) || '데이터 없음')}${field('등록일', formatDate(m.등록일))}</div></div>`;
     leftColumn += `<div class="modal-section"><div class="modal-section-title">가족 구성원</div>${parseFamilyList(m)}</div>`;
     if (m.배우자) leftColumn += `<div class="modal-section"><div class="modal-section-title">배우자</div><div class="modal-grid">${field('배우자 이름', m.배우자)}${field('배우자 직분', m.배우자직분)}</div></div>`;
 
-    rightColumn += `<div class="modal-section"><div class="modal-section-title">개인 정보</div><div class="modal-grid is-compact">${field('생년월일', getBirthDisplay(m))}${field('관계', m.관계)}${field('세대주', m.세대주 !== m.이름 ? m.세대주 : '본인')}${field('교인구분', m.교인구분1)}${field('현재상태', m.현재상태)}${renderDetailLookupField('등록년도', getRegisterYear(m) ? `${getRegisterYear(m)}년` : '', { filterType: '등록년도', filterValue: getRegisterYear(m), badgeType: 'register-year' })}</div></div>`;
+    rightColumn += `<div class="modal-section is-inline"><div class="modal-section-title">개인 정보</div><div class="modal-grid is-compact">${field('생년월일', getBirthDisplay(m))}${field('관계', m.관계)}${field('세대주', m.세대주 !== m.이름 ? m.세대주 : '본인')}${field('교인구분', m.교인구분1)}${field('현재상태', m.현재상태)}${renderDetailLookupField('등록년도', getRegisterYear(m) ? `${getRegisterYear(m)}년` : '', { filterType: '등록년도', filterValue: getRegisterYear(m), badgeType: 'register-year' })}</div></div>`;
 
     $('modalBody').innerHTML = `<div class="modal-column">${leftColumn}</div><div class="modal-column">${rightColumn}</div>`;
     $('modalBg').classList.add('open');
