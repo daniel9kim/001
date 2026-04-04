@@ -2042,7 +2042,8 @@
           <div class="chart-toolbar">
             <span class="chart-sort-label">막대 정렬</span>
             <div class="chart-sort-buttons" id="chartSortButtons">
-              <button type="button" class="chart-sort-btn active" data-chart-sort="count_desc">많은 순</button>
+              <button type="button" class="chart-sort-btn active" data-chart-sort="label_asc">가나다순</button>
+              <button type="button" class="chart-sort-btn" data-chart-sort="count_desc">많은 순</button>
               <button type="button" class="chart-sort-btn" data-chart-sort="count_asc">적은 순</button>
             </div>
           </div>
@@ -2109,6 +2110,7 @@
     searchQuery: '',
     view: 'table',
     chartType: null,
+    chartSort: 'label_asc',
     filters: {
       교구: null,
       직분: null,
@@ -2912,7 +2914,10 @@ function getChartData(type, members = state.filtered) {
     if (state.chartSort === 'count_asc') {
       return list.sort((a, b) => (a[1] - b[1]) || a[0].localeCompare(b[0], 'ko'));
     }
-    return list.sort((a, b) => (b[1] - a[1]) || a[0].localeCompare(b[0], 'ko'));
+    if (state.chartSort === 'count_desc') {
+      return list.sort((a, b) => (b[1] - a[1]) || a[0].localeCompare(b[0], 'ko'));
+    }
+    return list.sort((a, b) => a[0].localeCompare(b[0], 'ko'));
   }
 
   function markChartSortButtons() {
@@ -3441,7 +3446,7 @@ function renderTable() {
     $('chartPanel').addEventListener('click', (e) => {
       const sortBtn = e.target.closest('[data-chart-sort]');
       if (sortBtn) {
-        state.chartSort = sortBtn.dataset.chartSort || 'count_desc';
+        state.chartSort = sortBtn.dataset.chartSort || 'label_asc';
         renderChart();
         return;
       }
