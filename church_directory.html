@@ -76,6 +76,16 @@
     letter-spacing: 1px;
     margin-top: 2px;
   }
+  .reset-home-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+  }
+  .reset-home-btn:hover {
+    color: var(--accent2);
+  }
   .header-divider {
     width: 1px;
     height: 36px;
@@ -163,14 +173,6 @@
   .font-btn:disabled {
     opacity: 0.45;
     cursor: not-allowed;
-  }
-  .font-readout {
-    min-width: 42px;
-    text-align: center;
-    font-size: 12px;
-    color: var(--text2);
-    font-weight: 700;
-    letter-spacing: 0.2px;
   }
   .search-wrap svg {
     position: absolute;
@@ -1925,7 +1927,7 @@
 <header>
   <div class="header-inner">
     <div>
-      <div class="church-title">✝ 시흥교회</div>
+      <button type="button" class="church-title reset-home-btn" id="homeResetBtn" title="초기 화면으로 돌아가기">✝ 시흥교회</button>
       <div class="church-subtitle">교인 명단 조회</div>
     </div>
     <div class="header-divider"></div>
@@ -1941,11 +1943,9 @@
       </div>
       <div class="font-control" id="fontControl" aria-label="글씨 크기 조절">
         <button type="button" class="font-btn" id="fontDecreaseBtn" aria-label="글씨 작게">−</button>
-        <span class="font-readout" id="fontSizeValue">100%</span>
-        <button type="button" class="font-btn" id="fontIncreaseBtn" aria-label="글씨 크게">+</button>
+                <button type="button" class="font-btn" id="fontIncreaseBtn" aria-label="글씨 크게">+</button>
       </div>
       <button type="button" class="elder-mode-btn" id="elderModeToggleBtn" aria-pressed="false">큰글씨</button>
-      <div class="pinch-hint" id="pinchHint">두 손가락으로 확대/축소할 수 있어요</div>
       <button type="button" class="header-filter-btn" id="mobileFilterOpenBtn" aria-label="필터 열기" title="필터 보기">
         <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M7 12h10M10 18h4" />
@@ -2042,8 +2042,7 @@
           <div class="chart-toolbar">
             <span class="chart-sort-label">막대 정렬</span>
             <div class="chart-sort-buttons" id="chartSortButtons">
-              <button type="button" class="chart-sort-btn active" data-chart-sort="label_asc">가나다순</button>
-              <button type="button" class="chart-sort-btn" data-chart-sort="count_desc">많은 순</button>
+              <button type="button" class="chart-sort-btn active" data-chart-sort="count_desc">많은 순</button>
               <button type="button" class="chart-sort-btn" data-chart-sort="count_asc">적은 순</button>
             </div>
           </div>
@@ -2911,11 +2910,11 @@ function getChartData(type, members = state.filtered) {
 
   function sortChartData(data) {
     const list = Array.isArray(data) ? [...data] : [];
-    if (state.chartSort === 'count_asc') {
-      return list.sort((a, b) => (a[1] - b[1]) || a[0].localeCompare(b[0], 'ko'));
-    }
     if (state.chartSort === 'count_desc') {
       return list.sort((a, b) => (b[1] - a[1]) || a[0].localeCompare(b[0], 'ko'));
+    }
+    if (state.chartSort === 'count_asc') {
+      return list.sort((a, b) => (a[1] - b[1]) || a[0].localeCompare(b[0], 'ko'));
     }
     return list.sort((a, b) => a[0].localeCompare(b[0], 'ko'));
   }
@@ -3185,6 +3184,33 @@ function renderTable() {
     setMobileSidebar(false);
   }
 
+  function resetToHome() {
+    state.currentPage = 1;
+    state.sortCol = '이름';
+    state.sortDir = 1;
+    state.searchQuery = '';
+    state.view = 'table';
+    state.chartType = null;
+    state.chartSort = 'label_asc';
+    state.filters = {
+      교구: null,
+      직분: null,
+      성별: '전체',
+      세대: '전체',
+      현재상태: null,
+      세례: null,
+      구역: null,
+      세부직분: null,
+      등록년도: '전체',
+      이름: null
+    };
+    if (els.searchInput) els.searchInput.value = '';
+    closeModalDirect();
+    closeMobileSidebar();
+    rerender({ rebuildFilters: true, resetPage: true });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   const FONT_SCALE_STORAGE_KEY = 'churchDirectoryMobileFontScale';
   const ELDER_MODE_STORAGE_KEY = 'churchDirectoryMobileElderMode';
   const FONT_SCALE_MIN = 0.9;
@@ -3212,8 +3238,6 @@ function renderTable() {
   }
 
   function updateFontControls() {
-    const label = $('fontSizeValue');
-    if (label) label.textContent = `${Math.round(currentFontScale * 100)}%`;
     const dec = $('fontDecreaseBtn');
     const inc = $('fontIncreaseBtn');
     if (dec) dec.disabled = currentFontScale <= FONT_SCALE_MIN + 0.001;
@@ -3338,6 +3362,7 @@ function renderTable() {
   }
 
   function bindEvents() {
+    $('homeResetBtn')?.addEventListener('click', resetToHome);
     $('mobileFilterOpenBtn')?.addEventListener('click', () => setMobileSidebar(true));
     $('mobileFilterCloseBtn')?.addEventListener('click', () => closeMobileSidebar());
     $('mobileSidebarBackdrop')?.addEventListener('click', () => closeMobileSidebar());
