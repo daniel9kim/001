@@ -1985,7 +1985,7 @@
   function renderModalName(member) {
     const name = normalizeText(member.이름);
     const clickable = !!name;
-    return `<button type="button" class="modal-name-button${clickable ? ' is-clickable' : ''}" ${clickable ? `data-name-filter-id="${escapeHtml(member.ID)}"` : ''}>${escapeHtml(name || '-')}</button>`;
+    return `<button type="button" class="modal-name-button${clickable ? ' is-clickable' : ''}" ${clickable ? `data-name-filter="${escapeHtml(name)}" data-name-filter-id="${escapeHtml(member.ID)}"` : ''}>${escapeHtml(name || '-')}</button>`;
   }
 
   function renderDuplicateQuickList(member) {
@@ -3101,9 +3101,9 @@ function renderTable() {
       applyBadgeFilter(badge.dataset.badgeFilterType, badge.dataset.badgeFilterValue);
     });
     $('modalName').addEventListener('click', (e) => {
-      const target = e.target.closest('[data-name-filter]');
+      const target = e.target.closest('[data-name-filter], [data-name-filter-id]');
       if (!target) return;
-      applyNameFilter(target.dataset.nameFilter);
+      applyNameFilter(target.dataset.nameFilterId || target.dataset.nameFilter);
     });
     $('modalSubinfo').addEventListener('click', (e) => {
       const memberBtn = e.target.closest('[data-member-id]');
