@@ -1198,6 +1198,77 @@
     white-space: nowrap;
     font-weight: 600;
   }
+  .chart-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .chart-sort-label {
+    font-size: 12px;
+    color: var(--text3);
+  }
+  .chart-sort-buttons {
+    display: inline-flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .chart-sort-btn {
+    min-height: 32px;
+    padding: 0 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--text2);
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
+    transition: all 0.18s ease;
+  }
+  .chart-sort-btn:hover {
+    border-color: rgba(200,169,110,0.68);
+    color: var(--accent2);
+  }
+  .chart-sort-btn.active {
+    background: rgba(200,169,110,0.14);
+    border-color: var(--accent);
+    color: var(--accent2);
+    box-shadow: 0 0 0 1px rgba(200,169,110,0.12) inset;
+  }
+  .chart-row.is-top .chart-label {
+    color: var(--accent2);
+    font-weight: 700;
+  }
+  .chart-row.is-top .chart-bar-track {
+    border-color: rgba(200,169,110,0.72);
+    box-shadow: 0 0 0 1px rgba(200,169,110,0.14) inset;
+  }
+  .chart-panel.is-drilling {
+    animation: chartDrillFade 0.22s ease forwards;
+  }
+  .chart-row.is-drilling .chart-bar-track,
+  .chart-legend-item.is-drilling,
+  .chart-slice.is-drilling {
+    animation: chartTargetPulse 0.22s ease;
+  }
+  .table-wrap.is-drill-target {
+    animation: drillTargetReveal 0.42s ease;
+  }
+  @keyframes chartDrillFade {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0.25; transform: scale(0.985); }
+  }
+  @keyframes chartTargetPulse {
+    0% { transform: scale(1); filter: brightness(1); }
+    50% { transform: scale(1.015); filter: brightness(1.16); }
+    100% { transform: scale(1); filter: brightness(1); }
+  }
+  @keyframes drillTargetReveal {
+    0% { transform: translateY(10px); opacity: 0.55; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
 
   /* PAGINATION */
   .pagination {
@@ -1650,6 +1721,10 @@
     .chart-panel { padding: 14px; border-radius: 14px; }
     .chart-panel-header { align-items: flex-start; flex-direction: column; }
     .chart-title { font-size: 16px; }
+    .chart-toolbar { width: 100%; }
+    .chart-sort-label { width: 100%; }
+    .chart-sort-buttons { width: 100%; }
+    .chart-sort-btn { flex: 1; justify-content: center; }
     .chart-side { padding: 14px; }
     .chart-row { grid-template-columns: 1fr; gap: 6px; }
     .chart-label { white-space: normal; }
@@ -1964,6 +2039,13 @@
           <div class="chart-title" id="chartTitle">비율 그래프</div>
           <div class="chart-subtitle" id="chartSubtitle">현재 필터 결과 기준 비율</div>
           <div class="chart-hint" id="chartHint">그래프 항목을 클릭하면 해당 성도 목록으로 바로 이동합니다.</div>
+          <div class="chart-toolbar">
+            <span class="chart-sort-label">막대 정렬</span>
+            <div class="chart-sort-buttons" id="chartSortButtons">
+              <button type="button" class="chart-sort-btn active" data-chart-sort="count_desc">많은 순</button>
+              <button type="button" class="chart-sort-btn" data-chart-sort="count_asc">적은 순</button>
+            </div>
+          </div>
         </div>
         <button type="button" class="page-btn" id="chartBackBtn">성도목록으로 돌아가기</button>
       </div>
@@ -2825,6 +2907,35 @@ function getChartData(type, members = state.filtered) {
       rerender({ rebuildFilters: true, resetPage: true });
   }
 
+  function sortChartData(data) {
+    const list = Array.isArray(data) ? [...data] : [];
+    if (state.chartSort === 'count_asc') {
+      return list.sort((a, b) => (a[1] - b[1]) || a[0].localeCompare(b[0], 'ko'));
+    }
+    return list.sort((a, b) => (b[1] - a[1]) || a[0].localeCompare(b[0], 'ko'));
+  }
+
+  function markChartSortButtons() {
+    document.querySelectorAll('[data-chart-sort]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.chartSort === state.chartSort);
+    });
+  }
+
+  function triggerChartDrillDown(type, value, triggerEl) {
+    const panel = $('chartPanel');
+    const target = triggerEl || panel;
+    target.classList.add('is-drilling');
+    panel.classList.add('is-drilling');
+    window.setTimeout(() => {
+      target.classList.remove('is-drilling');
+      panel.classList.remove('is-drilling');
+      applyChartSelection(type, value);
+      const tableWrap = $('tableWrap');
+      tableWrap.classList.add('is-drill-target');
+      window.setTimeout(() => tableWrap.classList.remove('is-drill-target'), 450);
+    }, 180);
+  }
+
   function renderChart() {
     const panel = $('chartPanel');
     const tableWrap = $('tableWrap');
@@ -2833,12 +2944,15 @@ function getChartData(type, members = state.filtered) {
       tableWrap.style.display = '';
       return;
     }
-    const data = getChartData(state.chartType, state.filtered);
+    const rawData = getChartData(state.chartType, state.filtered);
+    const data = sortChartData(rawData);
     const total = data.reduce((sum, [, count]) => sum + count, 0);
+    const maxCount = Math.max(...data.map(([, count]) => count), 1);
     const baseLabel = getResultSummaryLabel();
     $('chartTitle').textContent = `${state.chartType} 비율 그래프`;
     $('chartSubtitle').textContent = `${baseLabel} · ${total.toLocaleString()}명 기준`;
-    $('chartHint').textContent = '현재 필터된 결과만 기준으로 계산했습니다. 그래프 항목을 클릭하면 해당 성도 목록으로 이동합니다.';
+    $('chartHint').textContent = '막대 길이는 최대값 기준 상대 비교이며, 오른쪽 숫자는 실제 인원·비율입니다. 그래프 항목을 클릭하면 해당 성도 목록으로 이동합니다.';
+    markChartSortButtons();
 
     if (!data.length) {
       $('chartBars').innerHTML = '<div class="empty-state"><div class="icon">📊</div><h3>표시할 데이터가 없습니다</h3><p>먼저 성도 명단을 불러오거나 필터를 조정해 주세요</p></div>';
@@ -2851,18 +2965,20 @@ function getChartData(type, members = state.filtered) {
 
     $('chartBars').innerHTML = data.map(([label, count], index) => {
       const percent = total ? (count / total) * 100 : 0;
+      const relativePercent = maxCount ? (count / maxCount) * 100 : 0;
       const encodedLabel = encodeURIComponent(label);
       const color = getChartColor(index);
-      return `<div class="chart-row" data-chart-select-type="${state.chartType}" data-chart-select-value="${encodedLabel}">
+      const isTop = count === maxCount;
+      return `<div class="chart-row${isTop ? ' is-top' : ''}" data-chart-select-type="${state.chartType}" data-chart-select-value="${encodedLabel}">
         <div class="chart-label">${label}</div>
         <div class="chart-bar-track">
-          <div class="chart-bar-fill" style="width:${Math.max(percent, 3)}%; background:linear-gradient(90deg, ${color} 0%, var(--accent2) 100%);">${percent.toFixed(1)}%</div>
+          <div class="chart-bar-fill" style="width:${Math.max(relativePercent, 8)}%; background:linear-gradient(90deg, ${color} 0%, var(--accent2) 100%);">${percent.toFixed(1)}%</div>
         </div>
-        <div class="chart-value">${count.toLocaleString()}명</div>
+        <div class="chart-value">${count.toLocaleString()}명 · ${percent.toFixed(1)}%</div>
       </div>`;
     }).join('');
 
-    $('chartPieWrap').innerHTML = buildPieChartSvg(data, total, state.chartType);
+    $('chartPieWrap').innerHTML = buildPieChartSvg(rawData, total, state.chartType);
     $('chartLegend').innerHTML = data.map(([label, count], index) => {
       const percent = total ? (count / total) * 100 : 0;
       const encodedLabel = encodeURIComponent(label);
@@ -3323,11 +3439,17 @@ function renderTable() {
     });
 
     $('chartPanel').addEventListener('click', (e) => {
+      const sortBtn = e.target.closest('[data-chart-sort]');
+      if (sortBtn) {
+        state.chartSort = sortBtn.dataset.chartSort || 'count_desc';
+        renderChart();
+        return;
+      }
       const target = e.target.closest('[data-chart-select-type]');
       if (!target) return;
       const type = target.dataset.chartSelectType;
       const value = decodeURIComponent(target.dataset.chartSelectValue || '');
-      applyChartSelection(type, value);
+      triggerChartDrillDown(type, value, target);
     });
 
     document.querySelector('thead').addEventListener('click', (e) => {
