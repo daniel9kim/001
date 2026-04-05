@@ -2934,6 +2934,21 @@ function renderFamilyTree(member) {
   generationGroups.peer.sort((a, b) => compareGenerationPeople(a, b, member, anchorAge));
   generationGroups.younger.sort((a, b) => compareGenerationPeople(a, b, member, anchorAge));
 
+  const currentPerson = remainder.find(person => person.isSelf) || persons.find(person => person.isSelf) || null;
+  const currentBucket = currentPerson ? getGenerationBucket(currentPerson, member, anchorAge) : 'peer';
+  const shouldMergeCurrentWithYounger = currentBucket === 'peer' && currentPerson && Number(currentPerson.age || 0) > 0 && anchorAge > 0 && Number(currentPerson.age || 0) <= anchorAge - 15;
+
+  const lineGroups = [];
+  if (generationGroups.older.length) lineGroups.push(generationGroups.older);
+  if (shouldMergeCurrentWithYounger) {
+    const merged = [...generationGroups.peer, ...generationGroups.younger];
+    merged.sort((a, b) => compareGenerationPeople(a, b, member, anchorAge));
+    if (merged.length) lineGroups.push(merged);
+  } else {
+    if (generationGroups.peer.length) lineGroups.push(generationGroups.peer);
+    if (generationGroups.younger.length) lineGroups.push(generationGroups.younger);
+  }
+
   const headClickable = headPerson && headPerson.linkedMember && headPerson.linkedMember.ID;
   const headAttrs = headClickable ? ` data-family-member-id="${escapeHtml(headPerson.linkedMember.ID)}"` : '';
   const headJik = normalizeText((headPerson && headPerson.jik) || (headPerson && headPerson.linkedMember ? getRoleBadgeLabel(headPerson.linkedMember) : ''));
@@ -2948,9 +2963,7 @@ function renderFamilyTree(member) {
         </div>
         ${spousePerson ? `<span class="family-tree-linker">--</span>${renderFamilyTreePerson(spousePerson, '배우자', '배우자', { wrapperClass: 'family-tree-spouse-card' })}` : ''}
       </div>
-      ${renderFamilyRoleLine(generationGroups.older, member)}
-      ${renderFamilyRoleLine(generationGroups.peer, member)}
-      ${renderFamilyRoleLine(generationGroups.younger, member)}
+      ${lineGroups.map(group => renderFamilyRoleLine(group, member)).join('')}
     </div>
   `;
 }
