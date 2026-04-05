@@ -1026,24 +1026,26 @@
   .family-tree {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 8px;
   }
   .family-tree-rootline {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: 10px;
-  }
-  .family-tree-head,
-  .family-tree-spouse-card,
-  .family-tree-node {
-    position: relative;
     display: flex;
     align-items: center;
     gap: 8px;
     flex-wrap: wrap;
+  }
+  .family-tree-head,
+  .family-tree-spouse-card,
+  .family-tree-node,
+  .family-tree-child-chip {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
     min-width: 0;
-    padding: 10px 12px;
-    border-radius: 12px;
+    padding: 7px 10px;
+    border-radius: 999px;
     background: rgba(15,17,23,0.38);
     border: 1px solid rgba(255,255,255,0.05);
   }
@@ -1057,30 +1059,35 @@
     border-color: rgba(201,126,203,0.22);
   }
   .family-tree-children {
-    position: relative;
     display: flex;
-    flex-direction: column;
+    align-items: flex-start;
     gap: 8px;
-    margin-left: 18px;
-    padding-left: 18px;
+    margin-left: 12px;
+    padding-left: 14px;
+    position: relative;
+    flex-wrap: wrap;
   }
   .family-tree-children::before {
-    content: '';
+    content: '├─';
     position: absolute;
     left: 0;
-    top: 2px;
-    bottom: 10px;
-    width: 1px;
-    background: rgba(200,169,110,0.22);
+    top: 6px;
+    color: rgba(200,169,110,0.72);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
   }
-  .family-tree-node::before {
-    content: '';
-    position: absolute;
-    left: -18px;
-    top: 50%;
-    width: 18px;
-    height: 1px;
-    background: rgba(200,169,110,0.22);
+  .family-tree-children-list {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    min-width: 0;
+  }
+  .family-tree-child-chip {
+    padding: 5px 8px;
+    border-radius: 999px;
+    background: rgba(15,17,23,0.26);
   }
   .family-role-badge {
     display: inline-flex;
@@ -1133,12 +1140,12 @@
   .family-tree-name {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 4px;
     min-width: 0;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     color: var(--text);
-    line-height: 1.35;
+    line-height: 1.2;
   }
   .family-tree-name.is-link {
     cursor: pointer;
@@ -1149,15 +1156,15 @@
     text-decoration: underline;
   }
   .family-tree-jik {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
     color: var(--text3);
-    line-height: 1.2;
+    line-height: 1.1;
   }
   .family-tree-empty {
     color: var(--text3);
     font-style: italic;
-    font-size: 13px;
+    font-size: 12px;
   }
 
 
@@ -2070,10 +2077,10 @@
       padding: 4px 7px;
     }
     .family-tree-name {
-      font-size: 12px;
+      font-size: 11px;
     }
     .family-tree-jik {
-      font-size: 10px;
+      font-size: 9px;
     }
     .family-member-tag {
       padding: 6px 10px;
@@ -2780,8 +2787,10 @@
       if (!person || !person.name || usedNames.has(person.name) || person.name === headMember.name) return;
       usedNames.add(person.name);
       const role = getFamilyRoleInfo(person, member);
-      childNodes.push(renderFamilyTreePerson(person, role.label, role.className));
+      childNodes.push(renderFamilyTreePerson(person, role.label, role.className, { wrapperClass: 'family-tree-child-chip' }));
     };
+
+    if (selfMember && selfMember.name !== headMember.name) addNode(selfMember);
 
     const parents = [];
     const children = [];
@@ -2798,7 +2807,6 @@
       else others.push(item);
     });
 
-    addNode(selfMember);
     parents.forEach(addNode);
     children.forEach(addNode);
     others.forEach(addNode);
@@ -2809,7 +2817,7 @@
 
     return `
       <div class="family-tree">
-        <div class="family-tree-rootline"${spouseMember && spouseMember.name && spouseMember.name !== headMember.name ? ' style="grid-template-columns:minmax(0,1fr) minmax(0,1fr);"' : ''}>
+        <div class="family-tree-rootline">
           <div class="family-tree-head">
             <span class="family-role-badge family-role-세대주">세대주</span>
             <span class="family-tree-name${headClickable ? ' is-link' : ''}"${headAttrs}>${escapeHtml(headMember.name || selfName || '-')}</span>
@@ -2820,7 +2828,7 @@
             : ''}
         </div>
         <div class="family-tree-children">
-          ${childNodes.join('') || `<div class="family-tree-empty">가족 구성원 정보 없음</div>`}
+          ${childNodes.length ? `<div class="family-tree-children-list">${childNodes.join('')}</div>` : `<div class="family-tree-empty">가족 구성원 정보 없음</div>`}
         </div>
       </div>
     `;
