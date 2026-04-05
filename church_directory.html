@@ -2798,11 +2798,13 @@ function buildHouseholdPersons(currentMember) {
     );
     const relation = linkedMember ? normalizeText(linkedMember.관계) : '';
     const jik = normalizeText(parsedByName.get(name) || (linkedMember ? getRoleBadgeLabel(linkedMember) : ''));
+    const age = linkedMember ? Number(linkedMember.나이 || 0) : 0;
     return {
       name,
       jik,
       linkedMember: linkedMember || findBestLinkedMember(name, householdMembers),
       relation,
+      age: Number.isFinite(age) ? age : 0,
       isSelf: name === currentName,
       isSpouse: !!spouseName && name === spouseName,
       isHead: !!headName && name === headName
@@ -2828,6 +2830,51 @@ function getFamilyRoleInfo(person, member) {
   return { label: '가족', className: '가족', order: 5 };
 }
 
+function getGenerationAnchorAge(member, headPerson, spousePerson) {
+  const ages = [];
+  const memberAge = Number(member && member.나이 || 0);
+  if (headPerson && Number(headPerson.age) > 0) ages.push(Number(headPerson.age));
+  if (spousePerson && Number(spousePerson.age) > 0) ages.push(Number(spousePerson.age));
+  if (Number.isFinite(memberAge) && memberAge > 0) ages.push(memberAge);
+  if (!ages.length) return 0;
+  return Math.round(ages.reduce((sum, age) => sum + age, 0) / ages.length);
+}
+
+function getGenerationBucket(person, member, anchorAge) {
+  const role = getFamilyRoleInfo(person, member);
+  if (role.className === '부모') return 'older';
+  if (role.className === '자녀') return 'younger';
+  if (role.className === '본인') return 'peer';
+  if (role.className === '세대주' || role.className === '배우자') return 'head';
+
+  const age = Number(person && person.age || 0);
+  if (anchorAge > 0 && age > 0) {
+    if (age >= anchorAge + 15) return 'older';
+    if (age <= anchorAge - 15) return 'younger';
+    return 'peer';
+  }
+  return 'peer';
+}
+
+function compareGenerationPeople(a, b, member, anchorAge) {
+  const aCurrent = a && a.isSelf ? 0 : 1;
+  const bCurrent = b && b.isSelf ? 0 : 1;
+  if (aCurrent !== bCurrent) return aCurrent - bCurrent;
+  const ageA = Number(a && a.age || 0);
+  const ageB = Number(b && b.age || 0);
+  const bucketA = getGenerationBucket(a, member, anchorAge);
+  const bucketB = getGenerationBucket(b, member, anchorAge);
+  if (bucketA === 'older' && ageA && ageB && ageA !== ageB) return ageB - ageA;
+  if (bucketA === 'younger' && ageA && ageB && ageA !== ageB) return ageA - ageB;
+  if (bucketA === 'peer' && ageA && ageB && ageA !== ageB) return ageB - ageA;
+  return String(a && a.name || '').localeCompare(String(b && b.name || ''), 'ko');
+}
+
+function getCompactFamilyBadge(person, member) {
+  if (person && person.isSelf) return { label: '본인', className: '본인' };
+  return { label: '가족', className: '가족' };
+}
+
 function renderFamilyTreePerson(person, roleLabel, roleClass, options = {}) {
   if (!person || !person.name) return '';
   const variantClass = options.variantClass ? ` ${options.variantClass}` : '';
@@ -2845,12 +2892,15 @@ function renderFamilyTreePerson(person, roleLabel, roleClass, options = {}) {
   `;
 }
 
-function renderFamilyRoleLine(roleLabel, roleClass, persons) {
+function renderFamilyRoleLine(persons, member) {
   if (!persons || !persons.length) return '';
   return `
     <div class="family-tree-children">
       <div class="family-tree-children-list">
-        ${persons.map(person => renderFamilyTreePerson(person, roleLabel, roleClass, { wrapperClass: 'family-tree-child-chip' })).join('')}
+        ${persons.map(person => {
+          const badge = getCompactFamilyBadge(person, member);
+          return renderFamilyTreePerson(person, badge.label, badge.className, { wrapperClass: 'family-tree-child-chip' });
+        }).join('')}
       </div>
     </div>
   `;
@@ -2869,28 +2919,20 @@ function renderFamilyTree(member) {
     ? (persons.find(person => person.name === spouseName) || persons.find(person => getFamilyRoleInfo(person, member).className === '배우자'))
     : persons.find(person => getFamilyRoleInfo(person, member).className === '배우자');
 
+  const anchorAge = getGenerationAnchorAge(member, headPerson, spousePerson);
   const remainder = persons.filter(person => person.name !== (headPerson && headPerson.name) && person.name !== (spousePerson && spousePerson.name));
-  const grouped = { 자녀: [], 부모: [], 본인: [], 가족: [] };
+  const generationGroups = { older: [], peer: [], younger: [] };
 
   remainder.forEach(person => {
-    const role = getFamilyRoleInfo(person, member);
-    if (role.className === '자녀') grouped.자녀.push(person);
-    else if (role.className === '부모') grouped.부모.push(person);
-    else if (role.className === '본인') grouped.본인.push(person);
-    else grouped.가족.push(person);
+    const bucket = getGenerationBucket(person, member, anchorAge);
+    if (bucket === 'older') generationGroups.older.push(person);
+    else if (bucket === 'younger') generationGroups.younger.push(person);
+    else generationGroups.peer.push(person);
   });
 
-  const sortPeople = (list) => list.sort((a, b) => {
-    const aRole = getFamilyRoleInfo(a, member);
-    const bRole = getFamilyRoleInfo(b, member);
-    if (aRole.order !== bRole.order) return aRole.order - bRole.order;
-    return a.name.localeCompare(b.name, 'ko');
-  });
-
-  sortPeople(grouped.자녀);
-  sortPeople(grouped.부모);
-  sortPeople(grouped.본인);
-  sortPeople(grouped.가족);
+  generationGroups.older.sort((a, b) => compareGenerationPeople(a, b, member, anchorAge));
+  generationGroups.peer.sort((a, b) => compareGenerationPeople(a, b, member, anchorAge));
+  generationGroups.younger.sort((a, b) => compareGenerationPeople(a, b, member, anchorAge));
 
   const headClickable = headPerson && headPerson.linkedMember && headPerson.linkedMember.ID;
   const headAttrs = headClickable ? ` data-family-member-id="${escapeHtml(headPerson.linkedMember.ID)}"` : '';
@@ -2906,10 +2948,9 @@ function renderFamilyTree(member) {
         </div>
         ${spousePerson ? `<span class="family-tree-linker">--</span>${renderFamilyTreePerson(spousePerson, '배우자', '배우자', { wrapperClass: 'family-tree-spouse-card' })}` : ''}
       </div>
-      ${renderFamilyRoleLine('자녀', '자녀', grouped.자녀)}
-      ${renderFamilyRoleLine('부모', '부모', grouped.부모)}
-      ${renderFamilyRoleLine('본인', '본인', grouped.본인)}
-      ${renderFamilyRoleLine('가족', '가족', grouped.가족)}
+      ${renderFamilyRoleLine(generationGroups.older, member)}
+      ${renderFamilyRoleLine(generationGroups.peer, member)}
+      ${renderFamilyRoleLine(generationGroups.younger, member)}
     </div>
   `;
 }
