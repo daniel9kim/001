@@ -1034,6 +1034,12 @@
     gap: 8px;
     flex-wrap: wrap;
   }
+  .family-tree-linker {
+    color: rgba(200,169,110,0.82);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+  }
   .family-tree-head,
   .family-tree-spouse-card,
   .family-tree-node,
@@ -2653,189 +2659,262 @@
     return candidates[0];
   }
 
-  function parseFamilyMembers(member) {
-    const raw = normalizeText(member && member.가족전체);
-    if (!raw) return [];
-
-    return raw.split(/\s+/).filter(Boolean).map(part => {
-      const m = part.match(/^(.+?)(?:\((.+?)\))?$/);
-      const name = normalizeText(m ? m[1] : part);
-      const jik = normalizeText(m && m[2] ? m[2] : '');
-      const linkedMember = findFamilyMemberByName(name, member.가족전체);
-      const linkedRelation = normalizeText(linkedMember && linkedMember.관계);
-      const selfRelation = normalizeText(member && member.관계);
-
-      return {
-        name,
-        jik,
-        linkedMember,
-        relation: linkedRelation || (name === normalizeText(member.이름) ? selfRelation : ''),
-        isSelf: name === normalizeText(member.이름),
-        isSpouse: name === normalizeText(member.배우자),
-        isHead: name === normalizeText(member.세대주)
-      };
-    });
-  }
-
-  function getFamilyRoleInfo(person, member) {
-    const relation = normalizeText(person && person.relation);
-    const selfName = normalizeText(member && member.이름);
-    const spouseName = normalizeText(member && member.배우자);
-    const headName = normalizeText(member && member.세대주) || selfName;
-    const personName = normalizeText(person && person.name);
-
-    if (personName && personName === headName) {
-      return { label: '세대주', className: '세대주' };
-    }
-
-    if (person && person.isSelf) {
-      return { label: '본인', className: '본인' };
-    }
-
-    if (person && person.isSpouse) {
-      return { label: '배우자', className: '배우자' };
-    }
-
-    if (personName && spouseName && personName === spouseName) {
-      return { label: '배우자', className: '배우자' };
-    }
-
-    if (/^(배우자|남편|아내|처|부인|사모님)$/.test(relation)) {
-      return { label: '배우자', className: '배우자' };
-    }
-
-    if (/^(자녀|아들|딸|장남|장녀|차남|차녀|손자|손녀|손주)$/.test(relation)) {
-      return { label: '자녀', className: '자녀' };
-    }
-
-    if (/^(부|모|부모|아버지|어머니|부친|모친|시아버지|시어머니|장인|장모)$/.test(relation)) {
-      return { label: '부모', className: '부모' };
-    }
-
-    if (/^(형|누나|언니|오빠|형제|자매|형제자매)$/.test(relation)) {
-      return { label: '가족', className: '가족' };
-    }
-
-    if (/^(본인)$/.test(relation) || personName === selfName) {
-      return { label: '본인', className: '본인' };
-    }
-
-    return { label: '가족', className: '가족' };
-  }
-
-  function renderFamilyTreePerson(person, roleLabel, roleClass, options = {}) {
-    if (!person || !person.name) return '';
-
-    const variantClass = options.variantClass ? ` ${options.variantClass}` : '';
-    const clickable = person.linkedMember && person.linkedMember.ID;
-    const attrs = clickable ? ` data-family-member-id="${escapeHtml(person.linkedMember.ID)}"` : '';
-    const jikText = normalizeText(person.jik || (person.linkedMember ? getRoleBadgeLabel(person.linkedMember) : ''));
-    const relationText = normalizeText(person.relation);
-
-    return `
-      <div class="${options.wrapperClass || 'family-tree-node'}${variantClass}">
-        <span class="family-role-badge family-role-${roleClass}">${escapeHtml(roleLabel)}</span>
-        <span class="family-tree-name${clickable ? ' is-link' : ''}"${attrs}>${escapeHtml(person.name)}</span>
-        ${jikText ? `<span class="family-tree-jik">${escapeHtml(jikText)}</span>` : ''}
-        ${relationText && !['본인', '배우자', '세대주'].includes(roleLabel)
-          ? `<span class="family-tree-jik">(${escapeHtml(relationText)})</span>`
-          : ''}
-      </div>
-    `;
-  }
-
-  function renderFamilyTree(member) {
-    const familyMembers = parseFamilyMembers(member);
-    if (!familyMembers.length) {
-      return `<div class="family-tree-empty">가족 정보 없음</div>`;
-    }
-
-    const selfName = normalizeText(member.이름);
-    const spouseName = normalizeText(member.배우자);
-    const headName = normalizeText(member.세대주) || selfName;
-
-    const selfMember = familyMembers.find(item => item.name === selfName) || {
-      name: selfName,
-      jik: getRoleBadgeLabel(member),
-      linkedMember: member,
-      relation: normalizeText(member.관계),
-      isSelf: true
+  
+function parseFamilyText(raw) {
+  const text = normalizeText(raw);
+  if (!text) return [];
+  return text.split(/\s+/).filter(Boolean).map(part => {
+    const m = part.match(/^(.+?)(?:\((.+?)\))?$/);
+    return {
+      name: normalizeText(m ? m[1] : part),
+      jik: normalizeText(m && m[2] ? m[2] : '')
     };
+  }).filter(item => item.name);
+}
 
-    const spouseMember = spouseName
-      ? (familyMembers.find(item => item.name === spouseName) || {
-          name: spouseName,
-          jik: normalizeText(member.배우자직분),
-          linkedMember: findFamilyMemberByName(spouseName, member.가족전체),
-          relation: '배우자',
-          isSpouse: true
-        })
-      : null;
+function extractFamilyNames(member) {
+  const names = new Set();
+  parseFamilyText(member && member.가족전체).forEach(item => names.add(item.name));
+  const selfName = normalizeText(member && member.이름);
+  const headName = normalizeText(member && member.세대주);
+  const spouseName = normalizeText(member && member.배우자);
+  if (selfName) names.add(selfName);
+  if (headName) names.add(headName);
+  if (spouseName) names.add(spouseName);
+  return names;
+}
 
-    const headMember = familyMembers.find(item => item.name === headName) || {
-      name: headName,
-      jik: headName === selfName ? getRoleBadgeLabel(member) : '',
-      linkedMember: findFamilyMemberByName(headName, member.가족전체),
-      relation: '세대주',
-      isHead: true
-    };
+function findBestLinkedMember(name, preferredMembers = []) {
+  const target = normalizeText(name);
+  if (!target) return null;
+  const preferred = preferredMembers.find(member => normalizeText(member.이름) === target);
+  if (preferred) return preferred;
+  return state.members.find(member => normalizeText(member.이름) === target) || null;
+}
 
-    const usedNames = new Set();
-    const childNodes = [];
+function relationRank(relation) {
+  const value = normalizeText(relation);
+  if (/^(배우자|남편|아내|처|부인|사모님)$/.test(value)) return 1;
+  if (/^(자녀|아들|딸|장남|장녀|차남|차녀|손자|손녀|손주)$/.test(value)) return 2;
+  if (/^(부|모|부모|아버지|어머니|부친|모친|시아버지|시어머니|장인|장모)$/.test(value)) return 3;
+  if (/^(본인)$/.test(value)) return 4;
+  if (/^(형|누나|언니|오빠|형제|자매|형제자매)$/.test(value)) return 5;
+  return 9;
+}
 
-    const addNode = (person) => {
-      if (!person || !person.name || usedNames.has(person.name) || person.name === headMember.name) return;
-      usedNames.add(person.name);
-      const role = getFamilyRoleInfo(person, member);
-      childNodes.push(renderFamilyTreePerson(person, role.label, role.className, { wrapperClass: 'family-tree-child-chip' }));
-    };
+function chooseBestMemberRecord(records, roleHint = '') {
+  if (!records.length) return null;
+  const hint = normalizeText(roleHint);
+  const sorted = [...records].sort((a, b) => {
+    const aRole = normalizeText(a && a.관계);
+    const bRole = normalizeText(b && b.관계);
+    const aHint = hint && aRole === hint ? 0 : 1;
+    const bHint = hint && bRole === hint ? 0 : 1;
+    if (aHint !== bHint) return aHint - bHint;
+    const aRank = relationRank(aRole);
+    const bRank = relationRank(bRole);
+    if (aRank !== bRank) return aRank - bRank;
+    const aDate = formatDate(a && a.등록일);
+    const bDate = formatDate(b && b.등록일);
+    if (aDate !== bDate) return aDate.localeCompare(bDate, 'ko');
+    return String(a && a.ID || '').localeCompare(String(b && b.ID || ''), 'ko');
+  });
+  return sorted[0];
+}
 
-    if (selfMember && selfMember.name !== headMember.name) addNode(selfMember);
+function getHouseholdMembers(currentMember) {
+  const headName = normalizeText(currentMember && currentMember.세대주) || normalizeText(currentMember && currentMember.이름);
+  const seedNames = extractFamilyNames(currentMember);
+  const seedFamilyText = normalizeText(currentMember && currentMember.가족전체);
+  const householdMap = new Map();
 
-    const parents = [];
-    const children = [];
-    const others = [];
+  const matchesSeed = (member) => {
+    const memberName = normalizeText(member && member.이름);
+    const memberHead = normalizeText(member && member.세대주);
+    const memberFamilyText = normalizeText(member && member.가족전체);
+    if (seedFamilyText && memberFamilyText && memberFamilyText === seedFamilyText) return true;
+    if (headName && memberHead && memberHead === headName) return true;
+    if (seedNames.has(memberName)) return true;
+    const memberNames = extractFamilyNames(member);
+    for (const name of memberNames) {
+      if (seedNames.has(name)) return true;
+    }
+    return false;
+  };
 
-    familyMembers.forEach(item => {
+  state.members.forEach(member => {
+    if (matchesSeed(member)) householdMap.set(String(member.ID), member);
+  });
+
+  const expandedNames = new Set();
+  householdMap.forEach(member => extractFamilyNames(member).forEach(name => expandedNames.add(name)));
+  if (headName) expandedNames.add(headName);
+
+  state.members.forEach(member => {
+    const memberName = normalizeText(member && member.이름);
+    const memberHead = normalizeText(member && member.세대주);
+    if (expandedNames.has(memberName) || (headName && memberHead === headName)) {
+      householdMap.set(String(member.ID), member);
+    }
+  });
+
+  return [...householdMap.values()];
+}
+
+function buildHouseholdPersons(currentMember) {
+  const householdMembers = getHouseholdMembers(currentMember);
+  const nameMap = new Map();
+
+  householdMembers.forEach(member => {
+    const name = normalizeText(member && member.이름);
+    if (!name) return;
+    if (!nameMap.has(name)) nameMap.set(name, []);
+    nameMap.get(name).push(member);
+  });
+
+  householdMembers.forEach(member => {
+    parseFamilyText(member && member.가족전체).forEach(item => {
       if (!item.name) return;
-      if (item.name === headMember.name) return;
-      if (item.name === spouseName) return;
-      if (item.name === selfName) return;
-      const role = getFamilyRoleInfo(item, member);
-      if (role.className === '부모') parents.push(item);
-      else if (role.className === '자녀') children.push(item);
-      else others.push(item);
+      if (!nameMap.has(item.name)) nameMap.set(item.name, []);
     });
+  });
 
-    parents.forEach(addNode);
-    children.forEach(addNode);
-    others.forEach(addNode);
+  const currentName = normalizeText(currentMember && currentMember.이름);
+  const headName = normalizeText(currentMember && currentMember.세대주) || currentName;
+  const spouseName = normalizeText(currentMember && currentMember.배우자);
 
-    const headClickable = headMember.linkedMember && headMember.linkedMember.ID;
-    const headAttrs = headClickable ? ` data-family-member-id="${escapeHtml(headMember.linkedMember.ID)}"` : '';
-    const headJik = normalizeText(headMember.jik || (headMember.linkedMember ? getRoleBadgeLabel(headMember.linkedMember) : ''));
+  const parsedByName = new Map();
+  householdMembers.forEach(member => {
+    parseFamilyText(member && member.가족전체).forEach(item => {
+      if (!parsedByName.has(item.name) && item.jik) parsedByName.set(item.name, item.jik);
+    });
+  });
 
-    return `
-      <div class="family-tree">
-        <div class="family-tree-rootline">
-          <div class="family-tree-head">
-            <span class="family-role-badge family-role-세대주">세대주</span>
-            <span class="family-tree-name${headClickable ? ' is-link' : ''}"${headAttrs}>${escapeHtml(headMember.name || selfName || '-')}</span>
-            ${headJik ? `<span class="family-tree-jik">${escapeHtml(headJik)}</span>` : ''}
-          </div>
-          ${spouseMember && spouseMember.name && spouseMember.name !== headMember.name
-            ? renderFamilyTreePerson(spouseMember, '배우자', '배우자', { wrapperClass: 'family-tree-spouse-card' })
-            : ''}
-        </div>
-        <div class="family-tree-children">
-          ${childNodes.length ? `<div class="family-tree-children-list">${childNodes.join('')}</div>` : `<div class="family-tree-empty">가족 구성원 정보 없음</div>`}
-        </div>
+  return [...nameMap.keys()].map(name => {
+    const records = nameMap.get(name) || [];
+    const linkedMember = chooseBestMemberRecord(
+      records,
+      name === spouseName ? '배우자' : (name === currentName ? normalizeText(currentMember && currentMember.관계) : '')
+    );
+    const relation = linkedMember ? normalizeText(linkedMember.관계) : '';
+    const jik = normalizeText(parsedByName.get(name) || (linkedMember ? getRoleBadgeLabel(linkedMember) : ''));
+    return {
+      name,
+      jik,
+      linkedMember: linkedMember || findBestLinkedMember(name, householdMembers),
+      relation,
+      isSelf: name === currentName,
+      isSpouse: !!spouseName && name === spouseName,
+      isHead: !!headName && name === headName
+    };
+  }).sort((a, b) => a.name.localeCompare(b.name, 'ko'));
+}
+
+function getFamilyRoleInfo(person, member) {
+  const relation = normalizeText(person && person.relation);
+  const selfName = normalizeText(member && member.이름);
+  const spouseName = normalizeText(member && member.배우자);
+  const headName = normalizeText(member && member.세대주) || selfName;
+  const personName = normalizeText(person && person.name);
+
+  if (personName && personName === headName) return { label: '세대주', className: '세대주', order: 0 };
+  if (person && person.isSpouse) return { label: '배우자', className: '배우자', order: 1 };
+  if (personName && spouseName && personName === spouseName) return { label: '배우자', className: '배우자', order: 1 };
+  if (/^(배우자|남편|아내|처|부인|사모님)$/.test(relation)) return { label: '배우자', className: '배우자', order: 1 };
+  if (/^(자녀|아들|딸|장남|장녀|차남|차녀|손자|손녀|손주)$/.test(relation)) return { label: '자녀', className: '자녀', order: 2 };
+  if (/^(부|모|부모|아버지|어머니|부친|모친|시아버지|시어머니|장인|장모)$/.test(relation)) return { label: '부모', className: '부모', order: 3 };
+  if (person && person.isSelf) return { label: '본인', className: '본인', order: 4 };
+  if (/^(본인)$/.test(relation) || personName === selfName) return { label: '본인', className: '본인', order: 4 };
+  return { label: '가족', className: '가족', order: 5 };
+}
+
+function renderFamilyTreePerson(person, roleLabel, roleClass, options = {}) {
+  if (!person || !person.name) return '';
+  const variantClass = options.variantClass ? ` ${options.variantClass}` : '';
+  const clickable = person.linkedMember && person.linkedMember.ID;
+  const attrs = clickable ? ` data-family-member-id="${escapeHtml(person.linkedMember.ID)}"` : '';
+  const jikText = normalizeText(person.jik || (person.linkedMember ? getRoleBadgeLabel(person.linkedMember) : ''));
+  const relationText = normalizeText(person.relation);
+  return `
+    <div class="${options.wrapperClass || 'family-tree-node'}${variantClass}">
+      <span class="family-role-badge family-role-${roleClass}">${escapeHtml(roleLabel)}</span>
+      <span class="family-tree-name${clickable ? ' is-link' : ''}"${attrs}>${escapeHtml(person.name)}</span>
+      ${jikText ? `<span class="family-tree-jik">${escapeHtml(jikText)}</span>` : ''}
+      ${relationText && !['본인', '배우자', '세대주', '자녀', '부모'].includes(roleLabel) ? `<span class="family-tree-jik">(${escapeHtml(relationText)})</span>` : ''}
+    </div>
+  `;
+}
+
+function renderFamilyRoleLine(roleLabel, roleClass, persons) {
+  if (!persons || !persons.length) return '';
+  return `
+    <div class="family-tree-children">
+      <div class="family-tree-children-list">
+        ${persons.map(person => renderFamilyTreePerson(person, roleLabel, roleClass, { wrapperClass: 'family-tree-child-chip' })).join('')}
       </div>
-    `;
-  }
+    </div>
+  `;
+}
 
+function renderFamilyTree(member) {
+  const persons = buildHouseholdPersons(member);
+  if (!persons.length) return `<div class="family-tree-empty">가족 정보 없음</div>`;
 
-  function renderInlineMetaItem(label, valueHtml, extraClass = '') {
+  const currentName = normalizeText(member.이름);
+  const headName = normalizeText(member.세대주) || currentName;
+  const spouseName = normalizeText(member.배우자);
+
+  const headPerson = persons.find(person => person.name === headName) || persons.find(person => person.isHead) || persons[0];
+  const spousePerson = spouseName
+    ? (persons.find(person => person.name === spouseName) || persons.find(person => getFamilyRoleInfo(person, member).className === '배우자'))
+    : persons.find(person => getFamilyRoleInfo(person, member).className === '배우자');
+
+  const remainder = persons.filter(person => person.name !== (headPerson && headPerson.name) && person.name !== (spousePerson && spousePerson.name));
+  const grouped = { 자녀: [], 부모: [], 본인: [], 가족: [] };
+
+  remainder.forEach(person => {
+    const role = getFamilyRoleInfo(person, member);
+    if (role.className === '자녀') grouped.자녀.push(person);
+    else if (role.className === '부모') grouped.부모.push(person);
+    else if (role.className === '본인') grouped.본인.push(person);
+    else grouped.가족.push(person);
+  });
+
+  const sortPeople = (list) => list.sort((a, b) => {
+    const aRole = getFamilyRoleInfo(a, member);
+    const bRole = getFamilyRoleInfo(b, member);
+    if (aRole.order !== bRole.order) return aRole.order - bRole.order;
+    return a.name.localeCompare(b.name, 'ko');
+  });
+
+  sortPeople(grouped.자녀);
+  sortPeople(grouped.부모);
+  sortPeople(grouped.본인);
+  sortPeople(grouped.가족);
+
+  const headClickable = headPerson && headPerson.linkedMember && headPerson.linkedMember.ID;
+  const headAttrs = headClickable ? ` data-family-member-id="${escapeHtml(headPerson.linkedMember.ID)}"` : '';
+  const headJik = normalizeText((headPerson && headPerson.jik) || (headPerson && headPerson.linkedMember ? getRoleBadgeLabel(headPerson.linkedMember) : ''));
+
+  return `
+    <div class="family-tree">
+      <div class="family-tree-rootline">
+        <div class="family-tree-head">
+          <span class="family-role-badge family-role-세대주">세대주</span>
+          <span class="family-tree-name${headClickable ? ' is-link' : ''}"${headAttrs}>${escapeHtml((headPerson && headPerson.name) || headName || '-')}</span>
+          ${headJik ? `<span class="family-tree-jik">${escapeHtml(headJik)}</span>` : ''}
+        </div>
+        ${spousePerson ? `<span class="family-tree-linker">--</span>${renderFamilyTreePerson(spousePerson, '배우자', '배우자', { wrapperClass: 'family-tree-spouse-card' })}` : ''}
+      </div>
+      ${renderFamilyRoleLine('자녀', '자녀', grouped.자녀)}
+      ${renderFamilyRoleLine('부모', '부모', grouped.부모)}
+      ${renderFamilyRoleLine('본인', '본인', grouped.본인)}
+      ${renderFamilyRoleLine('가족', '가족', grouped.가족)}
+    </div>
+  `;
+}
+
+function renderInlineMetaItem(label, valueHtml, extraClass = '') {
     const safeLabel = escapeHtml(normalizeText(label));
     return `<div class="inline-meta-item${extraClass ? ` ${extraClass}` : ''}"><span class="inline-meta-label">${safeLabel}</span><span class="inline-meta-value">${valueHtml}</span></div>`;
   }
