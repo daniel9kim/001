@@ -142,46 +142,6 @@
     stroke: currentColor;
   }
 
-  .elder-mode-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 74px;
-    height: 42px;
-    padding: 0 14px;
-    border-radius: 10px;
-    border: 1px solid var(--border);
-    background: var(--surface2);
-    color: var(--text2);
-    cursor: pointer;
-    transition: all 0.15s ease;
-    flex-shrink: 0;
-    font-size: 13px;
-    font-weight: 600;
-    font-family: 'Noto Sans KR', sans-serif;
-  }
-  .elder-mode-btn:hover {
-    border-color: var(--accent);
-    color: var(--accent2);
-    background: rgba(200,169,110,0.10);
-  }
-  .elder-mode-btn.active {
-    background: rgba(200,169,110,0.16);
-    border-color: var(--accent);
-    color: var(--accent2);
-    box-shadow: 0 0 0 1px rgba(200,169,110,0.12) inset;
-  }
-  .church-helper {
-    margin-top: 6px;
-    font-size: 12px;
-    color: var(--text3);
-    line-height: 1.5;
-  }
-  .church-helper strong {
-    color: var(--accent2);
-    font-weight: 600;
-  }
-
   .font-control {
     display: none;
     align-items: center;
@@ -1681,13 +1641,6 @@
       height: 44px;
       border-radius: 12px;
     }
-    .elder-mode-btn {
-      min-width: 76px;
-      height: 44px;
-      border-radius: 12px;
-      font-size: 13px;
-      padding: 0 12px;
-    }
     .font-control {
       display: inline-flex;
       padding: 4px 6px;
@@ -1988,11 +1941,6 @@
       width: 46px;
       height: 46px;
     }
-    .elder-mode-btn {
-      min-width: 82px;
-      height: 46px;
-      font-size: 14px;
-    }
     .sidebar-mobile-title { font-size: 17px; }
     .filter-title { font-size: 12px; }
     .inline-all-btn {
@@ -2150,7 +2098,6 @@
     body { font-size: calc(16px * var(--mobile-user-scale)); }
     .church-title { font-size: calc(19px * var(--mobile-user-scale)); }
     .church-subtitle { font-size: calc(12px * var(--mobile-user-scale)); }
-    .church-helper { font-size: calc(12px * var(--mobile-user-scale)); }
     .total-count { font-size: calc(14px * var(--mobile-user-scale)); }
     .total-count strong { font-size: calc(18px * var(--mobile-user-scale)); }
     #searchInput {
@@ -2203,7 +2150,6 @@
     <div>
       <button type="button" class="church-title reset-home-btn" id="homeResetBtn" title="초기 화면으로 돌아가기">✝ 시흥교회</button>
       <div class="church-subtitle">교인 명단 조회</div>
-      <div class="church-helper">이름 검색, <strong>마을</strong> 또는 <strong>직분</strong> 선택으로 빠르게 찾을 수 있어요.</div>
     </div>
     <div class="header-divider"></div>
     <div class="total-count">
@@ -2384,7 +2330,7 @@
     searchQuery: '',
     view: 'table',
     chartType: null,
-    chartSort: 'count_desc',
+    chartSort: 'label_asc',
     filters: {
       교구: null,
       직분: null,
@@ -3645,7 +3591,7 @@ function renderTable() {
     state.searchQuery = '';
     state.view = 'table';
     state.chartType = null;
-    state.chartSort = 'count_desc';
+    state.chartSort = 'label_asc';
     state.filters = {
       교구: null,
       직분: null,
@@ -4063,7 +4009,8 @@ function renderTable() {
       const data = await response.json();
       finalizeLoadedData(data);
     } catch (error) {
-      promptJsonSelection('자동으로 <strong>church_members.json</strong> 파일을 불러오지 못했습니다.<br>HTML 파일과 JSON 파일이 같은 폴더에 있는지 확인하시거나, 아래에서 JSON 파일을 직접 선택해 주세요.');
+      //console.error('church_members.json 자동 불러오기 실패:', error);
+      //promptJsonSelection('자동으로 <strong>church_members.json</strong> 파일을 불러오지 못했습니다.<br>GitHub Pages에 올릴 때는 HTML 파일과 JSON 파일을 같은 폴더에 함께 업로드해 주세요.');
     }
   }
 
