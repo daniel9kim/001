@@ -1023,6 +1023,145 @@
   }
 
 
+  .family-tree {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .family-tree-rootline {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 10px;
+  }
+  .family-tree-head,
+  .family-tree-spouse-card,
+  .family-tree-node {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    min-width: 0;
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: rgba(15,17,23,0.38);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .family-tree-head {
+    background: linear-gradient(180deg, rgba(200,169,110,0.14) 0%, rgba(200,169,110,0.06) 100%);
+    border-color: rgba(200,169,110,0.24);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+  }
+  .family-tree-spouse-card {
+    background: linear-gradient(180deg, rgba(201,126,203,0.12) 0%, rgba(201,126,203,0.05) 100%);
+    border-color: rgba(201,126,203,0.22);
+  }
+  .family-tree-children {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-left: 18px;
+    padding-left: 18px;
+  }
+  .family-tree-children::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    bottom: 10px;
+    width: 1px;
+    background: rgba(200,169,110,0.22);
+  }
+  .family-tree-node::before {
+    content: '';
+    position: absolute;
+    left: -18px;
+    top: 50%;
+    width: 18px;
+    height: 1px;
+    background: rgba(200,169,110,0.22);
+  }
+  .family-role-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 52px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+  .family-role-세대주 {
+    background: rgba(200,169,110,0.18);
+    border: 1px solid rgba(200,169,110,0.35);
+    color: var(--accent2);
+  }
+  .family-role-본인 {
+    background: rgba(126,200,227,0.18);
+    border: 1px solid rgba(126,200,227,0.30);
+    color: #d8f5ff;
+  }
+  .family-role-배우자 {
+    background: rgba(201,126,203,0.18);
+    border: 1px solid rgba(201,126,203,0.30);
+    color: #ffeaff;
+  }
+  .family-role-자녀 {
+    background: rgba(227,168,126,0.18);
+    border: 1px solid rgba(227,168,126,0.30);
+    color: #fff2e5;
+  }
+  .family-role-부모 {
+    background: rgba(168,184,216,0.18);
+    border: 1px solid rgba(168,184,216,0.30);
+    color: #edf3ff;
+  }
+  .family-role-가족 {
+    background: rgba(123,206,154,0.18);
+    border: 1px solid rgba(123,206,154,0.30);
+    color: #e6fff0;
+  }
+  .family-role-기타 {
+    background: rgba(138,160,200,0.18);
+    border: 1px solid rgba(138,160,200,0.30);
+    color: #edf3ff;
+  }
+  .family-tree-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.35;
+  }
+  .family-tree-name.is-link {
+    cursor: pointer;
+    color: var(--accent2);
+  }
+  .family-tree-name.is-link:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .family-tree-jik {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text3);
+    line-height: 1.2;
+  }
+  .family-tree-empty {
+    color: var(--text3);
+    font-style: italic;
+    font-size: 13px;
+  }
+
+
+
   .chart-toggle {
     cursor: pointer;
     transition: color 0.15s ease, background 0.15s ease;
@@ -1907,6 +2046,35 @@
       line-height: 1.5;
     }
     .family-list { gap: 6px; }
+    .family-tree-rootline {
+      grid-template-columns: 1fr !important;
+      gap: 8px;
+    }
+    .family-tree-head,
+    .family-tree-spouse-card,
+    .family-tree-node {
+      padding: 9px 10px;
+      border-radius: 10px;
+    }
+    .family-tree-children {
+      margin-left: 12px;
+      padding-left: 14px;
+    }
+    .family-tree-node::before {
+      left: -14px;
+      width: 14px;
+    }
+    .family-role-badge {
+      min-width: 48px;
+      font-size: 10px;
+      padding: 4px 7px;
+    }
+    .family-tree-name {
+      font-size: 12px;
+    }
+    .family-tree-jik {
+      font-size: 10px;
+    }
     .family-member-tag {
       padding: 6px 10px;
       font-size: 12px;
@@ -2478,21 +2646,184 @@
     return candidates[0];
   }
 
-  function parseFamilyList(member) {
+  function parseFamilyMembers(member) {
     const raw = normalizeText(member && member.가족전체);
-    const selfName = normalizeText(member && member.이름);
-    if (!raw) return '<div class="modal-value empty">가족 정보 없음</div>';
-    const parts = raw.split(/\s+/).filter(Boolean);
-    const html = parts.map(part => {
+    if (!raw) return [];
+
+    return raw.split(/\s+/).filter(Boolean).map(part => {
       const m = part.match(/^(.+?)(?:\((.+?)\))?$/);
-      const name = m ? m[1] : part;
-      const jik = m && m[2] ? m[2] : '';
-      const isSelf = name === selfName;
+      const name = normalizeText(m ? m[1] : part);
+      const jik = normalizeText(m && m[2] ? m[2] : '');
       const linkedMember = findFamilyMemberByName(name, member.가족전체);
-      const clickable = linkedMember && linkedMember.ID;
-      return `<span class="family-member-tag${clickable ? ' is-link' : ''}"${clickable ? ` data-family-member-id="${linkedMember.ID}"` : ''}><span class="family-member-name">${name}${isSelf ? ' (본인)' : ''}</span>${jik ? `<span class="family-member-jik">${jik}</span>` : ''}</span>`;
-    }).join('');
-    return `<div class="family-list">${html}</div>`;
+      const linkedRelation = normalizeText(linkedMember && linkedMember.관계);
+      const selfRelation = normalizeText(member && member.관계);
+
+      return {
+        name,
+        jik,
+        linkedMember,
+        relation: linkedRelation || (name === normalizeText(member.이름) ? selfRelation : ''),
+        isSelf: name === normalizeText(member.이름),
+        isSpouse: name === normalizeText(member.배우자),
+        isHead: name === normalizeText(member.세대주)
+      };
+    });
+  }
+
+  function getFamilyRoleInfo(person, member) {
+    const relation = normalizeText(person && person.relation);
+    const selfName = normalizeText(member && member.이름);
+    const spouseName = normalizeText(member && member.배우자);
+    const headName = normalizeText(member && member.세대주) || selfName;
+    const personName = normalizeText(person && person.name);
+
+    if (personName && personName === headName) {
+      return { label: '세대주', className: '세대주' };
+    }
+
+    if (person && person.isSelf) {
+      return { label: '본인', className: '본인' };
+    }
+
+    if (person && person.isSpouse) {
+      return { label: '배우자', className: '배우자' };
+    }
+
+    if (personName && spouseName && personName === spouseName) {
+      return { label: '배우자', className: '배우자' };
+    }
+
+    if (/^(배우자|남편|아내|처|부인|사모님)$/.test(relation)) {
+      return { label: '배우자', className: '배우자' };
+    }
+
+    if (/^(자녀|아들|딸|장남|장녀|차남|차녀|손자|손녀|손주)$/.test(relation)) {
+      return { label: '자녀', className: '자녀' };
+    }
+
+    if (/^(부|모|부모|아버지|어머니|부친|모친|시아버지|시어머니|장인|장모)$/.test(relation)) {
+      return { label: '부모', className: '부모' };
+    }
+
+    if (/^(형|누나|언니|오빠|형제|자매|형제자매)$/.test(relation)) {
+      return { label: '가족', className: '가족' };
+    }
+
+    if (/^(본인)$/.test(relation) || personName === selfName) {
+      return { label: '본인', className: '본인' };
+    }
+
+    return { label: '가족', className: '가족' };
+  }
+
+  function renderFamilyTreePerson(person, roleLabel, roleClass, options = {}) {
+    if (!person || !person.name) return '';
+
+    const variantClass = options.variantClass ? ` ${options.variantClass}` : '';
+    const clickable = person.linkedMember && person.linkedMember.ID;
+    const attrs = clickable ? ` data-family-member-id="${escapeHtml(person.linkedMember.ID)}"` : '';
+    const jikText = normalizeText(person.jik || (person.linkedMember ? getRoleBadgeLabel(person.linkedMember) : ''));
+    const relationText = normalizeText(person.relation);
+
+    return `
+      <div class="${options.wrapperClass || 'family-tree-node'}${variantClass}">
+        <span class="family-role-badge family-role-${roleClass}">${escapeHtml(roleLabel)}</span>
+        <span class="family-tree-name${clickable ? ' is-link' : ''}"${attrs}>${escapeHtml(person.name)}</span>
+        ${jikText ? `<span class="family-tree-jik">${escapeHtml(jikText)}</span>` : ''}
+        ${relationText && !['본인', '배우자', '세대주'].includes(roleLabel)
+          ? `<span class="family-tree-jik">(${escapeHtml(relationText)})</span>`
+          : ''}
+      </div>
+    `;
+  }
+
+  function renderFamilyTree(member) {
+    const familyMembers = parseFamilyMembers(member);
+    if (!familyMembers.length) {
+      return `<div class="family-tree-empty">가족 정보 없음</div>`;
+    }
+
+    const selfName = normalizeText(member.이름);
+    const spouseName = normalizeText(member.배우자);
+    const headName = normalizeText(member.세대주) || selfName;
+
+    const selfMember = familyMembers.find(item => item.name === selfName) || {
+      name: selfName,
+      jik: getRoleBadgeLabel(member),
+      linkedMember: member,
+      relation: normalizeText(member.관계),
+      isSelf: true
+    };
+
+    const spouseMember = spouseName
+      ? (familyMembers.find(item => item.name === spouseName) || {
+          name: spouseName,
+          jik: normalizeText(member.배우자직분),
+          linkedMember: findFamilyMemberByName(spouseName, member.가족전체),
+          relation: '배우자',
+          isSpouse: true
+        })
+      : null;
+
+    const headMember = familyMembers.find(item => item.name === headName) || {
+      name: headName,
+      jik: headName === selfName ? getRoleBadgeLabel(member) : '',
+      linkedMember: findFamilyMemberByName(headName, member.가족전체),
+      relation: '세대주',
+      isHead: true
+    };
+
+    const usedNames = new Set();
+    const childNodes = [];
+
+    const addNode = (person) => {
+      if (!person || !person.name || usedNames.has(person.name) || person.name === headMember.name) return;
+      usedNames.add(person.name);
+      const role = getFamilyRoleInfo(person, member);
+      childNodes.push(renderFamilyTreePerson(person, role.label, role.className));
+    };
+
+    const parents = [];
+    const children = [];
+    const others = [];
+
+    familyMembers.forEach(item => {
+      if (!item.name) return;
+      if (item.name === headMember.name) return;
+      if (item.name === spouseName) return;
+      if (item.name === selfName) return;
+      const role = getFamilyRoleInfo(item, member);
+      if (role.className === '부모') parents.push(item);
+      else if (role.className === '자녀') children.push(item);
+      else others.push(item);
+    });
+
+    addNode(selfMember);
+    parents.forEach(addNode);
+    children.forEach(addNode);
+    others.forEach(addNode);
+
+    const headClickable = headMember.linkedMember && headMember.linkedMember.ID;
+    const headAttrs = headClickable ? ` data-family-member-id="${escapeHtml(headMember.linkedMember.ID)}"` : '';
+    const headJik = normalizeText(headMember.jik || (headMember.linkedMember ? getRoleBadgeLabel(headMember.linkedMember) : ''));
+
+    return `
+      <div class="family-tree">
+        <div class="family-tree-rootline"${spouseMember && spouseMember.name && spouseMember.name !== headMember.name ? ' style="grid-template-columns:minmax(0,1fr) minmax(0,1fr);"' : ''}>
+          <div class="family-tree-head">
+            <span class="family-role-badge family-role-세대주">세대주</span>
+            <span class="family-tree-name${headClickable ? ' is-link' : ''}"${headAttrs}>${escapeHtml(headMember.name || selfName || '-')}</span>
+            ${headJik ? `<span class="family-tree-jik">${escapeHtml(headJik)}</span>` : ''}
+          </div>
+          ${spouseMember && spouseMember.name && spouseMember.name !== headMember.name
+            ? renderFamilyTreePerson(spouseMember, '배우자', '배우자', { wrapperClass: 'family-tree-spouse-card' })
+            : ''}
+        </div>
+        <div class="family-tree-children">
+          ${childNodes.join('') || `<div class="family-tree-empty">가족 구성원 정보 없음</div>`}
+        </div>
+      </div>
+    `;
   }
 
 
@@ -3210,7 +3541,7 @@ function renderTable() {
       renderInlineMetaItem('휴대폰', renderPhoneLink(phoneValue)),
       renderInlineMetaItem('등록일', registerDateValue ? escapeHtml(registerDateValue) : '<span class="inline-empty">-</span>')
     ]);
-    leftColumn += `<div class="modal-section is-compact-tags"><div class="modal-section-title">가족 구성원</div>${parseFamilyList(m)}</div>`;
+    leftColumn += `<div class="modal-section is-compact-tags"><div class="modal-section-title">가족 구성원</div>${renderFamilyTree(m)}</div>`;
     if (m.배우자) leftColumn += renderCompactInfoSection('배우자', [
       renderInlineMetaItem('이름', escapeHtml(normalizeText(m.배우자))),
       renderInlineMetaItem('직분', normalizeText(m.배우자직분) ? escapeHtml(normalizeText(m.배우자직분)) : '<span class="inline-empty">-</span>')
