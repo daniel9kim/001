@@ -1,0 +1,4801 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>시흥교회 교인명단</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #181c27;
+    --surface2: #1e2333;
+    --border: #2a3047;
+    --accent: #c8a96e;
+    --accent2: #e8d5a3;
+    --text: #e8eaf0;
+    --text2: #9aa0b4;
+    --text3: #6b7390;
+    --장로: #f0c060;
+    --목사: #e87a5a;
+    --안수집사: #7ec8e3;
+    --권사: #c97ecb;
+    --집사: #7bce9a;
+    --성도: #8aa0c8;
+    --전도사: #e3a87e;
+    --사모: #e8a0b8;
+    --명예권사: #a8b8d8;
+    --other: #9090a0;
+    --mobile-user-scale: 1;
+    --mobile-gesture-zooming: 0;
+    --mobile-elder-scale: 1.25;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+  body.pinch-zooming {
+    user-select: none;
+  }
+
+  /* HEADER */
+  header {
+    background: linear-gradient(135deg, #0d1020 0%, #1a1f35 50%, #0d1020 100%);
+    border-bottom: 1px solid var(--accent);
+    padding: 24px 32px 20px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+  }
+  .header-inner {
+    max-width: 1600px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .church-title {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 2px;
+    white-space: nowrap;
+  }
+  .church-subtitle {
+    font-size: 12px;
+    color: var(--text3);
+    letter-spacing: 1px;
+    margin-top: 2px;
+  }
+  .reset-home-btn {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-align: left;
+  }
+  .reset-home-btn:hover {
+    color: var(--accent2);
+  }
+  .header-divider {
+    width: 1px;
+    height: 36px;
+    background: var(--border);
+  }
+  .total-count {
+    font-size: 13px;
+    color: var(--text2);
+  }
+  .total-count strong {
+    color: var(--accent2);
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  /* SEARCH BAR */
+  .header-actions {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 260px;
+    justify-content: flex-end;
+  }
+  .search-wrap {
+    flex: 1;
+    min-width: 180px;
+    max-width: 380px;
+    position: relative;
+  }
+  .header-filter-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--text2);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+  }
+  .header-filter-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent2);
+    background: rgba(200,169,110,0.10);
+  }
+  .header-filter-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke: currentColor;
+  }
+
+  .elder-mode-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 74px;
+    height: 42px;
+    padding: 0 14px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--text2);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    flex-shrink: 0;
+    font-size: 13px;
+    font-weight: 600;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .elder-mode-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent2);
+    background: rgba(200,169,110,0.10);
+  }
+  .elder-mode-btn.active {
+    background: rgba(200,169,110,0.16);
+    border-color: var(--accent);
+    color: var(--accent2);
+    box-shadow: 0 0 0 1px rgba(200,169,110,0.12) inset;
+  }
+  .church-helper {
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--text3);
+    line-height: 1.5;
+  }
+  .church-helper strong {
+    color: var(--accent2);
+    font-weight: 600;
+  }
+
+  .font-control {
+    display: none;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 6px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface2);
+  }
+  .font-btn {
+    width: 28px;
+    height: 28px;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.04);
+    color: var(--text);
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .font-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent2);
+  }
+  .font-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+  .search-wrap svg {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    opacity: 0.4;
+  }
+  #searchInput {
+    width: 100%;
+    padding: 9px 14px 9px 38px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+    font-size: 14px;
+    font-family: 'Noto Sans KR', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  #searchInput:focus { border-color: var(--accent); }
+  #searchInput::placeholder { color: var(--text3); }
+
+  /* MAIN LAYOUT */
+  .main-wrap {
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 24px 24px;
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 24px;
+    align-items: start;
+  }
+
+  /* SIDEBAR FILTERS */
+  .sidebar {
+    position: sticky;
+    top: 90px;
+  }
+  .filter-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .filter-title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 12px 16px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--text3);
+    text-transform: uppercase;
+    border-bottom: 1px solid var(--border);
+    background: rgba(255,255,255,0.02);
+  }
+  .filter-title-text {
+    display: inline-flex;
+    align-items: center;
+    min-width: 0;
+  }
+  .inline-all-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--surface2);
+    color: var(--text2);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .inline-all-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent2);
+  }
+  .inline-all-btn.active {
+    background: rgba(200,169,110,0.12);
+    border-color: var(--accent);
+    color: var(--accent2);
+  }
+  .filter-section:nth-of-type(1) .inline-all-btn.active { background: rgba(123,206,154,0.18); border-color: rgba(123,206,154,0.42); color: #e6fff0; }
+  .filter-section:nth-of-type(2) .inline-all-btn.active { background: rgba(201,126,203,0.18); border-color: rgba(201,126,203,0.42); color: #ffeaff; }
+  .filter-section:nth-of-type(3) .inline-all-btn.active { background: rgba(126,200,227,0.18); border-color: rgba(126,200,227,0.42); color: #e6f9ff; }
+  .filter-section:nth-of-type(4) .inline-all-btn.active { background: rgba(126,200,227,0.18); border-color: rgba(126,200,227,0.42); color: #e6f9ff; }
+  .filter-section:nth-of-type(5) .inline-all-btn.active { background: rgba(227,168,126,0.18); border-color: rgba(227,168,126,0.40); color: #fff2e5; }
+  .filter-section:nth-of-type(6) .inline-all-btn.active { background: rgba(138,160,200,0.18); border-color: rgba(138,160,200,0.40); color: #edf3ff; }
+  .filter-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+    padding: 10px;
+  }
+  .filter-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 58px;
+    padding: 8px 6px;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: var(--text2);
+    font-size: 13px;
+    font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+    gap: 4px;
+  }
+  .filter-btn:hover { background: var(--surface2); color: var(--text); }
+  .filter-btn.active {
+    background: rgba(200,169,110,0.12);
+    color: var(--accent2);
+    font-weight: 500;
+  }
+  .filter-btn span:first-child {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+  }
+  .filter-count {
+    font-size: 11px;
+    background: var(--surface2);
+    border-radius: 10px;
+    padding: 1px 7px;
+    color: var(--text3);
+    min-width: 28px;
+    text-align: center;
+  }
+  .filter-btn.active .filter-count {
+    background: rgba(200,169,110,0.2);
+    color: var(--accent);
+  }
+
+  /* GENDER FILTER */
+  .gender-row {
+    display: flex;
+    gap: 6px;
+    padding: 10px;
+  }
+  .gender-btn {
+    flex: 1;
+    padding: 7px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text2);
+    font-size: 13px;
+    font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+  }
+  .gender-btn:hover { background: var(--surface2); }
+  .gender-btn.active {
+    background: rgba(200,169,110,0.12);
+    color: var(--accent2);
+    border-color: var(--accent);
+    font-weight: 500;
+  }
+  .gender-btn.is-top,
+  .age-btn.is-top {
+    box-shadow: inset 0 0 0 1px rgba(232,213,163,0.18);
+  }
+  .filter-btn-main {
+    display: block;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .filter-btn-sub {
+    display: block;
+    margin-top: 2px;
+    font-size: 11px;
+    color: var(--text3);
+    line-height: 1.2;
+  }
+  .gender-btn.active .filter-btn-sub,
+  .age-btn.active .filter-btn-sub {
+    color: var(--accent);
+  }
+
+  .age-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    padding: 10px;
+  }
+  .age-btn {
+    padding: 7px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text2);
+    font-size: 13px;
+    font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-align: center;
+  }
+  .age-btn:hover { background: var(--surface2); }
+  .age-btn.active {
+    background: rgba(200,169,110,0.12);
+    color: var(--accent2);
+    border-color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* CONTENT AREA */
+  .content-area {}
+
+  /* ACTIVE FILTERS */
+  .active-filters {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    min-height: 32px;
+  }
+  .filter-tag {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px 4px 12px;
+    background: rgba(200,169,110,0.12);
+    border: 1px solid rgba(200,169,110,0.3);
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--accent2);
+  }
+  .filter-tag button {
+    background: none;
+    border: none;
+    color: var(--accent);
+    cursor: pointer;
+    font-size: 14px;
+    line-height: 1;
+    padding: 0;
+    opacity: 0.7;
+  }
+  .filter-tag button:hover { opacity: 1; }
+  .result-info {
+    font-size: 13px;
+    color: var(--text3);
+    margin-left: auto;
+  }
+  .result-info strong { color: var(--accent2); }
+
+  /* TABLE */
+  .table-wrap {
+    position: relative;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: auto;
+    max-height: calc(100vh - 220px);
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+  }
+  thead {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+  }
+  th {
+    position: sticky;
+    top: 0;
+    z-index: 21;
+    padding: 12px 14px;
+    text-align: left;
+    vertical-align: middle;
+    line-height: 1.2;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--text3);
+    text-transform: uppercase;
+    white-space: nowrap;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.15s;
+    background: linear-gradient(180deg, #1e2540 0%, var(--surface2) 100%);
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.18);
+  }
+  th:hover { color: var(--accent2); }
+  th.sorted { color: var(--accent); }
+  th .sort-icon { margin-left: 4px; opacity: 0.5; font-size: 10px; }
+  th.sorted .sort-icon { opacity: 1; }
+
+  tbody tr {
+    border-bottom: 1px solid rgba(42,48,71,0.6);
+    cursor: pointer;
+    transition: background 0.1s;
+  }
+  tbody tr:hover { background: rgba(200,169,110,0.05); }
+  tbody tr:last-child { border-bottom: none; }
+  td { padding: 10px 14px; color: var(--text2); vertical-align: middle; }
+  td.name-cell {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 14px;
+    white-space: nowrap;
+  }
+  .관계-badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 4px;
+    margin-left: 6px;
+    background: var(--surface2);
+    color: var(--text3);
+    vertical-align: middle;
+  }
+  .duplicate-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 999px;
+    margin-left: 6px;
+    background: rgba(126,200,227,0.12);
+    border: 1px solid rgba(126,200,227,0.24);
+    color: #d8f5ff;
+    vertical-align: middle;
+  }
+  .name-role-inline {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .name-role-sub {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  /* JIKBUN BADGE */
+  .jik-badge {
+    display: inline-block;
+    padding: 3px 9px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .jik-badge.is-clickable {
+    cursor: pointer;
+    transition: transform 0.12s ease, opacity 0.12s ease;
+  }
+  .jik-badge.is-clickable:hover {
+    transform: translateY(-1px);
+    opacity: 0.92;
+  }
+  .modal-meta .jik-badge {
+    padding: 5px 11px;
+    border-radius: 999px;
+    font-size: 12px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+  .modal-meta .jik-badge.is-clickable {
+    position: relative;
+    font-weight: 700;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.18), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .modal-meta .jik-badge.is-clickable.is-active {
+    color: #fff7e3;
+    border-color: rgba(232,213,163,0.78) !important;
+    box-shadow: 0 0 0 2px rgba(200,169,110,0.24), 0 10px 22px rgba(0,0,0,0.26), inset 0 1px 0 rgba(255,255,255,0.14);
+    filter: brightness(1.12) saturate(1.08);
+  }
+  .modal-meta .jik-badge.is-clickable.is-active::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(232,213,163,0.18), rgba(255,255,255,0.02));
+    pointer-events: none;
+  }
+  .modal-meta .jik-badge.is-clickable > span {
+    position: relative;
+    z-index: 1;
+  }
+  .modal-meta .jik-badge.is-clickable:hover {
+    transform: translateY(-1px);
+    opacity: 1;
+    filter: brightness(1.08);
+  }
+  .modal-meta [data-badge-filter-type="성별"] {
+    background: rgba(126,200,227,0.18);
+    color: #d8f5ff;
+    border: 1px solid rgba(126,200,227,0.45);
+  }
+  .modal-meta [data-badge-filter-type="세례"] {
+    background: rgba(123,206,154,0.18);
+    color: #dff9e8;
+    border: 1px solid rgba(123,206,154,0.42);
+  }
+  .modal-meta [data-badge-filter-type="현재상태"] {
+    box-shadow: 0 6px 18px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.06);
+  }
+  .modal-meta [data-badge-filter-type="성별"].is-active {
+    background: linear-gradient(135deg, rgba(126,200,227,0.34), rgba(126,200,227,0.18));
+    color: #f4fcff;
+  }
+  .modal-meta [data-badge-filter-type="세례"].is-active {
+    background: linear-gradient(135deg, rgba(123,206,154,0.34), rgba(123,206,154,0.18));
+    color: #f4fff7;
+  }
+  .modal-meta [data-badge-filter-type="현재상태"].is-active {
+    background: linear-gradient(135deg, rgba(200,169,110,0.36), rgba(200,169,110,0.18));
+    color: #fff7e8;
+  }
+  .modal-meta [data-badge-filter-type="직분"].is-active {
+    box-shadow: 0 0 0 2px rgba(200,169,110,0.24), 0 10px 22px rgba(0,0,0,0.26), inset 0 1px 0 rgba(255,255,255,0.14);
+  }
+  .jik-장로 { background: rgba(240,192,96,0.15); color: var(--장로); border: 1px solid rgba(240,192,96,0.3); }
+  .jik-목사 { background: rgba(232,122,90,0.15); color: var(--목사); border: 1px solid rgba(232,122,90,0.3); }
+  .jik-안수집사 { background: rgba(126,200,227,0.15); color: var(--안수집사); border: 1px solid rgba(126,200,227,0.3); }
+  .jik-권사 { background: rgba(201,126,203,0.15); color: var(--권사); border: 1px solid rgba(201,126,203,0.3); }
+  .jik-집사 { background: rgba(123,206,154,0.15); color: var(--집사); border: 1px solid rgba(123,206,154,0.3); }
+  .jik-성도 { background: rgba(138,160,200,0.15); color: var(--성도); border: 1px solid rgba(138,160,200,0.3); }
+  .jik-전도사 { background: rgba(227,168,126,0.15); color: var(--전도사); border: 1px solid rgba(227,168,126,0.3); }
+  .jik-사모 { background: rgba(232,160,184,0.15); color: var(--사모); border: 1px solid rgba(232,160,184,0.3); }
+  .jik-명예권사 { background: rgba(168,184,216,0.15); color: var(--명예권사); border: 1px solid rgba(168,184,216,0.3); }
+  .jik-other { background: rgba(144,144,160,0.15); color: var(--other); border: 1px solid rgba(144,144,160,0.3); }
+
+  .value-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px 9px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    white-space: nowrap;
+    border: 1px solid color-mix(in srgb, var(--badge-color, var(--accent)) 34%, transparent);
+    background: color-mix(in srgb, var(--badge-color, var(--accent)) 15%, transparent);
+    color: var(--badge-color, var(--accent2));
+  }
+  .value-badge.is-clickable {
+    cursor: pointer;
+    transition: transform 0.12s ease, opacity 0.12s ease;
+  }
+  .value-badge.is-clickable:hover {
+    transform: translateY(-1px);
+    opacity: 0.94;
+  }
+  .modal-value .value-badge {
+    min-height: 28px;
+    padding: 5px 11px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+  .modal-value .value-badge.is-clickable {
+    box-shadow: 0 6px 18px rgba(0,0,0,0.16), inset 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .modal-value .value-badge.is-clickable.is-active {
+    color: #fff7e3;
+    border-color: rgba(232,213,163,0.78) !important;
+    box-shadow: 0 0 0 2px rgba(200,169,110,0.22), 0 10px 22px rgba(0,0,0,0.24), inset 0 1px 0 rgba(255,255,255,0.14);
+    filter: brightness(1.12) saturate(1.08);
+  }
+  .modal-value .value-badge.is-clickable:hover {
+    opacity: 1;
+    filter: brightness(1.08);
+  }
+  .family-cell {
+    max-width: 320px;
+    font-size: 12px;
+    color: var(--text3);
+  }
+  .family-inline-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 8px;
+    align-items: center;
+  }
+  .family-inline-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--text3);
+    max-width: 100%;
+  }
+  .family-inline-name.is-link {
+    color: var(--accent2);
+    cursor: pointer;
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .family-inline-name.is-link:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .family-inline-jik {
+    color: var(--text3);
+    font-size: 11px;
+  }
+  .phone-cell { white-space: nowrap; font-size: 12px; }
+  .date-cell { white-space: nowrap; font-size: 12px; }
+  .구역-cell { white-space: nowrap; font-size: 12px; }
+
+  /* DETAIL MODAL */
+  .modal-bg {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.7);
+    z-index: 200;
+    backdrop-filter: blur(4px);
+    align-items: center;
+    justify-content: center;
+  }
+  .modal-bg.open { display: flex; }
+  .modal {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    width: min(960px, 95vw);
+    max-width: 95vw;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 80px rgba(0,0,0,0.8);
+    animation: slideUp 0.2s ease;
+  }
+  @keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+  .modal-header {
+    padding: 24px 24px 20px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    background: linear-gradient(180deg, rgba(200,169,110,0.10) 0%, rgba(255,255,255,0.02) 100%);
+  }
+  .modal-name {
+    font-family: 'Noto Serif KR', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 6px;
+  }
+  .modal-name-button {
+    appearance: none;
+    border: none;
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    text-align: left;
+  }
+  .modal-name-button.is-clickable:hover {
+    color: var(--accent2);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .modal-meta {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .modal-subinfo {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+  }
+  .duplicate-summary-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    background: rgba(126,200,227,0.12);
+    border: 1px solid rgba(126,200,227,0.28);
+    color: #d8f5ff;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .duplicate-quick-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .duplicate-quick-btn {
+    appearance: none;
+    border: 1px solid rgba(200,169,110,0.22);
+    background: rgba(15,17,23,0.42);
+    color: var(--text);
+    border-radius: 999px;
+    padding: 6px 10px;
+    font: inherit;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    line-height: 1.2;
+    max-width: 100%;
+  }
+  .duplicate-quick-btn:hover {
+    border-color: var(--accent);
+    color: var(--accent2);
+    transform: translateY(-1px);
+  }
+  .duplicate-quick-btn.is-current {
+    background: rgba(200,169,110,0.12);
+    border-color: var(--accent);
+    color: var(--accent2);
+    cursor: default;
+  }
+  .duplicate-quick-name {
+    font-weight: 700;
+  }
+  .duplicate-quick-detail {
+    font-size: 11px;
+    color: var(--text3);
+    white-space: nowrap;
+  }
+  .modal-close {
+    background: none;
+    border: none;
+    color: var(--text3);
+    cursor: pointer;
+    font-size: 22px;
+    padding: 4px;
+    line-height: 1;
+    transition: color 0.15s;
+  }
+  .modal-close:hover { color: var(--text); }
+  .modal-body {
+    padding: 20px 24px 24px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+    gap: 16px;
+    align-items: start;
+  }
+  .modal-column {
+    display: grid;
+    gap: 16px;
+    min-width: 0;
+  }
+  .modal-column-single {
+    grid-column: 1 / -1;
+  }
+  .modal-section {
+    margin-bottom: 0;
+    padding: 14px 16px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+    border: 1px solid rgba(200,169,110,0.14);
+    border-radius: 14px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
+  }
+  .modal-section-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--accent2);
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    padding-left: 10px;
+    border-bottom: 1px solid rgba(200,169,110,0.20);
+    position: relative;
+  }
+  .modal-section-title::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 1px;
+    bottom: 9px;
+    width: 3px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, var(--accent) 0%, var(--accent2) 100%);
+  }
+  .modal-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .modal-grid.is-compact {
+    grid-template-columns: 1fr;
+  }
+  .modal-section.is-inline .modal-grid {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+  .modal-section.is-inline .modal-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 8px 10px;
+  }
+  .modal-section.is-inline .modal-label {
+    margin-bottom: 0;
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+  .modal-section.is-inline .modal-value {
+    text-align: right;
+    line-height: 1.35;
+    font-size: 13px;
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+  .modal-section.is-inline .modal-value .value-badge {
+    max-width: 100%;
+  }
+  .modal-section.is-inline-compact {
+    padding: 12px 14px;
+  }
+  .inline-meta-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 8px;
+    align-items: center;
+  }
+  .inline-meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+    padding: 5px 9px;
+    border-radius: 999px;
+    background: rgba(15,17,23,0.42);
+    border: 1px solid rgba(255,255,255,0.06);
+    line-height: 1.2;
+    max-width: 100%;
+  }
+  .inline-meta-label {
+    font-size: 11px;
+    color: var(--accent);
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+  .inline-meta-value {
+    font-size: 12px;
+    color: var(--text);
+    font-weight: 600;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .inline-meta-value .value-badge {
+    padding: 3px 8px;
+    font-size: 11px;
+  }
+  .inline-phone-link {
+    color: var(--accent2);
+    text-decoration: none;
+    font-weight: 700;
+  }
+  .inline-phone-link:hover {
+    text-decoration: underline;
+  }
+  .inline-empty {
+    color: var(--text3);
+    font-style: italic;
+    font-weight: 400;
+  }
+  .modal-field {
+    padding: 11px 12px;
+    background: rgba(15,17,23,0.38);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: 12px;
+    min-width: 0;
+  }
+  .modal-label {
+    font-size: 11px;
+    color: var(--accent);
+    margin-bottom: 5px;
+  }
+  .modal-value {
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .modal-value.empty { color: var(--text3); font-style: italic; font-weight: 400; font-size: 13px; }
+
+  .family-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 2px;
+  }
+  .family-member-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 9px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    font-size: 12px;
+    line-height: 1.2;
+  }
+  .family-member-tag.is-link {
+    cursor: pointer;
+    transition: all 0.15s;
+    background: rgba(126,200,227,0.10);
+    border-color: rgba(126,200,227,0.32);
+    box-shadow: inset 0 0 0 1px rgba(126,200,227,0.08);
+  }
+  .family-member-tag.is-link:hover {
+    border-color: #7ec8e3;
+    background: rgba(126,200,227,0.18);
+    transform: translateY(-1px);
+  }
+  .family-member-name { color: var(--text); font-weight: 600; }
+  .family-member-tag.is-link .family-member-name { color: #d7f3ff; }
+  .family-member-jik { color: var(--text3); font-size: 10px; }
+  .family-member-tag.is-link .family-member-jik { color: #8ed4ee; }
+
+  .family-context-summary {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .family-context-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .family-context-label {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 84px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(200,169,110,0.14);
+    border: 1px solid rgba(200,169,110,0.24);
+    color: var(--accent2);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+  }
+  .family-context-value {
+    flex: 1 1 260px;
+    min-width: 0;
+  }
+  .family-inline-name.is-extended {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 5px 9px;
+    background: rgba(123,206,154,0.12);
+    border: 1px solid rgba(123,206,154,0.28);
+    border-radius: 999px;
+  }
+
+  .modal-section.is-compact-tags {
+    padding: 12px 14px;
+  }
+  .modal-section.is-compact-tags .modal-section-title {
+    margin-bottom: 10px;
+  }
+
+
+  .family-tree {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .family-tree-rootline {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .family-tree-head,
+  .family-tree-spouse-card,
+  .family-tree-node,
+  .family-tree-child-chip {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    min-width: 0;
+    padding: 7px 10px;
+    border-radius: 999px;
+    background: rgba(15,17,23,0.38);
+    border: 1px solid rgba(255,255,255,0.05);
+  }
+  .family-tree-head {
+    background: linear-gradient(180deg, rgba(200,169,110,0.14) 0%, rgba(200,169,110,0.06) 100%);
+    border-color: rgba(200,169,110,0.24);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
+  }
+  .family-tree-spouse-card {
+    background: linear-gradient(180deg, rgba(201,126,203,0.12) 0%, rgba(201,126,203,0.05) 100%);
+    border-color: rgba(201,126,203,0.22);
+  }
+  .family-tree-children {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    margin-left: 12px;
+    padding-left: 14px;
+    position: relative;
+    flex-wrap: wrap;
+  }
+  .family-tree-children::before {
+    content: '├─';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    color: rgba(200,169,110,0.72);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .family-tree-children-list {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
+    min-width: 0;
+  }
+  .family-tree-child-chip {
+    padding: 5px 8px;
+    border-radius: 999px;
+    background: rgba(15,17,23,0.26);
+  }
+  .family-role-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 52px;
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    white-space: nowrap;
+    flex: 0 0 auto;
+  }
+  .family-role-세대주 {
+    background: rgba(200,169,110,0.18);
+    border: 1px solid rgba(200,169,110,0.35);
+    color: var(--accent2);
+  }
+  .family-role-세대주1 {
+    background: rgba(123,206,154,0.18);
+    border: 1px solid rgba(123,206,154,0.35);
+    color: #e6fff0;
+  }
+  .family-role-본인 {
+    background: rgba(126,200,227,0.18);
+    border: 1px solid rgba(126,200,227,0.30);
+    color: #d8f5ff;
+  }
+  .family-role-배우자 {
+    background: rgba(201,126,203,0.18);
+    border: 1px solid rgba(201,126,203,0.30);
+    color: #ffeaff;
+  }
+  .family-role-자녀 {
+    background: rgba(227,168,126,0.18);
+    border: 1px solid rgba(227,168,126,0.30);
+    color: #fff2e5;
+  }
+  .family-role-부모 {
+    background: rgba(168,184,216,0.18);
+    border: 1px solid rgba(168,184,216,0.30);
+    color: #edf3ff;
+  }
+  .family-role-가족 {
+    background: rgba(123,206,154,0.18);
+    border: 1px solid rgba(123,206,154,0.30);
+    color: #e6fff0;
+  }
+  .family-role-기타 {
+    background: rgba(138,160,200,0.18);
+    border: 1px solid rgba(138,160,200,0.30);
+    color: #edf3ff;
+  }
+  .family-tree-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    min-width: 0;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.2;
+  }
+  .family-tree-name.is-link {
+    cursor: pointer;
+    color: var(--accent2);
+  }
+  .family-tree-name.is-link:hover {
+    color: var(--accent);
+    text-decoration: underline;
+  }
+  .family-tree-jik {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text3);
+    line-height: 1.1;
+  }
+  .family-tree-section {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .family-tree-section-title {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--accent2);
+  }
+  .family-tree-section-title::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(200,169,110,0.12);
+  }
+  .family-tree-section + .family-tree-section {
+    margin-top: 6px;
+    padding-top: 10px;
+    border-top: 1px dashed rgba(255,255,255,0.08);
+  }
+  .family-tree-extended .family-tree-head {
+    background: linear-gradient(180deg, rgba(123,206,154,0.16) 0%, rgba(123,206,154,0.06) 100%);
+    border-color: rgba(123,206,154,0.28);
+  }
+  .family-tree-branch {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 10px;
+    margin-left: 12px;
+    padding-left: 14px;
+    position: relative;
+  }
+  .family-tree-branch::before {
+    content: '├─';
+    position: absolute;
+    left: 0;
+    top: 6px;
+    color: rgba(123,206,154,0.72);
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1;
+  }
+  .family-tree-extended-branches {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .family-tree-empty {
+    color: var(--text3);
+    font-style: italic;
+    font-size: 12px;
+  }
+
+
+
+  .chart-toggle {
+    cursor: pointer;
+    transition: color 0.15s ease, background 0.15s ease;
+  }
+  .chart-toggle:hover {
+    color: var(--accent2);
+    background: rgba(200,169,110,0.08);
+  }
+  .chart-panel {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    margin-bottom: 16px;
+  }
+  .chart-panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+  .chart-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--accent2);
+  }
+  .chart-subtitle {
+    font-size: 12px;
+    color: var(--text3);
+    margin-top: 4px;
+  }
+  .chart-hint {
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--text3);
+  }
+  .chart-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.9fr);
+    gap: 20px;
+    align-items: start;
+  }
+  .chart-bars {
+    display: grid;
+    gap: 12px;
+  }
+  .chart-row {
+    display: grid;
+    grid-template-columns: 130px 1fr 96px;
+    gap: 12px;
+    align-items: center;
+    cursor: pointer;
+  }
+  .chart-row:hover .chart-bar-track {
+    border-color: rgba(200,169,110,0.65);
+  }
+  .chart-label {
+    font-size: 13px;
+    color: var(--text2);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .chart-bar-track {
+    height: 28px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    overflow: hidden;
+    position: relative;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .chart-row:hover .chart-bar-track {
+    transform: translateY(-1px);
+  }
+  .chart-bar-fill {
+    height: 100%;
+    border-radius: 999px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: 10px;
+    min-width: 0;
+    overflow: hidden;
+    color: #2b2212;
+    font-size: 12px;
+    font-weight: 700;
+    width: 0;
+    white-space: nowrap;
+    will-change: width;
+    transition: width 820ms cubic-bezier(0.22, 1, 0.36, 1), filter 0.2s ease;
+    transition-delay: var(--bar-delay, 0ms);
+  }
+  .chart-bar-fill.is-small {
+    justify-content: center;
+    padding-right: 0;
+    font-size: 11px;
+  }
+  .chart-bars .chart-row {
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.34s ease, transform 0.34s ease;
+    transition-delay: var(--bar-delay, 0ms);
+  }
+  .chart-bars.chart-animate-ready .chart-row {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .chart-bars.chart-animate-ready .chart-bar-fill {
+    width: var(--target-width, 0%);
+  }
+  .chart-value {
+    text-align: right;
+    font-size: 12px;
+    color: var(--text2);
+    white-space: nowrap;
+  }
+  .chart-side {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+  }
+  .chart-side-title {
+    font-size: 13px;
+    color: var(--text2);
+    margin-bottom: 12px;
+  }
+  .chart-pie-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+  .chart-pie-svg {
+    width: 220px;
+    height: 220px;
+    overflow: visible;
+  }
+  @property --pie-progress {
+    syntax: '<angle>';
+    inherits: false;
+    initial-value: 0deg;
+  }
+  .chart-pie-reveal {
+    --pie-progress: 0deg;
+    width: 220px;
+    height: 220px;
+    -webkit-mask-image: conic-gradient(from -90deg, #000 0deg, #000 var(--pie-progress), transparent calc(var(--pie-progress) + 0.6deg), transparent 360deg);
+    mask-image: conic-gradient(from -90deg, #000 0deg, #000 var(--pie-progress), transparent calc(var(--pie-progress) + 0.6deg), transparent 360deg);
+    will-change: transform;
+  }
+  .chart-pie-wrap.pie-animate-ready .chart-pie-reveal {
+    animation: pieSweepReveal 1200ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  }
+  @keyframes pieSweepReveal {
+    from { --pie-progress: 0deg; }
+    to { --pie-progress: 360deg; }
+  }
+  .chart-pie-hole {
+    fill: var(--surface);
+  }
+  .chart-pie-center-text {
+    fill: var(--accent2);
+    font-size: 12px;
+    font-weight: 700;
+    text-anchor: middle;
+  }
+  .chart-pie-center-subtext {
+    fill: var(--text3);
+    font-size: 10px;
+    text-anchor: middle;
+  }
+  .chart-slice {
+    cursor: pointer;
+    transition: transform 0.15s ease, opacity 0.15s ease, filter 0.15s ease;
+    transform-origin: 110px 110px;
+    opacity: 0.78;
+  }
+  .chart-pie-wrap.pie-animate-ready .chart-slice {
+    animation: pieSlicePop 480ms ease both;
+    animation-delay: calc(var(--slice-delay, 0ms) + 180ms);
+  }
+  @keyframes pieSlicePop {
+    from { opacity: 0; transform: scale(0.96); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .chart-slice:hover {
+    opacity: 0.95;
+    filter: brightness(1.08);
+  }
+  .chart-legend {
+    display: grid;
+    gap: 8px;
+  }
+  .chart-legend-item {
+    display: grid;
+    grid-template-columns: 12px 1fr auto;
+    gap: 10px;
+    align-items: center;
+    padding: 8px 10px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface2);
+    cursor: pointer;
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .chart-legend-item:hover {
+    border-color: rgba(200,169,110,0.65);
+    transform: translateY(-1px);
+  }
+  .chart-swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+  }
+  .chart-legend-label {
+    font-size: 12px;
+    color: var(--text2);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .chart-legend-value {
+    font-size: 12px;
+    color: var(--accent2);
+    white-space: nowrap;
+    font-weight: 600;
+  }
+  .chart-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .chart-sort-label {
+    font-size: 12px;
+    color: var(--text3);
+  }
+  .chart-sort-buttons {
+    display: inline-flex;
+    gap: 6px;
+    flex-wrap: wrap;
+  }
+  .chart-sort-btn {
+    min-height: 32px;
+    padding: 0 12px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface2);
+    color: var(--text2);
+    font-size: 12px;
+    font-weight: 600;
+    font-family: 'Noto Sans KR', sans-serif;
+    cursor: pointer;
+    transition: all 0.18s ease;
+  }
+  .chart-sort-btn:hover {
+    border-color: rgba(200,169,110,0.68);
+    color: var(--accent2);
+  }
+  .chart-sort-btn.active {
+    background: rgba(200,169,110,0.14);
+    border-color: var(--accent);
+    color: var(--accent2);
+    box-shadow: 0 0 0 1px rgba(200,169,110,0.12) inset;
+  }
+  .chart-row.is-top .chart-bar-track {
+    border-color: rgba(200,169,110,0.72);
+    box-shadow: 0 0 0 1px rgba(200,169,110,0.14) inset;
+  }
+  .chart-panel.is-drilling {
+    animation: chartDrillFade 0.22s ease forwards;
+  }
+  .chart-row.is-drilling .chart-bar-track,
+  .chart-legend-item.is-drilling,
+  .chart-slice.is-drilling {
+    animation: chartTargetPulse 0.22s ease;
+  }
+  .table-wrap.is-drill-target {
+    animation: drillTargetReveal 0.42s ease;
+  }
+  @keyframes chartDrillFade {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0.25; transform: scale(0.985); }
+  }
+  @keyframes chartTargetPulse {
+    0% { transform: scale(1); filter: brightness(1); }
+    50% { transform: scale(1.015); filter: brightness(1.16); }
+    100% { transform: scale(1); filter: brightness(1); }
+  }
+  @keyframes drillTargetReveal {
+    0% { transform: translateY(10px); opacity: 0.55; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+
+  /* PAGINATION */
+  .pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 20px;
+    border-top: 1px solid var(--border);
+  }
+  .page-btn {
+    padding: 6px 12px;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text2);
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: 'Noto Sans KR', sans-serif;
+  }
+  .page-btn:hover { border-color: var(--accent); color: var(--accent2); }
+  .page-btn.active { background: rgba(200,169,110,0.15); border-color: var(--accent); color: var(--accent2); font-weight: 600; }
+  .page-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
+  /* EMPTY STATE */
+  .empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    color: var(--text3);
+  }
+  .empty-state .icon { font-size: 48px; margin-bottom: 16px; opacity: 0.3; }
+  .empty-state h3 { font-size: 16px; color: var(--text2); margin-bottom: 8px; }
+
+  .mobile-card-cell {
+    padding: 0 !important;
+    border: none;
+    background: transparent;
+  }
+  .mobile-card {
+    margin: 10px;
+    padding: 14px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.01) 100%);
+    border: 1px solid rgba(200,169,110,0.12);
+    border-radius: 14px;
+  }
+  .mobile-card-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+  .mobile-card-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.35;
+  }
+  .mobile-card-sub {
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--text3);
+  }
+  .mobile-card-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px 10px;
+    font-size: 12px;
+    color: var(--text2);
+    margin-bottom: 8px;
+  }
+  .mobile-card-meta span {
+    padding: 3px 8px;
+    background: var(--surface2);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 999px;
+  }
+  .mobile-card-family {
+    font-size: 12px;
+    color: var(--text3);
+    line-height: 1.5;
+  }
+
+
+  #jsonPickerWrap button:hover { border-color: var(--accent); color: var(--accent2); }
+
+
+  .mobile-toolbar {
+    display: none !important;
+  }
+  .mobile-sidebar-backdrop {
+    display: none;
+  }
+  .sidebar-mobile-head {
+    display: none;
+  }
+  .sidebar-close-btn {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text2);
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+  .sidebar-mobile-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--accent2);
+  }
+
+  /* MOBILE */
+  @media (max-width: 900px) {
+    .main-wrap { grid-template-columns: 1fr; padding: 14px; gap: 16px; }
+    .sidebar {
+      position: static;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .filter-section { margin-bottom: 0; }
+    .header-inner { gap: 10px; }
+    .church-title { font-size: 18px; }
+    .header-actions {
+      width: 100%;
+      min-width: 100%;
+      order: 4;
+      margin-left: 0;
+      justify-content: stretch;
+    }
+    .search-wrap { max-width: 100%; min-width: 0; }
+    .header-divider { display: none; }
+    thead { top: 0; }
+    .chart-layout { grid-template-columns: 1fr; }
+    .chart-row { grid-template-columns: 100px 1fr 74px; }
+    .modal-body { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    body { background: #0d1018; }
+    header {
+      position: sticky;
+      top: 0;
+      padding: 14px 14px 12px;
+      z-index: 120;
+    }
+    .header-inner {
+      align-items: center;
+      gap: 8px;
+    }
+    .church-title { font-size: 17px; letter-spacing: 1px; }
+    .church-subtitle { font-size: 11px; }
+    .total-count {
+      font-size: 12px;
+      white-space: nowrap;
+      order: 2;
+    }
+    .total-count strong { font-size: 16px; }
+    .header-actions {
+      order: 3;
+      width: 100%;
+      min-width: 100%;
+      gap: 8px;
+      justify-content: stretch;
+    }
+    .search-wrap { flex: 1; }
+    #searchInput {
+      font-size: 14px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      border-radius: 10px;
+    }
+    .header-filter-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+    }
+    .elder-mode-btn {
+      min-width: 76px;
+      height: 44px;
+      border-radius: 12px;
+      font-size: 13px;
+      padding: 0 12px;
+    }
+    .font-control {
+      display: inline-flex;
+      padding: 4px 6px;
+      gap: 5px;
+      border-radius: 12px;
+    }
+    .font-btn {
+      width: calc(30px * var(--mobile-user-scale));
+      height: calc(30px * var(--mobile-user-scale));
+      font-size: calc(18px * var(--mobile-user-scale));
+    }
+    .font-readout {
+      min-width: calc(44px * var(--mobile-user-scale));
+      font-size: calc(12px * var(--mobile-user-scale));
+    }
+    .main-wrap {
+      grid-template-columns: 1fr;
+      padding: 12px;
+      gap: 12px;
+    }
+    .sidebar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: min(88vw, 360px);
+      padding: 14px 12px 20px;
+      background: #121725;
+      border-right: 1px solid var(--border);
+      overflow-y: auto;
+      overflow-x: hidden;
+      display: block;
+      z-index: 220;
+      transform: translateX(-105%);
+      transition: transform 0.22s ease;
+      box-shadow: 12px 0 40px rgba(0,0,0,0.35);
+      -webkit-overflow-scrolling: touch;
+    }
+    body.sidebar-open .sidebar {
+      transform: translateX(0);
+    }
+    .mobile-sidebar-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 210;
+    }
+    body.sidebar-open .mobile-sidebar-backdrop {
+      display: block;
+    }
+    .sidebar-mobile-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding: 4px 2px 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      position: sticky;
+      top: -14px;
+      background: #121725;
+      z-index: 1;
+    }
+    .filter-section {
+      margin-bottom: 12px;
+      overflow: visible;
+      height: auto;
+      max-height: none;
+    }
+    .filter-title { padding: 10px 12px; }
+    .inline-all-btn {
+      padding: 5px 9px;
+      font-size: 10px;
+      border-radius: 999px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+    }
+    .filter-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 6px;
+      padding: 10px;
+      height: auto;
+      max-height: none;
+      overflow: visible;
+      align-content: flex-start;
+    }
+    .filter-btn {
+      width: auto;
+      min-width: 0;
+      min-height: 0;
+      padding: 7px 10px;
+      border: 1px solid rgba(255,255,255,0.07);
+      background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%);
+      border-radius: 999px;
+      flex-direction: row;
+      justify-content: flex-start;
+      gap: 6px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    }
+    .filter-btn[data-type="교구"] {
+      background: rgba(123,206,154,0.14);
+      border-color: rgba(123,206,154,0.28);
+      color: #dff9e8;
+    }
+    .filter-btn[data-type="직분"] {
+      background: rgba(201,126,203,0.14);
+      border-color: rgba(201,126,203,0.28);
+      color: #f7def8;
+    }
+    .filter-btn[data-type="현재상태"] {
+      background: rgba(126,200,227,0.14);
+      border-color: rgba(126,200,227,0.28);
+      color: #dff7ff;
+    }
+    .filter-btn.active {
+      color: #fff8e8;
+      border-color: rgba(232,213,163,0.7);
+      box-shadow: 0 0 0 2px rgba(200,169,110,0.16), 0 10px 18px rgba(0,0,0,0.16);
+      filter: brightness(1.08);
+    }
+    .filter-btn span:first-child {
+      white-space: nowrap;
+      line-height: 1.15;
+      display: inline;
+      max-width: none;
+    }
+    .filter-count {
+      padding: 1px 7px;
+      font-size: 10px;
+      line-height: 1.35;
+    }
+    .gender-row, .age-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 6px;
+      padding: 10px;
+    }
+    .age-btn, .gender-btn {
+      min-height: 0;
+      min-width: 0;
+      width: auto;
+      padding: 7px 10px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: row;
+      gap: 6px;
+      border-radius: 999px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+    }
+    .gender-btn {
+      background: rgba(126,200,227,0.12);
+      border-color: rgba(126,200,227,0.28);
+      color: #dff7ff;
+    }
+    .age-btn {
+      background: rgba(227,168,126,0.12);
+      border-color: rgba(227,168,126,0.26);
+      color: #fbe7d8;
+    }
+    #yearFilterRow .age-btn {
+      background: rgba(138,160,200,0.14);
+      border-color: rgba(138,160,200,0.28);
+      color: #e3ebff;
+    }
+    .gender-btn.active,
+    .age-btn.active,
+    #yearFilterRow .age-btn.active {
+      color: #fff8e8;
+      border-color: rgba(232,213,163,0.7);
+      box-shadow: 0 0 0 2px rgba(200,169,110,0.16), 0 10px 18px rgba(0,0,0,0.16);
+      filter: brightness(1.08);
+    }
+    .content-area { min-width: 0; }
+    .active-filters { gap: 6px; margin-bottom: 12px; }
+    .filter-tag { font-size: 11px; }
+    .result-info { width: 100%; margin-left: 0; }
+    .table-wrap {
+      background: transparent;
+      border: none;
+      overflow: visible;
+      max-height: none;
+    }
+    table { border-collapse: separate; border-spacing: 0; }
+    thead { display: none; }
+    tbody tr { border-bottom: none; }
+    .hide-mobile { display: none !important; }
+    .mobile-card {
+      margin: 0 0 10px;
+      padding: 14px;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.015) 100%);
+      box-shadow: 0 10px 24px rgba(0,0,0,0.16);
+    }
+    .mobile-card-top { margin-bottom: 12px; }
+    .mobile-card-name { font-size: 17px; }
+    .mobile-card-sub {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+    .mobile-card-meta { gap: 6px; margin-bottom: 10px; }
+    .mobile-card-meta span { padding: 5px 8px; }
+    .pagination {
+      padding: 12px 0 2px;
+      border-top: none;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .page-btn { min-width: 38px; padding: 8px 10px; }
+    .modal {
+      width: calc(100vw - 18px);
+      max-height: 88vh;
+      border-radius: 14px;
+    }
+    .modal-header { padding-left: 16px; padding-right: 16px; }
+    .modal-body {
+      padding-left: 16px;
+      padding-right: 16px;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .modal-name { font-size: 22px; }
+    .modal-grid { grid-template-columns: 1fr; }
+    .modal-section.is-inline { padding: 12px; }
+    .modal-section.is-inline-compact {
+      padding: 10px 12px;
+    }
+    .inline-meta-list {
+      gap: 5px 6px;
+    }
+    .inline-meta-item {
+      padding: 4px 8px;
+      gap: 5px;
+      max-width: 100%;
+    }
+    .inline-meta-label {
+      font-size: 10px;
+    }
+    .inline-meta-value {
+      font-size: 11px;
+    }
+    .inline-meta-value .value-badge {
+      font-size: 10px;
+      padding: 2px 7px;
+    }
+    .modal-section.is-inline .modal-field {
+      padding: 7px 9px;
+      border-radius: 10px;
+      gap: 10px;
+    }
+    .modal-section.is-inline .modal-label {
+      font-size: 10px;
+      letter-spacing: 0.2px;
+    }
+    .modal-section.is-inline .modal-value {
+      font-size: 12px;
+    }
+    .modal-section.is-compact-tags {
+      padding: 10px 12px;
+    }
+    .family-list {
+      gap: 5px;
+    }
+    .family-member-tag {
+      padding: 5px 8px;
+      font-size: 11px;
+    }
+    .family-member-jik {
+      font-size: 10px;
+    }
+    .chart-panel { padding: 14px; border-radius: 14px; }
+    .chart-panel-header { align-items: flex-start; flex-direction: column; }
+    .chart-title { font-size: 16px; }
+    .chart-toolbar { width: 100%; }
+    .chart-sort-label { width: 100%; }
+    .chart-sort-buttons { width: 100%; }
+    .chart-sort-btn { flex: 1; justify-content: center; }
+    .chart-side { padding: 14px; }
+    .chart-row { grid-template-columns: 1fr; gap: 6px; }
+    .chart-label { white-space: normal; }
+    .chart-value { text-align: left; }
+    .chart-pie-svg { width: 190px; height: 190px; }
+    /* MOBILE LARGE TYPE */
+    body { font-size: 16px; }
+    .church-title { font-size: 19px; }
+    .church-subtitle { font-size: 12px; }
+    .total-count { font-size: 14px; }
+    .total-count strong { font-size: 18px; }
+    #searchInput {
+      font-size: 16px;
+      min-height: 46px;
+      padding-top: 11px;
+      padding-bottom: 11px;
+    }
+    #searchInput::placeholder { font-size: 15px; }
+    .header-filter-btn {
+      width: 46px;
+      height: 46px;
+    }
+    .elder-mode-btn {
+      min-width: 82px;
+      height: 46px;
+      font-size: 14px;
+    }
+    .sidebar-mobile-title { font-size: 17px; }
+    .filter-title { font-size: 12px; }
+    .inline-all-btn {
+      font-size: 12px;
+      padding: 6px 10px;
+    }
+    .filter-btn, .gender-btn, .age-btn {
+      font-size: 15px;
+      padding: 9px 12px;
+      min-height: 40px;
+    }
+    .filter-count {
+      font-size: 12px;
+      padding: 2px 8px;
+    }
+    .filter-btn-main { font-size: 15px; }
+    .filter-btn-sub { font-size: 12px; }
+    .active-filters { gap: 8px; }
+    .filter-tag {
+      font-size: 13px;
+      padding: 6px 11px 6px 12px;
+    }
+    .result-info { font-size: 14px; }
+    .mobile-card { padding: 16px; }
+    .mobile-card-name {
+      font-size: 19px;
+      line-height: 1.4;
+    }
+    .mobile-card-sub {
+      gap: 7px;
+      margin-top: 7px;
+    }
+    .mobile-card-meta {
+      gap: 8px;
+      font-size: 13px;
+    }
+    .mobile-card-meta span {
+      padding: 6px 9px;
+      font-size: 13px;
+    }
+    .mobile-card-family {
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .page-btn {
+      font-size: 14px;
+      padding: 9px 11px;
+    }
+    .modal {
+      width: calc(100vw - 14px);
+      max-height: 90vh;
+    }
+    .modal-header {
+      padding-top: 18px;
+      padding-bottom: 16px;
+    }
+    .modal-name { font-size: 24px; }
+    .modal-subinfo { gap: 8px; }
+    .duplicate-summary-badge,
+    .duplicate-quick-btn {
+      font-size: 13px;
+    }
+    .duplicate-quick-btn {
+      padding: 7px 11px;
+    }
+    .duplicate-quick-detail {
+      font-size: 12px;
+    }
+    .modal-meta { gap: 10px; }
+    .modal-meta .jik-badge,
+    .modal-meta .value-badge {
+      font-size: 13px;
+      padding: 6px 11px;
+    }
+    .modal-body {
+      padding-top: 14px;
+      padding-bottom: 18px;
+      gap: 14px;
+    }
+    .modal-section-title {
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
+    .modal-section.is-inline,
+    .modal-section.is-inline-compact,
+    .modal-section.is-compact-tags {
+      padding: 12px 13px;
+    }
+    .inline-meta-list { gap: 7px 8px; }
+    .inline-meta-item {
+      padding: 6px 9px;
+      gap: 6px;
+    }
+    .inline-meta-label { font-size: 11px; }
+    .inline-meta-value {
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .inline-meta-value .value-badge {
+      font-size: 12px;
+      padding: 4px 8px;
+    }
+    .modal-section.is-inline .modal-field {
+      padding: 9px 10px;
+      gap: 12px;
+    }
+    .modal-section.is-inline .modal-label { font-size: 11px; }
+    .modal-section.is-inline .modal-value {
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .family-list { gap: 6px; }
+    .family-context-row {
+      gap: 6px;
+    }
+    .family-context-label {
+      min-width: 74px;
+      font-size: 10px;
+      padding: 5px 8px;
+    }
+    .family-inline-name.is-extended {
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+    .family-tree-rootline {
+      grid-template-columns: 1fr !important;
+      gap: 8px;
+    }
+    .family-tree-head,
+    .family-tree-spouse-card,
+    .family-tree-node {
+      padding: 9px 10px;
+      border-radius: 10px;
+    }
+    .family-tree-children {
+      margin-left: 12px;
+      padding-left: 14px;
+    }
+    .family-tree-node::before {
+      left: -14px;
+      width: 14px;
+    }
+    .family-role-badge {
+      min-width: 48px;
+      font-size: 10px;
+      padding: 4px 7px;
+    }
+    .family-tree-name {
+      font-size: 11px;
+    }
+    .family-tree-jik {
+      font-size: 9px;
+    }
+    .family-member-tag {
+      padding: 6px 10px;
+      font-size: 12px;
+    }
+    .family-member-name { font-size: 12px; }
+    .family-member-jik { font-size: 11px; }
+    .chart-title { font-size: 18px; }
+    .chart-subtitle, .chart-hint, .chart-label, .chart-value, .chart-side-title, .chart-legend-label, .chart-legend-value {
+      font-size: 13px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    body { font-size: calc(16px * var(--mobile-user-scale)); }
+    .church-title { font-size: calc(19px * var(--mobile-user-scale)); }
+    .church-subtitle { font-size: calc(12px * var(--mobile-user-scale)); }
+    .church-helper { font-size: calc(12px * var(--mobile-user-scale)); }
+    .total-count { font-size: calc(14px * var(--mobile-user-scale)); }
+    .total-count strong { font-size: calc(18px * var(--mobile-user-scale)); }
+    #searchInput {
+      font-size: calc(16px * var(--mobile-user-scale));
+      min-height: calc(44px * var(--mobile-user-scale));
+      padding-top: calc(10px * var(--mobile-user-scale));
+      padding-bottom: calc(10px * var(--mobile-user-scale));
+      padding-left: calc(38px * var(--mobile-user-scale));
+      padding-right: calc(12px * var(--mobile-user-scale));
+    }
+    #searchInput::placeholder { font-size: calc(15px * var(--mobile-user-scale)); }
+    .filter-title, .sidebar-mobile-title, .inline-all-btn, .gender-btn, .age-btn, .filter-btn, .filter-btn-main, .filter-btn-sub, .result-info, .filter-tag {
+      font-size: calc(13px * var(--mobile-user-scale));
+    }
+    .filter-btn-main { font-size: calc(15px * var(--mobile-user-scale)); }
+    .filter-btn-sub, .inline-all-btn { font-size: calc(12px * var(--mobile-user-scale)); }
+    .mobile-card-name { font-size: calc(19px * var(--mobile-user-scale)); }
+    .mobile-card-sub, .mobile-card-meta, .mobile-card-family { font-size: calc(13px * var(--mobile-user-scale)); }
+    .mobile-card-meta span, .filter-tag { padding-top: calc(5px * var(--mobile-user-scale)); padding-bottom: calc(5px * var(--mobile-user-scale)); }
+    .modal-name { font-size: calc(24px * var(--mobile-user-scale)); }
+    .modal-section-title { font-size: calc(12px * var(--mobile-user-scale)); }
+    .modal-meta .jik-badge, .value-badge, .family-member-tag { font-size: calc(13px * var(--mobile-user-scale)); }
+    .inline-meta-row { gap: calc(6px * var(--mobile-user-scale)) calc(10px * var(--mobile-user-scale)); }
+    .inline-meta-label { font-size: calc(11px * var(--mobile-user-scale)); }
+    .inline-meta-value, .inline-meta-value a { font-size: calc(13px * var(--mobile-user-scale)); }
+    .family-member-name { font-size: calc(12px * var(--mobile-user-scale)); }
+    .family-member-jik { font-size: calc(10px * var(--mobile-user-scale)); }
+    .page-btn {
+      font-size: calc(13px * var(--mobile-user-scale));
+      min-width: calc(40px * var(--mobile-user-scale));
+      min-height: calc(40px * var(--mobile-user-scale));
+    }
+    .chart-title { font-size: calc(16px * var(--mobile-user-scale)); }
+    .chart-subtitle, .chart-hint, .chart-label, .chart-value, .chart-side-title, .chart-legend-label, .chart-legend-value {
+      font-size: calc(12px * var(--mobile-user-scale));
+    }
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--text3); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <button type="button" class="church-title reset-home-btn" id="homeResetBtn" title="초기 화면으로 돌아가기">✝ 시흥교회</button>
+      <div class="church-subtitle">교인 명단 조회</div>
+      <div class="church-helper">이름 검색, <strong>마을</strong> 또는 <strong>직분</strong> 선택으로 빠르게 찾을 수 있어요.</div>
+    </div>
+    <div class="header-divider"></div>
+    <div class="total-count">
+      전체 <strong id="totalCount">-</strong>명
+    </div>
+    <div class="header-actions">
+      <div class="search-wrap">
+        <svg width="16" height="16" fill="none" stroke="#9aa0b4" stroke-width="2" viewBox="0 0 24 24">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input type="text" id="searchInput" placeholder="이름(부분검색), 가족, 구역으로 검색..." />
+      </div>
+      <div class="font-control" id="fontControl" aria-label="글씨 크기 조절">
+        <button type="button" class="font-btn" id="fontDecreaseBtn" aria-label="글씨 작게">−</button>
+                <button type="button" class="font-btn" id="fontIncreaseBtn" aria-label="글씨 크게">+</button>
+      </div>
+      <button type="button" class="elder-mode-btn" id="elderModeToggleBtn" aria-pressed="false">큰글씨</button>
+      <button type="button" class="header-filter-btn" id="mobileFilterOpenBtn" aria-label="필터 열기" title="필터 보기">
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M7 12h10M10 18h4" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-sidebar-backdrop" id="mobileSidebarBackdrop"></div>
+
+<div class="main-wrap">
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-mobile-head">
+      <div class="sidebar-mobile-title">필터</div>
+      <button type="button" class="sidebar-close-btn" id="mobileFilterCloseBtn">✕</button>
+    </div>
+    <div class="filter-section">
+      <div class="filter-title">
+        <span class="filter-title-text chart-toggle" data-chart="교구">마을</span>
+        <button type="button" class="inline-all-btn active" id="groupAllBtn" data-type="교구">전체</button>
+      </div>
+      <div class="filter-list" id="교구FilterList"></div>
+    </div>
+    <div class="filter-section">
+      <div class="filter-title">
+        <span class="filter-title-text chart-toggle" data-chart="직분">직분</span>
+        <button type="button" class="inline-all-btn active" id="roleAllBtn" data-type="직분">전체</button>
+      </div>
+      <div class="filter-list" id="직분FilterList"></div>
+    </div>
+    <div class="filter-section">
+      <div class="filter-title">
+        <span class="filter-title-text chart-toggle" data-chart="현재상태">현재상태</span>
+        <button type="button" class="inline-all-btn active" id="statusAllBtn" data-type="현재상태">전체</button>
+      </div>
+      <div class="filter-list" id="상태FilterList"></div>
+    </div>
+    <div class="filter-section">
+      <div class="filter-title">
+        <span class="filter-title-text chart-toggle" data-chart="성별">성별</span>
+        <button type="button" class="inline-all-btn active" id="genderAllBtn" data-gender="전체">전체</button>
+      </div>
+      <div class="gender-row" id="genderFilterRow">
+        <button class="gender-btn" data-gender="남">남</button>
+        <button class="gender-btn" data-gender="여">여</button>
+      </div>
+    </div>
+    <div class="filter-section">
+      <div class="filter-title">
+        <span class="filter-title-text chart-toggle" data-chart="세대">세대</span>
+        <button type="button" class="inline-all-btn active" id="ageAllBtn" data-age-group="전체">전체</button>
+      </div>
+      <div class="age-row" id="ageFilterRow">
+        <button class="age-btn" data-age-group="10대">10대</button>
+        <button class="age-btn" data-age-group="20대">20대</button>
+        <button class="age-btn" data-age-group="30대">30대</button>
+        <button class="age-btn" data-age-group="40대">40대</button>
+        <button class="age-btn" data-age-group="50대">50대</button>
+        <button class="age-btn" data-age-group="60대">60대</button>
+        <button class="age-btn" data-age-group="70대">70대</button>
+        <button class="age-btn" data-age-group="80대">80대</button>
+        <button class="age-btn" data-age-group="90대">90대</button>
+      </div>
+    </div>
+    <div class="filter-section">
+      <div class="filter-title">
+        <span class="filter-title-text chart-toggle" data-chart="등록년도">등록년도</span>
+        <button type="button" class="inline-all-btn active" id="yearAllBtn" data-register-year="전체">전체</button>
+      </div>
+      <div class="age-row" id="yearFilterRow">
+        <button class="age-btn" data-register-year="2020">2020년</button>
+        <button class="age-btn" data-register-year="2021">2021년</button>
+        <button class="age-btn" data-register-year="2022">2022년</button>
+        <button class="age-btn" data-register-year="2023">2023년</button>
+        <button class="age-btn" data-register-year="2024">2024년</button>
+        <button class="age-btn" data-register-year="2025">2025년</button>
+      </div>
+    </div>
+  </aside>
+
+  <!-- CONTENT -->
+  <div class="content-area">
+    <div class="active-filters" id="activeFilters">
+      <span class="result-info"><strong id="resultCount">전체</strong> 0명</span>
+    </div>
+    <div class="chart-panel" id="chartPanel" style="display:none;">
+      <div class="chart-panel-header">
+        <div>
+          <div class="chart-title" id="chartTitle">비율 그래프</div>
+          <div class="chart-subtitle" id="chartSubtitle">현재 필터 결과 기준 비율</div>
+          <div class="chart-hint" id="chartHint">그래프 항목을 클릭하면 해당 성도 목록으로 바로 이동합니다.</div>
+          <div class="chart-toolbar">
+            <span class="chart-sort-label">막대 정렬</span>
+            <div class="chart-sort-buttons" id="chartSortButtons">
+              <button type="button" class="chart-sort-btn active" data-chart-sort="label_asc">가나다순</button>
+              <button type="button" class="chart-sort-btn" data-chart-sort="count_desc">많은 순</button>
+              <button type="button" class="chart-sort-btn" data-chart-sort="count_asc">적은 순</button>
+            </div>
+          </div>
+        </div>
+        <button type="button" class="page-btn" id="chartBackBtn">성도목록으로 돌아가기</button>
+      </div>
+      <div class="chart-layout">
+        <div class="chart-bars" id="chartBars"></div>
+        <div class="chart-side">
+          <div class="chart-side-title">원형 그래프</div>
+          <div class="chart-pie-wrap" id="chartPieWrap"></div>
+          <div class="chart-legend" id="chartLegend"></div>
+        </div>
+      </div>
+    </div>
+    <div class="table-wrap" id="tableWrap">
+      <table>
+        <thead>
+          <tr>
+            <th data-sort="이름">이름 <span class="sort-icon">↕</span></th>
+            <th data-sort="직분">직분 <span class="sort-icon">↕</span></th>
+            <th data-sort="나이" class="hide-mobile">나이 <span class="sort-icon">↕</span></th>
+            <th data-sort="현재상태">현재상태 <span class="sort-icon">↕</span></th>
+            <th data-sort="구역" class="hide-mobile">구역 <span class="sort-icon">↕</span></th>
+            <th class="hide-mobile">연락처</th>
+            <th class="hide-mobile">가족</th>
+            <th data-sort="등록일" class="hide-mobile">등록일 <span class="sort-icon">↕</span></th>
+          </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+      </table>
+      <div class="pagination" id="pagination"></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modalBg" onclick="closeModal(event)">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div>
+        <div class="modal-name" id="modalName"></div>
+        <div class="modal-meta" id="modalMeta"></div>
+        <div class="modal-subinfo" id="modalSubinfo"></div>
+      </div>
+      <button class="modal-close" onclick="closeModalDirect()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+
+<script>
+(() => {
+  const PAGE_SIZE = 50;
+  const ROLE_ORDER = ['장로','목사','사모','안수집사','전도사','권사','집사','성도','기타'];
+
+  const state = {
+    members: [],
+    filtered: [],
+    currentPage: 1,
+    sortCol: '이름',
+    sortDir: 1,
+    searchQuery: '',
+    view: 'table',
+    chartType: null,
+    chartSort: 'label_asc',
+    chartEtcExpanded: false,
+    filters: {
+      교구: null,
+      직분: null,
+      성별: '전체',
+      세대: '전체',
+      현재상태: null,
+      세례: null,
+      구역: null,
+      세부직분: null,
+      등록년도: '전체',
+      이름: null
+    }
+  };
+
+  const els = {};
+
+  function $(id) { return document.getElementById(id); }
+
+  function normalizeText(value) {
+    return String(value ?? '').trim().replace(/\s+/g, ' ');
+  }
+
+  function escapeHtml(value) {
+    return String(value ?? '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  function normalizeLooseSearch(value) {
+    return normalizeText(value).toLowerCase().replace(/\s+/g, '');
+  }
+
+  function getMembersByName(name) {
+    const target = normalizeText(name);
+    if (!target) return [];
+    return state.members.filter(member => normalizeText(member.이름) === target);
+  }
+
+  function isDuplicateName(name) {
+    return getMembersByName(name).length > 1;
+  }
+
+  function getDuplicateBadge(name) {
+    const matches = getMembersByName(name);
+    if (matches.length <= 1) return '';
+    return `<span class="duplicate-hint">동명이인 ${matches.length}명</span>`;
+  }
+
+  function getMemberDisambiguation(member) {
+    const role = getRoleBadgeLabel(member);
+    const district = normalizeText(member.구역);
+    const village = normalizeText(member.교구);
+    return [role, district || village].filter(Boolean).join(' · ');
+  }
+
+  function renderDisplayName(member) {
+    const name = escapeHtml(normalizeText(member.이름));
+    const role = escapeHtml(getRoleBadgeLabel(member));
+    const duplicate = isDuplicateName(member.이름);
+    const roleHtml = duplicate ? `<span class="name-role-sub">${role}</span>` : '';
+    return `<span class="name-role-inline"><span>${name}</span>${roleHtml}</span>${getDuplicateBadge(member.이름)}`;
+  }
+
+  function renderModalName(member) {
+    const name = normalizeText(member.이름);
+    const clickable = !!name;
+    return `<button type="button" class="modal-name-button${clickable ? ' is-clickable' : ''}" ${clickable ? `data-name-filter="${escapeHtml(name)}" data-name-filter-id="${escapeHtml(member.ID)}"` : ''}>${escapeHtml(name || '-')}</button>`;
+  }
+
+  function renderDuplicateQuickList(member) {
+    const matches = getMembersByName(member.이름);
+    if (matches.length <= 1) return '';
+    const items = matches.map(item => {
+      const isCurrent = String(item.ID) === String(member.ID);
+      return `<button type="button" class="duplicate-quick-btn${isCurrent ? ' is-current' : ''}" ${isCurrent ? 'disabled' : `data-member-id="${escapeHtml(item.ID)}"`}><span class="duplicate-quick-name">${escapeHtml(normalizeText(item.이름))}</span><span class="duplicate-quick-detail">${escapeHtml(getMemberDisambiguation(item) || '정보 없음')}</span></button>`;
+    }).join('');
+    return `<span class="duplicate-summary-badge">동명이인 ${matches.length}명</span><div class="duplicate-quick-list">${items}</div>`;
+  }
+
+  function getFamilySearchKey(member) {
+    if (!member) return '';
+    const familyText = normalizeText(member.가족전체);
+    if (familyText) return `family:${familyText}`;
+    const householdHead = normalizeText(member.세대주);
+    if (householdHead) return `head:${householdHead}`;
+    const spouse = normalizeText(member.배우자);
+    if (spouse) {
+      const pair = [normalizeText(member.이름), spouse].filter(Boolean).sort().join('|');
+      if (pair) return `pair:${pair}`;
+    }
+    return '';
+  }
+
+  function applyNameFilter(memberIdOrName) {
+    const targetMember = state.members.find(member => String(member.ID) === String(memberIdOrName)) || null;
+    const normalizedName = targetMember ? normalizeText(targetMember.이름) : normalizeText(memberIdOrName);
+    if (!normalizedName) return;
+
+    state.filters.이름 = null;
+    state.filters.이름가족키 = null;
+    state.searchQuery = normalizedName.toLowerCase();
+    if (els.searchInput) els.searchInput.value = normalizedName;
+
+    $('modalBg').classList.remove('open');
+    closeMobileSidebar();
+    rerender({ rebuildFilters: true, resetPage: true });
+  }
+
+  function normalizeRole(member) {
+    const raw = `${member?.직분 || ''} ${member?.세부직분 || ''}`.trim();
+    if (!raw) return '기타';
+    if (raw.includes('장로')) return '장로';
+    if (raw.includes('목사')) return '목사';
+    if (raw.includes('사모')) return '사모';
+    if (raw.includes('안수집사')) return '안수집사';
+    if (raw.includes('전도사')) return '전도사';
+    if (raw.includes('권사')) return '권사';
+    if (raw.includes('집사')) return '집사';
+    if (raw.includes('성도')) return '성도';
+    return '기타';
+  }
+
+  function roleSortIndex(role) {
+    const idx = ROLE_ORDER.indexOf(role);
+    return idx === -1 ? ROLE_ORDER.length : idx;
+  }
+
+  function getRoleBadgeLabel(member) {
+    const normalized = normalizeRole(member);
+    return normalized === '기타' ? (member?.직분 || member?.세부직분 || '기타') : normalized;
+  }
+
+  function detectGroupType(value) {
+    const label = normalizeText(value);
+    if (!label) return '부서';
+    if (label.endsWith('마을')) return '마을';
+    if (label.includes('교구')) return '교구';
+    return '부서';
+  }
+
+
+  function getVillageFilterValue(member) {
+    const village = normalizeText(member?.교구);
+    return village && village.endsWith('마을') ? village : '기타';
+  }
+
+  function formatDate(v) {
+    const s = normalizeText(v);
+    if (!s || s === '0' || s === 'NaT' || s === 'null' || s === 'undefined') return '';
+    if (/^\d{4}-\d{2}-\d{2}$/.test(s)) return s;
+    if (/^\d{4}[./]\d{2}[./]\d{2}$/.test(s)) return s.replace(/[.]/g, '-').replace(/\//g, '-');
+    if (/^\d{8}$/.test(s)) return `${s.slice(0,4)}-${s.slice(4,6)}-${s.slice(6,8)}`;
+    if (/^\d{6}$/.test(s)) return s;
+    if (/^\d{5}$/.test(s)) {
+      const excelEpoch = new Date(Date.UTC(1899, 11, 30));
+      const date = new Date(excelEpoch.getTime() + Number(s) * 86400000);
+      const yyyy = date.getUTCFullYear();
+      const mm = String(date.getUTCMonth() + 1).padStart(2, '0');
+      const dd = String(date.getUTCDate()).padStart(2, '0');
+      return `${yyyy}-${mm}-${dd}`;
+    }
+    return s;
+  }
+
+
+  function getRegisterYear(member) {
+    const date = formatDate(member?.등록일);
+    if (!date) return '';
+    const year = date.slice(0, 4);
+    return /^\d{4}$/.test(year) ? year : '';
+  }
+
+
+
+  function getAgeGroup(member) {
+    const age = Number(member?.나이 || 0);
+    if (!Number.isFinite(age) || age <= 0) return '';
+    const decade = Math.floor(age / 10) * 10;
+    return `${decade}대`;
+  }
+
+  function getBirthDisplay(member) {
+    if (!member || typeof member !== 'object') return '데이터 없음';
+
+    const preferredKeys = [
+      '생년월일', '생년월일8자리', '생년월일 8자리', '출생일', '생일',
+      'Birth', 'birth', 'birthday', 'Birthday', 'DOB', 'dob'
+    ];
+
+    for (const key of preferredKeys) {
+      const birth = formatDate(member[key]);
+      if (birth) return birth;
+    }
+
+    const dynamicKey = Object.keys(member).find((key) => /생년|출생|생일|birth|birthday|dob/i.test(String(key)));
+    if (dynamicKey) {
+      const birth = formatDate(member[dynamicKey]);
+      if (birth) return birth;
+    }
+
+    const nestedCandidates = [member.추가정보, member.상세정보, member.개인정보, member.profile, member.meta];
+    for (const nested of nestedCandidates) {
+      if (!nested || typeof nested !== 'object') continue;
+      const nestedKey = Object.keys(nested).find((key) => /생년|출생|생일|birth|birthday|dob/i.test(String(key)));
+      if (!nestedKey) continue;
+      const birth = formatDate(nested[nestedKey]);
+      if (birth) return birth;
+    }
+
+    return '데이터 없음';
+  }
+
+  function getJikClass(roleLabel) {
+    const role = normalizeText(roleLabel);
+    if (role.includes('장로')) return 'jik-장로';
+    if (role.includes('목사')) return 'jik-목사';
+    if (role.includes('사모')) return 'jik-사모';
+    if (role.includes('안수집사')) return 'jik-안수집사';
+    if (role.includes('전도사')) return 'jik-전도사';
+    if (role.includes('권사')) return role.includes('명예') ? 'jik-명예권사' : 'jik-권사';
+    if (role.includes('집사')) return 'jik-집사';
+    if (role.includes('성도')) return 'jik-성도';
+    return 'jik-other';
+  }
+
+  function getBadgeColor(label, type = 'default') {
+    const normalized = normalizeText(label) || '미기재';
+    const presetStatus = {
+      '출석': '#7bce9a',
+      '미출석': '#e3a87e',
+      '장기결석': '#e87a5a',
+      '새가족': '#7ec8e3',
+      '등록': '#8aa0c8',
+      '이명': '#c97ecb',
+      '전출': '#a8b8d8'
+    };
+    if (type === 'status' && presetStatus[normalized]) return presetStatus[normalized];
+
+    let hash = 0;
+    const seed = `${type}:${normalized}`;
+    for (let i = 0; i < seed.length; i += 1) {
+      hash = ((hash << 5) - hash) + seed.charCodeAt(i);
+      hash |= 0;
+    }
+    const hue = Math.abs(hash) % 360;
+    return `hsl(${hue} 62% 68%)`;
+  }
+
+  function makeValueBadge(label, type = 'default', clickable = false, extraAttrs = '') {
+    const safeLabel = normalizeText(label) || '-';
+    const color = getBadgeColor(safeLabel, type);
+    return `<span class="value-badge${clickable ? ' is-clickable' : ''}" style="--badge-color:${color};" ${extraAttrs}>${escapeHtml(safeLabel)}</span>`;
+  }
+
+  function isBadgeFilterActive(type, value) {
+    const normalizedValue = normalizeText(value);
+    if (!normalizedValue) return false;
+    if (type === '직분') return normalizeText(state.filters.직분) === normalizeRole({ 직분: normalizedValue, 세부직분: normalizedValue });
+    if (type === '성별') return state.filters.성별 === normalizedValue;
+    if (type === '세례') return normalizeText(state.filters.세례) === normalizedValue;
+    if (type === '현재상태') return normalizeText(state.filters.현재상태) === normalizedValue;
+    if (type === '교구') return normalizeText(state.filters.교구) === normalizedValue;
+    if (type === '구역') return normalizeText(state.filters.구역) === normalizedValue;
+    if (type === '세부직분') return normalizeText(state.filters.세부직분) === normalizedValue;
+    if (type === '등록년도') return state.filters.등록년도 === normalizedValue;
+    return false;
+  }
+
+  function makeDetailFilterBadge(label, type = 'default', filterType = '', filterValue = '') {
+    const safeLabel = normalizeText(label);
+    const safeFilterValue = normalizeText(filterValue);
+    const clickable = filterType && safeFilterValue;
+    const active = clickable && isBadgeFilterActive(filterType, safeFilterValue);
+    const attrs = clickable
+      ? ` data-badge-filter-type="${escapeHtml(filterType)}" data-badge-filter-value="${escapeHtml(safeFilterValue)}"`
+      : '';
+    return makeValueBadge(safeLabel || '-', type, clickable, `${attrs}${active ? ' data-badge-active="true"' : ''} `).replace('value-badge', `value-badge${active ? ' is-active' : ''}`);
+  }
+
+  function renderDetailLookupField(label, displayValue, options = {}) {
+    const safeLabel = normalizeText(label);
+    const safeDisplayValue = normalizeText(displayValue);
+    const filterType = options.filterType || '';
+    const filterValue = normalizeText(options.filterValue ?? safeDisplayValue);
+    const badgeType = options.badgeType || 'default';
+    const isEmpty = !safeDisplayValue || safeDisplayValue === '0' || safeDisplayValue === 'NaT';
+    if (isEmpty) return field(safeLabel, safeDisplayValue);
+    if (!filterType || !filterValue) return field(safeLabel, safeDisplayValue);
+    return fieldHtml(safeLabel, makeDetailFilterBadge(safeDisplayValue, badgeType, filterType, filterValue));
+  }
+
+  function renderFamilyInline(member) {
+    const raw = normalizeText(member && member.가족전체);
+    const selfName = normalizeText(member && member.이름);
+    if (!raw) return '<span style="color:var(--text3)">-</span>';
+    const familyNetwork = buildResolvedFamilyNetwork(member);
+    const parts = raw.split(/\s+/).filter(Boolean);
+    return `<div class="family-inline-list">${parts.map(part => {
+      const m = part.match(/^(.+?)(?:\((.+?)\))?$/);
+      const name = normalizeText(m ? m[1] : part);
+      const jik = normalizeText(m && m[2] ? m[2] : '');
+      const linkedMember = findFamilyMemberByName(name, member.가족전체, member, familyNetwork);
+      const clickable = linkedMember && linkedMember.ID && name !== selfName;
+      const attrs = clickable ? ` data-family-member-id="${escapeHtml(linkedMember.ID)}"` : '';
+      return `<span class="family-inline-name${clickable ? ' is-link' : ''}"${attrs}>${escapeHtml(name)}${jik ? `<span class="family-inline-jik">(${escapeHtml(jik)})</span>` : ''}</span>`;
+    }).join('')}</div>`;
+  }
+
+  function renderFamilyContextSummary(member, familyNetwork = null) {
+    return '';
+  }
+
+  function parseFamilyTextEntries(rawFamilyText) {
+    const raw = normalizeText(rawFamilyText);
+    if (!raw) return [];
+    return raw.split(/\s+/).filter(Boolean).map(part => {
+      const match = part.match(/^(.+?)(?:\((.+?)\))?$/);
+      return {
+        name: normalizeText(match ? match[1] : part),
+        jik: normalizeText(match && match[2] ? match[2] : '')
+      };
+    }).filter(entry => entry.name);
+  }
+
+  function getFamilyEntryMap(member) {
+    const map = new Map();
+    parseFamilyTextEntries(member && member.가족전체).forEach(entry => {
+      if (!map.has(entry.name)) map.set(entry.name, entry);
+    });
+    return map;
+  }
+
+  function getMemberReferenceNames(member) {
+    const names = new Set();
+    if (!member) return names;
+    const selfName = normalizeText(member.이름);
+    const headName = normalizeText(member.세대주);
+    const spouseName = normalizeText(member.배우자);
+    const extendedHeadName = normalizeText(member.대가족세대주1);
+    if (selfName) names.add(selfName);
+    if (headName) names.add(headName);
+    if (spouseName) names.add(spouseName);
+    if (extendedHeadName) names.add(extendedHeadName);
+    parseFamilyTextEntries(member.가족전체).forEach(entry => names.add(entry.name));
+    return names;
+  }
+
+  function memberReferencesName(member, targetName) {
+    const normalizedTarget = normalizeText(targetName);
+    if (!member || !normalizedTarget) return false;
+    return getMemberReferenceNames(member).has(normalizedTarget);
+  }
+
+  function getFamilyCandidateScore(source, candidate, contextNames = new Set()) {
+    if (!source || !candidate) return -1;
+    if (String(source.ID) === String(candidate.ID)) return -1;
+
+    const sourceName = normalizeText(source.이름);
+    const candidateName = normalizeText(candidate.이름);
+    if (!candidateName) return -1;
+
+    let score = 0;
+    const sourceNames = getMemberReferenceNames(source);
+    const candidateNames = getMemberReferenceNames(candidate);
+    const sourceHead = normalizeText(source.세대주);
+    const candidateHead = normalizeText(candidate.세대주);
+    const sourceSpouse = normalizeText(source.배우자);
+    const candidateSpouse = normalizeText(candidate.배우자);
+
+    const comparableSourceNames = [...sourceNames].filter(name => name && name !== sourceName && name !== candidateName);
+    const comparableCandidateNames = [...candidateNames].filter(name => name && name !== sourceName && name !== candidateName);
+    const sharedContextNames = comparableSourceNames.filter(name => comparableCandidateNames.includes(name));
+
+    if (sourceHead && candidateHead && sourceHead === candidateHead) score += 30;
+    if ((sourceSpouse && sourceSpouse === candidateName) || (candidateSpouse && candidateSpouse === sourceName)) score += 35;
+    if ((sourceName && candidateHead === sourceName) || (candidateName && sourceHead === candidateName)) score += 25;
+
+    const sourceFamilyKey = getFamilySearchKey(source);
+    const candidateFamilyKey = getFamilySearchKey(candidate);
+    if (sourceFamilyKey && candidateFamilyKey && sourceFamilyKey === candidateFamilyKey) score += 40;
+
+    score += Math.min(sharedContextNames.length, 4) * 12;
+
+    if (contextNames && contextNames.size) {
+      const filteredContextNames = [...contextNames].filter(name => name && name !== sourceName && name !== candidateName);
+      const contextMatches = filteredContextNames.filter(name => candidateNames.has(name));
+      score += Math.min(contextMatches.length, 4) * 8;
+    }
+
+    const sourceAge = getMemberAgeNumber(source);
+    const candidateAge = getMemberAgeNumber(candidate);
+    if (sourceAge && candidateAge && sourceAge === candidateAge) score += 3;
+
+    const hasStrongRelationship = score >= 30 || sharedContextNames.length >= 2;
+    return hasStrongRelationship ? score : -1;
+  }
+
+  function findLinkedFamilyCandidates(source, targetName, networkMembers = []) {
+    const normalizedName = normalizeText(targetName);
+    if (!source || !normalizedName) return [];
+
+    const contextNames = new Set();
+    networkMembers.forEach(member => {
+      getMemberReferenceNames(member).forEach(name => contextNames.add(name));
+    });
+    getMemberReferenceNames(source).forEach(name => contextNames.add(name));
+
+    const candidates = state.members
+      .filter(member => normalizeText(member.이름) === normalizedName)
+      .map(member => ({ member, score: getFamilyCandidateScore(source, member, contextNames) }))
+      .filter(item => item.score > 0);
+
+    if (!candidates.length) return [];
+
+    const maxScore = Math.max(...candidates.map(item => item.score));
+    return candidates
+      .filter(item => item.score === maxScore)
+      .map(item => item.member);
+  }
+
+  function buildResolvedFamilyNetwork(member) {
+    if (!member || !member.ID) return [];
+
+    const networkMap = new Map();
+    const queue = [member];
+
+    while (queue.length) {
+      const current = queue.shift();
+      if (!current || networkMap.has(String(current.ID))) continue;
+      networkMap.set(String(current.ID), current);
+
+      const knownMembers = [...networkMap.values(), ...queue];
+      const familyEntries = getFamilyEntryMap(current);
+
+      familyEntries.forEach((entry, name) => {
+        const linkedCandidates = findLinkedFamilyCandidates(current, name, knownMembers)
+          .filter(candidate => !networkMap.has(String(candidate.ID)));
+
+        linkedCandidates.forEach(candidate => {
+          queue.push(candidate);
+        });
+      });
+    }
+
+    return [...networkMap.values()];
+  }
+
+  function getMemberAgeNumber(member) {
+    const age = Number(member && member.나이);
+    return Number.isFinite(age) && age > 0 ? age : 0;
+  }
+
+  function isSameImmediateFamily(source, candidate, targetFamily = '') {
+    if (!source || !candidate) return false;
+
+    const sourceName = normalizeText(source.이름);
+    const candidateName = normalizeText(candidate.이름);
+    const sourceHead = normalizeText(source.세대주);
+    const candidateHead = normalizeText(candidate.세대주);
+    const sourceSpouse = normalizeText(source.배우자);
+    const candidateSpouse = normalizeText(candidate.배우자);
+    const targetNames = new Set(parseFamilyTextEntries(targetFamily).map(entry => normalizeText(entry.name)).filter(Boolean));
+    const sourceNames = getMemberReferenceNames(source);
+    const candidateNames = getMemberReferenceNames(candidate);
+
+    if (targetFamily && normalizeText(candidate.가족전체) === normalizeText(targetFamily)) return true;
+    if (sourceHead && candidateHead && sourceHead === candidateHead) return true;
+    if ((sourceSpouse && sourceSpouse === candidateName) || (candidateSpouse && candidateSpouse === sourceName)) return true;
+    if ((sourceName && candidateHead === sourceName) || (candidateName && sourceHead === candidateName)) return true;
+    if (sourceNames.has(candidateName) && candidateNames.has(sourceName)) return true;
+
+    const overlap = [...targetNames].filter(name => candidateNames.has(name));
+    if (overlap.length >= 2) return true;
+    if (targetNames.size && sourceName && targetNames.has(sourceName) && candidateNames.has(sourceName)) return true;
+
+    return false;
+  }
+
+  function scoreFamilyNameCandidate(targetName, candidate, targetFamily, baseMember, resolvedNetwork = []) {
+    let score = 0;
+    const candidateName = normalizeText(candidate && candidate.이름);
+    const targetFamilyText = normalizeText(targetFamily);
+    if (!candidate || !candidateName || candidateName !== targetName) return -1;
+
+    if (targetFamilyText && normalizeText(candidate.가족전체) === targetFamilyText) score += 120;
+    if (baseMember && isSameImmediateFamily(baseMember, candidate, targetFamilyText)) score += 80;
+
+    const baseName = normalizeText(baseMember && baseMember.이름);
+    const baseSpouse = normalizeText(baseMember && baseMember.배우자);
+    const baseHead = normalizeText(baseMember && baseMember.세대주);
+    const candidateSpouse = normalizeText(candidate && candidate.배우자);
+    const candidateHead = normalizeText(candidate && candidate.세대주);
+
+    if (baseMember && targetName === baseName && String(candidate.ID) === String(baseMember.ID)) score += 300;
+    if (baseMember && targetName === baseSpouse && candidateName === baseSpouse) score += 150;
+    if (baseMember && targetName === baseHead && candidateName === baseHead) score += 150;
+    if (baseName && candidateSpouse === baseName) score += 50;
+    if (baseSpouse && candidateName === baseSpouse) score += 50;
+    if (baseHead && candidateHead && baseHead === candidateHead) score += 30;
+
+    if (resolvedNetwork && resolvedNetwork.length) {
+      if (resolvedNetwork.some(item => String(item.ID) === String(candidate.ID))) score += 40;
+    }
+
+    const candidateRefs = getMemberReferenceNames(candidate);
+    const targetNames = new Set(parseFamilyTextEntries(targetFamilyText).map(entry => normalizeText(entry.name)).filter(Boolean));
+    const overlap = [...targetNames].filter(name => name && name !== targetName && candidateRefs.has(name));
+    score += Math.min(overlap.length, 5) * 10;
+
+    if (baseMember && targetName === baseName) {
+      const baseAge = getMemberAgeNumber(baseMember);
+      const candidateAge = getMemberAgeNumber(candidate);
+      if (baseAge && candidateAge && baseAge === candidateAge) score += 60;
+    }
+
+    const familyKey = getFamilySearchKey(baseMember);
+    if (familyKey && familyKey === getFamilySearchKey(candidate)) score += 25;
+
+    return score;
+  }
+
+  function findFamilyMemberByName(name, familyText, baseMember = null, familyNetwork = null) {
+    const targetName = normalizeText(name);
+    const targetFamily = normalizeText(familyText);
+    if (!targetName) return null;
+
+    const resolvedNetwork = Array.isArray(familyNetwork) && familyNetwork.length
+      ? familyNetwork
+      : (baseMember ? buildResolvedFamilyNetwork(baseMember) : []);
+
+    const networkMatches = resolvedNetwork.filter(member => normalizeText(member.이름) === targetName);
+    if (networkMatches.length === 1) return networkMatches[0];
+    if (networkMatches.length > 1) {
+      return networkMatches
+        .map(member => ({
+          member,
+          score: scoreFamilyNameCandidate(targetName, member, targetFamily, baseMember, resolvedNetwork)
+        }))
+        .sort((a, b) => b.score - a.score)[0].member;
+    }
+
+    const candidates = state.members.filter(m => normalizeText(m.이름) === targetName);
+    if (!candidates.length) return null;
+    if (candidates.length === 1) return candidates[0];
+
+    return candidates
+      .map(member => ({
+        member,
+        score: scoreFamilyNameCandidate(targetName, member, targetFamily, baseMember, resolvedNetwork)
+      }))
+      .sort((a, b) => b.score - a.score)[0].member;
+  }
+
+  function parseFamilyMembers(member, familyNetwork = null) {
+    const familyEntryMap = getFamilyEntryMap(member);
+    const resolvedNetwork = Array.isArray(familyNetwork) && familyNetwork.length
+      ? familyNetwork
+      : buildResolvedFamilyNetwork(member);
+
+    const peopleMap = new Map();
+    resolvedNetwork.forEach(networkMember => {
+      const networkName = normalizeText(networkMember.이름);
+      if (!networkName) return;
+      const entry = familyEntryMap.get(networkName);
+      if (!peopleMap.has(networkName)) {
+        peopleMap.set(networkName, {
+          name: networkName,
+          jik: normalizeText((entry && entry.jik) || getRoleBadgeLabel(networkMember)),
+          linkedMember: networkMember,
+          relation: normalizeText(networkMember.관계),
+          isSelf: networkName === normalizeText(member.이름),
+          isSpouse: networkName === normalizeText(member.배우자),
+          isHead: networkName === normalizeText(member.세대주)
+        });
+      }
+    });
+
+    familyEntryMap.forEach((entry, name) => {
+      if (peopleMap.has(name)) return;
+      const linkedMember = findFamilyMemberByName(name, member.가족전체, member, resolvedNetwork);
+      const linkedRelation = normalizeText(linkedMember && linkedMember.관계);
+      const selfRelation = normalizeText(member && member.관계);
+      peopleMap.set(name, {
+        name,
+        jik: normalizeText(entry && entry.jik),
+        linkedMember,
+        relation: linkedRelation || (name === normalizeText(member.이름) ? selfRelation : ''),
+        isSelf: name === normalizeText(member.이름),
+        isSpouse: name === normalizeText(member.배우자),
+        isHead: name === normalizeText(member.세대주)
+      });
+    });
+
+    const selfName = normalizeText(member && member.이름);
+    if (selfName && !peopleMap.has(selfName)) {
+      peopleMap.set(selfName, {
+        name: selfName,
+        jik: getRoleBadgeLabel(member),
+        linkedMember: member,
+        relation: normalizeText(member && member.관계),
+        isSelf: true,
+        isSpouse: selfName === normalizeText(member.배우자),
+        isHead: selfName === normalizeText(member.세대주)
+      });
+    }
+
+    return [...peopleMap.values()];
+  }
+
+  function getFamilyRoleInfo(person, member) {
+    const relation = normalizeText(person && person.relation);
+    const selfName = normalizeText(member && member.이름);
+    const spouseName = normalizeText(member && member.배우자);
+    const headName = normalizeText(member && member.세대주) || selfName;
+    const personName = normalizeText(person && person.name);
+
+    if (personName && personName === headName) {
+      return { label: '세대주', className: '세대주' };
+    }
+
+    if (person && person.isSelf) {
+      return { label: '본인', className: '본인' };
+    }
+
+    if (person && person.isSpouse) {
+      return { label: '배우자', className: '배우자' };
+    }
+
+    if (personName && spouseName && personName === spouseName) {
+      return { label: '배우자', className: '배우자' };
+    }
+
+    if (/^(배우자|남편|아내|처|부인|사모님)$/.test(relation)) {
+      return { label: '배우자', className: '배우자' };
+    }
+
+    if (/^(자녀|아들|딸|장남|장녀|차남|차녀|손자|손녀|손주)$/.test(relation)) {
+      return { label: '자녀', className: '자녀' };
+    }
+
+    if (/^(부|모|부모|아버지|어머니|부친|모친|시아버지|시어머니|장인|장모)$/.test(relation)) {
+      return { label: '부모', className: '부모' };
+    }
+
+    if (/^(형|누나|언니|오빠|형제|자매|형제자매)$/.test(relation)) {
+      return { label: '가족', className: '가족' };
+    }
+
+    if (/^(본인)$/.test(relation) || personName === selfName) {
+      return { label: '본인', className: '본인' };
+    }
+
+    return { label: '가족', className: '가족' };
+  }
+
+  function getFamilyTreeAgeText(person) {
+    const ageValue = normalizeText(person && ((person.linkedMember && person.linkedMember.나이) ?? person.나이));
+    if (!ageValue || ageValue === '0' || ageValue === 'NaT') return '';
+    return `${ageValue}세`;
+  }
+
+  function renderFamilyTreePerson(person, roleLabel, roleClass, options = {}) {
+    if (!person || !person.name) return '';
+
+    const variantClass = options.variantClass ? ` ${options.variantClass}` : '';
+    const clickable = person.linkedMember && person.linkedMember.ID;
+    const attrs = clickable ? ` data-family-member-id="${escapeHtml(person.linkedMember.ID)}"` : '';
+    const jikText = normalizeText(person.jik || (person.linkedMember ? getRoleBadgeLabel(person.linkedMember) : ''));
+    const ageText = getFamilyTreeAgeText(person);
+    const relationText = normalizeText(person.relation);
+
+    return `
+      <div class="${options.wrapperClass || 'family-tree-node'}${variantClass}">
+        <span class="family-role-badge family-role-${roleClass}">${escapeHtml(roleLabel)}</span>
+        <span class="family-tree-name${clickable ? ' is-link' : ''}"${attrs}>${escapeHtml(person.name)}</span>
+        ${ageText ? `<span class="family-tree-jik">${escapeHtml(ageText)}</span>` : ''}
+        ${jikText ? `<span class="family-tree-jik">${escapeHtml(jikText)}</span>` : ''}
+        ${relationText && !['본인', '배우자', '세대주'].includes(roleLabel)
+          ? `<span class="family-tree-jik">(${escapeHtml(relationText)})</span>`
+          : ''}
+      </div>
+    `;
+  }
+
+
+  function getExtendedFamilyGroup(member) {
+    const extendedHeadName = normalizeText(member && member.대가족세대주1);
+    if (!extendedHeadName) return [];
+    return state.members.filter(item => normalizeText(item.대가족세대주1) === extendedHeadName);
+  }
+
+  function getComparableAgeValue(person) {
+    const linkedAge = Number(person && person.linkedMember && person.linkedMember.나이);
+    if (Number.isFinite(linkedAge) && linkedAge > 0) return linkedAge;
+    const directAge = Number(person && person.나이);
+    if (Number.isFinite(directAge) && directAge > 0) return directAge;
+    const ageText = normalizeText(person && person.ageText);
+    const matched = ageText.match(/(\d+)/);
+    return matched ? Number(matched[1]) : 0;
+  }
+
+  function dedupePeopleByNameAndAge(items) {
+    const deduped = [];
+    const seen = new Set();
+    (items || []).forEach(item => {
+      const name = normalizeText(item && item.이름 ? item.이름 : item && item.name);
+      const age = getComparableAgeValue(item);
+      const key = `${name}__${age}`;
+      if (!name || seen.has(key)) return;
+      seen.add(key);
+      deduped.push(item);
+    });
+    return deduped;
+  }
+
+  function markExtendedFamilyPersonSeen(person, seenSet) {
+    if (!person || !seenSet) return false;
+    const name = normalizeText(person.name || person.이름);
+    const age = normalizeText((person.ageText && String(person.ageText).replace(/[^\d]/g, '')) || person.나이);
+    if (!name) return false;
+    const key = `${name}__${age}`;
+    if (seenSet.has(key)) return true;
+    seenSet.add(key);
+    return false;
+  }
+
+  function buildExtendedFamilyBranch(branchMember, extendedHeadName, duplicateNameSet = new Set(), globalSeenSet = null) {
+    if (!branchMember) return '';
+
+    const branchName = normalizeText(branchMember.이름);
+    const branchDisplayName = duplicateNameSet.has(branchName) ? `${branchName} (동명이인)` : branchName;
+    const relation = normalizeText(branchMember.대가족관계1 || branchMember.관계 || '가족');
+    const role = relation === '본인'
+      ? { label: '본인', className: '본인' }
+      : getFamilyRoleInfo({ ...branchMember, 관계: relation }, branchMember);
+
+    const branchClickable = branchMember && branchMember.ID;
+    const branchAttrs = branchClickable ? ` data-family-member-id="${escapeHtml(branchMember.ID)}"` : '';
+    const branchJik = normalizeText(getRoleBadgeLabel(branchMember));
+    const branchAge = getFamilyTreeAgeText({ linkedMember: branchMember });
+    if (markExtendedFamilyPersonSeen({ 이름: branchName, 나이: branchMember && branchMember.나이, ageText: branchAge }, globalSeenSet)) {
+      return '';
+    }
+
+    const spouseName = normalizeText(branchMember.배우자);
+    const spouseMember = spouseName
+      ? (findFamilyMemberByName(spouseName, branchMember.가족전체, branchMember) || null)
+      : null;
+    const spouseJik = normalizeText(
+      spouseMember
+        ? getRoleBadgeLabel(spouseMember)
+        : normalizeText(branchMember.배우자직분 || branchMember.배우자상세직분)
+    );
+
+    const childPeople = [];
+    const familyEntries = parseFamilyTextEntries(branchMember.가족전체);
+    const seen = new Set([branchName, spouseName].filter(Boolean));
+
+    familyEntries.forEach(entry => {
+      const entryName = normalizeText(entry.name);
+      if (!entryName || seen.has(entryName) || entryName === extendedHeadName) return;
+      seen.add(entryName);
+      const linked = findFamilyMemberByName(entryName, branchMember.가족전체, branchMember) || null;
+      const entryRelation = normalizeText(linked && linked.관계);
+      const entryRole = getFamilyRoleInfo({ ...(linked || {}), 관계: entryRelation }, branchMember);
+      childPeople.push({
+        name: entryName,
+        jik: normalizeText(linked ? getRoleBadgeLabel(linked) : entry.jik),
+        linkedMember: linked,
+        relation: entryRelation || entryRole.label,
+        ageText: getFamilyTreeAgeText({ linkedMember: linked }),
+        나이: linked && linked.나이
+      });
+    });
+
+    const childrenNodes = dedupePeopleByNameAndAge(childPeople).filter(person => {
+      return !markExtendedFamilyPersonSeen({ 이름: person.name, 나이: person.나이, ageText: person.ageText }, globalSeenSet);
+    }).map(person => {
+      const personRelation = normalizeText(person.relation);
+      const personRole = getFamilyRoleInfo({ ...(person.linkedMember || {}), 관계: personRelation }, branchMember);
+      return renderFamilyTreePerson(person, personRole.label, personRole.className, { wrapperClass: 'family-tree-child-chip' });
+    });
+
+    const spouseAge = getFamilyTreeAgeText({ linkedMember: spouseMember });
+    const spouseCard = spouseName && !markExtendedFamilyPersonSeen({
+      이름: spouseName,
+      나이: spouseMember && spouseMember.나이,
+      ageText: spouseAge
+    }, globalSeenSet)
+      ? renderFamilyTreePerson({
+          name: spouseName,
+          jik: spouseJik,
+          linkedMember: spouseMember,
+          relation: '배우자',
+          ageText: spouseAge,
+          나이: spouseMember && spouseMember.나이
+        }, '배우자', '배우자', { wrapperClass: 'family-tree-spouse-card' })
+      : '';
+
+    return `
+      <div class="family-tree-branch">
+        <div class="family-tree-rootline">
+          <div class="family-tree-head">
+            <span class="family-role-badge family-role-${escapeHtml(role.className)}">${escapeHtml(role.label)}</span>
+            <span class="family-tree-name${branchClickable ? ' is-link' : ''}"${branchAttrs}>${escapeHtml(branchDisplayName)}</span>
+            ${branchAge ? `<span class="family-tree-jik">${escapeHtml(branchAge)}</span>` : ''}
+            ${branchJik ? `<span class="family-tree-jik">${escapeHtml(branchJik)}</span>` : ''}
+          </div>
+          ${spouseCard}
+        </div>
+        <div class="family-tree-children">
+          ${childrenNodes.length ? `<div class="family-tree-children-list">${childrenNodes.join('')}</div>` : `<div class="family-tree-empty">가족 구성원 정보 없음</div>`}
+        </div>
+      </div>
+    `;
+  }
+
+  function buildExtendedFamilyTree(member) {
+    const extendedHeadName = normalizeText(member && member.대가족세대주1);
+    const currentHeadName = normalizeText(member && member.세대주);
+    if (!extendedHeadName) return '';
+    if (currentHeadName && currentHeadName === extendedHeadName) return '';
+
+    const groupMembers = getExtendedFamilyGroup(member);
+    if (!groupMembers.length) return '';
+
+    const headMember = groupMembers.find(item => normalizeText(item.이름) === extendedHeadName)
+      || state.members.find(item => normalizeText(item.이름) === extendedHeadName)
+      || findFamilyMemberByName(extendedHeadName, '', member)
+      || null;
+
+    const headClickable = headMember && headMember.ID;
+    const headAttrs = headClickable ? ` data-family-member-id="${escapeHtml(headMember.ID)}"` : '';
+    const headJik = normalizeText(headMember ? getRoleBadgeLabel(headMember) : '');
+    const headAge = getFamilyTreeAgeText({ linkedMember: headMember });
+    const headSpouseName = normalizeText(headMember && headMember.배우자);
+    const headSpouseMember = headSpouseName
+      ? (findFamilyMemberByName(headSpouseName, headMember && headMember.가족전체, headMember) || null)
+      : null;
+
+    const globalSeenSet = new Set();
+    markExtendedFamilyPersonSeen({ 이름: extendedHeadName, 나이: headMember && headMember.나이, ageText: headAge }, globalSeenSet);
+
+    const headSpouseCard = headSpouseName && !markExtendedFamilyPersonSeen({ 이름: headSpouseName, 나이: headSpouseMember && headSpouseMember.나이, ageText: getFamilyTreeAgeText({ linkedMember: headSpouseMember }) }, globalSeenSet)
+      ? renderFamilyTreePerson({
+          name: headSpouseName,
+          jik: normalizeText(
+            headSpouseMember
+              ? getRoleBadgeLabel(headSpouseMember)
+              : (headMember ? normalizeText(headMember.배우자직분 || headMember.배우자상세직분) : '')
+          ),
+          linkedMember: headSpouseMember,
+          relation: '배우자'
+        }, '배우자', '배우자', { wrapperClass: 'family-tree-spouse-card' })
+      : '';
+
+    const relationPriority = (relation) => {
+      const normalized = normalizeText(relation);
+      if (/^(아들|딸|장남|장녀|차남|차녀|자녀)/.test(normalized)) return 1;
+      if (/^(사위|며느리|자부|배우자|남편|아내|처|부인)/.test(normalized)) return 2;
+      if (/^(형|누나|언니|오빠|형제|자매)/.test(normalized)) return 3;
+      if (normalized === '본인') return 4;
+      return 5;
+    };
+
+    const branchMembers = dedupePeopleByNameAndAge(
+      groupMembers.filter(item => {
+        const itemName = normalizeText(item && item.이름);
+        if (!itemName || itemName === extendedHeadName) return false;
+        if (headSpouseName && itemName === headSpouseName) return false;
+        return true;
+      })
+    ).sort((a, b) => {
+      const ageA = Number(a && a.나이) || 0;
+      const ageB = Number(b && b.나이) || 0;
+      if (ageA !== ageB) return ageB - ageA;
+
+      const ra = relationPriority(a.대가족관계1 || a.관계);
+      const rb = relationPriority(b.대가족관계1 || b.관계);
+      if (ra !== rb) return ra - rb;
+
+      return normalizeText(a.이름).localeCompare(normalizeText(b.이름), 'ko');
+    });
+
+    const nameCounts = new Map();
+    branchMembers.forEach(item => {
+      const name = normalizeText(item && item.이름);
+      if (!name) return;
+      nameCounts.set(name, (nameCounts.get(name) || 0) + 1);
+    });
+    const duplicateNameSet = new Set(Array.from(nameCounts.entries()).filter(([, count]) => count > 1).map(([name]) => name));
+
+    const usedBranchKeys = new Set();
+    const renderedBranches = branchMembers.map(item => {
+      const key = `${normalizeText(item && item.이름)}__${Number(item && item.나이) || 0}`;
+      if (usedBranchKeys.has(key)) return '';
+      usedBranchKeys.add(key);
+      return buildExtendedFamilyBranch(item, extendedHeadName, duplicateNameSet, globalSeenSet);
+    }).filter(Boolean);
+    const branchCount = renderedBranches.length;
+    const branchHtml = renderedBranches.join('');
+
+    return `
+      <div class="family-tree-section family-tree-extended">
+        <details class="family-tree-extended-details" open>
+          <summary class="family-tree-extended-summary">
+            <span class="family-tree-extended-summary-text">대가족 구성원 <span class="family-tree-extended-count">${branchCount}</span></span>
+            <span class="family-tree-extended-chevron">▾</span>
+          </summary>
+          <div class="family-tree-extended-content">
+            <div class="family-tree">
+              <div class="family-tree-rootline">
+                <div class="family-tree-head">
+                  <span class="family-role-badge family-role-세대주">대가족세대주</span>
+                  <span class="family-tree-name${headClickable ? ' is-link' : ''}"${headAttrs}>${escapeHtml(extendedHeadName)}</span>
+                  ${headAge ? `<span class="family-tree-jik">${escapeHtml(headAge)}</span>` : ''}
+                  ${headJik ? `<span class="family-tree-jik">${escapeHtml(headJik)}</span>` : ''}
+                </div>
+                ${headSpouseCard}
+              </div>
+              <div class="family-tree-extended-branches">
+                ${branchHtml || `<div class="family-tree-empty">대가족 구성원 정보 없음</div>`}
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+    `;
+  }
+
+  function renderFamilyTree(member) {
+    const familyNetwork = buildResolvedFamilyNetwork(member);
+    const familyMembers = parseFamilyMembers(member, familyNetwork);
+    if (!familyMembers.length) {
+      return `<div class="family-tree-empty">가족 정보 없음</div>`;
+    }
+
+    const selfName = normalizeText(member.이름);
+    const spouseName = normalizeText(member.배우자);
+    const headName = normalizeText(member.세대주) || selfName;
+
+    const selfMember = familyMembers.find(item => item.name === selfName) || {
+      name: selfName,
+      jik: getRoleBadgeLabel(member),
+      linkedMember: member,
+      relation: normalizeText(member.관계),
+      isSelf: true
+    };
+
+    const spouseMember = spouseName
+      ? (familyMembers.find(item => item.name === spouseName) || {
+          name: spouseName,
+          jik: normalizeText(member.배우자직분),
+          linkedMember: findFamilyMemberByName(spouseName, member.가족전체),
+          relation: '배우자',
+          isSpouse: true
+        })
+      : null;
+
+    const headMember = familyMembers.find(item => item.name === headName) || {
+      name: headName,
+      jik: headName === selfName ? getRoleBadgeLabel(member) : '',
+      linkedMember: findFamilyMemberByName(headName, member.가족전체),
+      relation: '세대주',
+      isHead: true
+    };
+
+    const usedNames = new Set();
+    const childNodes = [];
+
+    const addNode = (person) => {
+      if (!person || !person.name || usedNames.has(person.name) || person.name === headMember.name) return;
+      usedNames.add(person.name);
+      const role = getFamilyRoleInfo(person, member);
+      childNodes.push(renderFamilyTreePerson(person, role.label, role.className, { wrapperClass: 'family-tree-child-chip' }));
+    };
+
+    if (selfMember && selfMember.name !== headMember.name) addNode(selfMember);
+
+    const parents = [];
+    const children = [];
+    const others = [];
+
+    familyMembers.forEach(item => {
+      if (!item.name) return;
+      if (item.name === headMember.name) return;
+      if (item.name === spouseName) return;
+      if (item.name === selfName) return;
+      const role = getFamilyRoleInfo(item, member);
+      if (role.className === '부모') parents.push(item);
+      else if (role.className === '자녀') children.push(item);
+      else others.push(item);
+    });
+
+    parents.forEach(addNode);
+    children.forEach(addNode);
+    others.forEach(addNode);
+
+    const headClickable = headMember.linkedMember && headMember.linkedMember.ID;
+    const headAttrs = headClickable ? ` data-family-member-id="${escapeHtml(headMember.linkedMember.ID)}"` : '';
+    const headJik = normalizeText(headMember.jik || (headMember.linkedMember ? getRoleBadgeLabel(headMember.linkedMember) : ''));
+    const headAge = getFamilyTreeAgeText(headMember);
+
+    const extendedFamilyTree = buildExtendedFamilyTree(member);
+
+    return `
+      <div class="family-tree-section">
+        <div class="family-tree">
+          <div class="family-tree-rootline">
+            <div class="family-tree-head">
+              <span class="family-role-badge family-role-세대주">세대주</span>
+              <span class="family-tree-name${headClickable ? ' is-link' : ''}"${headAttrs}>${escapeHtml(headMember.name || selfName || '-')}</span>
+              ${headAge ? `<span class="family-tree-jik">${escapeHtml(headAge)}</span>` : ''}
+              ${headJik ? `<span class="family-tree-jik">${escapeHtml(headJik)}</span>` : ''}
+            </div>
+            ${spouseMember && spouseMember.name && spouseMember.name !== headMember.name
+              ? renderFamilyTreePerson(spouseMember, '배우자', '배우자', { wrapperClass: 'family-tree-spouse-card' })
+              : ''}
+          </div>
+          <div class="family-tree-children">
+            ${childNodes.length ? `<div class="family-tree-children-list">${childNodes.join('')}</div>` : `<div class="family-tree-empty">가족 구성원 정보 없음</div>`}
+          </div>
+        </div>
+      </div>
+      ${extendedFamilyTree}
+    `;
+  }
+
+
+  function renderInlineMetaItem(label, valueHtml, extraClass = '') {
+    const safeLabel = escapeHtml(normalizeText(label));
+    return `<div class="inline-meta-item${extraClass ? ` ${extraClass}` : ''}"><span class="inline-meta-label">${safeLabel}</span><span class="inline-meta-value">${valueHtml}</span></div>`;
+  }
+
+  function renderPhoneLink(phone) {
+    const raw = normalizeText(phone);
+    if (!raw) return '<span class="inline-empty">-</span>';
+    const tel = raw.replace(/[^\d+]/g, '');
+    if (!tel) return escapeHtml(raw);
+    return `<a href="tel:${escapeHtml(tel)}" class="inline-phone-link">${escapeHtml(raw)}</a>`;
+  }
+
+  function renderCompactInfoSection(title, items) {
+    const content = items.filter(Boolean).join('');
+    if (!content) return '';
+    return `<div class="modal-section is-inline-compact"><div class="modal-section-title">${escapeHtml(title)}</div><div class="inline-meta-list">${content}</div></div>`;
+  }
+
+  function field(label, value) {
+    const text = normalizeText(value);
+    const isEmpty = !text || text === '0' || text === 'NaT';
+    return `<div class="modal-field"><div class="modal-label">${label}</div><div class="modal-value ${isEmpty ? 'empty' : ''}">${isEmpty ? '-' : escapeHtml(text)}</div></div>`;
+  }
+
+  function fieldHtml(label, html, isEmpty = false) {
+    return `<div class="modal-field"><div class="modal-label">${escapeHtml(label)}</div><div class="modal-value ${isEmpty ? 'empty' : ''}">${isEmpty ? '-' : html}</div></div>`;
+  }
+
+  function isMobileView() {
+    return window.innerWidth <= 640;
+  }
+
+  function showNotice(message, isError = false) {
+    let notice = $('dataLoadNotice');
+    if (!notice) {
+      notice = document.createElement('div');
+      notice.id = 'dataLoadNotice';
+      notice.style.margin = '0 0 16px';
+      notice.style.padding = '12px 14px';
+      notice.style.borderRadius = '10px';
+      notice.style.fontSize = '13px';
+      notice.style.lineHeight = '1.6';
+      const area = document.querySelector('.content-area');
+      area.insertBefore(notice, $('activeFilters'));
+    }
+    notice.style.display = 'block';
+    notice.style.border = '1px solid ' + (isError ? 'rgba(232,122,90,0.35)' : 'rgba(200,169,110,0.25)');
+    notice.style.background = isError ? 'rgba(232,122,90,0.10)' : 'rgba(200,169,110,0.08)';
+    notice.style.color = isError ? '#ffcabd' : 'var(--accent2)';
+    notice.innerHTML = message;
+  }
+
+  function hideNotice() {
+    const notice = $('dataLoadNotice');
+    if (!notice) return;
+    notice.style.opacity = '0';
+    notice.style.transform = 'translateY(-4px)';
+    window.setTimeout(() => {
+      notice.style.display = 'none';
+    }, 220);
+  }
+
+  function makeFilterBtn({label, count, type, value, isAll = false, active = false}) {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'filter-btn' + (active ? ' active' : '');
+    btn.dataset.type = type;
+    btn.dataset.value = value == null ? '' : String(value);
+    btn.dataset.all = isAll ? 'true' : 'false';
+    btn.innerHTML = `<span>${label}</span><span class="filter-count">${count.toLocaleString()}</span>`;
+    return btn;
+  }
+
+
+  function getVisibleMembersForMenuCounts() {
+    return Array.isArray(state.filtered) && state.filtered.length ? state.filtered : state.members;
+  }
+
+  function updateInlineAllButton(id, isActive, count) {
+    const btn = $(id);
+    if (!btn) return;
+    btn.textContent = `전체 ${count.toLocaleString()}명`;
+    btn.classList.toggle('active', isActive);
+    btn.title = `전체 ${count.toLocaleString()}명`;
+  }
+
+  function updateGenderButtons() {
+    const visible = getVisibleMembersForMenuCounts();
+    const counts = new Map([['남', 0], ['여', 0]]);
+    visible.forEach(member => {
+      const gender = normalizeText(member.성별);
+      if (counts.has(gender)) counts.set(gender, counts.get(gender) + 1);
+    });
+    const total = visible.length || 0;
+    const maxCount = Math.max(0, ...counts.values());
+
+    updateInlineAllButton('genderAllBtn', state.filters.성별 === '전체', total);
+
+    document.querySelectorAll('.gender-row .gender-btn[data-gender]').forEach(btn => {
+      const gender = btn.dataset.gender || '전체';
+      const count = counts.get(gender) || 0;
+      btn.innerHTML = `<span class="filter-btn-main">${gender}</span><span class="filter-btn-sub">${count.toLocaleString()}명</span>`;
+      btn.classList.toggle('active', gender === state.filters.성별);
+      btn.classList.toggle('is-top', count > 0 && count === maxCount);
+      btn.title = `${gender} ${count.toLocaleString()}명`;
+    });
+  }
+
+  function updateAgeButtons() {
+    const groups = ['10대','20대','30대','40대','50대','60대','70대','80대','90대'];
+    const visible = getVisibleMembersForMenuCounts();
+    const counts = new Map(groups.map(group => [group, 0]));
+    visible.forEach(member => {
+      const group = getAgeGroup(member);
+      if (counts.has(group)) counts.set(group, counts.get(group) + 1);
+    });
+    const total = visible.length || 0;
+    const maxCount = Math.max(0, ...counts.values());
+
+    updateInlineAllButton('ageAllBtn', state.filters.세대 === '전체', total);
+
+    document.querySelectorAll('.age-row .age-btn[data-age-group]').forEach(btn => {
+      const ageGroup = btn.dataset.ageGroup || '전체';
+      const count = counts.get(ageGroup) || 0;
+      btn.innerHTML = `<span class="filter-btn-main">${ageGroup}</span><span class="filter-btn-sub">${count.toLocaleString()}명</span>`;
+      btn.classList.toggle('active', ageGroup === state.filters.세대);
+      btn.classList.toggle('is-top', count > 0 && count === maxCount);
+      btn.title = `${ageGroup} ${count.toLocaleString()}명`;
+    });
+  }
+
+  function updateRegisterYearButtons() {
+    const years = ['2020','2021','2022','2023','2024','2025'];
+    const visible = getVisibleMembersForMenuCounts();
+    const counts = new Map(years.map(year => [year, 0]));
+    visible.forEach(member => {
+      const year = getRegisterYear(member);
+      if (counts.has(year)) counts.set(year, counts.get(year) + 1);
+    });
+    const total = visible.filter(member => years.includes(getRegisterYear(member))).length || 0;
+    const maxCount = Math.max(0, ...counts.values());
+
+    updateInlineAllButton('yearAllBtn', state.filters.등록년도 === '전체', total);
+
+    document.querySelectorAll('#yearFilterRow .age-btn[data-register-year]').forEach(btn => {
+      const year = btn.dataset.registerYear || '전체';
+      const count = counts.get(year) || 0;
+      btn.innerHTML = `<span class="filter-btn-main">${year}년</span><span class="filter-btn-sub">${count.toLocaleString()}명</span>`;
+      btn.classList.toggle('active', year === state.filters.등록년도);
+      btn.classList.toggle('is-top', count > 0 && count === maxCount);
+      btn.title = `${year}년 ${count.toLocaleString()}명`;
+    });
+  }
+
+  function buildFilters() {
+    const villageCounts = new Map();
+    const roleCounts = new Map();
+    const statusCounts = new Map();
+
+    state.members.forEach(member => {
+      const village = getVillageFilterValue(member);
+      villageCounts.set(village, (villageCounts.get(village) || 0) + 1);
+      const role = normalizeRole(member);
+      roleCounts.set(role, (roleCounts.get(role) || 0) + 1);
+
+      const status = normalizeText(member.현재상태);
+      if (status) statusCounts.set(status, (statusCounts.get(status) || 0) + 1);
+    });
+
+    const villages = [...villageCounts.entries()].sort((a, b) => {
+      if (a[0] === '기타') return 1;
+      if (b[0] === '기타') return -1;
+      return a[0].localeCompare(b[0], 'ko');
+    });
+    const statuses = [...statusCounts.entries()].sort((a, b) => a[0].localeCompare(b[0], 'ko'));
+
+    const visible = getVisibleMembersForMenuCounts();
+
+    updateInlineAllButton('groupAllBtn', !state.filters.교구, visible.length || state.members.length);
+    updateInlineAllButton('roleAllBtn', !state.filters.직분, visible.length || state.members.length);
+    updateInlineAllButton('statusAllBtn', !state.filters.현재상태, visible.length || state.members.length);
+
+    const groupList = $('교구FilterList');
+    groupList.innerHTML = '';
+    for (const [village, count] of villages) {
+      groupList.appendChild(makeFilterBtn({
+        label: village,
+        count,
+        type: '교구',
+        value: village,
+        active: normalizeText(state.filters.교구) === village
+      }));
+    }
+
+    const roleList = $('직분FilterList');
+    roleList.innerHTML = '';
+    ROLE_ORDER.forEach(role => {
+      const count = roleCounts.get(role);
+      if (!count) return;
+      roleList.appendChild(makeFilterBtn({
+        label: role,
+        count,
+        type: '직분',
+        value: role,
+        active: normalizeText(state.filters.직분) === role
+      }));
+    });
+
+    const statusList = $('상태FilterList');
+    statusList.innerHTML = '';
+    for (const [status, count] of statuses) {
+      statusList.appendChild(makeFilterBtn({
+        label: status,
+        count,
+        type: '현재상태',
+        value: status,
+        active: normalizeText(state.filters.현재상태) === status
+      }));
+    }
+
+    updateGenderButtons();
+    updateAgeButtons();
+    updateRegisterYearButtons();
+  }
+
+  function applyFilters() {
+    const q = state.searchQuery;
+    state.filtered = state.members.filter(member => {
+      const group = getVillageFilterValue(member);
+      if (state.filters.교구 && group !== normalizeText(state.filters.교구)) return false;
+      if (state.filters.직분 && normalizeRole(member) !== state.filters.직분) return false;
+      if (state.filters.성별 !== '전체' && normalizeText(member.성별) !== state.filters.성별) return false;
+      if (state.filters.세대 !== '전체' && getAgeGroup(member) !== state.filters.세대) return false;
+      if (state.filters.등록년도 !== '전체' && getRegisterYear(member) !== state.filters.등록년도) return false;
+      if (state.filters.현재상태 && normalizeText(member.현재상태) !== state.filters.현재상태) return false;
+      if (state.filters.세례 && normalizeText(member.세례) !== state.filters.세례) return false;
+      if (state.filters.구역 && normalizeText(member.구역) !== state.filters.구역) return false;
+      if (state.filters.세부직분 && normalizeText(member.세부직분) !== state.filters.세부직분) return false;
+      if (state.filters.이름) {
+        const sameName = normalizeText(member.이름) === state.filters.이름;
+        const sameFamily = state.filters.이름가족키 && getFamilySearchKey(member) === state.filters.이름가족키;
+        if (!sameName && !sameFamily) return false;
+      }
+      if (q) {
+        const haystackValues = [member.이름, member.가족전체, member.구역, member.교구, member.직분, member.세부직분, member.핸드폰, member.전화번호, getRegisterYear(member)];
+        const hay = haystackValues.map(value => normalizeText(value).toLowerCase()).join(' ');
+        const hayLoose = haystackValues.map(normalizeLooseSearch).join(' ');
+        const qLoose = normalizeLooseSearch(q);
+        if (!hay.includes(q) && (!qLoose || !hayLoose.includes(qLoose))) return false;
+      }
+      return true;
+    });
+
+    const dir = state.sortDir;
+    const col = state.sortCol;
+    state.filtered.sort((a, b) => {
+      let av, bv;
+      if (col === '직분') {
+        av = roleSortIndex(normalizeRole(a));
+        bv = roleSortIndex(normalizeRole(b));
+        if (av !== bv) return (av - bv) * dir;
+        av = normalizeText(a.이름);
+        bv = normalizeText(b.이름);
+      } else if (col === '나이') {
+        av = Number(a[col] || 0);
+        bv = Number(b[col] || 0);
+      } else if (col === '등록일') {
+        av = formatDate(a[col]);
+        bv = formatDate(b[col]);
+      } else {
+        av = normalizeText(a[col]);
+        bv = normalizeText(b[col]);
+      }
+      if (av < bv) return -1 * dir;
+      if (av > bv) return 1 * dir;
+      return 0;
+    });
+
+    const totalPages = Math.max(1, Math.ceil(state.filtered.length / PAGE_SIZE));
+    if (state.currentPage > totalPages) state.currentPage = 1;
+  }
+
+  function getResultSummaryLabel() {
+    const labels = [];
+    if (state.filters.교구) labels.push(state.filters.교구);
+    if (state.filters.직분) labels.push(state.filters.직분);
+    if (state.filters.성별 !== '전체') labels.push(state.filters.성별 === '남' ? '남성' : '여성');
+    if (state.filters.세대 !== '전체') labels.push(state.filters.세대);
+    if (state.filters.등록년도 !== '전체') labels.push(`${state.filters.등록년도}년 등록`);
+    if (state.filters.현재상태) labels.push(state.filters.현재상태);
+    if (state.filters.세례) labels.push(state.filters.세례);
+    if (state.filters.구역) labels.push(`구역: ${state.filters.구역}`);
+    if (state.filters.세부직분) labels.push(`세부직분: ${state.filters.세부직분}`);
+    if (state.filters.이름) labels.push(`성명+가족: ${state.filters.이름}`);
+    if (state.searchQuery) labels.push(`검색: ${state.searchQuery}`);
+    return labels.length ? labels.join(' · ') : '전체';
+  }
+
+  function renderActiveFilters() {
+    const container = $('activeFilters');
+    container.innerHTML = '';
+    const tags = [];
+    if (state.filters.교구) tags.push([state.filters.교구, () => { state.filters.교구 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
+    if (state.filters.직분) tags.push([state.filters.직분, () => { state.filters.직분 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
+    if (state.filters.성별 !== '전체') tags.push([state.filters.성별 + '성', () => { state.filters.성별 = '전체'; rerender({rebuildFilters:true, resetPage:true}); }]);
+    if (state.filters.세대 !== '전체') tags.push([state.filters.세대, () => { state.filters.세대 = '전체'; rerender({rebuildFilters:true, resetPage:true}); }]);
+    if (state.filters.등록년도 !== '전체') tags.push([`${state.filters.등록년도}년 등록`, () => { state.filters.등록년도 = '전체'; rerender({rebuildFilters:true, resetPage:true}); }]);
+    if (state.filters.현재상태) tags.push([state.filters.현재상태, () => { state.filters.현재상태 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
+    if (state.filters.세례) tags.push([state.filters.세례, () => { state.filters.세례 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
+    if (state.filters.구역) tags.push([`구역: ${state.filters.구역}`, () => { state.filters.구역 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
+    if (state.filters.세부직분) tags.push([`세부직분: ${state.filters.세부직분}`, () => { state.filters.세부직분 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
+    if (state.filters.이름) tags.push([`성명+가족: ${state.filters.이름}`, () => { state.filters.이름 = null; state.filters.이름가족키 = null; rerender({rebuildFilters:true, resetPage:true}); }]);
+    if (state.searchQuery) tags.push([`"${state.searchQuery}"`, () => { state.searchQuery = ''; els.searchInput.value=''; rerender({resetPage:true}); }]);
+
+    for (const [label, onRemove] of tags) {
+      const tag = document.createElement('div');
+      tag.className = 'filter-tag';
+      tag.innerHTML = `<span>${label}</span><button type="button">×</button>`;
+      tag.querySelector('button').addEventListener('click', onRemove);
+      container.appendChild(tag);
+    }
+    const info = document.createElement('span');
+    info.className = 'result-info';
+    info.innerHTML = `<strong>${getResultSummaryLabel()}</strong> ${state.filtered.length.toLocaleString()}명`;
+    container.appendChild(info);
+  }
+
+
+  
+function getChartData(type, members = state.filtered) {
+    const counts = new Map();
+    const source = Array.isArray(members) ? members : [];
+    if (type === '교구') {
+      source.forEach(member => {
+        const value = getVillageFilterValue(member);
+        counts.set(value, (counts.get(value) || 0) + 1);
+      });
+      return [...counts.entries()].sort((a, b) => {
+        if (a[0] === '기타') return 1;
+        if (b[0] === '기타') return -1;
+        return a[0].localeCompare(b[0], 'ko');
+      });
+    }
+    if (type === '직분') {
+      source.forEach(member => {
+        const value = normalizeRole(member);
+        counts.set(value, (counts.get(value) || 0) + 1);
+      });
+      return [...counts.entries()].sort((a, b) => roleSortIndex(a[0]) - roleSortIndex(b[0]));
+    }
+    if (type === '성별') {
+      source.forEach(member => {
+        const value = normalizeText(member.성별) || '미기재';
+        counts.set(value, (counts.get(value) || 0) + 1);
+      });
+      return [...counts.entries()].sort((a, b) => b[1] - a[1]);
+    }
+    if (type === '세대') {
+      source.forEach(member => {
+        const value = getAgeGroup(member) || '미분류';
+        counts.set(value, (counts.get(value) || 0) + 1);
+      });
+      return [...counts.entries()].sort((a, b) => {
+        const an = parseInt(a[0], 10);
+        const bn = parseInt(b[0], 10);
+        if (Number.isFinite(an) && Number.isFinite(bn)) return an - bn;
+        return a[0].localeCompare(b[0], 'ko');
+      });
+    }
+    if (type === '현재상태') {
+      source.forEach(member => {
+        const value = normalizeText(member.현재상태) || '미기재';
+        counts.set(value, (counts.get(value) || 0) + 1);
+      });
+      return [...counts.entries()].sort((a, b) => b[1] - a[1]);
+    }
+    if (type === '등록년도') {
+      ['2020','2021','2022','2023','2024','2025'].forEach(year => counts.set(year, 0));
+      source.forEach(member => {
+        const value = getRegisterYear(member);
+        if (counts.has(value)) counts.set(value, (counts.get(value) || 0) + 1);
+      });
+      return [...counts.entries()].filter(([, count]) => count > 0);
+    }
+    return [];
+  }
+
+  function getChartColor(index) {
+    const palette = [
+      '#c8a96e', '#e87a5a', '#7ec8e3', '#c97ecb', '#7bce9a',
+      '#8aa0c8', '#e3a87e', '#e8a0b8', '#a8b8d8', '#f0c060',
+      '#73c7b3', '#d98fbc'
+    ];
+    return palette[index % palette.length];
+  }
+
+  function buildPieChartSvg(data, total, chartType, hasGroupedEtc = false) {
+    if (!data.length) {
+      return '<div class="empty-state"><div class="icon">🥧</div><h3>표시할 데이터가 없습니다</h3></div>';
+    }
+    const cx = 110;
+    const cy = 110;
+    const radius = 84;
+    const innerRadius = 48;
+    let currentAngle = -Math.PI / 2;
+    const paths = data.map(([label, count], index) => {
+      const fraction = total ? count / total : 0;
+      const angle = fraction * Math.PI * 2;
+      const nextAngle = currentAngle + angle;
+      const x1 = cx + radius * Math.cos(currentAngle);
+      const y1 = cy + radius * Math.sin(currentAngle);
+      const x2 = cx + radius * Math.cos(nextAngle);
+      const y2 = cy + radius * Math.sin(nextAngle);
+      const ix1 = cx + innerRadius * Math.cos(currentAngle);
+      const iy1 = cy + innerRadius * Math.sin(currentAngle);
+      const ix2 = cx + innerRadius * Math.cos(nextAngle);
+      const iy2 = cy + innerRadius * Math.sin(nextAngle);
+      const largeArc = angle > Math.PI ? 1 : 0;
+      const encodedLabel = encodeURIComponent(label);
+      const color = getChartColor(index);
+      let d = '';
+      if (angle >= Math.PI * 1.999) {
+        d = [
+          `M ${cx + radius} ${cy}`,
+          `A ${radius} ${radius} 0 1 1 ${cx - radius} ${cy}`,
+          `A ${radius} ${radius} 0 1 1 ${cx + radius} ${cy}`,
+          `L ${cx + innerRadius} ${cy}`,
+          `A ${innerRadius} ${innerRadius} 0 1 0 ${cx - innerRadius} ${cy}`,
+          `A ${innerRadius} ${innerRadius} 0 1 0 ${cx + innerRadius} ${cy}`,
+          'Z'
+        ].join(' ');
+      } else {
+        d = [
+          `M ${x1} ${y1}`,
+          `A ${radius} ${radius} 0 ${largeArc} 1 ${x2} ${y2}`,
+          `L ${ix2} ${iy2}`,
+          `A ${innerRadius} ${innerRadius} 0 ${largeArc} 0 ${ix1} ${iy1}`,
+          'Z'
+        ].join(' ');
+      }
+      currentAngle = nextAngle;
+      const interactionAttr = (label === '기타' && hasGroupedEtc)
+        ? 'data-chart-expand-etc="true"'
+        : `data-chart-select-type="${chartType}" data-chart-select-value="${encodedLabel}"`;
+      return `<path class="chart-slice" d="${d}" fill="${color}" style="--slice-delay:${index * 65}ms" ${interactionAttr}><title>${label}: ${count}명 (${(fraction * 100).toFixed(1)}%)</title></path>`;
+    }).join('');
+    return `<div class="chart-pie-reveal"><svg class="chart-pie-svg" viewBox="0 0 220 220" role="img" aria-label="${chartType} 원형 그래프">${paths}<circle class="chart-pie-hole" cx="${cx}" cy="${cy}" r="${innerRadius - 4}"></circle><text class="chart-pie-center-text" x="${cx}" y="${cy - 4}">${total.toLocaleString()}명</text><text class="chart-pie-center-subtext" x="${cx}" y="${cy + 15}">현재 결과</text></svg></div>`;
+  }
+
+  function applyChartSelection(type, value) {
+    const normalizedValue = normalizeText(value);
+    if (!normalizedValue) return;
+    state.view = 'table';
+    state.chartType = null;
+    state.chartEtcExpanded = false;
+    if (type === '교구') state.filters.교구 = normalizedValue;
+    else if (type === '직분') state.filters.직분 = normalizedValue;
+    else if (type === '성별') state.filters.성별 = normalizedValue;
+    else if (type === '세대') state.filters.세대 = normalizedValue;
+    else if (type === '현재상태') state.filters.현재상태 = normalizedValue;
+    else if (type === '등록년도') state.filters.등록년도 = normalizedValue;
+    else return;
+    closeMobileSidebar();
+      rerender({ rebuildFilters: true, resetPage: true });
+  }
+
+  function sortChartData(data) {
+    const list = Array.isArray(data) ? [...data] : [];
+    if (state.chartSort === 'count_desc') {
+      list.sort((a, b) => (b[1] - a[1]) || a[0].localeCompare(b[0], 'ko'));
+    } else if (state.chartSort === 'count_asc') {
+      list.sort((a, b) => (a[1] - b[1]) || a[0].localeCompare(b[0], 'ko'));
+    } else {
+      list.sort((a, b) => a[0].localeCompare(b[0], 'ko'));
+    }
+    const etcIndex = list.findIndex(([label]) => label === '기타');
+    if (etcIndex !== -1) {
+      const [etcItem] = list.splice(etcIndex, 1);
+      list.push(etcItem);
+    }
+    return list;
+  }
+
+  function canCollapseIntoEtc(type) {
+    return ['교구', '직분', '세대', '현재상태'].includes(type);
+  }
+
+  function buildChartDisplayData(type, rawData) {
+    const sorted = sortChartData(rawData);
+    if (!canCollapseIntoEtc(type) || state.chartEtcExpanded || sorted.length < 9) {
+      return { data: sorted, groupedItems: [] };
+    }
+
+    const preserved = [];
+    const grouped = [];
+    sorted.forEach(([label, count]) => {
+      const shouldGroup = label !== '기타' && (count <= 2);
+      if (shouldGroup) grouped.push([label, count]);
+      else preserved.push([label, count]);
+    });
+
+    if (!grouped.length) {
+      return { data: sorted, groupedItems: [] };
+    }
+
+    const groupedTotal = grouped.reduce((sum, [, count]) => sum + count, 0);
+    const existingEtcIndex = preserved.findIndex(([label]) => label === '기타');
+    if (existingEtcIndex !== -1) {
+      preserved[existingEtcIndex] = ['기타', preserved[existingEtcIndex][1] + groupedTotal];
+    } else {
+      preserved.push(['기타', groupedTotal]);
+    }
+
+    return {
+      data: sortChartData(preserved),
+      groupedItems: grouped
+    };
+  }
+
+  function markChartSortButtons() {
+    document.querySelectorAll('[data-chart-sort]').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.chartSort === state.chartSort);
+    });
+  }
+
+  function triggerChartDrillDown(type, value, triggerEl) {
+    const panel = $('chartPanel');
+    const target = triggerEl || panel;
+    target.classList.add('is-drilling');
+    panel.classList.add('is-drilling');
+    window.setTimeout(() => {
+      target.classList.remove('is-drilling');
+      panel.classList.remove('is-drilling');
+      applyChartSelection(type, value);
+      const tableWrap = $('tableWrap');
+      tableWrap.classList.add('is-drill-target');
+      window.setTimeout(() => tableWrap.classList.remove('is-drill-target'), 450);
+    }, 180);
+  }
+
+  function animateChartEntrance() {
+    const bars = $('chartBars');
+    const pieWrap = $('chartPieWrap');
+    if (!bars || !pieWrap) return;
+    bars.classList.remove('chart-animate-ready');
+    pieWrap.classList.remove('pie-animate-ready');
+    void bars.offsetWidth;
+    void pieWrap.offsetWidth;
+    window.requestAnimationFrame(() => {
+      bars.classList.add('chart-animate-ready');
+      pieWrap.classList.add('pie-animate-ready');
+    });
+  }
+
+  function renderChart() {
+    const panel = $('chartPanel');
+    const tableWrap = $('tableWrap');
+    if (state.view !== 'chart' || !state.chartType) {
+      panel.style.display = 'none';
+      tableWrap.style.display = '';
+      return;
+    }
+    const rawData = getChartData(state.chartType, state.filtered);
+    const chartDataBundle = buildChartDisplayData(state.chartType, rawData);
+    const data = chartDataBundle.data;
+    const groupedItems = chartDataBundle.groupedItems;
+    const total = data.reduce((sum, [, count]) => sum + count, 0);
+    const maxCount = Math.max(...data.map(([, count]) => count), 1);
+    const baseLabel = getResultSummaryLabel();
+    $('chartTitle').textContent = `${state.chartType} 비율 그래프`;
+    $('chartSubtitle').textContent = `${baseLabel} · ${total.toLocaleString()}명 기준`;
+    $('chartHint').textContent = groupedItems.length
+      ? `막대 길이는 최대값 기준 상대 비교입니다. 1~2명 항목 ${groupedItems.length}개는 '기타'로 묶었습니다. '기타'를 클릭하면 ${state.chartEtcExpanded ? '다시 묶어' : '펼쳐'} 볼 수 있습니다.`
+      : '막대 길이는 최대값 기준 상대 비교이며, 오른쪽 숫자는 실제 인원·비율입니다. 그래프 항목을 클릭하면 해당 성도 목록으로 이동합니다.';
+    markChartSortButtons();
+
+    if (!data.length) {
+      $('chartBars').innerHTML = '<div class="empty-state"><div class="icon">📊</div><h3>표시할 데이터가 없습니다</h3><p>먼저 성도 명단을 불러오거나 필터를 조정해 주세요</p></div>';
+      $('chartPieWrap').innerHTML = '<div class="empty-state"><div class="icon">🥧</div><h3>원형 그래프를 표시할 수 없습니다</h3></div>';
+      $('chartLegend').innerHTML = '';
+      panel.style.display = 'block';
+      tableWrap.style.display = 'none';
+      return;
+    }
+
+    $('chartBars').innerHTML = data.map(([label, count], index) => {
+      const percent = total ? (count / total) * 100 : 0;
+      const relativePercent = maxCount ? (count / maxCount) * 100 : 0;
+      const encodedLabel = encodeURIComponent(label);
+      const color = getChartColor(index);
+      const widthPercent = Math.max(relativePercent, 8);
+      const percentText = `${percent.toFixed(1)}%`;
+      const fillClass = widthPercent < 18 ? 'chart-bar-fill is-small' : 'chart-bar-fill';
+      const interactionAttr = (label === '기타' && groupedItems.length)
+        ? 'data-chart-expand-etc="true"'
+        : `data-chart-select-type="${state.chartType}" data-chart-select-value="${encodedLabel}"`;
+      return `<div class="chart-row" style="--bar-delay:${index * 70}ms" ${interactionAttr}>
+        <div class="chart-label">${label}</div>
+        <div class="chart-bar-track">
+          <div class="${fillClass}" style="--target-width:${widthPercent}%; --bar-delay:${index * 70}ms; background:linear-gradient(90deg, ${color} 0%, var(--accent2) 100%);">${percentText}</div>
+        </div>
+        <div class="chart-value">${count.toLocaleString()}명 · ${percentText}</div>
+      </div>`;
+    }).join('');
+
+    $('chartPieWrap').innerHTML = buildPieChartSvg(data, total, state.chartType, groupedItems.length > 0);
+    $('chartLegend').innerHTML = data.map(([label, count], index) => {
+      const percent = total ? (count / total) * 100 : 0;
+      const encodedLabel = encodeURIComponent(label);
+      const color = getChartColor(index);
+      const interactionAttr = (label === '기타' && groupedItems.length)
+        ? 'data-chart-expand-etc="true"'
+        : `data-chart-select-type="${state.chartType}" data-chart-select-value="${encodedLabel}"`;
+      return `<div class="chart-legend-item" ${interactionAttr}>
+        <span class="chart-swatch" style="background:${color};"></span>
+        <span class="chart-legend-label">${label}</span>
+        <span class="chart-legend-value">${count.toLocaleString()}명 · ${percent.toFixed(1)}%</span>
+      </div>`;
+    }).join('');
+
+    panel.style.display = 'block';
+    tableWrap.style.display = 'none';
+    animateChartEntrance();
+  }
+
+  function showChart(type) {
+    state.view = 'chart';
+    state.chartType = type;
+    state.chartEtcExpanded = false;
+    renderChart();
+  }
+
+  function showTableView() {
+    state.view = 'table';
+    state.chartType = null;
+    renderChart();
+  }
+
+function renderTable() {
+    const tbody = els.tableBody;
+    const start = (state.currentPage - 1) * PAGE_SIZE;
+    const page = state.filtered.slice(start, start + PAGE_SIZE);
+
+    if (!page.length) {
+      tbody.innerHTML = `<tr><td colspan="8"><div class="empty-state"><div class="icon">🔍</div><h3>검색 결과가 없습니다</h3><p>다른 검색어나 필터를 시도해 보세요</p></div></td></tr>`;
+      return;
+    }
+
+    if (isMobileView()) {
+      tbody.innerHTML = page.map(m => {
+        const roleLabel = getRoleBadgeLabel(m);
+        return `<tr data-member-id="${m.ID}"><td colspan="8" class="mobile-card-cell"><div class="mobile-card"><div class="mobile-card-top"><div><div class="mobile-card-name">${renderDisplayName(m)}${m.관계 ? `<span class="관계-badge">${escapeHtml(normalizeText(m.관계))}</span>` : ''}</div><div class="mobile-card-sub">${makeValueBadge(normalizeText(m.현재상태) || '상태 미지정', 'status')} · ${makeValueBadge(normalizeText(m.구역) || '구역 미지정', 'district')}</div></div><span class="jik-badge ${getJikClass(roleLabel)}">${escapeHtml(roleLabel)}</span></div><div class="mobile-card-meta"><span>${escapeHtml(normalizeText(m.성별) || '-')}${m.나이 ? ` · ${m.나이}세` : ''}</span><span>${escapeHtml(normalizeText(m.핸드폰 || m.전화번호) || '연락처 없음')}</span><span>${escapeHtml(formatDate(m.등록일) || '등록일 없음')}</span></div><div class="mobile-card-family">${renderFamilyInline(m)}</div></div></td></tr>`;
+      }).join('');
+    } else {
+      tbody.innerHTML = page.map(m => {
+        const roleLabel = getRoleBadgeLabel(m);
+        return `<tr data-member-id="${m.ID}"><td class="name-cell">${renderDisplayName(m)}${m.관계 ? `<span class="관계-badge">${escapeHtml(normalizeText(m.관계))}</span>` : ''}</td><td><span class="jik-badge ${getJikClass(roleLabel)}">${escapeHtml(roleLabel)}</span></td><td class="hide-mobile">${m.나이 || '-'}</td><td>${makeValueBadge(normalizeText(m.현재상태) || '-', 'status')}</td><td class="구역-cell hide-mobile">${makeValueBadge(normalizeText(m.구역) || '-', 'district')}</td><td class="phone-cell hide-mobile">${escapeHtml(normalizeText(m.핸드폰 || m.전화번호)) || '<span style="color:var(--text3)">-</span>'}</td><td class="family-cell hide-mobile" title="${escapeHtml(normalizeText(m.가족전체))}">${renderFamilyInline(m)}</td><td class="date-cell hide-mobile">${escapeHtml(formatDate(m.등록일) || '-')}</td></tr>`;
+      }).join('');
+    }
+
+    document.querySelectorAll('th[data-sort]').forEach(th => {
+      th.classList.toggle('sorted', th.dataset.sort === state.sortCol);
+    });
+  }
+
+  function renderPagination() {
+    const total = Math.ceil(state.filtered.length / PAGE_SIZE);
+    const pg = els.pagination;
+    if (total <= 1) { pg.innerHTML = ''; return; }
+    let html = `<button type="button" class="page-btn" data-page="${state.currentPage - 1}" ${state.currentPage === 1 ? 'disabled' : ''}>‹</button>`;
+    for (let i = 1; i <= total; i++) {
+      if (total > 9 && i !== 1 && i !== total && Math.abs(i - state.currentPage) > 1) {
+        if (i === 2 || i === total - 1 || i === state.currentPage - 2 || i === state.currentPage + 2) {
+          html += '<span style="color:var(--text3);padding:0 4px">…</span>';
+        }
+        continue;
+      }
+      html += `<button type="button" class="page-btn ${i === state.currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
+    }
+    html += `<button type="button" class="page-btn" data-page="${state.currentPage + 1}" ${state.currentPage === total ? 'disabled' : ''}>›</button>`;
+    pg.innerHTML = html;
+  }
+
+  function rerender({ rebuildFilters = false, resetPage = false } = {}) {
+    if (resetPage) state.currentPage = 1;
+    applyFilters();
+    if (rebuildFilters) buildFilters();
+    else {
+      updateGenderButtons();
+      updateAgeButtons();
+      updateRegisterYearButtons();
+    }
+    renderActiveFilters();
+    renderTable();
+    renderPagination();
+    renderChart();
+    $('totalCount').textContent = state.members.length.toLocaleString();
+    $('resultCount').textContent = getResultSummaryLabel();
+  }
+
+  function applyBadgeFilter(type, value) {
+    const normalizedValue = normalizeText(value);
+    if (!normalizedValue) return;
+
+    if (type === '직분') {
+      state.filters.직분 = normalizedValue;
+    } else if (type === '성별') {
+      state.filters.성별 = normalizedValue;
+    } else if (type === '세례') {
+      state.filters.세례 = normalizedValue;
+    } else if (type === '현재상태') {
+      state.filters.현재상태 = normalizedValue;
+    } else if (type === '교구') {
+      state.filters.교구 = normalizedValue;
+    } else if (type === '구역') {
+      state.filters.구역 = normalizedValue;
+    } else if (type === '세부직분') {
+      state.filters.세부직분 = normalizedValue;
+    } else if (type === '등록년도') {
+      state.filters.등록년도 = normalizedValue;
+    } else {
+      return;
+    }
+
+    state.currentPage = 1;
+    $('modalBg').classList.remove('open');
+    closeMobileSidebar();
+      rerender({ rebuildFilters: true, resetPage: true });
+  }
+
+  function makeMetaBadge(label, className, filterType = '', filterValue = '') {
+    const safeLabel = normalizeText(label);
+    const safeFilterValue = normalizeText(filterValue);
+    const clickable = filterType && safeFilterValue;
+    const active = clickable && isBadgeFilterActive(filterType, safeFilterValue);
+    return `<span class="jik-badge ${className}${clickable ? ' is-clickable' : ''}${active ? ' is-active' : ''}"${clickable ? ` data-badge-filter-type="${escapeHtml(filterType)}" data-badge-filter-value="${escapeHtml(safeFilterValue)}"` : ''}>${escapeHtml(safeLabel || '-')}</span>`;
+  }
+
+
+  function showDetail(id) {
+    const m = state.members.find(x => String(x.ID) === String(id));
+    if (!m) return;
+    $('modalName').innerHTML = renderModalName(m);
+    $('modalSubinfo').innerHTML = renderDuplicateQuickList(m);
+    const roleLabel = getRoleBadgeLabel(m);
+    let metaHtml = makeMetaBadge(roleLabel || '-', getJikClass(roleLabel), '직분', roleLabel);
+    if (m.성별) metaHtml += makeMetaBadge(`${normalizeText(m.성별)}성`, 'jik-other', '성별', normalizeText(m.성별));
+    if (m.나이) metaHtml += makeMetaBadge(`${m.나이}세`, 'jik-other');
+    if (getRegisterYear(m)) metaHtml += makeMetaBadge(`${getRegisterYear(m)}년 등록`, 'jik-other', '등록년도', getRegisterYear(m));
+    if (m.현재상태) metaHtml += makeMetaBadge(normalizeText(m.현재상태), 'jik-other', '현재상태', normalizeText(m.현재상태));
+    if (m.세례) metaHtml += makeMetaBadge(normalizeText(m.세례), 'jik-other', '세례', normalizeText(m.세례));
+    $('modalMeta').innerHTML = metaHtml;
+
+    const villageValue = normalizeText(m.교구) || getVillageFilterValue(m);
+    const districtValue = normalizeText(m.구역);
+    const roleValue = normalizeText(m.직분);
+    const detailRoleValue = normalizeText(m.세부직분 !== m.직분 ? m.세부직분 : '');
+    const phoneValue = normalizeText(m.핸드폰 || m.전화번호);
+    const registerDateValue = formatDate(m.등록일);
+    const birthValue = getBirthDisplay(m);
+    const relationValue = normalizeText(m.관계);
+    const headValue = normalizeText(m.세대주 !== m.이름 ? m.세대주 : '본인');
+    const memberTypeValue = normalizeText(m.교인구분1);
+    const statusValue = normalizeText(m.현재상태);
+    const registerYearValue = getRegisterYear(m);
+
+    let modalSections = '';
+    modalSections += renderCompactInfoSection('핵심 정보', [
+      renderInlineMetaItem('성명', `<button type="button" class="modal-name-button is-clickable" data-name-filter="${escapeHtml(normalizeText(m.이름))}">${escapeHtml(normalizeText(m.이름) || '-')}</button>`),
+      renderInlineMetaItem('교구', makeDetailFilterBadge(villageValue || '-', 'group', '교구', getVillageFilterValue(m))),
+      renderInlineMetaItem('구역', makeDetailFilterBadge(districtValue || '-', 'district', '구역', districtValue)),
+      renderInlineMetaItem('직분', makeDetailFilterBadge(roleValue || '-', 'role', '직분', normalizeRole(m))),
+      renderInlineMetaItem('세부직분', detailRoleValue ? makeDetailFilterBadge(detailRoleValue, 'role', '세부직분', detailRoleValue) : '<span class="inline-empty">-</span>'),
+      renderInlineMetaItem('휴대폰', renderPhoneLink(phoneValue)),
+      renderInlineMetaItem('등록일', registerDateValue ? escapeHtml(registerDateValue) : '<span class="inline-empty">-</span>')
+    ]);
+    modalSections += renderCompactInfoSection('개인 정보', [
+      renderInlineMetaItem('생년월일', birthValue && birthValue !== '데이터 없음' ? escapeHtml(birthValue) : '<span class="inline-empty">-</span>'),
+      renderInlineMetaItem('관계', relationValue ? escapeHtml(relationValue) : '<span class="inline-empty">-</span>'),
+      renderInlineMetaItem('세대주', headValue ? escapeHtml(headValue) : '<span class="inline-empty">-</span>'),
+      renderInlineMetaItem('교인구분', memberTypeValue ? escapeHtml(memberTypeValue) : '<span class="inline-empty">-</span>'),
+      renderInlineMetaItem('현재상태', statusValue ? makeDetailFilterBadge(statusValue, 'status', '현재상태', statusValue) : '<span class="inline-empty">-</span>'),
+      renderInlineMetaItem('등록년도', registerYearValue ? makeDetailFilterBadge(`${registerYearValue}년`, 'register-year', '등록년도', registerYearValue) : '<span class="inline-empty">-</span>')
+    ]);
+    modalSections += `<div class="modal-section is-compact-tags"><div class="modal-section-title">가족 구성원</div>${renderFamilyTree(m)}</div>`;
+
+    $('modalBody').innerHTML = `<div class="modal-column modal-column-single">${modalSections}</div>`;
+    $('modalBg').classList.add('open');
+  }
+
+  window.closeModalDirect = function() {
+    $('modalBg').classList.remove('open');
+  };
+  window.closeModal = function(event) {
+    if (!event || event.target === $('modalBg')) $('modalBg').classList.remove('open');
+  };
+
+
+  function setMobileSidebar(open) {
+    document.body.classList.toggle('sidebar-open', !!open);
+  }
+
+  function closeMobileSidebar() {
+    setMobileSidebar(false);
+  }
+
+  function resetToHome() {
+    state.currentPage = 1;
+    state.sortCol = '이름';
+    state.sortDir = 1;
+    state.searchQuery = '';
+    state.view = 'table';
+    state.chartType = null;
+    state.chartSort = 'count_desc';
+    state.filters = {
+      교구: null,
+      직분: null,
+      성별: '전체',
+      세대: '전체',
+      현재상태: null,
+      세례: null,
+      구역: null,
+      세부직분: null,
+      등록년도: '전체',
+      이름: null
+    };
+    if (els.searchInput) els.searchInput.value = '';
+    closeModalDirect();
+    closeMobileSidebar();
+    rerender({ rebuildFilters: true, resetPage: true });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  const FONT_SCALE_STORAGE_KEY = 'churchDirectoryMobileFontScale';
+  const ELDER_MODE_STORAGE_KEY = 'churchDirectoryMobileElderMode';
+  const FONT_SCALE_MIN = 0.9;
+  const FONT_SCALE_MAX = 1.5;
+  const FONT_SCALE_STEP = 0.1;
+  let currentFontScale = 1;
+  let elderModeEnabled = false;
+  const pinchState = {
+    active: false,
+    startDistance: 0,
+    startScale: 1,
+    rafId: 0,
+    pendingScale: 1
+  };
+
+  function clampFontScale(value) {
+    return Math.min(FONT_SCALE_MAX, Math.max(FONT_SCALE_MIN, Number(value) || 1));
+  }
+
+  function getTouchesDistance(touches) {
+    if (!touches || touches.length < 2) return 0;
+    const dx = touches[0].clientX - touches[1].clientX;
+    const dy = touches[0].clientY - touches[1].clientY;
+    return Math.hypot(dx, dy);
+  }
+
+  function updateFontControls() {
+    const dec = $('fontDecreaseBtn');
+    const inc = $('fontIncreaseBtn');
+    if (dec) dec.disabled = currentFontScale <= FONT_SCALE_MIN + 0.001;
+    if (inc) inc.disabled = currentFontScale >= FONT_SCALE_MAX - 0.001;
+    const elderBtn = $('elderModeToggleBtn');
+    if (elderBtn) {
+      elderBtn.classList.toggle('active', elderModeEnabled);
+      elderBtn.setAttribute('aria-pressed', elderModeEnabled ? 'true' : 'false');
+      elderBtn.textContent = elderModeEnabled ? '기본글씨' : '큰글씨';
+      elderBtn.title = elderModeEnabled ? '기본 글씨 크기로 돌아가기' : '고령자용 큰글씨 모드 켜기';
+    }
+  }
+
+  function applyMobileFontScale(scale, { persist = true } = {}) {
+    currentFontScale = clampFontScale(scale);
+    document.documentElement.style.setProperty('--mobile-user-scale', String(currentFontScale));
+    if (persist) {
+      try {
+        localStorage.setItem(FONT_SCALE_STORAGE_KEY, String(currentFontScale));
+      } catch (e) {}
+    }
+    updateFontControls();
+  }
+
+  function setElderMode(enabled, { persist = true } = {}) {
+    elderModeEnabled = !!enabled;
+    document.body.classList.toggle('elder-mode', elderModeEnabled);
+    if (elderModeEnabled && currentFontScale < Number(getComputedStyle(document.documentElement).getPropertyValue('--mobile-elder-scale').trim() || 1.25)) {
+      applyMobileFontScale(Number(getComputedStyle(document.documentElement).getPropertyValue('--mobile-elder-scale').trim() || 1.25), { persist });
+    } else {
+      updateFontControls();
+    }
+    if (persist) {
+      try {
+        localStorage.setItem(ELDER_MODE_STORAGE_KEY, elderModeEnabled ? '1' : '0');
+      } catch (e) {}
+    }
+  }
+
+  function queuePinchScale(scale) {
+    pinchState.pendingScale = clampFontScale(scale);
+    if (pinchState.rafId) return;
+    pinchState.rafId = requestAnimationFrame(() => {
+      pinchState.rafId = 0;
+      applyMobileFontScale(pinchState.pendingScale);
+    });
+  }
+
+  function endPinchZoom() {
+    pinchState.active = false;
+    pinchState.startDistance = 0;
+    pinchState.startScale = currentFontScale;
+    if (pinchState.rafId) {
+      cancelAnimationFrame(pinchState.rafId);
+      pinchState.rafId = 0;
+    }
+    document.body.classList.remove('pinch-zooming');
+  }
+
+  function initPinchZoom() {
+    document.addEventListener('touchstart', (e) => {
+      if (window.innerWidth > 640) return;
+      if (!e.touches || e.touches.length !== 2) return;
+      pinchState.active = true;
+      pinchState.startDistance = getTouchesDistance(e.touches);
+      pinchState.startScale = currentFontScale;
+      document.body.classList.add('pinch-zooming');
+    }, { passive: true });
+
+    document.addEventListener('touchmove', (e) => {
+      if (window.innerWidth > 640) return;
+      if (!pinchState.active || !e.touches || e.touches.length !== 2) return;
+      const distance = getTouchesDistance(e.touches);
+      if (!distance || !pinchState.startDistance) return;
+      const nextScale = pinchState.startScale * (distance / pinchState.startDistance);
+      queuePinchScale(nextScale);
+      if (typeof e.preventDefault === 'function') e.preventDefault();
+    }, { passive: false });
+
+    document.addEventListener('touchend', (e) => {
+      if (!pinchState.active) return;
+      if (e.touches && e.touches.length >= 2) return;
+      endPinchZoom();
+    }, { passive: true });
+
+    document.addEventListener('touchcancel', () => {
+      if (!pinchState.active) return;
+      endPinchZoom();
+    }, { passive: true });
+  }
+
+  function initFontControls() {
+    let saved = 1;
+    let elderSaved = false;
+    try {
+      saved = clampFontScale(localStorage.getItem(FONT_SCALE_STORAGE_KEY) || 1);
+      elderSaved = localStorage.getItem(ELDER_MODE_STORAGE_KEY) === '1';
+    } catch (e) {
+      saved = 1;
+      elderSaved = false;
+    }
+    applyMobileFontScale(saved, { persist: false });
+    setElderMode(elderSaved, { persist: false });
+
+    $('fontDecreaseBtn')?.addEventListener('click', () => {
+      applyMobileFontScale(Math.round((currentFontScale - FONT_SCALE_STEP) * 10) / 10);
+      if (elderModeEnabled && currentFontScale < 1.25) setElderMode(false);
+    });
+    $('fontIncreaseBtn')?.addEventListener('click', () => {
+      applyMobileFontScale(Math.round((currentFontScale + FONT_SCALE_STEP) * 10) / 10);
+    });
+    $('elderModeToggleBtn')?.addEventListener('click', () => {
+      if (elderModeEnabled) {
+        setElderMode(false);
+        applyMobileFontScale(1);
+      } else {
+        setElderMode(true);
+      }
+    });
+
+    initPinchZoom();
+  }
+
+  function bindEvents() {
+    $('homeResetBtn')?.addEventListener('click', resetToHome);
+    $('mobileFilterOpenBtn')?.addEventListener('click', () => setMobileSidebar(true));
+    $('mobileFilterCloseBtn')?.addEventListener('click', () => closeMobileSidebar());
+    $('mobileSidebarBackdrop')?.addEventListener('click', () => closeMobileSidebar());
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMobileSidebar(); });
+
+    els.searchInput.addEventListener('input', (e) => {
+      state.searchQuery = normalizeText(e.target.value).toLowerCase();
+      rerender({ resetPage: true });
+    });
+
+    $('groupAllBtn').addEventListener('click', () => {
+      state.filters.교구 = null;
+      closeMobileSidebar();
+      rerender({ rebuildFilters: true, resetPage: true });
+    });
+
+    $('교구FilterList').addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      const value = normalizeText(btn.dataset.value);
+      state.filters.교구 = value;
+      closeMobileSidebar();
+      rerender({ rebuildFilters: true, resetPage: true });
+    });
+
+    $('roleAllBtn').addEventListener('click', () => {
+      state.filters.직분 = null;
+      closeMobileSidebar();
+      rerender({ rebuildFilters: true, resetPage: true });
+    });
+
+    $('직분FilterList').addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      state.filters.직분 = normalizeText(btn.dataset.value);
+      closeMobileSidebar();
+      rerender({ rebuildFilters: true, resetPage: true });
+    });
+
+    $('statusAllBtn').addEventListener('click', () => {
+      state.filters.현재상태 = null;
+      closeMobileSidebar();
+      rerender({ rebuildFilters: true, resetPage: true });
+    });
+
+    $('상태FilterList').addEventListener('click', (e) => {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      state.filters.현재상태 = normalizeText(btn.dataset.value);
+      closeMobileSidebar();
+      rerender({ rebuildFilters: true, resetPage: true });
+    });
+
+    $('genderFilterRow').addEventListener('click', (e) => {
+      const btn = e.target.closest('.gender-btn[data-gender]');
+      if (!btn) return;
+      state.filters.성별 = btn.dataset.gender || '전체';
+      closeMobileSidebar();
+      rerender({ rebuildFilters: true, resetPage: true });
+    });
+
+    $('genderAllBtn').addEventListener('click', () => {
+      state.filters.성별 = '전체';
+      closeMobileSidebar();
+      rerender({ rebuildFilters: true, resetPage: true });
+    });
+
+    $('ageFilterRow').addEventListener('click', (e) => {
+      const btn = e.target.closest('.age-btn[data-age-group]');
+      if (!btn) return;
+      state.filters.세대 = btn.dataset.ageGroup || '전체';
+      closeMobileSidebar();
+      rerender({ rebuildFilters: true, resetPage: true });
+    });
+
+    $('ageAllBtn').addEventListener('click', () => {
+      state.filters.세대 = '전체';
+      closeMobileSidebar();
+      rerender({ rebuildFilters: true, resetPage: true });
+    });
+
+    $('yearFilterRow').addEventListener('click', (e) => {
+      const btn = e.target.closest('.age-btn[data-register-year]');
+      if (!btn) return;
+      state.filters.등록년도 = btn.dataset.registerYear || '전체';
+      closeMobileSidebar();
+      rerender({ rebuildFilters: true, resetPage: true });
+    });
+
+    $('yearAllBtn').addEventListener('click', () => {
+      state.filters.등록년도 = '전체';
+      closeMobileSidebar();
+      rerender({ rebuildFilters: true, resetPage: true });
+    });
+
+    document.querySelectorAll('.chart-toggle[data-chart]').forEach(el => {
+      el.addEventListener('click', () => {
+        showChart(el.dataset.chart);
+      });
+    });
+
+    $('chartBackBtn').addEventListener('click', () => {
+      showTableView();
+    });
+
+    $('chartPanel').addEventListener('click', (e) => {
+      const sortBtn = e.target.closest('[data-chart-sort]');
+      if (sortBtn) {
+        state.chartSort = sortBtn.dataset.chartSort || 'label_asc';
+        renderChart();
+        return;
+      }
+      const expandEtcBtn = e.target.closest('[data-chart-expand-etc]');
+      if (expandEtcBtn) {
+        state.chartEtcExpanded = !state.chartEtcExpanded;
+        renderChart();
+        return;
+      }
+      const target = e.target.closest('[data-chart-select-type]');
+      if (!target) return;
+      const type = target.dataset.chartSelectType;
+      const value = decodeURIComponent(target.dataset.chartSelectValue || '');
+      triggerChartDrillDown(type, value, target);
+    });
+
+    document.querySelector('thead').addEventListener('click', (e) => {
+      const th = e.target.closest('th[data-sort]');
+      if (!th) return;
+      const col = th.dataset.sort;
+      if (state.sortCol === col) state.sortDir *= -1;
+      else { state.sortCol = col; state.sortDir = 1; }
+      rerender();
+    });
+
+    els.tableBody.addEventListener('click', (e) => {
+      const familyLink = e.target.closest('[data-family-member-id]');
+      if (familyLink) {
+        e.stopPropagation();
+        showDetail(familyLink.dataset.familyMemberId);
+        return;
+      }
+      const row = e.target.closest('tr[data-member-id]');
+      if (row) showDetail(row.dataset.memberId);
+    });
+
+    els.pagination.addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-page]');
+      if (!btn || btn.disabled) return;
+      const total = Math.max(1, Math.ceil(state.filtered.length / PAGE_SIZE));
+      const next = Number(btn.dataset.page || 1);
+      if (next < 1 || next > total) return;
+      state.currentPage = next;
+      renderTable();
+      renderPagination();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    $('modalMeta').addEventListener('click', (e) => {
+      const badge = e.target.closest('[data-badge-filter-type]');
+      if (!badge) return;
+      applyBadgeFilter(badge.dataset.badgeFilterType, badge.dataset.badgeFilterValue);
+    });
+    $('modalName').addEventListener('click', (e) => {
+      const target = e.target.closest('[data-name-filter], [data-name-filter-id]');
+      if (!target) return;
+      applyNameFilter(target.dataset.nameFilterId || target.dataset.nameFilter);
+    });
+    $('modalSubinfo').addEventListener('click', (e) => {
+      const memberBtn = e.target.closest('[data-member-id]');
+      if (!memberBtn || memberBtn.disabled) return;
+      showDetail(memberBtn.dataset.memberId);
+    });
+    $('modalBody').addEventListener('click', (e) => {
+      const badge = e.target.closest('[data-badge-filter-type]');
+      if (badge) {
+        applyBadgeFilter(badge.dataset.badgeFilterType, badge.dataset.badgeFilterValue);
+        return;
+      }
+      const nameFilter = e.target.closest('[data-name-filter]');
+      if (nameFilter) {
+        applyNameFilter(nameFilter.dataset.nameFilter);
+        return;
+      }
+      const familyTag = e.target.closest('[data-family-member-id]');
+      if (!familyTag) return;
+      showDetail(familyTag.dataset.familyMemberId);
+    });
+
+
+    let resizeTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => { if (window.innerWidth > 640) closeMobileSidebar(); rerender(); }, 80);
+    });
+  }
+
+  function buildJsonPickerNotice(message) {
+    return `
+      <div style="display:flex; flex-wrap:wrap; gap:10px; align-items:center; justify-content:space-between;">
+        <div>${message}</div>
+        <div style="display:flex; gap:8px; align-items:center;">
+          <label for="jsonFileInput" style="display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border:1px solid rgba(200,169,110,0.35); border-radius:8px; background:rgba(200,169,110,0.12); color:var(--accent2); cursor:pointer; font-weight:500;">
+            JSON 파일 선택
+          </label>
+          <input id="jsonFileInput" type="file" accept=".json,application/json" style="display:none;" />
+        </div>
+      </div>
+    `;
+  }
+
+  function finalizeLoadedData(data) {
+    if (!Array.isArray(data)) throw new Error('JSON 형식 오류');
+    state.members = data;
+    hideNotice();
+    buildFilters();
+    closeMobileSidebar();
+      rerender({ rebuildFilters: true, resetPage: true });
+  }
+
+  async function loadDataFromSelectedFile(file) {
+    if (!file) return;
+    try {
+      const text = await file.text();
+      const data = JSON.parse(text);
+      finalizeLoadedData(data);
+    } catch (err) {
+      showNotice(buildJsonPickerNotice('선택한 JSON 파일을 읽지 못했습니다.<br><strong>church_members_regenerated.json</strong> 형식인지 확인해 주세요.'), true);
+      const input = $('jsonFileInput');
+      if (input) input.addEventListener('change', (e) => loadDataFromSelectedFile(e.target.files?.[0]), { once: true });
+    }
+  }
+
+  function promptJsonSelection(message) {
+    const noticeMessage = message || '자동 불러오기에 실패했습니다. <strong>church_members_regenerated.json</strong> 파일을 직접 선택해 주세요.';
+    showNotice(buildJsonPickerNotice(noticeMessage), true);
+    const input = $('jsonFileInput');
+    if (input) {
+      input.value = '';
+      input.addEventListener('change', (e) => loadDataFromSelectedFile(e.target.files?.[0]), { once: true });
+    }
+  }
+
+  async function loadDefaultJson() {
+    showNotice('명단 데이터를 불러오는 중입니다...');
+    try {
+      const response = await fetch('./church_members_regenerated.json', { cache: 'no-store' });
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+      const data = await response.json();
+      finalizeLoadedData(data);
+    } catch (error) {
+      promptJsonSelection('자동으로 <strong>church_members_regenerated.json</strong> 파일을 불러오지 못했습니다.<br>HTML 파일과 JSON 파일이 같은 폴더에 있는지 확인하시거나, 아래에서 JSON 파일을 직접 선택해 주세요.');
+    }
+  }
+
+  function init() {
+    els.searchInput = $('searchInput');
+    els.tableBody = $('tableBody');
+    els.pagination = $('pagination');
+    bindEvents();
+    initFontControls();
+    loadDefaultJson();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>
+
+</body>
+</html>
