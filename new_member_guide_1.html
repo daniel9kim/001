@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>신입단원 한국장로성가단 사용 설명서</title>
+<style>
+  :root{
+    --chalk:#f4f3ec;
+    --chalk-dim:rgba(244,243,236,.82);
+    --glass:rgba(8,10,9,.54);
+    --line:rgba(255,255,255,.78);
+    --note:#d9b778;
+    --note-text:#2c2116;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:"Pretendard","Noto Sans KR","Apple SD Gothic Neo",sans-serif;
+    color:var(--chalk);
+    background:
+      radial-gradient(circle at 15% 12%, rgba(255,193,98,.28), transparent 22%),
+      radial-gradient(circle at 92% 18%, rgba(87,152,196,.22), transparent 28%),
+      linear-gradient(135deg,#19120d 0%,#2c2117 48%,#0f1718 100%);
+    min-height:100vh;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:34px 18px 70px}
+  .hero{
+    position:relative; overflow:hidden; border-radius:32px; padding:42px 28px;
+    min-height:520px;
+    background:
+      linear-gradient(90deg,rgba(0,0,0,.45),rgba(0,0,0,.18)),
+      url('/mnt/data/3a6ed994-5c5d-4963-98e8-bad2cb366c1f.png');
+    background-size:cover; background-position:center;
+    box-shadow:0 24px 70px rgba(0,0,0,.45);
+  }
+  .hero::after,.card::after{
+    content:""; position:absolute; inset:0; pointer-events:none;
+    background:linear-gradient(120deg,rgba(255,255,255,.08),transparent 18%,transparent 70%,rgba(255,255,255,.06));
+    mix-blend-mode:screen;
+  }
+  .bubble{
+    position:relative; display:inline-block; max-width:860px; padding:30px 34px;
+    border:5px solid var(--line); border-radius:48px; background:rgba(0,0,0,.22);
+    filter:drop-shadow(0 4px 2px rgba(0,0,0,.28));
+  }
+  .bubble h1{margin:0;font-size:clamp(34px,5vw,62px);line-height:1.16;letter-spacing:-.05em;text-shadow:0 2px 0 rgba(0,0,0,.2)}
+  .bubble p{font-size:clamp(18px,2.2vw,28px);line-height:1.55;margin:20px 0 0;color:var(--chalk-dim)}
+  .doodle{position:absolute;color:var(--chalk);font-size:42px;font-weight:900;opacity:.94}
+  .d1{right:58px;top:54px}.d2{left:36px;bottom:40px}.d3{right:96px;bottom:60px}
+  .intro-note{
+    position:absolute;right:40px;bottom:38px;width:260px;padding:22px 18px 18px;
+    background:linear-gradient(#e5c98d,#cfa965); color:var(--note-text); transform:rotate(-1deg);
+    box-shadow:0 12px 22px rgba(0,0,0,.35); font-weight:800; text-align:center; font-size:24px;
+  }
+  .intro-note::before{content:"";position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:74px;height:26px;background:rgba(240,236,215,.72)}
+  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-top:34px}
+  .card{
+    position:relative; overflow:hidden; min-height:720px; border-radius:28px; padding:36px 32px;
+    background:
+      linear-gradient(180deg,rgba(10,12,12,.62),rgba(10,12,12,.42)),
+      radial-gradient(circle at 30% 10%,rgba(255,199,117,.24),transparent 30%),
+      radial-gradient(circle at 80% 95%,rgba(90,142,151,.20),transparent 34%),
+      var(--glass);
+    border:1px solid rgba(255,255,255,.18);
+    box-shadow:0 18px 45px rgba(0,0,0,.34), inset 0 0 0 1px rgba(255,255,255,.08);
+    backdrop-filter:blur(3px);
+  }
+  .card::before{
+    content:"";position:absolute;inset:0;opacity:.18;
+    background-image:linear-gradient(90deg,rgba(255,255,255,.18) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px);
+    background-size:54px 54px;
+  }
+  .num{font-size:34px;font-weight:900;margin-bottom:8px;display:flex;align-items:center;gap:12px;letter-spacing:-.04em;position:relative;z-index:1}
+  .num .star{font-size:34px}
+  h2{position:relative;z-index:1;margin:0 0 22px;font-size:40px;line-height:1.1;text-decoration:underline;text-underline-offset:10px;text-decoration-thickness:4px;letter-spacing:-.06em}
+  p,li{position:relative;z-index:1;font-size:22px;line-height:1.65;letter-spacing:-.04em;word-break:keep-all}
+  ul{margin:12px 0 0;padding-left:0;list-style:none}
+  li{margin:9px 0;padding-left:32px}.li-check li::before,.plain li::before{content:"✓";position:absolute;margin-left:-32px;font-weight:900}.plain li::before{content:"•"}
+  .section{position:relative;z-index:1;border:3px dashed rgba(255,255,255,.65);border-radius:18px;padding:18px 20px;margin:20px 0;background:rgba(0,0,0,.12)}
+  .callout{position:relative;z-index:1;border:3px solid rgba(255,255,255,.72);border-radius:999px;padding:12px 18px;margin:18px 0;display:inline-block;font-size:22px;font-weight:800;background:rgba(255,255,255,.06)}
+  .heart-note{position:absolute;right:26px;bottom:32px;width:230px;min-height:145px;padding:28px 18px 16px;background:var(--note);color:var(--note-text);transform:rotate(1.5deg);font-size:22px;font-weight:900;text-align:center;z-index:3;box-shadow:0 12px 22px rgba(0,0,0,.32)}
+  .heart-note::before{content:"";position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:70px;height:24px;background:rgba(235,230,210,.75)}
+  .timeline{display:grid;grid-template-columns:96px 1fr;gap:10px 16px;position:relative;z-index:1;margin-top:14px}.time{border:2px solid var(--line);border-radius:999px;text-align:center;padding:6px;font-weight:900;font-size:22px}.event{font-size:22px;padding:6px 0;line-height:1.45}
+  .site{font-size:18px;border:2px solid var(--line);border-radius:12px;padding:8px 12px;margin:8px 0 20px;word-break:break-all;background:rgba(255,255,255,.05)}
+  .small{font-size:19px}.big{font-size:24px;font-weight:800}.footer{margin-top:30px;text-align:center;color:rgba(255,255,255,.75);font-size:15px}
+  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 0}.btn{border:2px solid rgba(255,255,255,.7);border-radius:999px;padding:10px 16px;color:white;text-decoration:none;font-weight:800;background:rgba(0,0,0,.22)}
+  @media(max-width:860px){.grid{grid-template-columns:1fr}.card{min-height:auto;padding-bottom:210px}.hero{min-height:640px}.intro-note{left:28px;right:auto}.bubble{padding:24px 20px}.wrap{padding:18px 12px 44px}h2{font-size:34px}p,li{font-size:20px}}
+  @media print{body{background:#111}.wrap{max-width:none}.hero,.card{break-inside:avoid;page-break-inside:avoid;margin-bottom:18px}.grid{display:block}.card{margin-bottom:18px;min-height:0}.btn,.toolbar{display:none}}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <div class="bubble">
+        <h1>신입단원<br>한국장로성가단<br>사용 설명서</h1>
+        <p>처음 오신 장로님이 낯설지 않도록,<br>연습·행사·문화·도움 받을 곳까지 한눈에 정리했습니다.</p>
+      </div>
+      <div class="doodle d1">?</div><div class="doodle d2">☆</div><div class="doodle d3">♡</div>
+      <div class="intro-note">찬양으로 하나 되고<br>사랑으로 섬기는 공동체 ☺</div>
+    </section>
+
+    <div class="toolbar"><a class="btn" href="javascript:window.print()">인쇄 / PDF 저장</a></div>
+
+    <main class="grid">
+      <section class="card"><div class="num"><span class="star">☆</span> 1</div><h2>소개</h2><p>한국장로성가단은 대한예수교 장로회 통합교단 총회 산하 기관으로 오직 통합교단 장로로만 구성되었어요.</p><p>따라서 초교파 합창단과는 다른 남다른 의미가 있습니다.</p><div class="section"><p>전국 31개 장로 합창단 중에서 초교파인 서울장로합창단, 코랄카리스 찬양단과 더불어 서울의 대표적인 장로 합창단 입니다.</p></div><p class="big">장로성가단은 단순히 노래를 잘하는 사람들이 모인 곳이 아니라, 찬양을 통해 하나님께 영광을 돌리고 서로를 격려하는 믿음의 공동체입니다.</p><div class="heart-note">여기 정말<br>좋은 공동체!</div></section>
+
+      <section class="card"><div class="num"><span class="star">☆</span> 2</div><h2>입단 안내</h2><p class="big">지원자격 : 대한예수교 장로회 통합교단 장로</p><div class="callout">오디션 절차</div><ul class="li-check"><li>입단 희망 : 김기성 총무<br><span class="small">010-2068-8849</span></li><li>입단 신청 : 신청서 작성</li><li>오디션 절차 : 좋아하는 찬송 1곡</li><li>임원회 승인</li><li>입단비 및 회비 : 입단비 30만원, 회비 50 만원 (1년)</li><li>연주복 구입 : 동복, 하복 30만원</li></ul><div class="heart-note">찬양의 자리로<br>초대합니다 ♬</div></section>
+
+      <section class="card"><div class="num"><span class="star">☆</span> 3</div><h2>정기연습</h2><ul class="plain"><li>일시 : 매주 금요일 오전 6시</li><li>장소 : 백주년기념관</li><li>주차 : 백주년기념관 주차 지원</li><li>준비물 : 장로성가단 악보</li><li>연습예절 : 10분 전 도착, 휴대폰 무음</li></ul><div class="callout">금요일은 이렇게 진행됩니다.</div><div class="timeline"><div class="time">05:50</div><div class="event">도착</div><div class="time">06:00</div><div class="event">준비 운동</div><div class="time">06:00</div><div class="event">연습 시작</div><div class="time">08:00</div><div class="event">연습 마침</div><div class="time">08:00</div><div class="event">아침식사(네오트로)</div><div class="time">09:00</div><div class="event">식사 후 귀가</div></div><div class="heart-note">매주 금요일<br>아침!</div></section>
+
+      <section class="card"><div class="num"><span class="star">☆</span> 4</div><h2>연중 일정</h2><p class="big">● 교회 초청연주 (월 1회)</p><div class="timeline"><div class="time">01월</div><div class="event">개강 예배</div><div class="time">04월</div><div class="event">고난주간 특별찬양</div><div class="time">07월</div><div class="event">전국장로수련회</div><div class="time">07월</div><div class="event">여름 방학 (1개월)</div><div class="time">10월</div><div class="event">정기연주회 (3년)</div><div class="time">10월</div><div class="event">전국장로합창대축제 (3년)</div><div class="time">10월</div><div class="event">해외 찬양선교 (3년)</div><div class="time">12월</div><div class="event">송년회</div><div class="time">12월</div><div class="event">겨울 방학</div></div><div class="heart-note">함께 세워가는<br>1년 ♡</div></section>
+
+      <section class="card"><div class="num"><span class="star">☆</span> 5</div><h2>특별활동</h2><ul class="plain"><li>HIM 중창단 : 10명 구성<br><span class="small">매주 목요일 신당동교회 연습</span></li><li>엘드림 중창단 : 08명 구성<br><span class="small">매주 목요일 신당동교회 연습</span></li><li>하늘샘 종창단 : 12명 구성<br><span class="small">매주 목요일 신당동교회 연습</span></li><li>코람데오(하모니카) : 06명 구성<br><span class="small">매주 목요일 신당동교회 연습</span></li><li>핸드벨 콰이어 : 12명 구성<br><span class="small">매주 수요일 06:00 새문안교회 연습</span></li><li>권사합창단 : 22명 구성<br><span class="small">격주 토요일 11:00 충무교회 연습</span></li></ul><div class="heart-note">함께하면<br>더 즐거워요!</div></section>
+
+      <section class="card"><div class="num"><span class="star">☆</span> 6</div><h2>파트별 특징 ★ 테너1</h2><p>테너 1(Tenor 1) 은 가장 높은 음역을 담당하는 파트입니다.</p><ul class="li-check"><li>남성 파트 중 최고 음역</li><li>주선율(멜로디)을 맡는 경우가 많음</li><li>높은 음에서 밝고 화려한 소리를 내야 함</li></ul><div class="callout">테너1 단원들의 성향</div><ul class="plain"><li>노래를 좋아하는 분이 많음</li><li>자신감이 있는 경우가 많음</li><li>솔로 경험자가 비교적 많음</li><li>음정에 민감함</li></ul><div class="heart-note">가장 높은<br>음역!</div></section>
+
+      <section class="card"><div class="num"><span class="star">☆</span> 7</div><h2>파트별 특징 ★ 테너2</h2><p>테너2는 덜 눈에 띄지만, 테너1과 바리톤을 이어주는 파트입니다.</p><div class="section"><p>테너1이 하늘을 향해 올라간다면, 테너2는 그 아래에서 받쳐주는 역할을 합니다.</p></div><ul class="li-check"><li>바리톤과 자연스럽게 연결</li><li>화음의 중심축 역할</li></ul><div class="callout">테너2 단원들의 성향</div><ul class="plain"><li>화음을 잘 듣는 분</li><li>전체 균형을 중요하게 생각하는 분</li><li>튀기보다 조화를 선호하는 분</li><li>책임감 있는 분이 많은 편입니다.</li><li>솔로보다 앙상블을 즐기는 경우가 많습니다.</li></ul><div class="heart-note">보이지 않아도<br>중요한 역할!</div></section>
+
+      <section class="card"><div class="num"><span class="star">☆</span> 8</div><h2>파트별 특징 ★ 바리톤</h2><p>바리톤은 테너와 베이스를 연결하고 위와 아래를 이어주며 화음을 완성하는 역할을 합니다.</p><div class="callout">가장 넓은 음역을 요구받는 파트</div><p>바리톤은 생각보다 어렵습니다. 어떤 곡에서는 테너처럼 높은 음을 내야 하고 어떤 곡에서는 베이스처럼 낮은 음을 내야 합니다.</p><div class="callout">바리톤 단원들의 성향</div><ul class="li-check"><li>음악적 균형 감각이 좋음</li><li>다른 파트를 잘 들음</li><li>책임감이 강함</li><li>무대에서 과하게 튀지 않음</li><li>전체 완성도를 중요하게 생각함</li></ul><div class="heart-note">연결의 중심!</div></section>
+
+      <section class="card"><div class="num"><span class="star">☆</span> 9</div><h2>파트별 특징 ★ 베이스</h2><p>베이스는 남성합창의 가장 낮은 음역을 담당하는 파트입니다. 화려한 고음은 없지만, 합창 전체를 떠받치는 뿌리이자 기초입니다.</p><div class="callout">좋은 베이스의 특징</div><ul class="li-check"><li>큰 소리보다 안정된 소리</li><li>낮은 음에서도 흔들리지 않는 음정</li><li>긴 호흡</li><li>꾸준한 성량</li></ul><div class="callout">베이스 단원들의 흔한 성향</div><ul class="plain"><li>묵묵한 분</li><li>책임감 있는 분</li><li>꾸준한 분</li><li>출석률 좋은 분</li><li>팀워크를 중요하게 생각하는 분이 많은 편입니다.</li></ul><div class="heart-note">합창의<br>든든한 뿌리!</div></section>
+
+      <section class="card"><div class="num"><span class="star">☆</span> 10</div><h2>주요 웹사이트</h2><p class="big">• 홈페이지</p><div class="site">https://www.kechoir.or.kr/</div><p class="big">• 다음 카페</p><div class="site">https://cafe.daum.net/kechoir20</div><p class="big">• 단원수첩</p><div class="site">https://daniel9kim.github.io/001/notebook.html</div><p class="big">• 바리톤 연습실</p><div class="site">https://daniel9kim.github.io/001/baritone.html</div><div class="heart-note">필요할 때<br>바로 체크!</div></section>
+
+      <section class="card"><div class="num"><span class="star">☆</span> 11</div><h2>장로성가단의 문화</h2><ul class="li-check"><li>신앙: 찬양보다 먼저 예배자입니다.</li><li>배려: 서로를 존중합니다.</li><li>겸손 : 실력보다 태도를 중요하게 생각합니다.</li><li>섬김 : 보이지 않는 봉사를 귀하게 여깁니다.</li></ul><div class="section"><p>처음 오시면 아는 분보다 모르는 분이 더 많습니다. 하지만 걱정하지 마세요. 장로성가단 단원들은 새로 오신 장로님을 진심으로 환영합니다.</p></div><p>먼저 인사하시면 생각보다 많은 분들이 이름을 기억해 주십니다. 연습 후 식사 자리는 장로성가단을 가장 빨리 알아가는 시간입니다.</p><p>혼자 계시지 마시고 편하게 함께 앉아 주세요. 실수해도 괜찮습니다. 지금의 선배님들도 모두 신입단원이었던 시절이 있었습니다.</p><div class="heart-note">환영합니다!</div></section>
+
+      <section class="card"><div class="num"><span class="star">☆</span> 12</div><h2>도움이 필요할 때</h2><ul class="plain"><li>단장 : 이형욱 장로<br><span class="small">010-5304-5463</span></li><li>총무 : 김기성 장로<br><span class="small">010-2068-8849</span></li><li>테너1 파트장 : 김례위 장로<br><span class="small">010-3306-9449</span></li><li>테너2 파트장 : 박병호 장로<br><span class="small">010-8963-5579</span></li><li>바리톤 파트장 : 복봉수 장로<br><span class="small">010-3354-2258</span></li><li>베이스 파트장 : 홍현풍 장로<br><span class="small">010-9047-0074</span></li></ul><div class="section"><p class="big">모르는 것이 있으면 혼자 고민하지 마시고 편하게 말씀해 주세요.</p></div><div class="heart-note">언제든<br>편하게 연락하세요!</div></section>
+    </main>
+    <div class="footer">신입단원 한국장로성가단 사용 설명서 · 카드뉴스 HTML</div>
+  </div>
+</body>
+</html>
