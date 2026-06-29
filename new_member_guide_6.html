@@ -16,13 +16,110 @@
   .wrap, .top, .card { touch-action: pan-x pan-y pinch-zoom; }
   html{scroll-behavior:smooth}
   body{margin:0;font-family:"Pretendard","Noto Sans KR","Apple SD Gothic Neo",sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 5%,rgba(242,198,109,.18),transparent 28%),radial-gradient(circle at 92% 9%,rgba(139,199,255,.16),transparent 26%),linear-gradient(135deg,#17100b,#261c14 50%,#111819);}
-  .wrap{max-width:none;margin:0 auto;padding:34px 18px 80px}.top{position:relative;overflow:hidden;border-radius:34px;min-height:580px;padding:40px 32px;background:linear-gradient(90deg,rgba(0,0,0,.58),rgba(0,0,0,.16)),url('/mnt/data/3a6ed994-5c5d-4963-98e8-bad2cb366c1f.png') center/cover;box-shadow:0 28px 80px rgba(0,0,0,.48)}
+  .wrap{max-width:1200px;margin:0 auto;padding:34px 18px 80px}.top{position:relative;overflow:hidden;border-radius:34px;min-height:580px;padding:40px 32px;background:linear-gradient(90deg,rgba(0,0,0,.58),rgba(0,0,0,.16)),url('/mnt/data/3a6ed994-5c5d-4963-98e8-bad2cb366c1f.png') center/cover;box-shadow:0 28px 80px rgba(0,0,0,.48)}
   .speech{max-width:840px;border:5px solid var(--line);border-radius:52px;padding:30px 34px;background:rgba(0,0,0,.25);filter:drop-shadow(0 6px 2px rgba(0,0,0,.26))}.speech h1{font-size:clamp(36px,5vw,64px);line-height:1.12;margin:0;letter-spacing:-.06em}.speech p{font-size:clamp(18px,2vw,26px);line-height:1.55;color:var(--muted);margin:18px 0 0}.sticky{position:absolute;right:38px;bottom:38px;width:270px;background:linear-gradient(#e9cc8d,#caa25f);color:#2a2015;padding:26px 20px 20px;text-align:center;font-weight:900;font-size:24px;transform:rotate(-1deg);box-shadow:0 14px 24px rgba(0,0,0,.35)}.sticky:before{content:"";position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:74px;height:26px;background:rgba(242,238,216,.8)}
   .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 0}.btn{border:2px solid rgba(255,255,255,.7);border-radius:999px;padding:10px 16px;color:white;text-decoration:none;font-weight:900;background:rgba(0,0,0,.24)}
   .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-top:32px}.card{position:relative;overflow:hidden;min-height:760px;border-radius:30px;padding:30px;background:linear-gradient(180deg,rgba(10,12,12,.66),rgba(10,12,12,.46)),radial-gradient(circle at 24% 10%,rgba(242,198,109,.20),transparent 30%),radial-gradient(circle at 86% 92%,rgba(133,213,189,.14),transparent 34%);border:1px solid rgba(255,255,255,.18);box-shadow:0 18px 45px rgba(0,0,0,.34),inset 0 0 0 1px rgba(255,255,255,.08)}.card:before{content:"";position:absolute;inset:0;opacity:.15;background-image:linear-gradient(90deg,rgba(255,255,255,.14) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px);background-size:48px 48px}.card>*{position:relative;z-index:1}.header{display:flex;align-items:center;gap:12px;margin-bottom:14px}.badge{width:54px;height:54px;border:3px solid var(--line);border-radius:50%;display:grid;place-items:center;font-size:26px;font-weight:1000;background:rgba(255,255,255,.07)}h2{font-size:38px;line-height:1.15;margin:0;letter-spacing:-.06em;text-decoration:underline;text-underline-offset:9px;text-decoration-thickness:4px}.lead{font-size:23px;line-height:1.6;letter-spacing:-.04em;word-break:keep-all}.small{font-size:18px}.accent{color:var(--gold);font-weight:900}.chiprow{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.chip{border:2px solid rgba(255,255,255,.66);border-radius:999px;padding:8px 12px;font-weight:900;background:rgba(255,255,255,.06);font-size:18px}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}.stat{border:2px solid rgba(255,255,255,.62);border-radius:20px;padding:14px 10px;text-align:center;background:rgba(255,255,255,.06)}.stat b{display:block;font-size:30px;color:var(--gold)}.box{border:3px dashed rgba(255,255,255,.6);border-radius:20px;padding:16px 18px;margin:16px 0;background:rgba(0,0,0,.14)}ul{list-style:none;padding:0;margin:12px 0}li{font-size:21px;line-height:1.54;letter-spacing:-.04em;margin:10px 0;padding-left:31px;position:relative;word-break:keep-all}li:before{content:"✓";position:absolute;left:0;top:0;font-weight:1000;color:var(--mint)}.bul li:before{content:"•";color:var(--gold)}.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}.step{border:2px solid rgba(255,255,255,.63);border-radius:18px;padding:13px 10px;text-align:center;font-size:18px;font-weight:900;background:rgba(255,255,255,.06)}.step span{display:block;margin:0 auto 8px;width:30px;height:30px;border-radius:50%;background:var(--gold);color:#24190e;line-height:30px}.timeline{display:grid;grid-template-columns:86px 1fr;gap:10px 14px;margin:12px 0}.time{border:2px solid var(--line);border-radius:999px;text-align:center;padding:6px;font-weight:1000;font-size:20px;background:rgba(255,255,255,.07)}.event{font-size:21px;line-height:1.45;padding:6px 0}.event:after{content:"";display:block;height:2px;background:linear-gradient(90deg,rgba(255,255,255,.45),transparent);margin-top:8px}.quote{border:3px solid rgba(255,255,255,.7);border-radius:26px;padding:16px 18px;margin:18px 0;font-size:22px;font-weight:900;background:rgba(255,255,255,.05)}.side-note{position:absolute;right:22px;bottom:26px;width:220px;background:var(--paper);color:var(--paper-ink);padding:24px 16px 16px;text-align:center;font-size:21px;font-weight:1000;transform:rotate(1.3deg);box-shadow:0 13px 24px rgba(0,0,0,.35);z-index:2}.side-note:before{content:"";position:absolute;top:-13px;left:50%;transform:translateX(-50%);width:66px;height:23px;background:rgba(245,240,218,.75)}.bars{margin:18px 0}.bar{margin:14px 0}.bar .label{display:flex;justify-content:space-between;font-size:18px;font-weight:900}.track{height:14px;border-radius:999px;background:rgba(255,255,255,.13);overflow:hidden;border:1px solid rgba(255,255,255,.22)}.fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--sky),var(--mint),var(--gold))}.site{font-size:18px;border:2px solid rgba(255,255,255,.62);border-radius:18px;padding:14px 14px;margin:10px 0 16px;word-break:break-all;background:rgba(255,255,255,.06);display:grid;grid-template-columns:54px 1fr;gap:12px;align-items:center;transition:.18s ease}.site:hover{transform:translateY(-2px);background:rgba(255,255,255,.11)}.site a{color:#fff;text-decoration:none;border-bottom:2px dotted rgba(255,255,255,.7);font-weight:900}.site a:hover{color:var(--gold)}.site-ico{width:54px;height:54px;border-radius:18px;background:linear-gradient(135deg,rgba(242,198,109,.95),rgba(133,213,189,.84));display:grid;place-items:center;color:#24190e;font-size:28px;box-shadow:0 10px 22px rgba(0,0,0,.25)}.cute-strip{display:flex;gap:12px;flex-wrap:wrap;margin:16px 0}.mini-doodle{border:2px solid rgba(255,255,255,.6);background:rgba(255,255,255,.07);border-radius:999px;padding:9px 13px;font-weight:1000;font-size:18px}.tiny-card{border:2px dashed rgba(255,255,255,.58);border-radius:22px;background:rgba(255,255,255,.05);padding:14px;margin-top:12px;display:flex;align-items:center;gap:12px}.tiny-card .big{font-size:42px}.contact{display:grid;grid-template-columns:116px 1fr;gap:12px;margin-top:16px}.role{border:2px solid rgba(255,255,255,.65);border-radius:999px;padding:9px 10px;text-align:center;font-weight:1000;background:rgba(255,255,255,.07)}.person{font-size:20px;padding:8px 0;line-height:1.35}.person a{display:inline-block;color:#fff;text-decoration:none;border-bottom:2px dotted rgba(255,255,255,.65);font-weight:1000;padding:2px 0}.person a:hover{color:var(--gold)}.culture-bubbles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:14px 0 20px}.bubble{border:2px solid rgba(255,255,255,.66);border-radius:24px;background:rgba(255,255,255,.08);padding:18px;text-align:center}.bubble .emoji{font-size:42px;display:block;margin-bottom:8px}.bubble b{display:block;color:var(--gold);font-size:23px}.welcome-path{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:14px}.welcome-step{border:2px dashed rgba(255,255,255,.55);border-radius:20px;padding:13px 8px;text-align:center;background:rgba(255,255,255,.05);font-weight:900}.welcome-step span{display:block;font-size:32px;margin-bottom:6px}.heart-note{border:3px solid rgba(255,255,255,.7);border-radius:28px;background:rgba(255,255,255,.06);padding:18px 20px;margin-top:18px;font-size:23px;line-height:1.55;font-weight:900;text-align:center}.contact-tip{margin-top:18px;border:3px dashed rgba(255,255,255,.55);border-radius:24px;padding:16px 18px;background:rgba(255,255,255,.06);font-size:21px;line-height:1.5}.footer{text-align:center;color:rgba(255,255,255,.7);margin-top:32px}
   .full{grid-column:1/-1;min-height:620px}.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}.icon{font-size:34px;margin-right:6px}.printmark{position:absolute;left:24px;bottom:22px;font-size:14px;color:rgba(255,255,255,.52)}
   @media(max-width:900px){.grid,.two,.culture-bubbles{grid-template-columns:1fr}.welcome-path{grid-template-columns:1fr 1fr}.card{min-height:auto;padding-bottom:230px}.top{min-height:680px}.sticky{left:28px;right:auto}.flow,.statgrid{grid-template-columns:1fr 1fr}h2{font-size:32px}.lead,li{font-size:19px}.side-note{width:200px}.wrap{padding:18px 12px 50px}}
   @media print{body{background:#111}.wrap{max-width:none}.top,.card{break-inside:avoid;page-break-inside:avoid;margin-bottom:18px}.grid{display:block}.card{min-height:0;margin-bottom:18px}.side-note{position:relative;right:auto;bottom:auto;margin-top:20px}.toolbar{display:none}}
+
+  /* 보기 전환 기능 */
+  .mode-btn{
+    cursor:pointer;
+    font-family:inherit;
+  }
+  body.mobile-view .wrap{
+    max-width:760px;
+    width:100%;
+    padding:16px 10px 60px;
+  }
+  body.mobile-view .top{
+    min-height:520px;
+    border-radius:24px;
+    padding:28px 20px;
+  }
+  body.mobile-view .speech{
+    padding:22px 20px;
+    border-radius:34px;
+  }
+  body.mobile-view .sticky{
+    position:relative;
+    right:auto;
+    bottom:auto;
+    left:auto;
+    margin:28px 0 0;
+    width:230px;
+  }
+  body.mobile-view .grid{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:22px;
+  }
+  body.mobile-view .card{
+    min-height:auto;
+    padding:24px 22px 210px;
+    border-radius:24px;
+  }
+  body.mobile-view .full{
+    grid-column:auto;
+  }
+  body.mobile-view .two,
+  body.mobile-view .culture-bubbles{
+    grid-template-columns:1fr;
+  }
+  body.mobile-view .welcome-path{
+    grid-template-columns:1fr 1fr;
+  }
+
+  body.all-view{
+    overflow-x:auto;
+  }
+  body.all-view .wrap{
+    max-width:none;
+    width:1900px;
+    margin:0 auto;
+    padding:26px 22px 70px;
+  }
+  body.all-view .top{
+    min-height:420px;
+  }
+  body.all-view .grid{
+    display:grid;
+    grid-template-columns:repeat(4, minmax(0, 1fr));
+    gap:22px;
+  }
+  body.all-view .card{
+    min-height:640px;
+    padding:24px;
+    border-radius:26px;
+  }
+  body.all-view .full{
+    grid-column:span 2;
+    min-height:620px;
+  }
+  body.all-view h2{
+    font-size:30px;
+  }
+  body.all-view .lead{
+    font-size:19px;
+    line-height:1.52;
+  }
+  body.all-view li{
+    font-size:18px;
+    line-height:1.46;
+  }
+  body.all-view .side-note{
+    width:180px;
+    font-size:18px;
+  }
+  .mode-guide{
+    margin:14px 0 0;
+    color:rgba(255,255,255,.76);
+    font-weight:800;
+    line-height:1.5;
+  }
+
 </style>
 </head>
 <body>
@@ -31,7 +128,13 @@
     <div class="speech"><h1>신입단원<br>한국장로성가단<br>사용 설명서</h1><p>처음 오신 장로님이 한눈에 이해하도록<br>입단 · 연습 · 일정 · 문화 · 연락처를 카드뉴스형 인포그래픽으로 정리했습니다.</p></div>
     <div class="sticky">찬양으로 하나 되고<br>사랑으로 섬기는 공동체 ☺</div>
   </section>
-  <div class="toolbar"><a class="btn" href="javascript:window.print()">인쇄 / PDF 저장</a><a class="btn" href="#cards">카드뉴스 보기</a></div>
+  <div class="toolbar">
+    <a class="btn" href="javascript:window.print()">인쇄 / PDF 저장</a>
+    <a class="btn" href="#cards">카드뉴스 보기</a>
+    <button class="btn mode-btn" type="button" onclick="setViewMode('mobile')">📱 휴대폰 최적화 보기</button>
+    <button class="btn mode-btn" type="button" onclick="setViewMode('all')">🧾 전체 펼쳐보기</button>
+  </div>
+  <div class="mode-guide">📱 휴대폰 최적화 보기는 한 장씩 편하게 읽는 방식이고, 🧾 전체 펼쳐보기는 여러 장을 한눈에 작게 보는 방식입니다.</div>
   <main class="grid" id="cards">
     <section class="card"><div class="header"><div class="badge">1</div><h2>소개</h2></div><div class="statgrid"><div class="stat"><b>통합</b>교단 장로</div><div class="stat"><b>31</b>전국 장로 합창단</div><div class="stat"><b>서울</b>대표 합창단</div></div><p class="lead">한국장로성가단은 대한예수교 장로회 통합교단 총회 산하 기관으로 오직 통합교단 장로로만 구성되었어요. 따라서 초교파 합창단과는 다른 남다른 의미가 있습니다.</p><div class="box"><p class="lead">전국 31개 장로 합창단 중에서 초교파인 서울장로합창단, 코랄카리스 찬양단과 더불어 서울의 대표적인 장로 합창단 입니다.</p></div><p class="lead"><span class="accent">핵심:</span> 단순히 노래를 잘하는 사람들이 모인 곳이 아니라, 찬양을 통해 하나님께 영광을 돌리고 서로를 격려하는 믿음의 공동체입니다.</p><div class="side-note">여기 정말<br>좋은 공동체!</div></section>
 
@@ -91,5 +194,32 @@
   </main>
   <div class="footer">감사합니다. 오늘도 좋은 하루 되세요! · TWODAY THANK YOU! ☺</div>
 </div>
+
+<script>
+  function setViewMode(mode){
+    document.body.classList.remove('mobile-view','all-view');
+    if(mode === 'mobile'){
+      document.body.classList.add('mobile-view');
+      localStorage.setItem('newMemberGuideViewMode','mobile');
+    }else if(mode === 'all'){
+      document.body.classList.add('all-view');
+      localStorage.setItem('newMemberGuideViewMode','all');
+    }
+    window.scrollTo({top:0, behavior:'smooth'});
+  }
+
+  (function(){
+    const saved = localStorage.getItem('newMemberGuideViewMode');
+    if(saved === 'mobile' || saved === 'all'){
+      document.body.classList.add(saved + '-view');
+    }else{
+      // 휴대폰에서는 기본값을 '휴대폰 최적화 보기'로 설정
+      if(window.innerWidth <= 900){
+        document.body.classList.add('mobile-view');
+      }
+    }
+  })();
+</script>
+
 </body>
 </html>
