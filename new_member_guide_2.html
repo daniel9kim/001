@@ -1,59 +1,999 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>신입단원 한국장로성가단 사용 설명서 - 인포그래픽</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=0.1, maximum-scale=5.0, user-scalable=yes">
+<title>한국장로성가단 신입단원 안내</title>
 <style>
-  :root{
-    --bg:#15110d; --ink:#f8f4e8; --muted:rgba(248,244,232,.78); --line:rgba(255,255,255,.72);
-    --gold:#f2c66d; --mint:#85d5bd; --sky:#8bc7ff; --rose:#ff9e9e; --paper:#f4ecd8; --paper-ink:#2d241b;
-  }
-  *{box-sizing:border-box}
-  html{scroll-behavior:smooth}
-  body{margin:0;font-family:"Pretendard","Noto Sans KR","Apple SD Gothic Neo",sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 5%,rgba(242,198,109,.18),transparent 28%),radial-gradient(circle at 92% 9%,rgba(139,199,255,.16),transparent 26%),linear-gradient(135deg,#17100b,#261c14 50%,#111819);}
-  .wrap{max-width:1200px;margin:0 auto;padding:34px 18px 80px}.top{position:relative;overflow:hidden;border-radius:34px;min-height:580px;padding:40px 32px;background:linear-gradient(90deg,rgba(0,0,0,.58),rgba(0,0,0,.16)),url('/mnt/data/3a6ed994-5c5d-4963-98e8-bad2cb366c1f.png') center/cover;box-shadow:0 28px 80px rgba(0,0,0,.48)}
-  .speech{max-width:840px;border:5px solid var(--line);border-radius:52px;padding:30px 34px;background:rgba(0,0,0,.25);filter:drop-shadow(0 6px 2px rgba(0,0,0,.26))}.speech h1{font-size:clamp(36px,5vw,64px);line-height:1.12;margin:0;letter-spacing:-.06em}.speech p{font-size:clamp(18px,2vw,26px);line-height:1.55;color:var(--muted);margin:18px 0 0}.sticky{position:absolute;right:38px;bottom:38px;width:270px;background:linear-gradient(#e9cc8d,#caa25f);color:#2a2015;padding:26px 20px 20px;text-align:center;font-weight:900;font-size:24px;transform:rotate(-1deg);box-shadow:0 14px 24px rgba(0,0,0,.35)}.sticky:before{content:"";position:absolute;top:-14px;left:50%;transform:translateX(-50%);width:74px;height:26px;background:rgba(242,238,216,.8)}
-  .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0 0}.btn{border:2px solid rgba(255,255,255,.7);border-radius:999px;padding:10px 16px;color:white;text-decoration:none;font-weight:900;background:rgba(0,0,0,.24)}
-  .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px;margin-top:32px}.card{position:relative;overflow:hidden;min-height:760px;border-radius:30px;padding:30px;background:linear-gradient(180deg,rgba(10,12,12,.66),rgba(10,12,12,.46)),radial-gradient(circle at 24% 10%,rgba(242,198,109,.20),transparent 30%),radial-gradient(circle at 86% 92%,rgba(133,213,189,.14),transparent 34%);border:1px solid rgba(255,255,255,.18);box-shadow:0 18px 45px rgba(0,0,0,.34),inset 0 0 0 1px rgba(255,255,255,.08)}.card:before{content:"";position:absolute;inset:0;opacity:.15;background-image:linear-gradient(90deg,rgba(255,255,255,.14) 1px,transparent 1px),linear-gradient(rgba(255,255,255,.12) 1px,transparent 1px);background-size:48px 48px}.card>*{position:relative;z-index:1}.header{display:flex;align-items:center;gap:12px;margin-bottom:14px}.badge{width:54px;height:54px;border:3px solid var(--line);border-radius:50%;display:grid;place-items:center;font-size:26px;font-weight:1000;background:rgba(255,255,255,.07)}h2{font-size:38px;line-height:1.15;margin:0;letter-spacing:-.06em;text-decoration:underline;text-underline-offset:9px;text-decoration-thickness:4px}.lead{font-size:23px;line-height:1.6;letter-spacing:-.04em;word-break:keep-all}.small{font-size:18px}.accent{color:var(--gold);font-weight:900}.chiprow{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.chip{border:2px solid rgba(255,255,255,.66);border-radius:999px;padding:8px 12px;font-weight:900;background:rgba(255,255,255,.06);font-size:18px}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:16px 0}.stat{border:2px solid rgba(255,255,255,.62);border-radius:20px;padding:14px 10px;text-align:center;background:rgba(255,255,255,.06)}.stat b{display:block;font-size:30px;color:var(--gold)}.box{border:3px dashed rgba(255,255,255,.6);border-radius:20px;padding:16px 18px;margin:16px 0;background:rgba(0,0,0,.14)}ul{list-style:none;padding:0;margin:12px 0}li{font-size:21px;line-height:1.54;letter-spacing:-.04em;margin:10px 0;padding-left:31px;position:relative;word-break:keep-all}li:before{content:"✓";position:absolute;left:0;top:0;font-weight:1000;color:var(--mint)}.bul li:before{content:"•";color:var(--gold)}.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:16px 0}.step{border:2px solid rgba(255,255,255,.63);border-radius:18px;padding:13px 10px;text-align:center;font-size:18px;font-weight:900;background:rgba(255,255,255,.06)}.step span{display:block;margin:0 auto 8px;width:30px;height:30px;border-radius:50%;background:var(--gold);color:#24190e;line-height:30px}.timeline{display:grid;grid-template-columns:86px 1fr;gap:10px 14px;margin:12px 0}.time{border:2px solid var(--line);border-radius:999px;text-align:center;padding:6px;font-weight:1000;font-size:20px;background:rgba(255,255,255,.07)}.event{font-size:21px;line-height:1.45;padding:6px 0}.event:after{content:"";display:block;height:2px;background:linear-gradient(90deg,rgba(255,255,255,.45),transparent);margin-top:8px}.quote{border:3px solid rgba(255,255,255,.7);border-radius:26px;padding:16px 18px;margin:18px 0;font-size:22px;font-weight:900;background:rgba(255,255,255,.05)}.side-note{position:absolute;right:22px;bottom:26px;width:220px;background:var(--paper);color:var(--paper-ink);padding:24px 16px 16px;text-align:center;font-size:21px;font-weight:1000;transform:rotate(1.3deg);box-shadow:0 13px 24px rgba(0,0,0,.35);z-index:2}.side-note:before{content:"";position:absolute;top:-13px;left:50%;transform:translateX(-50%);width:66px;height:23px;background:rgba(245,240,218,.75)}.bars{margin:18px 0}.bar{margin:14px 0}.bar .label{display:flex;justify-content:space-between;font-size:18px;font-weight:900}.track{height:14px;border-radius:999px;background:rgba(255,255,255,.13);overflow:hidden;border:1px solid rgba(255,255,255,.22)}.fill{height:100%;border-radius:999px;background:linear-gradient(90deg,var(--sky),var(--mint),var(--gold))}.site{font-size:18px;border:2px solid rgba(255,255,255,.62);border-radius:14px;padding:10px 12px;margin:8px 0 18px;word-break:break-all;background:rgba(255,255,255,.06)}.contact{display:grid;grid-template-columns:116px 1fr;gap:10px;margin-top:12px}.role{border:2px solid rgba(255,255,255,.65);border-radius:999px;padding:8px 10px;text-align:center;font-weight:1000}.person{font-size:20px;padding:8px 0;line-height:1.35}.footer{text-align:center;color:rgba(255,255,255,.7);margin-top:32px}
-  .full{grid-column:1/-1;min-height:620px}.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}.icon{font-size:34px;margin-right:6px}.printmark{position:absolute;left:24px;bottom:22px;font-size:14px;color:rgba(255,255,255,.52)}
-  @media(max-width:900px){.grid,.two{grid-template-columns:1fr}.card{min-height:auto;padding-bottom:230px}.top{min-height:680px}.sticky{left:28px;right:auto}.flow,.statgrid{grid-template-columns:1fr 1fr}h2{font-size:32px}.lead,li{font-size:19px}.side-note{width:200px}.wrap{padding:18px 12px 50px}}
-  @media print{body{background:#111}.wrap{max-width:none}.top,.card{break-inside:avoid;page-break-inside:avoid;margin-bottom:18px}.grid{display:block}.card{min-height:0;margin-bottom:18px}.side-note{position:relative;right:auto;bottom:auto;margin-top:20px}.toolbar{display:none}}
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Gaegu:wght@400;700&display=swap');
+
+*{margin:0;padding:0;box-sizing:border-box;}
+
+body{
+  background:#2a2a2a;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:0;
+  padding:16px 8px;
+  font-family:'Gaegu','Nanum Pen Script',cursive;
+  -webkit-text-size-adjust:100%;
+}
+
+/* ── 카드 공통 ── */
+.card{
+  width:min(600px, 100%);
+  min-height:700px;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  margin-bottom:12px;
+}
+
+/* ── 배경 스타일 ── */
+.bg-dark{background:#1e2a1e;}   /* 칠판 초록 */
+.bg-navy{background:#1a2035;}   /* 칠판 남색 */
+.bg-brown{background:#2a1f14;}  /* 다크 브라운 */
+.bg-slate{background:#1c2430;}  /* 슬레이트 */
+.bg-dark2{background:#1a1a2e;}  /* 딥 네이비 */
+
+/* ── 텍스처 오버레이 (칠판 느낌) ── */
+.card::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:
+    repeating-linear-gradient(0deg,transparent,transparent 28px,rgba(255,255,255,.015) 28px,rgba(255,255,255,.015) 29px),
+    repeating-linear-gradient(90deg,transparent,transparent 28px,rgba(255,255,255,.008) 28px,rgba(255,255,255,.008) 29px);
+  pointer-events:none;
+  z-index:0;
+}
+
+.card-inner{
+  position:relative;
+  z-index:1;
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  padding:44px 48px 40px;
+}
+
+/* ── SVG 손그림 요소들 ── */
+svg.deco{position:absolute;pointer-events:none;z-index:2;}
+
+/* ── 손글씨 텍스트 스타일 ── */
+.hand{
+  font-family:'Gaegu','Nanum Pen Script',cursive;
+  color:#ffffff;
+  line-height:1.55;
+}
+
+/* 페이지 번호 */
+.pg{
+  position:absolute;
+  bottom:18px;right:24px;
+  font-size:12px;
+  color:rgba(255,255,255,.3);
+  font-family:'Gaegu',cursive;
+  z-index:10;
+}
+
+/* ══ 카드 1: 표지 ══ */
+.cover-tag{
+  display:inline-block;
+  border:2px solid rgba(255,255,255,.4);
+  border-radius:3px;
+  padding:4px 14px;
+  font-size:13px;
+  color:rgba(255,255,255,.6);
+  letter-spacing:2px;
+  margin-bottom:20px;
+}
+.cover-title{
+  font-size:48px;
+  font-weight:700;
+  color:#fff;
+  line-height:1.25;
+  margin-bottom:10px;
+}
+.cover-title .accent{color:#f5d06a;}
+.cover-sub{
+  font-size:22px;
+  color:rgba(255,255,255,.65);
+  margin-bottom:36px;
+  line-height:1.65;
+}
+
+/* 구름 말풍선 */
+.cloud-box{
+  position:relative;
+  background:rgba(255,255,255,.1);
+  border:2.5px solid rgba(255,255,255,.6);
+  border-radius:50px;
+  padding:22px 28px;
+  font-size:22px;
+  color:#fff;
+  line-height:1.75;
+  margin-bottom:10px;
+}
+.cloud-box::after{
+  content:'';
+  position:absolute;
+  bottom:-18px;
+  left:40px;
+  width:0;height:0;
+  border-left:12px solid transparent;
+  border-right:6px solid transparent;
+  border-top:18px solid rgba(255,255,255,.6);
+}
+
+/* 점선 박스 */
+.dash-box{
+  border:2.5px dashed rgba(255,255,255,.55);
+  border-radius:12px;
+  padding:18px 22px;
+  margin:16px 0;
+}
+
+/* 하트 박스 */
+.heart-box{
+  position:relative;
+  text-align:center;
+  padding:16px 20px;
+}
+
+/* 포스트잇 */
+.sticky{
+  background:#f5d06a;
+  padding:18px 20px;
+  border-radius:3px;
+  color:#2a1f00;
+  font-size:20px;
+  line-height:1.7;
+  box-shadow:3px 4px 12px rgba(0,0,0,.35);
+  position:relative;
+}
+.sticky::before{
+  content:'';
+  position:absolute;
+  top:-8px;left:50%;transform:translateX(-50%);
+  width:40px;height:12px;
+  background:rgba(0,0,0,.2);
+  border-radius:2px;
+}
+
+/* 체크 아이템 */
+.check-item{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  font-size:22px;
+  color:#fff;
+  line-height:1.6;
+  margin-bottom:16px;
+}
+.check-circle{
+  width:28px;height:28px;min-width:28px;
+  border:2.5px solid rgba(255,255,255,.7);
+  border-radius:50%;
+  margin-top:4px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;color:#f5d06a;
+}
+
+/* 번호 아이템 */
+.num-item{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  font-size:21px;
+  color:#fff;
+  line-height:1.65;
+  margin-bottom:12px;
+  padding-bottom:12px;
+  border-bottom:1px solid rgba(255,255,255,.12);
+}
+.num-item:last-child{border-bottom:none;}
+.num-badge{
+  min-width:32px;height:32px;
+  background:rgba(245,208,106,.2);
+  border:1.5px solid #f5d06a;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;color:#f5d06a;font-weight:700;
+  margin-top:2px;
+}
+
+/* 섹션 타이틀 */
+.sec-title{
+  font-size:32px;
+  font-weight:700;
+  color:#f5d06a;
+  margin-bottom:8px;
+  display:flex;align-items:center;gap:10px;
+}
+.sec-title .title-icon{font-size:28px;}
+.sec-divider{
+  width:100%;height:2px;
+  background:linear-gradient(90deg,rgba(245,208,106,.6),transparent);
+  margin-bottom:22px;
+  border-radius:2px;
+}
+
+/* 타임라인 */
+.tl-wrap{
+  position:relative;
+  padding-left:24px;
+}
+.tl-wrap::before{
+  content:'';
+  position:absolute;
+  left:7px;top:8px;bottom:8px;
+  width:2px;
+  background:rgba(245,208,106,.3);
+  border-radius:2px;
+}
+.tl-item{
+  position:relative;
+  margin-bottom:16px;
+  display:flex;gap:14px;align-items:flex-start;
+}
+.tl-item::before{
+  content:'';
+  position:absolute;
+  left:-17px;top:9px;
+  width:10px;height:10px;
+  background:#f5d06a;
+  border-radius:50%;
+  border:2px solid #1a2035;
+}
+.tl-time{
+  font-size:24px;font-weight:700;color:#f5d06a;
+  min-width:60px;
+}
+.tl-text{font-size:21px;color:#fff;line-height:1.6;}
+
+/* 달력 그리드 */
+.cal-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:8px;
+  margin-top:8px;
+}
+.cal-cell{
+  background:rgba(255,255,255,.07);
+  border-radius:8px;
+  padding:10px 8px;
+  text-align:center;
+  border:1.5px solid rgba(255,255,255,.1);
+}
+.cal-cell.highlight{
+  background:rgba(245,208,106,.12);
+  border-color:rgba(245,208,106,.5);
+}
+.cal-month{font-size:24px;font-weight:700;color:#f5d06a;}
+.cal-cell:not(.highlight) .cal-month{color:rgba(255,255,255,.4);}
+.cal-event{font-size:15px;color:rgba(255,255,255,.75);line-height:1.45;margin-top:4px;}
+.cal-cell:not(.highlight) .cal-event{color:rgba(255,255,255,.2);}
+
+/* 파트 바 */
+.part-bars{
+  display:flex;flex-direction:column;gap:18px;
+  margin-top:8px;
+}
+.pbar-row{display:flex;align-items:center;gap:14px;}
+.pbar-label{font-size:23px;font-weight:700;color:#fff;min-width:78px;}
+.pbar-track{
+  flex:1;height:28px;
+  background:rgba(255,255,255,.08);
+  border-radius:20px;
+  border:1.5px solid rgba(255,255,255,.15);
+  overflow:hidden;
+  position:relative;
+}
+.pbar-fill{
+  height:100%;border-radius:20px;
+  display:flex;align-items:center;
+  padding-left:12px;
+  font-size:14px;color:rgba(255,255,255,.8);font-weight:700;
+}
+.pbar-tags{
+  display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;margin-left:92px;
+}
+.ptag{
+  font-size:16px;padding:3px 12px;border-radius:20px;
+  background:rgba(255,255,255,.08);color:rgba(255,255,255,.65);
+}
+
+/* 특별활동 아이템 */
+.sp-item{
+  display:flex;align-items:center;gap:14px;
+  background:rgba(255,255,255,.06);
+  border-radius:10px;
+  padding:12px 16px;
+  margin-bottom:9px;
+  border-left:3px solid rgba(245,208,106,.5);
+}
+.sp-num{
+  font-size:26px;font-weight:700;color:#f5d06a;min-width:44px;
+}
+.sp-name{font-size:22px;font-weight:700;color:#fff;}
+.sp-detail{font-size:16px;color:rgba(255,255,255,.55);line-height:1.45;}
+
+/* 가치 카드 */
+.val-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:12px;margin-top:8px;
+}
+.val-card{
+  background:rgba(255,255,255,.07);
+  border-radius:12px;
+  padding:18px 16px;
+  border:1.5px solid rgba(255,255,255,.12);
+  text-align:center;
+}
+.val-emoji{font-size:34px;margin-bottom:8px;}
+.val-name{font-size:24px;font-weight:700;color:#f5d06a;margin-bottom:6px;}
+.val-desc{font-size:17px;color:rgba(255,255,255,.65);line-height:1.55;}
+
+/* 연락처 카드 */
+.contact-card{
+  background:rgba(255,255,255,.07);
+  border-radius:10px;
+  padding:13px 16px;
+  margin-bottom:9px;
+  display:flex;align-items:center;gap:14px;
+  border:1.5px solid rgba(255,255,255,.1);
+}
+.contact-card.leader{
+  border-color:rgba(245,208,106,.4);
+  background:rgba(245,208,106,.08);
+}
+.c-icon{
+  width:46px;height:46px;min-width:46px;
+  background:rgba(255,255,255,.1);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:700;color:#f5d06a;
+}
+.c-role{font-size:16px;color:rgba(255,255,255,.5);}
+.c-name{font-size:21px;font-weight:700;color:#fff;}
+.c-phone{font-size:17px;color:rgba(255,255,255,.5);margin-left:auto;}
+
+/* 링크 버튼 */
+.link-btn{
+  display:flex;align-items:center;gap:12px;
+  background:rgba(255,255,255,.08);
+  border-radius:10px;
+  padding:12px 16px;
+  margin-bottom:8px;
+  border:1.5px dashed rgba(255,255,255,.2);
+}
+.link-icon{font-size:24px;}
+.link-name{font-size:20px;font-weight:700;color:#f5d06a;}
+.link-url{font-size:15px;color:rgba(255,255,255,.4);}
+
+/* 별 장식 */
+.star-deco{
+  position:absolute;
+  font-size:16px;
+  color:rgba(245,208,106,.3);
+  pointer-events:none;
+}
+
+/* 전구 */
+.bulb-wrap{
+  display:flex;align-items:flex-start;gap:12px;
+  background:rgba(245,208,106,.08);
+  border:1.5px solid rgba(245,208,106,.3);
+  border-radius:12px;
+  padding:16px 18px;
+  margin-top:16px;
+}
+.bulb-icon{font-size:30px;margin-top:2px;}
+.bulb-title{font-size:20px;font-weight:700;color:#f5d06a;margin-bottom:8px;}
+.bulb-list{font-size:18px;color:rgba(255,255,255,.75);line-height:1.85;}
+
 </style>
 </head>
 <body>
-<div class="wrap">
-  <section class="top">
-    <div class="speech"><h1>신입단원<br>한국장로성가단<br>사용 설명서</h1><p>처음 오신 장로님이 한눈에 이해하도록<br>입단 · 연습 · 일정 · 문화 · 연락처를 카드뉴스형 인포그래픽으로 정리했습니다.</p></div>
-    <div class="sticky">찬양으로 하나 되고<br>사랑으로 섬기는 공동체 ☺</div>
-  </section>
-  <div class="toolbar"><a class="btn" href="javascript:window.print()">인쇄 / PDF 저장</a><a class="btn" href="#cards">카드뉴스 보기</a></div>
-  <main class="grid" id="cards">
-    <section class="card"><div class="header"><div class="badge">1</div><h2>소개</h2></div><div class="statgrid"><div class="stat"><b>통합</b>교단 장로</div><div class="stat"><b>31</b>전국 장로 합창단</div><div class="stat"><b>서울</b>대표 합창단</div></div><p class="lead">한국장로성가단은 대한예수교 장로회 통합교단 총회 산하 기관으로 오직 통합교단 장로로만 구성되었어요. 따라서 초교파 합창단과는 다른 남다른 의미가 있습니다.</p><div class="box"><p class="lead">전국 31개 장로 합창단 중에서 초교파인 서울장로합창단, 코랄카리스 찬양단과 더불어 서울의 대표적인 장로 합창단 입니다.</p></div><p class="lead"><span class="accent">핵심:</span> 단순히 노래를 잘하는 사람들이 모인 곳이 아니라, 찬양을 통해 하나님께 영광을 돌리고 서로를 격려하는 믿음의 공동체입니다.</p><div class="side-note">여기 정말<br>좋은 공동체!</div></section>
 
-    <section class="card"><div class="header"><div class="badge">2</div><h2>입단 안내</h2></div><p class="lead"><b>지원자격</b> : 대한예수교 장로회 통합교단 장로</p><div class="flow"><div class="step"><span>1</span>입단 희망<br><small>총무 문의</small></div><div class="step"><span>2</span>신청서<br>작성</div><div class="step"><span>3</span>찬송 1곡<br>오디션</div><div class="step"><span>4</span>임원회<br>승인</div></div><ul><li>입단 희망 : 김기성 총무 <span class="small">010-2068-8849</span></li><li>오디션 절차 : 좋아하는 찬송 1곡</li><li>입단비 및 회비 : 입단비 30만원, 회비 50 만원 (1년)</li><li>연주복 구입 : 동복, 하복 30만원</li></ul><div class="side-note">찬양의 자리로<br>초대합니다 ♬</div></section>
+<!-- ══════════ CARD 1: 표지 ══════════ -->
+<div class="card bg-dark">
+  <!-- 별 장식들 -->
+  <span class="star-deco" style="top:30px;right:48px;font-size:22px;">☆</span>
+  <span class="star-deco" style="top:55px;right:30px;font-size:14px;">✦</span>
+  <span class="star-deco" style="bottom:80px;left:30px;font-size:18px;">☆</span>
+  <span class="star-deco" style="bottom:60px;left:55px;font-size:10px;">✦</span>
+  <span class="star-deco" style="top:40px;left:44px;font-size:12px;">✦</span>
 
-    <section class="card"><div class="header"><div class="badge">3</div><h2>정기연습</h2></div><div class="chiprow"><div class="chip">매주 금요일 오전 6시</div><div class="chip">백주년기념관</div><div class="chip">주차 지원</div></div><ul><li>준비물 : 장로성가단 악보</li><li>연습예절 : 10분 전 도착, 휴대폰 무음</li></ul><div class="quote">● 금요일은 이렇게 진행됩니다.</div><div class="timeline"><div class="time">05:50</div><div class="event">도착</div><div class="time">06:00</div><div class="event">준비 운동</div><div class="time">06:00</div><div class="event">연습 시작</div><div class="time">08:00</div><div class="event">연습 마침</div><div class="time">08:00</div><div class="event">아침식사(네오트로)</div><div class="time">09:00</div><div class="event">식사 후 귀가</div></div><div class="side-note">매주 금요일<br>아침 루틴!</div></section>
+  <div class="card-inner" style="justify-content:center;">
+    <!-- 구름 말풍선 -->
+    <div class="cloud-box hand" style="margin-bottom:32px;font-size:24px;">
+      혹시... 새로 오신 장로님!<br>
+      <span style="color:#f5d06a;font-weight:700;">" 장로성가단이 어떤 곳인가요? "</span><br>
+      궁금하지 않으신가요? 😊
+    </div>
 
-    <section class="card"><div class="header"><div class="badge">4</div><h2>연중 일정</h2></div><p class="lead"><b>● 교회 초청연주</b> <span class="chip">월 1회</span></p><div class="timeline"><div class="time">01월</div><div class="event">개강 예배</div><div class="time">04월</div><div class="event">고난주간 특별찬양</div><div class="time">07월</div><div class="event">전국장로수련회</div><div class="time">07월</div><div class="event">여름 방학 (1개월)</div><div class="time">10월</div><div class="event">정기연주회 (3년)</div><div class="time">10월</div><div class="event">전국장로합창대축제 (3년)</div><div class="time">10월</div><div class="event">해외 찬양선교 (3년)</div><div class="time">12월</div><div class="event">송년회</div><div class="time">12월</div><div class="event">겨울 방학</div></div><div class="side-note">함께 세워가는<br>1년 ♡</div></section>
+    <div style="text-align:center;margin-bottom:28px;">
+      <!-- 십자가 SVG -->
+      <svg width="48" height="48" viewBox="0 0 48 48" style="margin-bottom:12px;">
+        <rect x="20" y="4" width="8" height="40" rx="3" fill="rgba(245,208,106,.85)"/>
+        <rect x="6" y="16" width="36" height="8" rx="3" fill="rgba(245,208,106,.85)"/>
+      </svg>
+      <div class="hand cover-title">
+        한국<span class="accent">장로</span>성가단<br>신입단원 안내서
+      </div>
+      <div class="hand cover-sub" style="margin-top:10px;">
+        찬양으로 하나가 되는 믿음의 공동체
+      </div>
+    </div>
 
-    <section class="card"><div class="header"><div class="badge">5</div><h2>특별활동</h2></div><div class="statgrid"><div class="stat"><b>6</b>특별팀</div><div class="stat"><b>70</b>총 구성 인원</div><div class="stat"><b>수·목·토</b>연습</div></div><ul class="bul"><li>HIM 중창단 : 10명 구성<br><span class="small">매주 목요일 신당동교회 연습</span></li><li>엘드림 중창단 : 08명 구성<br><span class="small">매주 목요일 신당동교회 연습</span></li><li>하늘샘 종창단 : 12명 구성<br><span class="small">매주 목요일 신당동교회 연습</span></li><li>코람데오(하모니카) : 06명 구성<br><span class="small">매주 목요일 신당동교회 연습</span></li><li>핸드벨 콰이어 : 12명 구성<br><span class="small">매주 수요일 06:00 새문안교회 연습</span></li><li>권사합창단 : 22명 구성<br><span class="small">격주 토요일 11:00 충무교회 연습</span></li></ul><div class="side-note">함께하면<br>더 즐거워요!</div></section>
-
-    <section class="card"><div class="header"><div class="badge">6</div><h2>파트별 특징 ★ 테너1</h2></div><p class="lead">테너 1(Tenor 1)은 가장 높은 음역을 담당하는 파트입니다.</p><div class="bars"><div class="bar"><div class="label"><span>높은 음역</span><span>95%</span></div><div class="track"><div class="fill" style="width:95%"></div></div></div><div class="bar"><div class="label"><span>주선율 담당</span><span>85%</span></div><div class="track"><div class="fill" style="width:85%"></div></div></div><div class="bar"><div class="label"><span>밝고 화려한 소리</span><span>90%</span></div><div class="track"><div class="fill" style="width:90%"></div></div></div></div><div class="quote">테너1 단원들의 성향</div><ul><li>노래를 좋아하는 분이 많음</li><li>자신감이 있는 경우가 많음</li><li>솔로 경험자가 비교적 많음</li><li>음정에 민감함</li></ul><div class="side-note">가장 높은<br>음역!</div></section>
-
-    <section class="card"><div class="header"><div class="badge">7</div><h2>파트별 특징 ★ 테너2</h2></div><p class="lead">테너2는 덜 눈에 띄지만, 테너1과 바리톤을 이어주는 파트입니다.</p><div class="box"><p class="lead">테너1이 하늘을 향해 올라간다면, 테너2는 그 아래에서 받쳐주는 역할을 합니다.</p></div><div class="chiprow"><div class="chip">바리톤과 연결</div><div class="chip">화음의 중심축</div><div class="chip">앙상블형</div></div><ul><li>화음을 잘 듣는 분</li><li>전체 균형을 중요하게 생각하는 분</li><li>튀기보다 조화를 선호하는 분</li><li>책임감 있는 분이 많은 편입니다.</li><li>솔로보다 앙상블을 즐기는 경우가 많습니다.</li></ul><div class="side-note">보이지 않아도<br>중요한 역할!</div></section>
-
-    <section class="card"><div class="header"><div class="badge">8</div><h2>파트별 특징 ★ 바리톤</h2></div><p class="lead">바리톤은 테너와 베이스를 연결하고 위와 아래를 이어주며 화음을 완성하는 역할을 합니다.</p><div class="quote">가장 넓은 음역을 요구받는 파트</div><div class="bars"><div class="bar"><div class="label"><span>테너 영역</span><span>↑</span></div><div class="track"><div class="fill" style="width:78%"></div></div></div><div class="bar"><div class="label"><span>베이스 영역</span><span>↓</span></div><div class="track"><div class="fill" style="width:78%"></div></div></div><div class="bar"><div class="label"><span>균형 감각</span><span>중심</span></div><div class="track"><div class="fill" style="width:92%"></div></div></div></div><ul><li>음악적 균형 감각이 좋음</li><li>다른 파트를 잘 들음</li><li>책임감이 강함</li><li>무대에서 과하게 튀지 않음</li><li>전체 완성도를 중요하게 생각함</li></ul><div class="side-note">연결의 중심!</div></section>
-
-    <section class="card"><div class="header"><div class="badge">9</div><h2>파트별 특징 ★ 베이스</h2></div><p class="lead">베이스는 남성합창의 가장 낮은 음역을 담당하는 파트입니다. 화려한 고음은 없지만, 합창 전체를 떠받치는 뿌리이자 기초입니다.</p><div class="quote">좋은 베이스의 특징</div><ul><li>큰 소리보다 안정된 소리</li><li>낮은 음에서도 흔들리지 않는 음정</li><li>긴 호흡</li><li>꾸준한 성량</li></ul><div class="quote">베이스 단원들의 흔한 성향</div><ul><li>묵묵한 분</li><li>책임감 있는 분</li><li>꾸준한 분</li><li>출석률 좋은 분</li><li>팀워크를 중요하게 생각하는 분이 많은 편입니다.</li></ul><div class="side-note">합창의<br>든든한 뿌리!</div></section>
-
-    <section class="card"><div class="header"><div class="badge">10</div><h2>주요 웹사이트</h2></div><p class="lead">필요할 때 바로 열어볼 수 있는 주요 사이트입니다.</p><div class="site"><b>홈페이지</b><br>https://www.kechoir.or.kr/</div><div class="site"><b>다음 카페</b><br>https://cafe.daum.net/kechoir20</div><div class="site"><b>단원수첩</b><br>https://daniel9kim.github.io/001/notebook.html</div><div class="site"><b>바리톤 연습실</b><br>https://daniel9kim.github.io/001/baritone.html</div><div class="side-note">즐겨찾기<br>해두세요!</div></section>
-
-    <section class="card full"><div class="header"><div class="badge">11</div><h2>장로성가단의 문화</h2></div><div class="two"><div><div class="statgrid"><div class="stat"><b>信</b>신앙</div><div class="stat"><b>♡</b>배려</div><div class="stat"><b>低</b>겸손</div></div><div class="statgrid"><div class="stat"><b>手</b>섬김</div><div class="stat"><b>☺</b>환영</div><div class="stat"><b>♬</b>찬양</div></div><ul><li>신앙 : 찬양보다 먼저 예배자입니다.</li><li>배려 : 서로를 존중합니다.</li><li>겸손 : 실력보다 태도를 중요하게 생각합니다.</li><li>섬김 : 보이지 않는 봉사를 귀하게 여깁니다.</li></ul></div><div><p class="lead">처음 오시면 아는 분보다 모르는 분이 더 많습니다. 하지만 걱정하지 마세요. 장로성가단 단원들은 새로 오신 장로님을 진심으로 환영합니다.</p><div class="box"><p class="lead">먼저 인사하시면 생각보다 많은 분들이 이름을 기억해 주십니다. 연습 후 식사 자리는 장로성가단을 가장 빨리 알아가는 시간입니다.</p></div><p class="lead">혼자 계시지 마시고 편하게 함께 앉아 주세요. 실수해도 괜찮습니다. 지금의 선배님들도 모두 신입단원이었던 시절이 있었습니다.</p></div></div><div class="side-note">실수해도<br>괜찮아요!</div></section>
-
-    <section class="card full"><div class="header"><div class="badge">12</div><h2>도움이 필요할 때</h2></div><p class="lead">궁금한 점이 있으면 혼자 고민하지 말고 편하게 연락하세요.</p><div class="contact"><div class="role">단장</div><div class="person">이형욱 장로 <b>010-5304-5463</b></div><div class="role">총무</div><div class="person">김기성 장로 <b>010-2068-8849</b></div><div class="role">테너1</div><div class="person">김례위 장로 <b>010-3306-9449</b></div><div class="role">테너2</div><div class="person">박병호 장로 <b>010-8963-5579</b></div><div class="role">바리톤</div><div class="person">복봉수 장로 <b>010-3354-2258</b></div><div class="role">베이스</div><div class="person">홍현풍 장로 <b>010-9047-0074</b></div></div><div class="side-note">언제든<br>편하게 연락하세요!</div><div class="printmark">NEW MEMBER GUIDE · KOREAN PRESBYTERIAN ELDERS CHOIR</div></section>
-  </main>
-  <div class="footer">감사합니다. 오늘도 좋은 하루 되세요! · TWODAY THANK YOU! ☺</div>
+    <!-- 포스트잇 -->
+    <div style="display:flex;justify-content:flex-end;">
+      <div class="sticky hand" style="width:200px;transform:rotate(2deg);">
+        대한예수교 장로회<br>통합교단 장로<br>합창단 ♡
+      </div>
+    </div>
+  </div>
+  <span class="pg">1 / 9</span>
 </div>
+
+<!-- ══════════ CARD 2: 소개 ══════════ -->
+<div class="card bg-navy">
+  <span class="star-deco" style="top:32px;right:36px;font-size:20px;">☆</span>
+  <span class="star-deco" style="bottom:90px;right:28px;font-size:13px;">✦</span>
+
+  <div class="card-inner">
+    <div class="sec-title hand">
+      <span class="title-icon">🎵</span> 우리는 누구인가요?
+    </div>
+    <div class="sec-divider"></div>
+
+    <!-- 구름 -->
+    <div class="cloud-box hand" style="font-size:24px;margin-bottom:28px;">
+      장로성가단, 이게 뭐가 특별한가요?
+      <span style="font-size:24px;position:absolute;top:-14px;right:20px;">❓</span>
+    </div>
+
+    <!-- 체크리스트 -->
+    <div class="check-item hand">
+      <div class="check-circle">✓</div>
+      <span>대한예수교 장로회 <span style="color:#f5d06a;font-weight:700;">통합교단</span> 총회 산하 기관 — 오직 통합교단 장로로만 구성!</span>
+    </div>
+    <div class="check-item hand">
+      <div class="check-circle">✓</div>
+      <span>전국 31개 장로 합창단 중 <span style="color:#f5d06a;font-weight:700;">서울 대표</span> 장로 합창단!</span>
+    </div>
+    <div class="check-item hand">
+      <div class="check-circle">✓</div>
+      <span>서울장로합창단, 코랄카리스 찬양단과 함께 <span style="color:#f5d06a;font-weight:700;">3대 장로 합창단</span>!</span>
+    </div>
+    <div class="check-item hand">
+      <div class="check-circle">✓</div>
+      <span>초교파 합창단과는 <span style="color:#f5d06a;font-weight:700;">남다른 의미</span>가 있어요!</span>
+    </div>
+
+    <!-- 하트 박스 -->
+    <div style="margin-top:20px;text-align:center;position:relative;">
+      <svg width="100%" height="100" viewBox="0 0 400 100" style="position:absolute;top:0;left:0;">
+        <path d="M200,85 C170,65 80,40 80,20 C80,5 95,-3 110,5 C130,15 200,60 200,60 C200,60 270,15 290,5 C305,-3 320,5 320,20 C320,40 230,65 200,85 Z"
+          fill="none" stroke="rgba(245,208,106,.5)" stroke-width="2.5"/>
+      </svg>
+      <div class="hand" style="position:relative;z-index:1;padding:16px 40px;font-size:22px;color:#fff;line-height:1.7;">
+        노래를 잘하는 곳이 아니라<br>
+        <span style="color:#f5d06a;font-weight:700;">찬양으로 하나님께 영광을 돌리고</span><br>
+        서로를 격려하는 믿음의 공동체 ♡
+      </div>
+    </div>
+  </div>
+  <span class="pg">2 / 9</span>
+</div>
+
+<!-- ══════════ CARD 3: 입단 안내 ══════════ -->
+<div class="card bg-brown">
+  <span class="star-deco" style="top:38px;right:40px;">☆</span>
+  <span class="star-deco" style="bottom:70px;left:34px;font-size:14px;">✦</span>
+
+  <div class="card-inner">
+    <div class="sec-title hand">
+      <span class="title-icon">📋</span> 입단 안내
+    </div>
+    <div class="sec-divider"></div>
+
+    <!-- 말풍선: 지원자격 -->
+    <div class="cloud-box hand" style="font-size:24px;margin-bottom:26px;">
+      지원자격 → <span style="color:#f5d06a;font-weight:700;">대한예수교 장로회 통합교단 장로!</span>
+    </div>
+
+    <!-- 플로우 -->
+    <div class="dash-box hand">
+      <div style="font-size:22px;font-weight:700;color:#f5d06a;margin-bottom:14px;">📞 입단 절차</div>
+      <div class="tl-wrap">
+        <div class="tl-item">
+          <div class="tl-time">①</div>
+          <div class="tl-text">입단 희망 → <span style="color:#f5d06a;">김기성 총무 010-2068-8849</span></div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">②</div>
+          <div class="tl-text">입단 신청서 작성</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">③</div>
+          <div class="tl-text">오디션 → 좋아하는 <span style="color:#f5d06a;">찬송 1곡</span> 🎤</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">④</div>
+          <div class="tl-text">임원회 승인</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-time">🎉</div>
+          <div class="tl-text"><span style="color:#f5d06a;font-weight:700;">입단 완료!</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 비용 포스트잇 3개 -->
+    <div style="display:flex;gap:12px;margin-top:20px;">
+      <div class="sticky hand" style="flex:1;text-align:center;transform:rotate(-1.5deg);">
+        <div style="font-size:18px;color:#5a3e00;margin-bottom:4px;">입단비</div>
+        <div style="font-size:32px;font-weight:700;color:#2a1f00;">30만원</div>
+      </div>
+      <div class="sticky hand" style="flex:1;text-align:center;background:#fce08a;transform:rotate(1deg);">
+        <div style="font-size:18px;color:#5a3e00;margin-bottom:4px;">연회비</div>
+        <div style="font-size:32px;font-weight:700;color:#2a1f00;">50만원</div>
+        <div style="font-size:16px;color:#7a5e00;">(1년)</div>
+      </div>
+      <div class="sticky hand" style="flex:1;text-align:center;background:#f0d060;transform:rotate(-0.5deg);">
+        <div style="font-size:18px;color:#5a3e00;margin-bottom:4px;">연주복</div>
+        <div style="font-size:32px;font-weight:700;color:#2a1f00;">30만원</div>
+        <div style="font-size:16px;color:#7a5e00;">(동복·하복)</div>
+      </div>
+    </div>
+  </div>
+  <span class="pg">3 / 9</span>
+</div>
+
+<!-- ══════════ CARD 4: 정기연습 ══════════ -->
+<div class="card bg-slate">
+  <span class="star-deco" style="top:32px;right:44px;font-size:20px;">☆</span>
+  <span class="star-deco" style="top:52px;right:28px;font-size:12px;">✦</span>
+
+  <div class="card-inner">
+    <div class="sec-title hand">
+      <span class="title-icon">⏰</span> 정기연습
+    </div>
+    <div class="sec-divider"></div>
+
+    <!-- 핵심 정보 말풍선 -->
+    <div class="cloud-box hand" style="font-size:24px;text-align:center;margin-bottom:28px;">
+      매주 <span style="color:#f5d06a;font-weight:700;">금요일</span> 오전 <span style="color:#f5d06a;font-weight:700;">6시</span> ⏰<br>
+      장소: <span style="color:#f5d06a;">백주년기념관</span> (주차 지원 ✓)
+    </div>
+
+    <!-- 준비물 체크 -->
+    <div class="dash-box hand" style="margin-bottom:20px;">
+      <div style="font-size:22px;font-weight:700;color:#f5d06a;margin-bottom:12px;">✅ 준비 체크리스트</div>
+      <div class="check-item" style="margin-bottom:8px;">
+        <div class="check-circle">✓</div>
+        <span>장로성가단 <span style="color:#f5d06a;">악보</span> 지참</span>
+      </div>
+      <div class="check-item" style="margin-bottom:8px;">
+        <div class="check-circle">✓</div>
+        <span><span style="color:#f5d06a;">10분 전</span> 도착 (05:50)</span>
+      </div>
+      <div class="check-item" style="margin-bottom:0;">
+        <div class="check-circle">✓</div>
+        <span>휴대폰 <span style="color:#f5d06a;">무음</span> 필수! 📵</span>
+      </div>
+    </div>
+
+    <!-- 타임라인 -->
+    <div style="font-size:22px;font-weight:700;color:#f5d06a;margin-bottom:14px;">📅 금요일 진행 순서</div>
+    <div class="tl-wrap hand">
+      <div class="tl-item">
+        <div class="tl-time">5:50</div>
+        <div class="tl-text">도착 🚗</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">6:00</div>
+        <div class="tl-text">준비 운동 → 연습 시작 🎵</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">8:00</div>
+        <div class="tl-text">연습 마침 → <span style="color:#f5d06a;">아침식사</span> (네오트로) 🍚</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-time">9:00</div>
+        <div class="tl-text">식사 후 귀가 🏠</div>
+      </div>
+    </div>
+
+    <!-- 전구 팁 -->
+    <div class="bulb-wrap hand">
+      <div class="bulb-icon">💡</div>
+      <div>
+        <div class="bulb-title">핵심 포인트!</div>
+        <div class="bulb-list">
+          식사 자리가<br>성가단을 가장 빨리 알아가는 시간! ✨
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="pg">4 / 9</span>
+</div>
+
+<!-- ══════════ CARD 5: 연중 일정 ══════════ -->
+<div class="card bg-dark2">
+  <span class="star-deco" style="top:32px;right:40px;font-size:20px;">☆</span>
+  <span class="star-deco" style="bottom:80px;right:30px;font-size:14px;">✦</span>
+
+  <div class="card-inner">
+    <div class="sec-title hand">
+      <span class="title-icon">📅</span> 연중 주요 일정
+    </div>
+    <div class="sec-divider"></div>
+
+    <div class="cloud-box hand" style="font-size:24px;margin-bottom:22px;">
+      교회 초청연주는 <span style="color:#f5d06a;font-weight:700;">매월 1회</span> 진행돼요! 🎶
+    </div>
+
+    <!-- 달력 그리드 -->
+    <div class="cal-grid hand">
+      <div class="cal-cell highlight">
+        <div class="cal-month">1월</div>
+        <div class="cal-event">개강 예배</div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-month">2월</div>
+        <div class="cal-event">—</div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-month">3월</div>
+        <div class="cal-event">—</div>
+      </div>
+      <div class="cal-cell highlight">
+        <div class="cal-month">4월</div>
+        <div class="cal-event">고난주간<br>특별찬양</div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-month">5월</div>
+        <div class="cal-event">—</div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-month">6월</div>
+        <div class="cal-event">—</div>
+      </div>
+      <div class="cal-cell highlight" style="background:rgba(245,208,106,.18);border-color:rgba(245,208,106,.6);">
+        <div class="cal-month">7월</div>
+        <div class="cal-event">전국장로<br>수련회 🏕️<br>여름방학</div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-month">8월</div>
+        <div class="cal-event">—</div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-month">9월</div>
+        <div class="cal-event">—</div>
+      </div>
+      <div class="cal-cell highlight" style="background:rgba(245,208,106,.2);border-color:#f5d06a;">
+        <div class="cal-month">10월</div>
+        <div class="cal-event">정기연주회<br>합창대축제<br>해외선교 ✈️<br><span style="font-size:13px;opacity:.7;">(3년 주기)</span></div>
+      </div>
+      <div class="cal-cell">
+        <div class="cal-month">11월</div>
+        <div class="cal-event">—</div>
+      </div>
+      <div class="cal-cell highlight">
+        <div class="cal-month">12월</div>
+        <div class="cal-event">송년회 🎊<br>겨울방학</div>
+      </div>
+    </div>
+
+    <!-- 포스트잇 메모 -->
+    <div style="display:flex;justify-content:flex-end;margin-top:20px;">
+      <div class="sticky hand" style="width:220px;transform:rotate(-2deg);font-size:18px;">
+        10월 행사는<br>3년마다 한 번씩!<br>특별한 경험이에요 ✨
+      </div>
+    </div>
+  </div>
+  <span class="pg">5 / 9</span>
+</div>
+
+<!-- ══════════ CARD 6: 특별활동 ══════════ -->
+<div class="card bg-dark">
+  <span class="star-deco" style="top:32px;right:38px;font-size:20px;">☆</span>
+  <span class="star-deco" style="bottom:85px;left:32px;font-size:14px;">✦</span>
+
+  <div class="card-inner">
+    <div class="sec-title hand">
+      <span class="title-icon">🌟</span> 특별활동 소그룹
+    </div>
+    <div class="sec-divider"></div>
+
+    <div class="cloud-box hand" style="font-size:24px;margin-bottom:22px;">
+      관심 있는 소그룹에 참여해 보세요! 😊
+    </div>
+
+    <div class="sp-item hand">
+      <div class="sp-num">10명</div>
+      <div>
+        <div class="sp-name">🎤 HIM 중창단</div>
+        <div class="sp-detail">매주 목요일 · 신당동교회</div>
+      </div>
+    </div>
+    <div class="sp-item hand">
+      <div class="sp-num">8명</div>
+      <div>
+        <div class="sp-name">🎤 엘드림 중창단</div>
+        <div class="sp-detail">매주 목요일 · 신당동교회</div>
+      </div>
+    </div>
+    <div class="sp-item hand">
+      <div class="sp-num">12명</div>
+      <div>
+        <div class="sp-name">🎤 하늘샘 중창단</div>
+        <div class="sp-detail">매주 목요일 · 신당동교회</div>
+      </div>
+    </div>
+    <div class="sp-item hand">
+      <div class="sp-num">6명</div>
+      <div>
+        <div class="sp-name">🎵 코람데오 (하모니카)</div>
+        <div class="sp-detail">매주 목요일 · 신당동교회</div>
+      </div>
+    </div>
+    <div class="sp-item hand">
+      <div class="sp-num">12명</div>
+      <div>
+        <div class="sp-name">🔔 핸드벨 콰이어</div>
+        <div class="sp-detail">매주 수요일 06:00 · 새문안교회</div>
+      </div>
+    </div>
+    <div class="sp-item hand">
+      <div class="sp-num">22명</div>
+      <div>
+        <div class="sp-name">🎶 권사합창단</div>
+        <div class="sp-detail">격주 토요일 11:00 · 충무교회</div>
+      </div>
+    </div>
+  </div>
+  <span class="pg">6 / 9</span>
+</div>
+
+<!-- ══════════ CARD 7: 파트별 특징 ══════════ -->
+<div class="card bg-navy">
+  <span class="star-deco" style="top:32px;right:38px;font-size:20px;">☆</span>
+  <span class="star-deco" style="top:54px;right:24px;font-size:12px;">✦</span>
+
+  <div class="card-inner">
+    <div class="sec-title hand">
+      <span class="title-icon">🎼</span> 파트별 특징
+    </div>
+    <div class="sec-divider"></div>
+
+    <div class="cloud-box hand" style="font-size:24px;margin-bottom:22px;">
+      나는 어떤 파트일까요? 🤔
+    </div>
+
+    <div class="part-bars hand">
+      <!-- 테너1 -->
+      <div>
+        <div class="pbar-row">
+          <div class="pbar-label">테너 1</div>
+          <div class="pbar-track">
+            <div class="pbar-fill" style="width:92%;background:linear-gradient(90deg,#c0392b,#e84c4c);">최고 음역</div>
+          </div>
+        </div>
+        <div class="pbar-tags">
+          <span class="ptag">주선율·멜로디</span><span class="ptag">자신감</span><span class="ptag">솔로 경험</span>
+        </div>
+      </div>
+      <!-- 테너2 -->
+      <div>
+        <div class="pbar-row">
+          <div class="pbar-label">테너 2</div>
+          <div class="pbar-track">
+            <div class="pbar-fill" style="width:70%;background:linear-gradient(90deg,#b05820,#e88c4c);">중고 음역</div>
+          </div>
+        </div>
+        <div class="pbar-tags">
+          <span class="ptag">화음 중심축</span><span class="ptag">앙상블</span><span class="ptag">균형 감각</span>
+        </div>
+      </div>
+      <!-- 바리톤 -->
+      <div>
+        <div class="pbar-row">
+          <div class="pbar-label">바리톤</div>
+          <div class="pbar-track">
+            <div class="pbar-fill" style="width:55%;background:linear-gradient(90deg,#9a7a10,#c9a035);">중간 음역</div>
+          </div>
+        </div>
+        <div class="pbar-tags">
+          <span class="ptag">가장 넓은 음역</span><span class="ptag">위아래 연결</span><span class="ptag">화음 완성</span>
+        </div>
+      </div>
+      <!-- 베이스 -->
+      <div>
+        <div class="pbar-row">
+          <div class="pbar-label">베이스</div>
+          <div class="pbar-track">
+            <div class="pbar-fill" style="width:38%;background:linear-gradient(90deg,#1a5faa,#4c8ce8);">저음 음역</div>
+          </div>
+        </div>
+        <div class="pbar-tags">
+          <span class="ptag">합창의 뿌리</span><span class="ptag">묵묵함</span><span class="ptag">꾸준함</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 전구 팁 -->
+    <div class="bulb-wrap hand" style="margin-top:24px;">
+      <div class="bulb-icon">💡</div>
+      <div>
+        <div class="bulb-title">핵심 포인트</div>
+        <div class="bulb-list">
+          ① 어느 파트든 찬양의 목적은 하나!<br>
+          ② 파트장님께 먼저 인사드리세요 😊<br>
+          ③ 함께할 때 더 아름다운 화음이 탄생해요
+        </div>
+      </div>
+    </div>
+  </div>
+  <span class="pg">7 / 9</span>
+</div>
+
+<!-- ══════════ CARD 8: 문화 + 웹사이트 ══════════ -->
+<div class="card bg-brown">
+  <span class="star-deco" style="top:34px;right:40px;font-size:20px;">☆</span>
+  <span class="star-deco" style="bottom:85px;right:32px;font-size:14px;">✦</span>
+
+  <div class="card-inner">
+    <div class="sec-title hand">
+      <span class="title-icon">💛</span> 장로성가단 문화
+    </div>
+    <div class="sec-divider"></div>
+
+    <div class="val-grid hand">
+      <div class="val-card">
+        <div class="val-emoji">✝️</div>
+        <div class="val-name">신앙</div>
+        <div class="val-desc">찬양보다 먼저<br>예배자가 됩니다</div>
+      </div>
+      <div class="val-card">
+        <div class="val-emoji">🤝</div>
+        <div class="val-name">배려</div>
+        <div class="val-desc">서로를 존중하고<br>배려합니다</div>
+      </div>
+      <div class="val-card">
+        <div class="val-emoji">🙏</div>
+        <div class="val-name">겸손</div>
+        <div class="val-desc">실력보다<br>태도를 중요시해요</div>
+      </div>
+      <div class="val-card">
+        <div class="val-emoji">❤️</div>
+        <div class="val-name">섬김</div>
+        <div class="val-desc">보이지 않는 봉사를<br>귀하게 여겨요</div>
+      </div>
+    </div>
+
+    <div style="margin-top:22px;">
+      <div style="font-size:22px;font-weight:700;color:#f5d06a;margin-bottom:12px;">🌐 온라인 채널</div>
+      <a href="https://www.kechoir.or.kr/" target="_blank" style="text-decoration:none;">
+        <div class="link-btn hand">
+          <div class="link-icon">🏠</div>
+          <div>
+            <div class="link-name">홈페이지</div>
+            <div class="link-url">www.kechoir.or.kr</div>
+          </div>
+        </div>
+      </a>
+      <a href="https://cafe.daum.net/kechoir20" target="_blank" style="text-decoration:none;">
+        <div class="link-btn hand">
+          <div class="link-icon">☕</div>
+          <div>
+            <div class="link-name">다음 카페</div>
+            <div class="link-url">cafe.daum.net/kechoir20</div>
+          </div>
+        </div>
+      </a>
+      <a href="https://daniel9kim.github.io/001/notebook.html" target="_blank" style="text-decoration:none;">
+        <div class="link-btn hand">
+          <div class="link-icon">📖</div>
+          <div>
+            <div class="link-name">단원수첩</div>
+            <div class="link-url">daniel9kim.github.io/001/notebook.html</div>
+          </div>
+        </div>
+      </a>
+      <a href="https://daniel9kim.github.io/001/baritone.html" target="_blank" style="text-decoration:none;">
+        <div class="link-btn hand">
+          <div class="link-icon">🎵</div>
+          <div>
+            <div class="link-name">바리톤 연습실</div>
+            <div class="link-url">daniel9kim.github.io/001/baritone.html</div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+  <span class="pg">8 / 9</span>
+</div>
+
+<!-- ══════════ CARD 9: 연락처 + 마무리 ══════════ -->
+<div class="card bg-dark2">
+  <span class="star-deco" style="top:32px;right:38px;font-size:20px;">☆</span>
+  <span class="star-deco" style="top:54px;right:24px;font-size:12px;">✦</span>
+  <span class="star-deco" style="bottom:100px;left:30px;font-size:14px;">✦</span>
+
+  <div class="card-inner">
+    <div class="sec-title hand">
+      <span class="title-icon">📞</span> 도움이 필요할 때
+    </div>
+    <div class="sec-divider"></div>
+
+    <div class="contact-card leader hand">
+      <div class="c-icon">단장</div>
+      <div>
+        <div class="c-role">단장</div>
+        <div class="c-name">이형욱 장로</div>
+      </div>
+      <div class="c-phone">010-5304-5463</div>
+    </div>
+    <div class="contact-card leader hand">
+      <div class="c-icon">총무</div>
+      <div>
+        <div class="c-role">총무 (입단 문의)</div>
+        <div class="c-name">김기성 장로</div>
+      </div>
+      <div class="c-phone">010-2068-8849</div>
+    </div>
+    <div class="contact-card hand">
+      <div class="c-icon" style="font-size:12px;">T1</div>
+      <div>
+        <div class="c-role">테너1 파트장</div>
+        <div class="c-name">김례위 장로</div>
+      </div>
+      <div class="c-phone">010-3306-9449</div>
+    </div>
+    <div class="contact-card hand">
+      <div class="c-icon" style="font-size:12px;">T2</div>
+      <div>
+        <div class="c-role">테너2 파트장</div>
+        <div class="c-name">박병호 장로</div>
+      </div>
+      <div class="c-phone">010-8963-5579</div>
+    </div>
+    <div class="contact-card hand">
+      <div class="c-icon" style="font-size:12px;">Bar</div>
+      <div>
+        <div class="c-role">바리톤 파트장</div>
+        <div class="c-name">복봉수 장로</div>
+      </div>
+      <div class="c-phone">010-3354-2258</div>
+    </div>
+    <div class="contact-card hand">
+      <div class="c-icon" style="font-size:12px;">Bas</div>
+      <div>
+        <div class="c-role">베이스 파트장</div>
+        <div class="c-name">홍현풍 장로</div>
+      </div>
+      <div class="c-phone">010-9047-0074</div>
+    </div>
+
+    <!-- 마무리 포스트잇 -->
+    <div style="display:flex;justify-content:center;margin-top:20px;">
+      <div class="sticky hand" style="width:320px;text-align:center;transform:rotate(-1deg);font-size:20px;">
+        실수해도 괜찮아요! 😊<br>
+        지금의 선배님들도<br>
+        모두 신입단원이었던 시절이 있었어요 ♡<br>
+        <span style="font-size:17px;color:#7a5e00;">— 장로성가단 가족 일동 —</span>
+      </div>
+    </div>
+  </div>
+  <span class="pg">9 / 9</span>
+</div>
+
 </body>
 </html>
