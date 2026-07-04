@@ -3,32 +3,777 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=10.0, user-scalable=yes, viewport-fit=cover" />
-<title>신입단원 한국장로성가단 사용 설명서 · Apple Style Interactive</title>
+<title>신입단원 한국장로성가단 사용 설명서 · Mobile First Interactive</title>
 <style>
-:root{--bg:#05070b;--ink:#f7f7fb;--muted:rgba(247,247,251,.74);--gold:#f0c46a;--blue:#6bb6ff;--green:#80e0bd;--rose:#ff9faf;--card:rgba(255,255,255,.08);--line:rgba(255,255,255,.18)}
-*{box-sizing:border-box}html{scroll-behavior:smooth}html,body{touch-action:pan-x pan-y pinch-zoom}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR","Apple SD Gothic Neo",Arial,sans-serif;color:var(--ink);background:radial-gradient(circle at 10% 0%,rgba(107,182,255,.25),transparent 34%),radial-gradient(circle at 90% 10%,rgba(240,196,106,.18),transparent 32%),linear-gradient(180deg,#05070b 0%,#09111e 42%,#05070b 100%);overflow-x:hidden}a{color:inherit}.progress{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--blue),var(--green),var(--gold));z-index:90}.nav{position:fixed;inset:16px 18px auto 18px;z-index:80;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:10px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(5,7,11,.56);backdrop-filter:blur(18px);box-shadow:0 18px 60px rgba(0,0,0,.28)}.brand{font-weight:900;letter-spacing:-.03em;white-space:nowrap}.nav .links{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}.nav a,.nav button{border:0;border-radius:999px;padding:8px 12px;color:var(--ink);background:rgba(255,255,255,.10);text-decoration:none;font-weight:800;font-family:inherit;cursor:pointer}.nav a:hover,.nav button:hover{background:rgba(255,255,255,.18)}.hero{min-height:100svh;display:grid;place-items:center;padding:100px 22px 60px;position:relative;overflow:hidden}.orb{position:absolute;border-radius:50%;filter:blur(4px);opacity:.72;animation:float 7s ease-in-out infinite alternate}.orb.one{width:420px;height:420px;background:radial-gradient(circle,var(--blue),transparent 68%);left:-120px;top:120px}.orb.two{width:360px;height:360px;background:radial-gradient(circle,var(--gold),transparent 68%);right:-80px;bottom:80px;animation-delay:-2s}.orb.three{width:260px;height:260px;background:radial-gradient(circle,var(--green),transparent 70%);right:24%;top:22%;animation-delay:-4s}@keyframes float{from{transform:translateY(-12px) scale(1)}to{transform:translateY(24px) scale(1.05)}}.hero-card{width:min(980px,96vw);text-align:center;position:relative;z-index:2}.kicker{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.08);color:var(--gold);font-weight:900}h1{margin:28px 0 18px;font-size:clamp(46px,8vw,112px);line-height:.98;letter-spacing:-.085em}.hero-card p{margin:0 auto;max-width:820px;font-size:clamp(18px,2.2vw,28px);line-height:1.55;color:var(--muted);letter-spacing:-.04em}.scroll-hint{margin-top:42px;color:var(--muted);font-weight:800;animation:bounce 1.8s ease-in-out infinite}@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(10px)}}.section{min-height:100svh;display:grid;place-items:center;padding:110px 22px 90px;position:relative}.stage{width:min(1160px,100%);display:grid;grid-template-columns:.82fr 1.18fr;gap:42px;align-items:center}.section:nth-child(even) .stage{grid-template-columns:1.18fr .82fr}.section:nth-child(even) .visual{order:2}.visual{min-height:520px;border-radius:44px;border:1px solid var(--line);background:linear-gradient(160deg,rgba(255,255,255,.12),rgba(255,255,255,.03)),radial-gradient(circle at 28% 18%,rgba(240,196,106,.28),transparent 32%),radial-gradient(circle at 85% 86%,rgba(107,182,255,.24),transparent 36%);box-shadow:0 36px 120px rgba(0,0,0,.38);position:relative;overflow:hidden;transform:translateY(36px);opacity:0;transition:1s cubic-bezier(.2,.8,.2,1)}.visual:before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.08) 1px,transparent 1px);background-size:42px 42px;opacity:.28}.big-icon{position:absolute;inset:0;display:grid;place-items:center;font-size:clamp(120px,18vw,240px);filter:drop-shadow(0 18px 45px rgba(0,0,0,.4));transform:scale(.9);transition:1.2s cubic-bezier(.2,.8,.2,1)}.ring{position:absolute;width:70%;aspect-ratio:1/1;border:2px solid rgba(255,255,255,.18);border-radius:50%;left:15%;top:15%;animation:spin 18s linear infinite}.ring:after{content:"";position:absolute;width:20px;height:20px;border-radius:50%;background:var(--gold);top:8%;left:50%;box-shadow:0 0 36px var(--gold)}@keyframes spin{to{transform:rotate(360deg)}}.copy{transform:translateY(46px);opacity:0;transition:1s cubic-bezier(.2,.8,.2,1) .12s}.eyebrow{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border:1px solid var(--line);border-radius:999px;color:var(--gold);background:rgba(255,255,255,.07);font-weight:900}h2{margin:18px 0 16px;font-size:clamp(36px,5.2vw,74px);line-height:1.04;letter-spacing:-.075em}.lead{color:var(--muted);font-size:clamp(18px,2vw,25px);line-height:1.62;letter-spacing:-.045em;word-break:keep-all}.panel{margin-top:22px;padding:22px;border:1px solid var(--line);border-radius:28px;background:rgba(255,255,255,.08);backdrop-filter:blur(18px)}ul.clean{list-style:none;margin:0;padding:0}ul.clean li{padding:10px 0 10px 34px;position:relative;font-size:clamp(17px,1.6vw,21px);line-height:1.48;color:rgba(247,247,251,.86)}ul.clean li:before{content:"✓";position:absolute;left:0;top:10px;color:var(--green);font-weight:1000}.timeline{margin-top:18px;display:grid;gap:12px}.time-row{display:grid;grid-template-columns:88px 1fr;gap:12px;align-items:center}.time{padding:8px 10px;border-radius:999px;background:rgba(240,196,106,.16);border:1px solid rgba(240,196,106,.38);color:var(--gold);text-align:center;font-weight:1000}.event{padding:11px 14px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);color:rgba(247,247,251,.86);font-weight:760}.pills{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}.pill{padding:9px 13px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.08);color:rgba(247,247,251,.86);font-weight:900}.site,.phone{display:grid;grid-template-columns:58px 1fr;align-items:center;gap:14px;margin:12px 0;padding:14px;border-radius:22px;border:1px solid var(--line);background:rgba(255,255,255,.08)}.ico{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;background:linear-gradient(135deg,var(--gold),var(--green));color:#101218;font-size:28px}.site a,.phone a{color:#fff;text-decoration:none;font-weight:900;border-bottom:2px dotted rgba(255,255,255,.55);word-break:break-all}.culture-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.culture-item{padding:20px 14px;border-radius:26px;text-align:center;border:1px solid var(--line);background:rgba(255,255,255,.08);min-height:152px}.culture-item .emoji{font-size:42px;display:block;margin-bottom:8px}.culture-item b{display:block;color:var(--gold);font-size:22px;margin-bottom:6px}.final{min-height:100svh;display:grid;place-items:center;padding:120px 22px;text-align:center;background:radial-gradient(circle at 50% 0%,rgba(240,196,106,.22),transparent 38%),linear-gradient(180deg,transparent,#020308)}.final h2{font-size:clamp(42px,7vw,94px)}.cta-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:28px}.cta{border:1px solid var(--line);border-radius:999px;padding:13px 18px;text-decoration:none;font-weight:1000;background:rgba(255,255,255,.10)}.cta.primary{background:linear-gradient(135deg,var(--blue),var(--green));color:#071019}.reveal.visible .visual,.reveal.visible .copy{opacity:1;transform:translateY(0)}.reveal.visible .big-icon{transform:scale(1)}body.overview .section{min-height:auto;padding:34px 20px}body.overview .stage,body.overview .section:nth-child(even) .stage{grid-template-columns:310px 1fr;max-width:1500px}body.overview .visual{min-height:300px;border-radius:30px}body.overview .big-icon{font-size:120px}body.overview h2{font-size:42px}body.overview .lead{font-size:18px}body.overview .hero{min-height:70svh}@media(max-width:860px){.nav{inset:10px;border-radius:24px;align-items:flex-start;flex-direction:column}.nav .links{justify-content:flex-start}.stage,.section:nth-child(even) .stage{grid-template-columns:1fr;gap:26px}.section:nth-child(even) .visual{order:0}.visual{min-height:330px;border-radius:30px}.section{padding:100px 16px 70px}.culture-grid{grid-template-columns:1fr 1fr}.time-row{grid-template-columns:76px 1fr}body.overview .stage,body.overview .section:nth-child(even) .stage{grid-template-columns:1fr}}@media print{.nav,.progress{display:none}body{background:#05070b}.section,.hero,.final{min-height:auto;break-inside:avoid;page-break-inside:avoid;padding:34px 20px}.visual,.copy{opacity:1!important;transform:none!important}}
+:root{
+  --bg:#05070b;
+  --bg2:#0b1220;
+  --ink:#f7f7fb;
+  --muted:rgba(247,247,251,.74);
+  --soft:rgba(255,255,255,.08);
+  --line:rgba(255,255,255,.16);
+  --gold:#f0c46a;
+  --blue:#73b7ff;
+  --green:#8ee6c4;
+  --rose:#ff9faf;
+  --deep:#0f172a;
+}
+*{box-sizing:border-box}
+html{
+  scroll-behavior:smooth;
+  -webkit-text-size-adjust:100%;
+}
+html,body{
+  margin:0;
+  padding:0;
+  min-height:100%;
+  touch-action:pan-x pan-y pinch-zoom;
+}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans KR","Apple SD Gothic Neo",Arial,sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 10% 0%, rgba(115,183,255,.23), transparent 34%),
+    radial-gradient(circle at 96% 8%, rgba(240,196,106,.16), transparent 30%),
+    linear-gradient(180deg,#05070b 0%,#09111e 50%,#05070b 100%);
+  overflow-x:hidden;
+  line-height:1.58;
+}
+a{color:inherit}
+.progress{
+  position:fixed;
+  top:0;left:0;
+  width:0%;
+  height:4px;
+  background:linear-gradient(90deg,var(--blue),var(--green),var(--gold));
+  z-index:100;
+}
+.nav{
+  position:sticky;
+  top:0;
+  z-index:90;
+  display:flex;
+  justify-content:center;
+  padding:10px 10px;
+  background:rgba(5,7,11,.72);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.nav-inner{
+  width:min(1180px,100%);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+.brand{
+  font-weight:1000;
+  letter-spacing:-.04em;
+  font-size:15px;
+  white-space:nowrap;
+}
+.actions{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+  justify-content:flex-end;
+}
+.btn{
+  border:1px solid rgba(255,255,255,.18);
+  border-radius:999px;
+  padding:8px 10px;
+  color:#fff;
+  background:rgba(255,255,255,.09);
+  text-decoration:none;
+  font-weight:900;
+  font-size:13px;
+  font-family:inherit;
+  cursor:pointer;
+}
+.btn:hover{background:rgba(255,255,255,.16)}
+.hero{
+  min-height:calc(100svh - 54px);
+  display:grid;
+  place-items:center;
+  position:relative;
+  overflow:hidden;
+  padding:62px 18px 52px;
+}
+.hero::before,.hero::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  filter:blur(4px);
+  opacity:.7;
+  pointer-events:none;
+}
+.hero::before{
+  width:52vw;
+  max-width:520px;
+  aspect-ratio:1/1;
+  left:-18vw;
+  top:10%;
+  background:radial-gradient(circle,var(--blue),transparent 68%);
+  animation:float1 7s ease-in-out infinite alternate;
+}
+.hero::after{
+  width:48vw;
+  max-width:470px;
+  aspect-ratio:1/1;
+  right:-18vw;
+  bottom:8%;
+  background:radial-gradient(circle,var(--gold),transparent 68%);
+  animation:float2 8s ease-in-out infinite alternate;
+}
+@keyframes float1{from{transform:translateY(-8px) scale(1)}to{transform:translateY(22px) scale(1.04)}}
+@keyframes float2{from{transform:translateY(18px) scale(1)}to{transform:translateY(-18px) scale(1.05)}}
+.hero-content{
+  width:min(1000px,100%);
+  text-align:center;
+  position:relative;
+  z-index:1;
+}
+.kicker{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  padding:8px 13px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.08);
+  color:var(--gold);
+  font-weight:1000;
+  font-size:13px;
+  letter-spacing:.02em;
+}
+h1{
+  margin:24px 0 18px;
+  font-size:clamp(42px,13vw,118px);
+  line-height:.98;
+  letter-spacing:-.09em;
+}
+.hero p{
+  margin:0 auto;
+  max-width:760px;
+  color:var(--muted);
+  font-size:clamp(18px,4.6vw,28px);
+  line-height:1.55;
+  letter-spacing:-.045em;
+  word-break:keep-all;
+}
+.scroll-hint{
+  margin-top:34px;
+  color:var(--muted);
+  font-weight:900;
+  animation:bounce 1.8s ease-in-out infinite;
+}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(9px)}}
+.section{
+  min-height:auto;
+  padding:44px 16px;
+  position:relative;
+}
+.stage{
+  width:min(1180px,100%);
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:22px;
+  align-items:center;
+}
+.visual{
+  min-height:260px;
+  border-radius:32px;
+  border:1px solid var(--line);
+  background:
+    linear-gradient(160deg,rgba(255,255,255,.13),rgba(255,255,255,.035)),
+    radial-gradient(circle at 24% 20%,rgba(240,196,106,.26),transparent 34%),
+    radial-gradient(circle at 84% 88%,rgba(115,183,255,.23),transparent 38%);
+  box-shadow:0 30px 90px rgba(0,0,0,.35);
+  position:relative;
+  overflow:hidden;
+}
+.visual::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.075) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.075) 1px,transparent 1px);
+  background-size:38px 38px;
+  opacity:.32;
+}
+.ring{
+  position:absolute;
+  left:50%;
+  top:50%;
+  width:70%;
+  max-width:360px;
+  aspect-ratio:1/1;
+  transform:translate(-50%,-50%);
+  border:2px solid rgba(255,255,255,.18);
+  border-radius:50%;
+  animation:spin 18s linear infinite;
+}
+.ring::after{
+  content:"";
+  position:absolute;
+  width:18px;height:18px;
+  border-radius:50%;
+  background:var(--gold);
+  top:8%;left:50%;
+  box-shadow:0 0 34px var(--gold);
+}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.big-icon{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  font-size:clamp(96px,28vw,210px);
+  filter:drop-shadow(0 18px 45px rgba(0,0,0,.4));
+}
+.copy{
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:32px;
+  background:rgba(255,255,255,.055);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  padding:24px 20px;
+}
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 13px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.075);
+  color:var(--gold);
+  font-weight:1000;
+  font-size:14px;
+}
+h2{
+  margin:17px 0 13px;
+  font-size:clamp(32px,9vw,72px);
+  line-height:1.06;
+  letter-spacing:-.075em;
+}
+.lead{
+  margin:0;
+  color:var(--muted);
+  font-size:clamp(17px,4.3vw,25px);
+  line-height:1.64;
+  letter-spacing:-.045em;
+  word-break:keep-all;
+}
+.panel{
+  margin-top:18px;
+  padding:18px;
+  border-radius:26px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.075);
+}
+.clean{
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+.clean li{
+  position:relative;
+  padding:9px 0 9px 31px;
+  color:rgba(247,247,251,.88);
+  font-size:clamp(16px,4vw,21px);
+  line-height:1.48;
+  letter-spacing:-.035em;
+  word-break:keep-all;
+}
+.clean li::before{
+  content:"✓";
+  position:absolute;
+  left:0;top:9px;
+  color:var(--green);
+  font-weight:1000;
+}
+.timeline{
+  display:grid;
+  gap:10px;
+  margin-top:18px;
+}
+.time-row{
+  display:grid;
+  grid-template-columns:76px 1fr;
+  gap:10px;
+  align-items:center;
+}
+.time{
+  padding:8px 9px;
+  border-radius:999px;
+  background:rgba(240,196,106,.16);
+  border:1px solid rgba(240,196,106,.38);
+  color:var(--gold);
+  text-align:center;
+  font-weight:1000;
+  font-size:15px;
+}
+.event{
+  padding:10px 13px;
+  border-radius:17px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.12);
+  color:rgba(247,247,251,.88);
+  font-weight:780;
+  word-break:keep-all;
+}
+.pills{
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  margin-top:16px;
+}
+.pill{
+  padding:9px 12px;
+  border-radius:999px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.08);
+  color:rgba(247,247,251,.88);
+  font-weight:900;
+  font-size:15px;
+}
+.site,.phone{
+  display:grid;
+  grid-template-columns:54px 1fr;
+  align-items:center;
+  gap:13px;
+  margin:11px 0;
+  padding:13px;
+  border-radius:21px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.075);
+}
+.ico{
+  width:54px;height:54px;
+  border-radius:17px;
+  display:grid;
+  place-items:center;
+  background:linear-gradient(135deg,var(--gold),var(--green));
+  color:#101218;
+  font-size:27px;
+  flex-shrink:0;
+}
+.site a,.phone a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:1000;
+  border-bottom:2px dotted rgba(255,255,255,.55);
+  word-break:break-all;
+}
+.culture-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:18px;
+}
+.culture-item{
+  padding:17px 12px;
+  border-radius:24px;
+  text-align:center;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.075);
+  min-height:132px;
+  color:rgba(247,247,251,.86);
+  font-weight:800;
+}
+.culture-item .emoji{
+  font-size:38px;
+  display:block;
+  margin-bottom:7px;
+}
+.culture-item b{
+  display:block;
+  color:var(--gold);
+  font-size:20px;
+  margin-bottom:5px;
+}
+.final{
+  min-height:85svh;
+  display:grid;
+  place-items:center;
+  padding:88px 18px;
+  text-align:center;
+  background:
+    radial-gradient(circle at 50% 0%,rgba(240,196,106,.22),transparent 40%),
+    linear-gradient(180deg,transparent,#020308);
+}
+.final h2{
+  font-size:clamp(40px,11vw,92px);
+}
+.cta-row{
+  display:flex;
+  gap:10px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-top:26px;
+}
+.cta{
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:12px 16px;
+  text-decoration:none;
+  font-weight:1000;
+  background:rgba(255,255,255,.10);
+}
+.cta.primary{
+  background:linear-gradient(135deg,var(--blue),var(--green));
+  color:#071019;
+}
+.reveal{
+  opacity:1;
+  transform:none;
+}
+.js .reveal .visual,
+.js .reveal .copy{
+  opacity:0;
+  transform:translateY(24px);
+  transition:opacity .8s ease, transform .8s cubic-bezier(.2,.8,.2,1);
+}
+.js .reveal.visible .visual,
+.js .reveal.visible .copy{
+  opacity:1;
+  transform:translateY(0);
+}
+.js .reveal .copy{transition-delay:.08s}
+body.overview .hero{
+  min-height:56svh;
+}
+body.overview .section{
+  min-height:auto;
+  padding:22px 14px;
+}
+body.overview .stage{
+  grid-template-columns:1fr;
+  max-width:980px;
+}
+body.overview .visual{
+  min-height:190px;
+}
+body.overview .big-icon{
+  font-size:84px;
+}
+body.overview h2{
+  font-size:32px;
+}
+body.overview .lead{
+  font-size:16px;
+}
+@media(min-width:900px){
+  .brand{font-size:17px}
+  .btn{font-size:14px;padding:9px 13px}
+  .section{
+    min-height:100svh;
+    padding:92px 24px;
+    display:grid;
+    place-items:center;
+  }
+  .stage{
+    grid-template-columns:.88fr 1.12fr;
+    gap:44px;
+  }
+  .section:nth-child(even) .stage{
+    grid-template-columns:1.12fr .88fr;
+  }
+  .section:nth-child(even) .visual{
+    order:2;
+  }
+  .visual{
+    min-height:520px;
+    border-radius:44px;
+  }
+  .copy{
+    padding:34px 32px;
+    background:transparent;
+    border:0;
+    backdrop-filter:none;
+    -webkit-backdrop-filter:none;
+  }
+  .time-row{
+    grid-template-columns:88px 1fr;
+  }
+  .culture-grid{
+    grid-template-columns:repeat(4,1fr);
+  }
+  body.overview .stage,
+  body.overview .section:nth-child(even) .stage{
+    grid-template-columns:330px 1fr;
+    max-width:1500px;
+  }
+  body.overview .section:nth-child(even) .visual{
+    order:0;
+  }
+  body.overview .visual{
+    min-height:300px;
+  }
+}
+@media(max-width:520px){
+  .nav-inner{
+    flex-direction:column;
+    align-items:flex-start;
+  }
+  .actions{
+    justify-content:flex-start;
+  }
+  .btn{
+    font-size:12px;
+    padding:7px 9px;
+  }
+  .hero{
+    min-height:calc(100svh - 92px);
+    padding-top:44px;
+  }
+  .section{
+    padding:34px 12px;
+  }
+  .visual{
+    min-height:220px;
+    border-radius:26px;
+  }
+  .copy{
+    border-radius:26px;
+    padding:20px 16px;
+  }
+  .site,.phone{
+    grid-template-columns:46px 1fr;
+    gap:11px;
+    padding:12px;
+  }
+  .ico{
+    width:46px;height:46px;
+    font-size:23px;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .js .reveal .visual,.js .reveal .copy{opacity:1!important;transform:none!important}
+}
+@media print{
+  .nav,.progress{display:none}
+  body{background:#05070b}
+  .hero,.section,.final{
+    min-height:auto;
+    break-inside:avoid;
+    page-break-inside:avoid;
+    padding:32px 20px;
+  }
+  .visual,.copy{
+    opacity:1!important;
+    transform:none!important;
+  }
+}
 </style>
 </head>
 <body>
 <div class="progress" id="progress"></div>
-<nav class="nav"><div class="brand">한국장로성가단 · 신입단원 가이드</div><div class="links"><a href="#join">입단</a><a href="#practice">연습</a><a href="#culture">문화</a><button onclick="toggleOverview()" id="overviewBtn">전체 펼쳐보기</button><button onclick="window.print()">PDF 저장</button></div></nav>
-<header class="hero" id="top"><div class="orb one"></div><div class="orb two"></div><div class="orb three"></div><div class="hero-card"><div class="kicker">KOREA ELDERS CHOIR · INTERACTIVE GUIDE</div><h1>신입단원<br>한국장로성가단<br>사용 설명서</h1><p>찬양으로 하나님께 영광을 돌리고 서로를 격려하는 믿음의 공동체. 스크롤을 내리며 입단부터 연습, 일정, 문화, 연락처까지 자연스럽게 살펴보세요.</p><div class="scroll-hint">아래로 스크롤 ↓</div></div></header>
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">한국장로성가단 · 신입단원 가이드</div>
+    <div class="actions">
+      <a class="btn" href="#join">입단</a>
+      <a class="btn" href="#practice">연습</a>
+      <a class="btn" href="#culture">문화</a>
+      <button class="btn" type="button" onclick="toggleOverview()">전체 펼쳐보기</button>
+      <button class="btn" type="button" onclick="window.print()">PDF 저장</button>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="hero-content">
+    <div class="kicker">KOREA ELDERS CHOIR · MOBILE FIRST</div>
+    <h1>신입단원<br>한국장로성가단<br>사용 설명서</h1>
+    <p>찬양으로 하나님께 영광을 돌리고 서로를 격려하는 믿음의 공동체. 스크롤을 내리며 입단부터 연습, 일정, 문화, 연락처까지 자연스럽게 살펴보세요.</p>
+    <div class="scroll-hint">아래로 스크롤 ↓</div>
+  </div>
+</header>
+
 <main>
-<section class="section reveal" id="intro"><div class="stage"><div class="visual"><div class="ring"></div><div class="big-icon">🎼</div></div><div class="copy"><span class="eyebrow">01 · 소개</span><h2>찬양으로 연결되는<br>믿음의 공동체</h2><p class="lead">한국장로성가단은 대한예수교장로회 통합교단 총회 산하 기관으로, 오직 통합교단 장로로만 구성되었습니다. 전국 31개 장로 합창단 중 서울장로합창단, 코랄카리스 찬양단과 더불어 서울의 대표적인 장로 합창단입니다.</p><div class="panel"><ul class="clean"><li>통합교단 장로로 구성</li><li>서울의 대표적인 장로 합창단</li><li>찬양을 통해 하나님께 영광을 돌리는 믿음의 공동체</li></ul></div></div></div></section>
-<section class="section reveal" id="join"><div class="stage"><div class="visual"><div class="ring"></div><div class="big-icon">📝</div></div><div class="copy"><span class="eyebrow">02 · 입단 안내</span><h2>좋아하는 찬송 1곡으로<br>시작합니다</h2><p class="lead">지원자격은 대한예수교장로회 통합교단 장로입니다. 입단 희망 후 신청서를 작성하고, 좋아하는 찬송 1곡으로 오디션을 진행한 뒤 임원회 승인을 거칩니다.</p><div class="panel"><ul class="clean"><li>입단 희망: 김기성 총무</li><li>신청서 작성</li><li>좋아하는 찬송 1곡</li><li>임원회 승인</li><li>입단비 30만원, 회비 50만원(1년)</li><li>연주복 구입: 동복·하복 30만원</li></ul></div></div></div></section>
-<section class="section reveal" id="practice"><div class="stage"><div class="visual"><div class="ring"></div><div class="big-icon">⏰</div></div><div class="copy"><span class="eyebrow">03 · 정기연습</span><h2>금요일 새벽 6시,<br>하루를 찬양으로 엽니다</h2><p class="lead">매주 금요일 오전 6시 백주년기념관에서 정기연습을 합니다. 주차가 지원되며, 장로성가단 악보를 준비하고 10분 전 도착과 휴대폰 무음을 지켜 주세요.</p><div class="timeline"><div class="time-row"><div class="time">05:50</div><div class="event">도착</div></div><div class="time-row"><div class="time">06:00</div><div class="event">준비운동 · 연습 시작</div></div><div class="time-row"><div class="time">08:00</div><div class="event">연습 마침 · 아침식사(네오트로)</div></div><div class="time-row"><div class="time">09:00</div><div class="event">식사 후 귀가</div></div></div></div></div></section>
-<section class="section reveal" id="year"><div class="stage"><div class="visual"><div class="ring"></div><div class="big-icon">📅</div></div><div class="copy"><span class="eyebrow">04 · 연중 일정</span><h2>한 해의 흐름을 알면<br>적응이 쉬워집니다</h2><p class="lead">교회 초청연주는 월 1회 정도 진행되며, 개강예배, 고난주간 특별찬양, 전국장로수련회, 방학, 정기연주회, 합창대축제, 해외 찬양선교, 송년회가 이어집니다.</p><div class="pills"><span class="pill">01월 개강예배</span><span class="pill">04월 고난주간</span><span class="pill">07월 전국장로수련회</span><span class="pill">10월 정기연주회</span><span class="pill">12월 송년회</span></div></div></div></section>
-<section class="section reveal" id="teams"><div class="stage"><div class="visual"><div class="ring"></div><div class="big-icon">🔔</div></div><div class="copy"><span class="eyebrow">05 · 특별활동</span><h2>합창 밖에도<br>함께할 무대가 있습니다</h2><p class="lead">HIM, 엘드림, 하늘샘 중창단과 코람데오 하모니카, 핸드벨 콰이어, 권사합창단 등 다양한 특별활동이 운영됩니다.</p><div class="panel"><ul class="clean"><li>HIM 중창단: 10명, 목요일 신당동교회</li><li>엘드림 중창단: 8명, 목요일 신당동교회</li><li>하늘샘 중창단: 12명, 목요일 신당동교회</li><li>코람데오: 6명, 목요일 신당동교회</li><li>핸드벨 콰이어: 12명, 수요일 06:00 새문안교회</li><li>권사합창단: 22명, 격주 토요일 11:00 충무교회</li></ul></div></div></div></section>
-<section class="section reveal" id="parts"><div class="stage"><div class="visual"><div class="ring"></div><div class="big-icon">🎤</div></div><div class="copy"><span class="eyebrow">06-09 · 파트별 특징</span><h2>각 파트가 모여<br>하나의 하모니가 됩니다</h2><div class="panel"><ul class="clean"><li><b>테너1</b> · 가장 높은 음역, 주선율, 밝고 화려한 소리</li><li><b>테너2</b> · 테너1과 바리톤을 잇는 화음의 중심축</li><li><b>바리톤</b> · 테너와 베이스를 연결하며 화음을 완성</li><li><b>베이스</b> · 남성합창의 가장 낮은 음역, 합창의 뿌리와 기초</li></ul></div></div></div></section>
-<section class="section reveal" id="websites"><div class="stage"><div class="visual"><div class="ring"></div><div class="big-icon">💻</div></div><div class="copy"><span class="eyebrow">10 · 주요 웹사이트</span><h2>필요한 자료는<br>바로 열어봅니다</h2><div class="site"><div class="ico">🏠</div><div><b>홈페이지</b><br><a href="https://www.kechoir.or.kr/" target="_blank">https://www.kechoir.or.kr/</a></div></div><div class="site"><div class="ico">☕</div><div><b>다음 카페</b><br><a href="https://cafe.daum.net/kechoir20" target="_blank">https://cafe.daum.net/kechoir20</a></div></div><div class="site"><div class="ico">📖</div><div><b>단원수첩</b><br><a href="https://daniel9kim.github.io/001/notebook.html" target="_blank">단원수첩 바로가기</a></div></div><div class="site"><div class="ico">🎼</div><div><b>바리톤 연습실</b><br><a href="https://daniel9kim.github.io/001/baritone.html" target="_blank">바리톤 연습실 바로가기</a></div></div></div></div></section>
-<section class="section reveal" id="culture"><div class="stage"><div class="visual"><div class="ring"></div><div class="big-icon">🤝</div></div><div class="copy"><span class="eyebrow">11 · 장로성가단의 문화</span><h2>처음 오셔도<br>걱정하지 마세요</h2><p class="lead">처음 오시면 모르는 분이 더 많지만, 먼저 인사하시면 많은 분들이 이름을 기억해 주십니다. 연습 후 식사 자리는 장로성가단을 가장 빨리 알아가는 시간입니다. 실수해도 괜찮습니다.</p><div class="culture-grid"><div class="culture-item"><span class="emoji">🙏</span><b>신앙</b>찬양보다 먼저 예배자</div><div class="culture-item"><span class="emoji">🤝</span><b>배려</b>서로를 존중</div><div class="culture-item"><span class="emoji">😊</span><b>겸손</b>실력보다 태도</div><div class="culture-item"><span class="emoji">🫶</span><b>섬김</b>보이지 않는 봉사</div></div></div></div></section>
-<section class="section reveal" id="help"><div class="stage"><div class="visual"><div class="ring"></div><div class="big-icon">📞</div></div><div class="copy"><span class="eyebrow">12 · 도움이 필요할 때</span><h2>혼자 고민하지 말고<br>편하게 연락하세요</h2><div class="phone"><div class="ico">👑</div><div>단장: 이형욱 장로<br><a href="tel:01053045463">010-5304-5463</a></div></div><div class="phone"><div class="ico">🧭</div><div>총무: 김기성 장로<br><a href="tel:01020688849">010-2068-8849</a></div></div><div class="phone"><div class="ico">🎤</div><div>테너1: 김례위 장로<br><a href="tel:01033069449">010-3306-9449</a></div></div><div class="phone"><div class="ico">🎶</div><div>테너2: 박병호 장로<br><a href="tel:01089635579">010-8963-5579</a></div></div><div class="phone"><div class="ico">🎼</div><div>바리톤: 복봉수 장로<br><a href="tel:01033542258">010-3354-2258</a></div></div><div class="phone"><div class="ico">🔊</div><div>베이스: 홍현풍 장로<br><a href="tel:01090470074">010-9047-0074</a></div></div></div></div></section>
-</main><footer class="final"><div><div class="kicker">WELCOME TO KOREA ELDERS CHOIR</div><h2>함께 찬양하며<br>하나님께 영광을!</h2><p class="lead">한국장로성가단은 여러분의 참여로 더 아름다운 하모니가 됩니다.</p><div class="cta-row"><a class="cta primary" href="#top">처음으로</a><a class="cta" href="#help">연락처 보기</a><a class="cta" href="javascript:window.print()">PDF 저장</a></div></div></footer>
+<section class="section reveal" id="intro">
+  <div class="stage">
+    <div class="visual"><div class="ring"></div><div class="big-icon">🎼</div></div>
+    <div class="copy">
+      <span class="eyebrow">01 · 소개</span>
+      <h2>찬양으로 연결되는<br>믿음의 공동체</h2>
+      <p class="lead">한국장로성가단은 대한예수교장로회 통합교단 총회 산하 기관으로, 오직 통합교단 장로로만 구성되었습니다. 전국 31개 장로 합창단 중 서울을 대표하는 장로 합창단으로, 찬양을 통해 하나님께 영광을 돌리고 서로를 격려합니다.</p>
+      <div class="panel"><ul class="clean"><li>통합교단 장로로 구성</li><li>서울의 대표적인 장로 합창단</li><li>노래가 아니라 고백으로 드리는 찬양</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="join">
+  <div class="stage">
+    <div class="visual"><div class="ring"></div><div class="big-icon">📝</div></div>
+    <div class="copy">
+      <span class="eyebrow">02 · 입단 안내</span>
+      <h2>좋아하는 찬송 1곡으로<br>시작합니다</h2>
+      <p class="lead">지원자격은 대한예수교장로회 통합교단 장로입니다. 입단 희망 후 신청서를 작성하고, 좋아하는 찬송 1곡으로 오디션을 진행한 뒤 임원회 승인을 거칩니다.</p>
+      <div class="panel"><ul class="clean"><li>입단 희망: 김기성 총무</li><li>신청서 작성</li><li>좋아하는 찬송 1곡</li><li>임원회 승인</li><li>입단비 30만원, 회비 50만원(1년)</li><li>연주복 구입: 동복·하복 30만원</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="practice">
+  <div class="stage">
+    <div class="visual"><div class="ring"></div><div class="big-icon">⏰</div></div>
+    <div class="copy">
+      <span class="eyebrow">03 · 정기연습</span>
+      <h2>금요일 새벽 6시,<br>하루를 찬양으로 엽니다</h2>
+      <p class="lead">매주 금요일 오전 6시 백주년기념관에서 정기연습을 합니다. 주차가 지원되며, 장로성가단 악보를 준비하고 10분 전 도착과 휴대폰 무음을 지켜 주세요.</p>
+      <div class="timeline">
+        <div class="time-row"><div class="time">05:50</div><div class="event">도착</div></div>
+        <div class="time-row"><div class="time">06:00</div><div class="event">준비운동 · 연습 시작</div></div>
+        <div class="time-row"><div class="time">08:00</div><div class="event">연습 마침 · 아침식사(네오트로)</div></div>
+        <div class="time-row"><div class="time">09:00</div><div class="event">식사 후 귀가</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="year">
+  <div class="stage">
+    <div class="visual"><div class="ring"></div><div class="big-icon">📅</div></div>
+    <div class="copy">
+      <span class="eyebrow">04 · 연중 일정</span>
+      <h2>한 해의 흐름을 알면<br>적응이 쉬워집니다</h2>
+      <p class="lead">교회 초청연주는 월 1회 정도 진행되며, 개강예배, 고난주간 특별찬양, 전국장로수련회, 방학, 정기연주회, 합창대축제, 해외 찬양선교, 송년회가 이어집니다.</p>
+      <div class="pills"><span class="pill">01월 개강예배</span><span class="pill">04월 고난주간</span><span class="pill">07월 전국장로수련회</span><span class="pill">10월 정기연주회</span><span class="pill">12월 송년회</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="teams">
+  <div class="stage">
+    <div class="visual"><div class="ring"></div><div class="big-icon">🔔</div></div>
+    <div class="copy">
+      <span class="eyebrow">05 · 특별활동</span>
+      <h2>합창 밖에도<br>함께할 무대가 있습니다</h2>
+      <p class="lead">HIM, 엘드림, 하늘샘 중창단과 코람데오 하모니카, 핸드벨 콰이어, 권사합창단 등 다양한 특별활동이 운영됩니다.</p>
+      <div class="panel"><ul class="clean"><li>HIM 중창단: 10명, 목요일 신당동교회</li><li>엘드림 중창단: 8명, 목요일 신당동교회</li><li>하늘샘 중창단: 12명, 목요일 신당동교회</li><li>코람데오: 6명, 목요일 신당동교회</li><li>핸드벨 콰이어: 12명, 수요일 06:00 새문안교회</li><li>권사합창단: 22명, 격주 토요일 11:00 충무교회</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="parts">
+  <div class="stage">
+    <div class="visual"><div class="ring"></div><div class="big-icon">🎤</div></div>
+    <div class="copy">
+      <span class="eyebrow">06-09 · 파트별 특징</span>
+      <h2>각 파트가 모여<br>하나의 하모니가 됩니다</h2>
+      <div class="panel"><ul class="clean"><li><b>테너1</b> · 가장 높은 음역, 주선율, 밝고 화려한 소리</li><li><b>테너2</b> · 테너1과 바리톤을 잇는 화음의 중심축</li><li><b>바리톤</b> · 테너와 베이스를 연결하며 화음을 완성</li><li><b>베이스</b> · 남성합창의 가장 낮은 음역, 합창의 뿌리와 기초</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="websites">
+  <div class="stage">
+    <div class="visual"><div class="ring"></div><div class="big-icon">💻</div></div>
+    <div class="copy">
+      <span class="eyebrow">10 · 주요 웹사이트</span>
+      <h2>필요한 자료는<br>바로 열어봅니다</h2>
+      <div class="site"><div class="ico">🏠</div><div><b>홈페이지</b><br><a href="https://www.kechoir.or.kr/" target="_blank" rel="noopener noreferrer">https://www.kechoir.or.kr/</a></div></div>
+      <div class="site"><div class="ico">☕</div><div><b>다음 카페</b><br><a href="https://cafe.daum.net/kechoir20" target="_blank" rel="noopener noreferrer">https://cafe.daum.net/kechoir20</a></div></div>
+      <div class="site"><div class="ico">📖</div><div><b>단원수첩</b><br><a href="https://daniel9kim.github.io/001/notebook.html" target="_blank" rel="noopener noreferrer">단원수첩 바로가기</a></div></div>
+      <div class="site"><div class="ico">🎼</div><div><b>바리톤 연습실</b><br><a href="https://daniel9kim.github.io/001/baritone.html" target="_blank" rel="noopener noreferrer">바리톤 연습실 바로가기</a></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="culture">
+  <div class="stage">
+    <div class="visual"><div class="ring"></div><div class="big-icon">🤝</div></div>
+    <div class="copy">
+      <span class="eyebrow">11 · 장로성가단의 문화</span>
+      <h2>처음 오셔도<br>걱정하지 마세요</h2>
+      <p class="lead">처음 오시면 모르는 분이 더 많지만, 먼저 인사하시면 많은 분들이 이름을 기억해 주십니다. 연습 후 식사 자리는 장로성가단을 가장 빨리 알아가는 시간입니다. 실수해도 괜찮습니다.</p>
+      <div class="culture-grid">
+        <div class="culture-item"><span class="emoji">🙏</span><b>신앙</b>찬양보다 먼저 예배자</div>
+        <div class="culture-item"><span class="emoji">🤝</span><b>배려</b>서로를 존중</div>
+        <div class="culture-item"><span class="emoji">😊</span><b>겸손</b>실력보다 태도</div>
+        <div class="culture-item"><span class="emoji">🫶</span><b>섬김</b>보이지 않는 봉사</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section reveal" id="help">
+  <div class="stage">
+    <div class="visual"><div class="ring"></div><div class="big-icon">📞</div></div>
+    <div class="copy">
+      <span class="eyebrow">12 · 도움이 필요할 때</span>
+      <h2>혼자 고민하지 말고<br>편하게 연락하세요</h2>
+      <div class="phone"><div class="ico">👑</div><div>단장: 이형욱 장로<br><a href="tel:01053045463">010-5304-5463</a></div></div>
+      <div class="phone"><div class="ico">🧭</div><div>총무: 김기성 장로<br><a href="tel:01020688849">010-2068-8849</a></div></div>
+      <div class="phone"><div class="ico">🎤</div><div>테너1: 김례위 장로<br><a href="tel:01033069449">010-3306-9449</a></div></div>
+      <div class="phone"><div class="ico">🎶</div><div>테너2: 박병호 장로<br><a href="tel:01089635579">010-8963-5579</a></div></div>
+      <div class="phone"><div class="ico">🎼</div><div>바리톤: 복봉수 장로<br><a href="tel:01033542258">010-3354-2258</a></div></div>
+      <div class="phone"><div class="ico">🔊</div><div>베이스: 홍현풍 장로<br><a href="tel:01090470074">010-9047-0074</a></div></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="final">
+  <div>
+    <div class="kicker">WELCOME TO KOREA ELDERS CHOIR</div>
+    <h2>함께 찬양하며<br>하나님께 영광을!</h2>
+    <p class="lead">한국장로성가단은 여러분의 참여로 더 아름다운 하모니가 됩니다.</p>
+    <div class="cta-row">
+      <a class="cta primary" href="#top">처음으로</a>
+      <a class="cta" href="#help">연락처 보기</a>
+      <a class="cta" href="javascript:window.print()">PDF 저장</a>
+    </div>
+  </div>
+</footer>
+
 <script>
-const reveals=[...document.querySelectorAll('.reveal')];
-const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible')}})},{threshold:.28});
-reveals.forEach(el=>observer.observe(el));
+document.documentElement.classList.add('js');
+
 const progress=document.getElementById('progress');
-window.addEventListener('scroll',()=>{const h=document.documentElement;const max=h.scrollHeight-h.clientHeight;progress.style.width=(h.scrollTop/max*100)+'%'},{passive:true});
-function toggleOverview(){document.body.classList.toggle('overview');const btn=document.getElementById('overviewBtn');btn.textContent=document.body.classList.contains('overview')?'스토리 보기':'전체 펼쳐보기'}
-</script></body></html>
+function updateProgress(){
+  const h=document.documentElement;
+  const max=h.scrollHeight-h.clientHeight;
+  const pct=max>0 ? (h.scrollTop/max*100) : 0;
+  progress.style.width=pct+'%';
+}
+window.addEventListener('scroll',updateProgress,{passive:true});
+window.addEventListener('resize',updateProgress);
+updateProgress();
+
+const reveals=[...document.querySelectorAll('.reveal')];
+
+if('IntersectionObserver' in window){
+  const observer=new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+      }
+    });
+  },{threshold:0.08, rootMargin:'0px 0px -5% 0px'});
+  reveals.forEach(el=>observer.observe(el));
+  setTimeout(()=>reveals.forEach(el=>{
+    const r=el.getBoundingClientRect();
+    if(r.top < window.innerHeight && r.bottom > 0) el.classList.add('visible');
+  }),250);
+}else{
+  reveals.forEach(el=>el.classList.add('visible'));
+}
+
+function toggleOverview(){
+  document.body.classList.toggle('overview');
+  const btn=[...document.querySelectorAll('.actions button')].find(b=>b.textContent.includes('전체')||b.textContent.includes('스토리'));
+  if(btn){
+    btn.textContent=document.body.classList.contains('overview') ? '스토리 보기' : '전체 펼쳐보기';
+  }
+  updateProgress();
+}
+</script>
+</body>
+</html>
