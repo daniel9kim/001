@@ -47,30 +47,21 @@
       <header class="cover-topbar">
         <button class="text-btn" data-back-shelf>← 책장으로 돌아가기</button>
         <div class="eyebrow">YOUNGCHOON'S PHOTO BOOK</div>
-        <button class="icon-btn" title="공유">↗</button>
+        <button id="shareBtn" class="icon-btn" title="공유" aria-label="앨범 공유">↗</button>
       </header>
       <div class="cover-stage">
-        <div class="cover-heading">
-          <h2>테스트앨범</h2>
-          <div class="accent-date">2026.08.07</div>
-          <p>뱅크시 특별전에서 남긴 하루의 기록</p>
-        </div>
         <div class="physical-book">
           <div class="spine"></div>
           <div class="cover-photo-wrap"><img src="webp/014.webp" alt="테스트앨범 대표 사진" /></div>
           <div class="cover-caption">테스트앨범</div>
+          <div class="cover-date">2026.08.07</div>
+          <div class="cover-summary">뱅크시 특별전에서 남긴 하루의 기록</div>
           <div class="cover-meta">사진 15장 · 자동 편집</div>
+          <div class="story-mark">✎ 그날의 기록이 있는 앨범</div>
         </div>
         <button id="openReader" class="primary-btn">▭ 책 펼치기</button>
         <div class="thumb-panel">
-          <div class="thumb-title">이 앨범 미리보기</div>
           <div class="thumb-strip" id="thumbStrip"></div>
-        </div>
-        <div class="album-info">
-          <h3>앨범 정보</h3>
-          <div><strong>촬영일</strong><span>2026.08.07</span></div>
-          <div><strong>사진</strong><span>15장</span></div>
-          <div><strong>편집</strong><span>세로 1페이지 · 가로 2페이지 펼침</span></div>
         </div>
       </div>
     </section>
@@ -87,7 +78,7 @@
       <div id="bookArea" class="book-area">
         <div id="book" class="open-book">
           <div id="spread" class="spread"></div>
-          <div id="pageCurl" class="page-curl" aria-hidden="true"></div>
+          <div class="curl-shadow" aria-hidden="true"></div><div id="pageCurl" class="page-curl" aria-hidden="true"></div>
           <button class="nav-zone prev" id="prevBtn" aria-label="이전 페이지">‹</button>
           <button class="nav-zone next" id="nextBtn" aria-label="다음 페이지">›</button>
         </div>
@@ -98,6 +89,15 @@
       </footer>
     </section>
   </main>
+  <div id="storyModal" class="story-modal" role="dialog" aria-modal="true" aria-label="그날의 기록">
+    <article class="story-sheet">
+      <button id="storyClose" class="story-close" aria-label="닫기">×</button>
+      <div class="essay-kicker">YOUNGCHOON'S NOTE</div>
+      <h2>그날의 기록</h2><div class="date">Banksy Still Here · 2026.08.07</div>
+      <p id="storyText"></p>
+    </article>
+  </div>
+  <div id="shareToast" class="share-toast" role="status" aria-live="polite"></div>
   <script src="app.js"></script>
 </body>
 </html>
