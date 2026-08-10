@@ -1,0 +1,74 @@
+{
+  "id": "banksy-test",
+  "title": "테스트앨범",
+  "date": "2026-08-07",
+  "summary": "뱅크시 특별전에서 남긴 하루의 기록",
+  "subtitle": "Banksy Still Here",
+  "storyTitle": "그날의 기록",
+  "story": "뱅크시 특별전 다녀왔어요.\n\n뱅크시(Banksy)는 정체를 밝히지 않은 영국의 그래피티(graffiti) 예술가에요.\n거리의 담벼락을 캔버스 삼아 사회를 풍자하는 작품으로 유명하지요.\n\n영국에서는 벽에 그림을 그리다 걸리면\n중형에 처해지기 때문에\n몰래 그림을 그리기 위해서\n스텐실 기법을 사용해서\n빠르게 그리고 사라진다고 하네요.\n\n소더비 경매시장에서\n120억에 낙찰된 그림이\n자동으로 파쇄되어 버리는 바람에\n엄청나게 유명해져 버렸어요.\n실제로 파쇄된 작품 영상을 보는데\n전시장에 있던 사람들이 얼마나 놀랐을지\n상상이 되더라고요.\n\n전시장에 들어가면\n낡은 콘크리트벽을 그대로 재현되어 있어서\n그 시대의 거리를 체험하는 공간처럼 느껴졌어요.\n\n전시회에서 만난 뱅크시의 그림은\n파괴적인 풍자와 사회적 메세지로 가득해요.\n\n뱅크시는 전쟁과 폭력, 권력과 감시\n차별과 모순을 날카롭게 드러내며\n불편한 현실을 끊임없이 고발했지만\n그가 최종적으로 추구하는 것은 평화이며\n지금보다 더 나은 세계에 대한 갈망처럼 느껴졌어요.\n\n무더운 여름날,\n산과 바다를 찾는 대신 도시의 미술관에서 평화의 메시지를 만났습니다.\n세상을 향해 꽃을 던진 뱅크시의 그림을 바라보며,\n오늘 내가 누군가에게 던져야 할 것은 분노가 아니라\n작은 사랑과 평화였으면 좋겠다는 생각이 들었습니다.",
+  "imageBase": "../../001/webp/",
+  "coverIndex": 13,
+  "photos": [
+    {
+      "file": "001.webp",
+      "orientation": "landscape"
+    },
+    {
+      "file": "002.webp",
+      "orientation": "landscape"
+    },
+    {
+      "file": "003.webp",
+      "orientation": "portrait"
+    },
+    {
+      "file": "004.webp",
+      "orientation": "portrait"
+    },
+    {
+      "file": "005.webp",
+      "orientation": "landscape"
+    },
+    {
+      "file": "006.webp",
+      "orientation": "portrait"
+    },
+    {
+      "file": "007.webp",
+      "orientation": "portrait"
+    },
+    {
+      "file": "008.webp",
+      "orientation": "portrait"
+    },
+    {
+      "file": "009.webp",
+      "orientation": "portrait"
+    },
+    {
+      "file": "010.webp",
+      "orientation": "portrait"
+    },
+    {
+      "file": "011.webp",
+      "orientation": "portrait"
+    },
+    {
+      "file": "012.webp",
+      "orientation": "landscape"
+    },
+    {
+      "file": "013.webp",
+      "orientation": "landscape"
+    },
+    {
+      "file": "014.webp",
+      "orientation": "landscape"
+    },
+    {
+      "file": "015.webp",
+      "orientation": "portrait"
+    }
+  ],
+  "status": "ready"
+}
